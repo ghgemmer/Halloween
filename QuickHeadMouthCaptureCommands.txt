@@ -1,0 +1,16 @@
+// Visualize3D is also used for calibrating.
+
+Visualize3D 100 0
+Visualize3D 100 1
+Visualize3DStop
+ImuHeadMouth 50 7 40
+ImuHeadMouth 50 8 40
+ImuHeadMouthStop
+
+WerewolvesLondonPlayerSetup;PlayOnce
+DayOPlayerSetup;PlayOnce
+PlayStop;HeadVertical 78;Mouth 110;HeadHorizontal 90
+// to put ready for removing Vertical power.  !!! Always remove Mouth power first and bring up last.
+HeadVertical 140 
+// The following is for a nominal position,  Head level, forward, mouthclosed
+HeadVertical 78;HeadHorizontal 90;Mouth 110
