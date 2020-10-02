@@ -6,6 +6,7 @@
 #include "Arduino.h"
 #include <PWMServo.h>
 #include <inttypes.h>
+#include <EEPROM.h>
 #include "base_device.h"
 #include "servo_device.h"
 #include "relay_device.h"
@@ -31,6 +32,11 @@
 #endif
 
 #include "program_memory_misc.h"
+
+const int  Per_Sensor_Cal_Data_Size_Eeprom = NUM_BNO055_OFFSET_REGISTERS;  // in bytes per sensor
+const int  Num_Eeprom_Cal_Sensors = 2;
+const int  Sensors_Cal_Data_Eeprom_adrs = 0x2ff;  // max is 0x3ff
+
 
 enum e_pneumatic_back_position_def {
     PNEUMATIC_BACK_UPRIGHT  = HIGH,
@@ -400,7 +406,7 @@ servo_device    Head_Horizontal_Rotation_servo      ;   // attached to pins in s
 servo_device    Head_Vertical_Rotation_servo        ;   // attached to pins in setup
 servo_device    Head_Mouth_Rotation_servo           ;   // attached to pins in setup
 LED_device      Eyes_LEDs                           (22); // pin 22
-relay_device    Pneumatic_Back_relay                (23); // pint 23
+relay_device    Pneumatic_Back_relay                (23); // pin 23
 mp3_device      Voice_Player                        ;
 
 devices_player  Devices_Player                      ;
@@ -1084,7 +1090,75 @@ void loop()
         printMag(SparkFun_imu2.mBiasRaw[0], SparkFun_imu2.mBiasRaw[1], SparkFun_imu2.mBiasRaw[2], false);
         printMag(SparkFun_imu2.mBias[0], SparkFun_imu2.mBias[1], SparkFun_imu2.mBias[2], true); 
 #endif      
-
+			}
+      else if (0 == strcmp(token, "ImuGetStoredCalibData"))
+      	// gets stored calib offsets data from eeprom and sets IMU with that offset data
+      {
+        int numItems = 0;
+        int sensorNumber = 0;
+        if ((numItems = sscanf(restcmdLine, "%d", &sensorNumber)) >= 1)
+        {
+          if ((sensorNumber >= 0) && (sensorNumber < MAX_ADAFRUIT_SENSORS) && (sensorNumber < Num_Eeprom_Cal_Sensors))
+          {
+            // Get calibration values from eeprom
+            uint8_t adafruit_bno055_offsets_raw[Per_Sensor_Cal_Data_Size_Eeprom];
+            for (int i = 0; i < Per_Sensor_Cal_Data_Size_Eeprom; i++)
+            {
+            	adafruit_bno055_offsets_raw[i] = EEPROM.read(Sensors_Cal_Data_Eeprom_adrs + (sensorNumber * Per_Sensor_Cal_Data_Size_Eeprom) + i);
+            	Serial.print("Offset ");
+            	Serial.print(i);
+            	Serial.print(" Value ");
+            	Serial.println(adafruit_bno055_offsets_raw[i]);
+            }
+            // set values into IMU           
+            Adafruit_sensors[sensorNumber].sensor->setSensorOffsets(&adafruit_bno055_offsets_raw[0]);
+          }
+          else
+          {
+            Serial.println("ImuGetStoredCalibData sensor number range error");
+          }
+        }
+        else
+        {
+          Serial.println("ImuGetStoredCalibData invalid parms");
+        }
+      }
+      else if (0 == strcmp(token, "ImuSetStoredCalibData"))
+      	// gets calibration offsets from IMU and stores them in eeprom
+      {
+        int numItems = 0;
+        int sensorNumber = 0;
+        if ((numItems = sscanf(restcmdLine, "%d", &sensorNumber)) >= 1)
+        {
+          if ((sensorNumber >= 0) && (sensorNumber < MAX_ADAFRUIT_SENSORS) && (sensorNumber < Num_Eeprom_Cal_Sensors))
+          {
+            uint8_t adafruit_bno055_offsets_raw[Per_Sensor_Cal_Data_Size_Eeprom];
+            // Get calibration values from IMU
+            if (Adafruit_sensors[sensorNumber].sensor->getSensorOffsets(&adafruit_bno055_offsets_raw[0]))
+            {
+	            for (int i = 0; i < Per_Sensor_Cal_Data_Size_Eeprom; i++)
+	            {
+	            	EEPROM.write(Sensors_Cal_Data_Eeprom_adrs + (sensorNumber * Per_Sensor_Cal_Data_Size_Eeprom) + i, adafruit_bno055_offsets_raw[i]);
+	            	Serial.print("Offset ");
+	            	Serial.print(i);
+	            	Serial.print(" Value ");
+	            	Serial.println(adafruit_bno055_offsets_raw[i]);
+	            }
+						}
+            else
+            {
+							Serial.println("ImuSetStoredCalibData IMU not calibrated error, not storing offsets from IMU");
+            }
+          }
+          else
+          {
+            Serial.println("ImuSetStoredCalibData sensor number range error");
+          }
+        }
+        else
+        {
+          Serial.println("ImuGetStoredCalibData invalid parms");
+        }
       }
       else if (0 == strcmp(token, "Visualize3DStop"))
       {
