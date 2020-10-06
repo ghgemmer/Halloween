@@ -2309,7 +2309,7 @@ int scaleMouthAngle(int angle)
     // leave as is
   }
   else{
-    angle = (angle * 7)/4;
+    angle = (angle * 8)/4;
   }
   return angle;
 }
