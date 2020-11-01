@@ -1,16 +1,29 @@
 // Visualize3D is also used for calibrating.
+// ImuGetStoredCalibData for getting calibration data from eeprom and restoring to IMUs
 
-Visualize3D 100 0
-Visualize3D 100 1
+
+ImuGetStoredCalibData 0;ImuGetStoredCalibData 1
+Visualize3D 50 0
+Visualize3D 50 1
 Visualize3DStop
 ImuHeadMouth 50 7 40
-ImuHeadMouth 50 8 40
+ImuHeadMouth 50 0 0
 ImuHeadMouthStop
 
+// Werewolves London setup and stop
 WerewolvesLondonPlayerSetup;PlayOnce
 DayOPlayerSetup;PlayOnce
-PlayStop;HeadVertical 78;Mouth 110;HeadHorizontal 90
-// to put ready for removing Vertical power.  !!! Always remove Mouth power first and bring up last.
-HeadVertical 140 
-// The following is for a nominal position,  Head level, forward, mouthclosed
-HeadVertical 78;HeadHorizontal 90;Mouth 110
+PlayStop;HeadVertical 79;Mouth 110;HeadHorizontal 90
+
+// Get ready for removing Vertical power.  !!! Always remove Mouth power first before powering down any servos and bring up last after powering up any servos.
+ImuHeadMouthStop;AudioStop;HeadVertical 50;HeadHorizontal 90; Mouth 110;
+
+
+// The following is for a nominal position where servos are quiet,  Head level, forward, mouthclosed
+ImuHeadMouthStop;HeadVertical 79;HeadHorizontal 90;Mouth 110
+
+// Position for looking at most of sidewalk by house
+HeadVertical 90;HeadHorizontal 90
+
+// Position for looking at sidewalk right in front of prop
+HeadVertical 110
