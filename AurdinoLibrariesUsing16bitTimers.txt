@@ -1,0 +1,873 @@
+Files that access a 16 bit Timer
+As long as don't use one of the following capabilities that use the 16 bit timer you want then no issues:
+Tones, 
+Robot libraries, 
+Simple native Servo library, 
+Input/Output digital pins that a timer would also use for pwm, 
+demonstration programs,
+analogWrite(uint8_t pin, int val) calls by someone else that we aren't making on a timer we are using
+ (which would be called by tones, robot,servo, demo).  Note that even though we don't use analogWrite in PWMServo we could if desired because it would result in the same register values being written.
+
+----------------------------------------
+Find 'TCCR??' in 'C:\Program Files (x86)\Arduino\hardware\arduino\bootloaders\caterina\Caterina.c' (9/16/2014 7:46:44 AM; 9/16/2014 7:46:44 AM):
+C:\Program Files (x86)\Arduino\hardware\arduino\bootloaders\caterina\Caterina.c(77):  TCCR1B = 0;
+C:\Program Files (x86)\Arduino\hardware\arduino\bootloaders\caterina\Caterina.c(190):  TCCR1B = ((1 << CS11) | (1 << CS10)); // 1/64 prescaler on timer 1 input
+Found 'TCCR??' 2 time(s).
+----------------------------------------
+Find 'TCCR??' in 'C:\Program Files (x86)\Arduino\hardware\arduino\bootloaders\caterina-Arduino_Robot\Caterina.c' (9/16/2014 7:46:44 AM; 9/16/2014 7:46:44 AM):
+C:\Program Files (x86)\Arduino\hardware\arduino\bootloaders\caterina-Arduino_Robot\Caterina.c(104):  TCCR1B = 0;
+C:\Program Files (x86)\Arduino\hardware\arduino\bootloaders\caterina-Arduino_Robot\Caterina.c(168):  TCCR1B = ((1 << CS11) | (1 << CS10)); // 1/64 prescaler on timer 1 input
+Found 'TCCR??' 2 time(s).
+----------------------------------------
+Find 'TCCR??' in 'C:\Program Files (x86)\Arduino\hardware\arduino\bootloaders\caterina-LilyPadUSB\Caterina.c' (9/16/2014 7:46:44 AM; 9/16/2014 7:46:44 AM):
+C:\Program Files (x86)\Arduino\hardware\arduino\bootloaders\caterina-LilyPadUSB\Caterina.c(104):  TCCR1B = 0;
+C:\Program Files (x86)\Arduino\hardware\arduino\bootloaders\caterina-LilyPadUSB\Caterina.c(168):  TCCR1B = ((1 << CS11) | (1 << CS10)); // 1/64 prescaler on timer 1 input
+Found 'TCCR??' 2 time(s).
+
+
+C:\Program Files (x86)\Arduino\hardware\arduino\cores\arduino\wiring_analog.c
+	analogWrite(uint8_t pin, int val) affects TCCR, OCR registers for a given timer
+	
+C:\Program Files (x86)\Arduino\hardware\arduino\cores\arduino\wiring_digital.c
+	void turnOffPWM(uint8_t timer)
+	digitalWrite(uint8_t pin, uint8_t val)
+	int digitalRead(uint8_t pin)
+	
+C:\Program Files (x86)\Arduino\hardware\arduino\cores\arduino\Tone.cpp
+	Various for generationg tones
+	static int8_t toneBegin(uint8_t _pin)
+	void tone(uint8_t _pin, unsigned int frequency, unsigned long duration)
+	void disableTimer(uint8_t _timer)
+	void noTone(uint8_t _pin)
+	ISR(TIMER?_COMPA_vect)  for timers 0..5
+	
+C:\Program Files (x86)\Arduino\hardware\arduino\cores\robot\wiring.c
+	Various for generating servo pwm for robots
+	
+C:\Program Files (x86)\Arduino\hardware\arduino\cores\robot\wiring_analog.c
+		Various for generating servo pwm for robots
+
+
+C:\Program Files (x86)\Arduino\hardware\arduino\cores\robot\wiring_digital.c
+		Various for generating servo pwm for robots
+
+C:\Program Files (x86)\Arduino\hardware\arduino\cores\robot\Tone.cpp
+	Various for generating servo pwm for tones for robots
+
+	C:\Program Files (x86)\Arduino\hardware\arduino\firmwares\atmegaxxu2\arduino-usbserial\Arduino-usbserial.c
+		For usb firmware opeations only on usb
+		
+
+The following makes defines for timer registers
+Begin makes defines for timer registers  ------------------------
+Find 'TCCR??' in 'C:\Program Files (x86)\Arduino\hardware\arduino\variants\leonardo\pins_arduino.h' (9/16/2014 7:46:44 AM; 9/16/2014 7:46:44 AM):
+C:\Program Files (x86)\Arduino\hardware\arduino\variants\leonardo\pins_arduino.h(51): #undef TCCR2A
+C:\Program Files (x86)\Arduino\hardware\arduino\variants\leonardo\pins_arduino.h(58): #undef TCCR2B
+Leonardo only pins
+Found 'TCCR??' 2 time(s).
+----------------------------------------
+Find 'TCCR??' in 'C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\io1200.h' (12/4/2008 1:36:22 PM; 12/4/2008 1:36:22 PM):
+
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\io1200.h(148): /* TCCR0 */
+Found 'TCCR??' 1 time(s).
+----------------------------------------
+Find 'TCCR??' in 'C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\io2313.h' (12/4/2008 1:36:22 PM; 12/4/2008 1:36:22 PM):
+Makes defines for timer registers
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\io2313.h(117): #define TCCR1B _SFR_IO8(0x2E)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\io2313.h(120): #define TCCR1A _SFR_IO8(0x2F)
+Found 'TCCR??' 2 time(s).
+----------------------------------------
+Find 'TCCR??' in 'C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\io2333.h' (12/4/2008 1:36:22 PM; 12/4/2008 1:36:22 PM):
+Makes defines for timer registers
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\io2333.h(147): #define TCCR1B _SFR_IO8(0x2E)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\io2333.h(150): #define TCCR1A _SFR_IO8(0x2F)
+Found 'TCCR??' 2 time(s).
+----------------------------------------
+Find 'TCCR??' in 'C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\io43u32x.h' (12/4/2008 1:36:22 PM; 12/4/2008 1:36:22 PM):
+Makes defines for timer registers
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\io43u32x.h(147): #define TCCR1B _SFR_IO8(0x2E)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\io43u32x.h(150): #define TCCR1A _SFR_IO8(0x2F)
+Found 'TCCR??' 2 time(s).
+----------------------------------------
+Find 'TCCR??' in 'C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\io43u35x.h' (12/4/2008 1:36:22 PM; 12/4/2008 1:36:22 PM):
+Makes defines for timer registers
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\io43u35x.h(158): #define TCCR1B _SFR_IO8(0x2E)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\io43u35x.h(161): #define TCCR1A _SFR_IO8(0x2F)
+Found 'TCCR??' 2 time(s).
+----------------------------------------
+Find 'TCCR??' in 'C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\io4414.h' (12/4/2008 1:36:22 PM; 12/4/2008 1:36:22 PM):
+Makes defines for timer registers
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\io4414.h(146): #define TCCR1B _SFR_IO8(0x2E)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\io4414.h(149): #define TCCR1A _SFR_IO8(0x2F)
+Found 'TCCR??' 2 time(s).
+----------------------------------------
+Find 'TCCR??' in 'C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\io4433.h' (12/4/2008 1:36:22 PM; 12/4/2008 1:36:22 PM):
+Makes defines for timer registers
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\io4433.h(147): #define TCCR1B _SFR_IO8(0x2E)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\io4433.h(150): #define TCCR1A _SFR_IO8(0x2F)
+Found 'TCCR??' 2 time(s).
+----------------------------------------
+Find 'TCCR??' in 'C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\io4434.h' (12/4/2008 1:36:22 PM; 12/4/2008 1:36:22 PM):
+Makes defines for timer registers
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\io4434.h(172): #define TCCR1B _SFR_IO8(0x2E)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\io4434.h(175): #define TCCR1A _SFR_IO8(0x2F)
+Found 'TCCR??' 2 time(s).
+----------------------------------------
+Find 'TCCR??' in 'C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\io58u54a.h' (11/11/2008 6:44:34 AM; 11/11/2008 6:44:34 AM):
+Makes defines for timer registers
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\io58u54a.h(280): #define TCCR0A _SFR_IO8(0x024)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\io58u54a.h(288): #define TCCR0B _SFR_IO8(0x025)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\io58u54a.h(553): #define TCCR1A _SFR_MEM8(0x080)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\io58u54a.h(561): #define TCCR1B _SFR_MEM8(0x081)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\io58u54a.h(570): #define TCCR1C _SFR_MEM8(0x082)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\io58u54a.h(662): #define TCCR3A _SFR_MEM8(0x090)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\io58u54a.h(670): #define TCCR3B _SFR_MEM8(0x091)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\io58u54a.h(679): #define TCCR3C _SFR_MEM8(0x092)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\io58u54a.h(770): #define TCCR2A _SFR_MEM8(0x0A0)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\io58u54a.h(778): #define TCCR2B _SFR_MEM8(0x0A1)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\io58u54a.h(816): #define TCCR4A _SFR_MEM8(0x0A8)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\io58u54a.h(824): #define TCCR4B _SFR_MEM8(0x0A9)
+Found 'TCCR??' 12 time(s).
+----------------------------------------
+Find 'TCCR??' in 'C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\io76c711.h' (12/4/2008 1:36:22 PM; 12/4/2008 1:36:22 PM):
+Makes defines for timer registers
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\io76c711.h(103): #define TCCR1B _SFR_IO8(0x2E)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\io76c711.h(104): #define TCCR1A _SFR_IO8(0x2F)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\io76c711.h(189): /* TCCR0 */
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\io76c711.h(198): /* TCCR1A */
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\io76c711.h(205): /* TCCR1B */
+Found 'TCCR??' 5 time(s).
+----------------------------------------
+Find 'TCCR??' in 'C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\io8515.h' (12/4/2008 1:36:22 PM; 12/4/2008 1:36:22 PM):
+Makes defines for timer registers
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\io8515.h(147): #define TCCR1B _SFR_IO8(0x2E)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\io8515.h(150): #define TCCR1A _SFR_IO8(0x2F)
+Found 'TCCR??' 2 time(s).
+----------------------------------------
+Find 'TCCR??' in 'C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\io8534.h' (12/4/2008 1:36:22 PM; 12/4/2008 1:36:22 PM):
+Makes defines for timer registers
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\io8534.h(174): /* TCCR0 */
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\io8534.h(179): /* TCCR1 */
+Found 'TCCR??' 2 time(s).
+----------------------------------------
+Find 'TCCR??' in 'C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\io8535.h' (12/4/2008 1:36:22 PM; 12/4/2008 1:36:22 PM):
+Makes defines for timer registers
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\io8535.h(173): #define TCCR1B _SFR_IO8(0x2E)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\io8535.h(176): #define TCCR1A _SFR_IO8(0x2F)
+Found 'TCCR??' 2 time(s).
+----------------------------------------
+Find 'TCCR??' in 'C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\io90pwm1.h' (12/4/2008 1:36:22 PM; 12/4/2008 1:36:22 PM):
+Makes defines for timer registers
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\io90pwm1.h(288): #define TCCR0A  _SFR_IO8(0x24)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\io90pwm1.h(289): /* TCCR0A */
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\io90pwm1.h(298): #define TCCR0B  _SFR_IO8(0x25)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\io90pwm1.h(299): /* TCCR0B */
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\io90pwm1.h(597): #define TCCR1A  _SFR_MEM8(0x80)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\io90pwm1.h(598): /* TCCR1A */
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\io90pwm1.h(607): #define TCCR1B  _SFR_MEM8(0x81)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\io90pwm1.h(608): /* TCCR1B */
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\io90pwm1.h(618): #define TCCR1C  _SFR_MEM8(0x82)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\io90pwm1.h(619): /* TCCR1C */
+Found 'TCCR??' 10 time(s).
+----------------------------------------
+Find 'TCCR??' in 'C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\io90pwm216.h' (12/4/2008 1:36:22 PM; 12/4/2008 1:36:22 PM):
+Makes defines for timer registers
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\io90pwm216.h(290): #define TCCR0A  _SFR_IO8(0x24)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\io90pwm216.h(299): #define TCCR0B  _SFR_IO8(0x25)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\io90pwm216.h(555): #define TCCR1A  _SFR_MEM8(0x80)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\io90pwm216.h(564): #define TCCR1B  _SFR_MEM8(0x81)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\io90pwm216.h(574): #define TCCR1C  _SFR_MEM8(0x82)
+Found 'TCCR??' 5 time(s).
+----------------------------------------
+Find 'TCCR??' in 'C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\io90pwm2b.h' (12/4/2008 1:36:22 PM; 12/4/2008 1:36:22 PM):
+Makes defines for timer registers
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\io90pwm2b.h(264): #define TCCR0A _SFR_IO8(0x24)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\io90pwm2b.h(272): #define TCCR0B _SFR_IO8(0x25)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\io90pwm2b.h(519): #define TCCR1A _SFR_MEM8(0x80)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\io90pwm2b.h(527): #define TCCR1B _SFR_MEM8(0x81)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\io90pwm2b.h(536): #define TCCR1C _SFR_MEM8(0x82)
+Found 'TCCR??' 5 time(s).
+----------------------------------------
+Find 'TCCR??' in 'C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\io90pwm316.h' (12/4/2008 1:36:22 PM; 12/4/2008 1:36:22 PM):
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\io90pwm316.h(290): #define TCCR0A  _SFR_IO8(0x24)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\io90pwm316.h(299): #define TCCR0B  _SFR_IO8(0x25)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\io90pwm316.h(555): #define TCCR1A  _SFR_MEM8(0x80)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\io90pwm316.h(564): #define TCCR1B  _SFR_MEM8(0x81)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\io90pwm316.h(574): #define TCCR1C  _SFR_MEM8(0x82)
+Found 'TCCR??' 5 time(s).
+----------------------------------------
+Find 'TCCR??' in 'C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\io90pwm3b.h' (12/4/2008 1:36:22 PM; 12/4/2008 1:36:22 PM):
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\io90pwm3b.h(264): #define TCCR0A _SFR_IO8(0x24)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\io90pwm3b.h(272): #define TCCR0B _SFR_IO8(0x25)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\io90pwm3b.h(519): #define TCCR1A _SFR_MEM8(0x80)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\io90pwm3b.h(527): #define TCCR1B _SFR_MEM8(0x81)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\io90pwm3b.h(536): #define TCCR1C _SFR_MEM8(0x82)
+Found 'TCCR??' 5 time(s).
+----------------------------------------
+Find 'TCCR??' in 'C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\io90pwmx.h' (12/4/2008 1:36:22 PM; 12/4/2008 1:36:22 PM):
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\io90pwmx.h(315): #define TCCR0A  _SFR_IO8(0x24)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\io90pwmx.h(316): /* TCCR0A */
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\io90pwmx.h(325): #define TCCR0B  _SFR_IO8(0x25)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\io90pwmx.h(326): /* TCCR0B */
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\io90pwmx.h(618): #define TCCR1A  _SFR_MEM8(0x80)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\io90pwmx.h(619): /* TCCR1A */
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\io90pwmx.h(628): #define TCCR1B  _SFR_MEM8(0x81)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\io90pwmx.h(629): /* TCCR1B */
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\io90pwmx.h(639): #define TCCR1C  _SFR_MEM8(0x82)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\io90pwmx.h(640): /* TCCR1C */
+Found 'TCCR??' 10 time(s).
+----------------------------------------
+Find 'TCCR??' in 'C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\ioat94k.h' (12/4/2008 1:36:22 PM; 12/4/2008 1:36:22 PM):
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\ioat94k.h(166): #define TCCR1B _SFR_IO8(0x2E)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\ioat94k.h(169): #define TCCR1A _SFR_IO8(0x2F)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\ioat94k.h(407): /* TCCR0 */
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\ioat94k.h(417): /* TCCR1A */
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\ioat94k.h(427): /* TCCR1B */
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\ioat94k.h(436): /* TCCR2 */
+Found 'TCCR??' 6 time(s).
+----------------------------------------
+Find 'TCCR??' in 'C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iocanxx.h' (12/4/2008 1:36:22 PM; 12/4/2008 1:36:22 PM):
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iocanxx.h(139): #define TCCR0A _SFR_IO8(0x24)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iocanxx.h(240): #define TCCR1A _SFR_MEM8(0x80)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iocanxx.h(243): #define TCCR1B _SFR_MEM8(0x81)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iocanxx.h(246): #define TCCR1C _SFR_MEM8(0x82)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iocanxx.h(274): #define TCCR3A _SFR_MEM8(0x90)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iocanxx.h(277): #define TCCR3B _SFR_MEM8(0x91)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iocanxx.h(280): #define TCCR3C _SFR_MEM8(0x92)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iocanxx.h(308): #define TCCR2A _SFR_MEM8(0xB0)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iocanxx.h(748): /* Register Bits [TCCR2]  */
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iocanxx.h(749): /* Timer/Counter 2 Control Register - TCCR2 */
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iocanxx.h(760): /* Register Bits [TCCR1A]  */
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iocanxx.h(761): /* Timer/Counter 1 Control and Status Register A - TCCR1A */
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iocanxx.h(772): /* Register Bits [TCCR3A]  */
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iocanxx.h(773): /* Timer/Counter 3 Control and Status Register A - TCCR3A */
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iocanxx.h(784): /* Register Bits [TCCR1B]  */
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iocanxx.h(785): /* Timer/Counter 1 Control and Status Register B - TCCR1B */
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iocanxx.h(795): /* Register Bits [TCCR3B]  */
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iocanxx.h(796): /* Timer/Counter 3 Control and Status Register B - TCCR3B */
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iocanxx.h(806): /* Register Bits [TCCR3C]  */
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iocanxx.h(807): /* Timer/Counter 3 Control Register C - TCCR3C */
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iocanxx.h(813): /* Register Bits [TCCR1C]  */
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iocanxx.h(814): /* Timer/Counter 1 Control Register C - TCCR1C */
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iocanxx.h(1356): /* Register Bits [TCCR0A]  */
+Found 'TCCR??' 23 time(s).
+----------------------------------------
+Find 'TCCR??' in 'C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom103.h' (12/4/2008 1:36:22 PM; 12/4/2008 1:36:22 PM):
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom103.h(176): #define TCCR1B _SFR_IO8(0x2E)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom103.h(179): #define TCCR1A _SFR_IO8(0x2F)
+Found 'TCCR??' 2 time(s).
+----------------------------------------
+Find 'TCCR??' in 'C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom128.h' (12/4/2008 1:36:22 PM; 12/4/2008 1:36:22 PM):
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom128.h(170): #define TCCR2     _SFR_IO8(0x25)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom128.h(193): #define TCCR1B    _SFR_IO8(0x2E)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom128.h(196): #define TCCR1A    _SFR_IO8(0x2F)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom128.h(208): #define TCCR0     _SFR_IO8(0x33)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom128.h(296): #define TCCR1C    _SFR_MEM8(0x7A)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom128.h(330): #define TCCR3B    _SFR_MEM8(0x8A)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom128.h(333): #define TCCR3A    _SFR_MEM8(0x8B)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom128.h(336): #define TCCR3C    _SFR_MEM8(0x8C)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom128.h(681): /* Timer/Counter 0 Control Register - TCCR0 */
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom128.h(691): /* Timer/Counter 2 Control Register - TCCR2 */
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom128.h(717): /* Timer/Counter 1 Control and Status Register A - TCCR1A */
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom128.h(727): /* Timer/Counter 3 Control and Status Register A - TCCR3A */
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom128.h(746): /* Timer/Counter 1 Control and Status Register B - TCCR1B */
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom128.h(755): /* Timer/Counter 3 Control and Status Register B - TCCR3B */
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom128.h(769): /* Timer/Counter 3 Control Register C - TCCR3C */
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom128.h(774): /* Timer/Counter 1 Control Register C - TCCR1C */
+Found 'TCCR??' 16 time(s).
+----------------------------------------
+Find 'TCCR??' in 'C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom1284p.h' (12/4/2008 10:24:14 AM; 12/4/2008 10:24:14 AM):
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom1284p.h(264): #define TCCR0A _SFR_IO8(0x24)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom1284p.h(272): #define TCCR0B _SFR_IO8(0x25)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom1284p.h(590): #define TCCR1A _SFR_MEM8(0x80)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom1284p.h(598): #define TCCR1B _SFR_MEM8(0x81)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom1284p.h(607): #define TCCR1C _SFR_MEM8(0x82)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom1284p.h(699): #define TCCR3A _SFR_MEM8(0x90)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom1284p.h(707): #define TCCR3B _SFR_MEM8(0x91)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom1284p.h(716): #define TCCR3C _SFR_MEM8(0x92)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom1284p.h(808): #define TCCR2A _SFR_MEM8(0xB0)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom1284p.h(816): #define TCCR2B _SFR_MEM8(0xB1)
+Found 'TCCR??' 10 time(s).
+----------------------------------------
+Find 'TCCR??' in 'C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom16.h' (12/4/2008 1:36:22 PM; 12/4/2008 1:36:22 PM):
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom16.h(319): #define TCCR2   _SFR_IO8(0x25)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom16.h(353): #define TCCR1B  _SFR_IO8(0x2E)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom16.h(362): #define TCCR1A  _SFR_IO8(0x2F)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom16.h(393): #define TCCR0   _SFR_IO8(0x33)
+Found 'TCCR??' 4 time(s).
+----------------------------------------
+Find 'TCCR??' in 'C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom161.h' (12/4/2008 1:36:22 PM; 12/4/2008 1:36:22 PM):
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom161.h(181): #define TCCR1B _SFR_IO8(0x2E)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom161.h(184): #define TCCR1A _SFR_IO8(0x2F)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom161.h(374): /* TCCR0 */
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom161.h(384): /* TCCR2 */
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom161.h(400): /* TCCR1A */
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom161.h(410): /* TCCR1B */
+Found 'TCCR??' 6 time(s).
+----------------------------------------
+Find 'TCCR??' in 'C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom162.h' (12/4/2008 1:36:22 PM; 12/4/2008 1:36:22 PM):
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom162.h(53): #define TCCR3A _SFR_MEM8(0x8B)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom162.h(56): #define TCCR3B _SFR_MEM8(0x8A)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom162.h(112): #define TCCR1A _SFR_IO8(0x2F) /* Timer/Counter 1 Control Register A */
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom162.h(113): #define TCCR1B _SFR_IO8(0x2E) /* Timer/Counter 1 Control Register A */
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom162.h(285): /* TCCR3B bit definitions, memory mapped I/O */
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom162.h(297): /* TCCR3A bit definitions, memory mapped I/O */
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom162.h(536): /* TCCR1A bit definitions */
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom162.h(550): /* TCCR1B bit definitions */
+Found 'TCCR??' 8 time(s).
+----------------------------------------
+Find 'TCCR??' in 'C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom163.h' (12/4/2008 1:36:22 PM; 12/4/2008 1:36:22 PM):
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom163.h(136): #define TCCR1B _SFR_IO8(0x2E)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom163.h(137): #define TCCR1A _SFR_IO8(0x2F)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom163.h(326): /* TCCR0 */
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom163.h(332): /* TCCR2 */
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom163.h(349): /* TCCR1A */
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom163.h(359): /* TCCR1B */
+Found 'TCCR??' 6 time(s).
+----------------------------------------
+Find 'TCCR??' in 'C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom165.h' (12/4/2008 1:36:22 PM; 12/4/2008 1:36:22 PM):
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom165.h(307): #define TCCR0A  _SFR_IO8(0x24)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom165.h(532): #define TCCR1A  _SFR_MEM8(0X80)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom165.h(540): #define TCCR1B  _SFR_MEM8(0X81)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom165.h(549): #define TCCR1C  _SFR_MEM8(0x82)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom165.h(581): #define TCCR2A  _SFR_MEM8(0xB0)
+Found 'TCCR??' 5 time(s).
+----------------------------------------
+Find 'TCCR??' in 'C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom165p.h' (12/4/2008 1:36:22 PM; 12/4/2008 1:36:22 PM):
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom165p.h(309): #define TCCR0A  _SFR_IO8(0x24)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom165p.h(534): #define TCCR1A  _SFR_MEM8(0X80)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom165p.h(542): #define TCCR1B  _SFR_MEM8(0X81)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom165p.h(551): #define TCCR1C  _SFR_MEM8(0x82)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom165p.h(583): #define TCCR2A  _SFR_MEM8(0xB0)
+Found 'TCCR??' 5 time(s).
+----------------------------------------
+Find 'TCCR??' in 'C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom168p.h' (12/4/2008 1:36:22 PM; 12/4/2008 1:36:22 PM):
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom168p.h(220): #define TCCR0A _SFR_IO8(0x24)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom168p.h(228): #define TCCR0B _SFR_IO8(0x25)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom168p.h(503): #define TCCR1A _SFR_MEM8(0x80)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom168p.h(511): #define TCCR1B _SFR_MEM8(0x81)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom168p.h(520): #define TCCR1C _SFR_MEM8(0x82)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom168p.h(612): #define TCCR2A _SFR_MEM8(0xB0)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom168p.h(620): #define TCCR2B _SFR_MEM8(0xB1)
+Found 'TCCR??' 7 time(s).
+----------------------------------------
+Find 'TCCR??' in 'C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom169.h' (12/4/2008 1:36:22 PM; 12/4/2008 1:36:22 PM):
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom169.h(130): #define TCCR0A _SFR_IO8(0x24)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom169.h(232): #define TCCR1A _SFR_MEM8(0x80)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom169.h(235): #define TCCR1B _SFR_MEM8(0x81)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom169.h(238): #define TCCR1C _SFR_MEM8(0x82)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom169.h(261): #define TCCR2A _SFR_MEM8(0xB0)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom169.h(734): /* TCCR0A */
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom169.h(900): /* TCCR1A */
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom169.h(908): /* TCCR1B */
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom169.h(917): /* TCCR1C */
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom169.h(921): /* TCCR2A */
+Found 'TCCR??' 10 time(s).
+----------------------------------------
+Find 'TCCR??' in 'C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom169p.h' (12/4/2008 1:36:22 PM; 12/4/2008 1:36:22 PM):
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom169p.h(324): #define TCCR0A _SFR_IO8(0x24)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom169p.h(548): #define TCCR1A _SFR_MEM8(0x80)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom169p.h(557): #define TCCR1B _SFR_MEM8(0x81)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom169p.h(567): #define TCCR1C _SFR_MEM8(0x82)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom169p.h(592): #define TCCR2A _SFR_MEM8(0xB0)
+Found 'TCCR??' 5 time(s).
+----------------------------------------
+Find 'TCCR??' in 'C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom32.h' (12/4/2008 1:36:22 PM; 12/4/2008 1:36:22 PM):
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom32.h(123): #define TCCR2   _SFR_IO8(0x25)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom32.h(138): #define TCCR1B  _SFR_IO8(0x2E)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom32.h(139): #define TCCR1A  _SFR_IO8(0x2F)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom32.h(148): #define TCCR0   _SFR_IO8(0x33)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom32.h(362): /* TCCR0 */
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom32.h(372): /* TCCR2 */
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom32.h(389): /* TCCR1A */
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom32.h(399): /* TCCR1B */
+Found 'TCCR??' 8 time(s).
+----------------------------------------
+Find 'TCCR??' in 'C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom323.h' (12/4/2008 1:36:22 PM; 12/4/2008 1:36:22 PM):
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom323.h(139): #define TCCR1B _SFR_IO8(0x2E)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom323.h(140): #define TCCR1A _SFR_IO8(0x2F)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom323.h(351): /* TCCR0 */
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom323.h(361): /* TCCR2 */
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom323.h(378): /* TCCR1A */
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom323.h(388): /* TCCR1B */
+Found 'TCCR??' 6 time(s).
+----------------------------------------
+Find 'TCCR??' in 'C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom325.h' (12/4/2008 1:36:24 PM; 12/4/2008 1:36:24 PM):
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom325.h(309): #define TCCR0A  _SFR_IO8(0x24)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom325.h(534): #define TCCR1A  _SFR_MEM8(0X80)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom325.h(542): #define TCCR1B  _SFR_MEM8(0X81)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom325.h(551): #define TCCR1C  _SFR_MEM8(0x82)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom325.h(583): #define TCCR2A  _SFR_MEM8(0xB0)
+Found 'TCCR??' 5 time(s).
+----------------------------------------
+Find 'TCCR??' in 'C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom3250.h' (12/4/2008 1:36:24 PM; 12/4/2008 1:36:24 PM):
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom3250.h(312): #define TCCR0A  _SFR_IO8(0x24)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom3250.h(556): #define TCCR1A  _SFR_MEM8(0X80)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom3250.h(564): #define TCCR1B  _SFR_MEM8(0X81)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom3250.h(573): #define TCCR1C  _SFR_MEM8(0x82)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom3250.h(605): #define TCCR2A  _SFR_MEM8(0xB0)
+Found 'TCCR??' 5 time(s).
+----------------------------------------
+Find 'TCCR??' in 'C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom328p.h' (12/4/2008 1:36:24 PM; 12/4/2008 1:36:24 PM):
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom328p.h(221): #define TCCR0A _SFR_IO8(0x24)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom328p.h(229): #define TCCR0B _SFR_IO8(0x25)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom328p.h(504): #define TCCR1A _SFR_MEM8(0x80)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom328p.h(512): #define TCCR1B _SFR_MEM8(0x81)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom328p.h(521): #define TCCR1C _SFR_MEM8(0x82)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom328p.h(613): #define TCCR2A _SFR_MEM8(0xB0)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom328p.h(621): #define TCCR2B _SFR_MEM8(0xB1)
+Found 'TCCR??' 7 time(s).
+----------------------------------------
+Find 'TCCR??' in 'C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom329.h' (12/4/2008 1:36:24 PM; 12/4/2008 1:36:24 PM):
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom329.h(307): #define TCCR0A  _SFR_IO8(0x24)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom329.h(533): #define TCCR1A  _SFR_MEM8(0X80)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom329.h(541): #define TCCR1B  _SFR_MEM8(0X81)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom329.h(550): #define TCCR1C  _SFR_MEM8(0x82)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom329.h(582): #define TCCR2A  _SFR_MEM8(0xB0)
+Found 'TCCR??' 5 time(s).
+----------------------------------------
+Find 'TCCR??' in 'C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom3290.h' (12/4/2008 1:36:24 PM; 12/4/2008 1:36:24 PM):
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom3290.h(311): #define TCCR0A  _SFR_IO8(0x24)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom3290.h(556): #define TCCR1A  _SFR_MEM8(0X80)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom3290.h(564): #define TCCR1B  _SFR_MEM8(0X81)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom3290.h(573): #define TCCR1C  _SFR_MEM8(0x82)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom3290.h(605): #define TCCR2A  _SFR_MEM8(0xB0)
+Found 'TCCR??' 5 time(s).
+----------------------------------------
+Find 'TCCR??' in 'C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom32c1.h' (12/4/2008 10:24:18 AM; 12/4/2008 10:24:18 AM):
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom32c1.h(254): #define TCCR0A _SFR_IO8(0x24)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom32c1.h(262): #define TCCR0B _SFR_IO8(0x25)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom32c1.h(535): #define TCCR1A _SFR_MEM8(0x80)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom32c1.h(543): #define TCCR1B _SFR_MEM8(0x81)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom32c1.h(552): #define TCCR1C _SFR_MEM8(0x82)
+Found 'TCCR??' 5 time(s).
+----------------------------------------
+Find 'TCCR??' in 'C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom32hvb.h' (12/4/2008 1:36:24 PM; 12/4/2008 1:36:24 PM):
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom32hvb.h(198): #define TCCR0A _SFR_IO8(0x24)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom32hvb.h(206): #define TCCR0B _SFR_IO8(0x25)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom32hvb.h(436): #define TCCR1A _SFR_MEM8(0x80)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom32hvb.h(444): #define TCCR1B _SFR_MEM8(0x81)
+Found 'TCCR??' 4 time(s).
+----------------------------------------
+Find 'TCCR??' in 'C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom32m1.h' (12/4/2008 1:36:24 PM; 12/4/2008 1:36:24 PM):
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom32m1.h(257): #define TCCR0A _SFR_IO8(0x24)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom32m1.h(265): #define TCCR0B _SFR_IO8(0x25)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom32m1.h(538): #define TCCR1A _SFR_MEM8(0x80)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom32m1.h(546): #define TCCR1B _SFR_MEM8(0x81)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom32m1.h(555): #define TCCR1C _SFR_MEM8(0x82)
+Found 'TCCR??' 5 time(s).
+----------------------------------------
+Find 'TCCR??' in 'C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom32u4.h' (12/4/2008 1:36:24 PM; 12/4/2008 1:36:24 PM):
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom32u4.h(269): #define TCCR0A _SFR_IO8(0x24)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom32u4.h(277): #define TCCR0B _SFR_IO8(0x25)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom32u4.h(616): #define TCCR1A _SFR_MEM8(0x80)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom32u4.h(626): #define TCCR1B _SFR_MEM8(0x81)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom32u4.h(635): #define TCCR1C _SFR_MEM8(0x82)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom32u4.h(750): #define TCCR3A _SFR_MEM8(0x90)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom32u4.h(760): #define TCCR3B _SFR_MEM8(0x91)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom32u4.h(769): #define TCCR3C _SFR_MEM8(0x92)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom32u4.h(922): #define TCCR2A _SFR_MEM8(0xB0)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom32u4.h(930): #define TCCR2B _SFR_MEM8(0xB1)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom32u4.h(1043): #define TCCR4A _SFR_MEM8(0xC0)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom32u4.h(1053): #define TCCR4B _SFR_MEM8(0xC1)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom32u4.h(1063): #define TCCR4C _SFR_MEM8(0xC2)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom32u4.h(1073): #define TCCR4D _SFR_MEM8(0xC3)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom32u4.h(1083): #define TCCR4E _SFR_MEM8(0xC4)
+Found 'TCCR??' 15 time(s).
+----------------------------------------
+Find 'TCCR??' in 'C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom32u6.h' (12/4/2008 1:36:24 PM; 12/4/2008 1:36:24 PM):
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom32u6.h(332): #define TCCR0A _SFR_IO8(0x24)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom32u6.h(340): #define TCCR0B _SFR_IO8(0x25)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom32u6.h(658): #define TCCR1A _SFR_MEM8(0x80)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom32u6.h(668): #define TCCR1B _SFR_MEM8(0x81)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom32u6.h(677): #define TCCR1C _SFR_MEM8(0x82)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom32u6.h(792): #define TCCR3A _SFR_MEM8(0x90)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom32u6.h(802): #define TCCR3B _SFR_MEM8(0x91)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom32u6.h(811): #define TCCR3C _SFR_MEM8(0x92)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom32u6.h(926): #define TCCR2A _SFR_MEM8(0xB0)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom32u6.h(934): #define TCCR2B _SFR_MEM8(0xB1)
+Found 'TCCR??' 10 time(s).
+----------------------------------------
+Find 'TCCR??' in 'C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom406.h' (12/4/2008 1:36:24 PM; 12/4/2008 1:36:24 PM):
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom406.h(197): #define TCCR0A  _SFR_IO8(0x24)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom406.h(206): #define TCCR0B  _SFR_IO8(0x25)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom406.h(409): #define TCCR1B  _SFR_MEM8(0x81)
+Found 'TCCR??' 3 time(s).
+----------------------------------------
+Find 'TCCR??' in 'C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom48p.h' (12/4/2008 1:36:24 PM; 12/4/2008 1:36:24 PM):
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom48p.h(218): #define TCCR0A _SFR_IO8(0x24)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom48p.h(226): #define TCCR0B _SFR_IO8(0x25)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom48p.h(499): #define TCCR1A _SFR_MEM8(0x80)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom48p.h(507): #define TCCR1B _SFR_MEM8(0x81)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom48p.h(516): #define TCCR1C _SFR_MEM8(0x82)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom48p.h(608): #define TCCR2A _SFR_MEM8(0xB0)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom48p.h(616): #define TCCR2B _SFR_MEM8(0xB1)
+Found 'TCCR??' 7 time(s).
+----------------------------------------
+Find 'TCCR??' in 'C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom64.h' (12/4/2008 1:36:24 PM; 12/4/2008 1:36:24 PM):
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom64.h(169): #define TCCR2     _SFR_IO8(0x25)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom64.h(192): #define TCCR1B    _SFR_IO8(0x2E)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom64.h(195): #define TCCR1A    _SFR_IO8(0x2F)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom64.h(207): #define TCCR0     _SFR_IO8(0x33)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom64.h(292): #define TCCR1C    _SFR_MEM8(0x7A)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom64.h(326): #define TCCR3B    _SFR_MEM8(0x8A)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom64.h(329): #define TCCR3A    _SFR_MEM8(0x8B)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom64.h(332): #define TCCR3C    _SFR_MEM8(0x8C)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom64.h(670): /* Timer/Counter 0 Control Register - TCCR0 */
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom64.h(680): /* Timer/Counter 2 Control Register - TCCR2 */
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom64.h(706): /* Timer/Counter 1 Control and Status Register A - TCCR1A */
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom64.h(716): /* Timer/Counter 3 Control and Status Register A - TCCR3A */
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom64.h(735): /* Timer/Counter 1 Control and Status Register B - TCCR1B */
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom64.h(744): /* Timer/Counter 3 Control and Status Register B - TCCR3B */
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom64.h(758): /* Timer/Counter 3 Control Register C - TCCR3C */
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom64.h(763): /* Timer/Counter 1 Control Register C - TCCR1C */
+Found 'TCCR??' 16 time(s).
+----------------------------------------
+Find 'TCCR??' in 'C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom645.h' (12/4/2008 1:36:24 PM; 12/4/2008 1:36:24 PM):
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom645.h(308): #define TCCR0A  _SFR_IO8(0x24)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom645.h(529): #define TCCR1A  _SFR_MEM8(0X80)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom645.h(537): #define TCCR1B  _SFR_MEM8(0X81)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom645.h(546): #define TCCR1C  _SFR_MEM8(0x82)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom645.h(578): #define TCCR2A  _SFR_MEM8(0xB0)
+Found 'TCCR??' 5 time(s).
+----------------------------------------
+Find 'TCCR??' in 'C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom6450.h' (12/4/2008 1:36:24 PM; 12/4/2008 1:36:24 PM):
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom6450.h(312): #define TCCR0A  _SFR_IO8(0x24)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom6450.h(552): #define TCCR1A  _SFR_MEM8(0X80)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom6450.h(560): #define TCCR1B  _SFR_MEM8(0X81)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom6450.h(569): #define TCCR1C  _SFR_MEM8(0x82)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom6450.h(601): #define TCCR2A  _SFR_MEM8(0xB0)
+Found 'TCCR??' 5 time(s).
+----------------------------------------
+Find 'TCCR??' in 'C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom649.h' (12/4/2008 1:36:24 PM; 12/4/2008 1:36:24 PM):
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom649.h(307): #define TCCR0A  _SFR_IO8(0x24)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom649.h(529): #define TCCR1A  _SFR_MEM8(0X80)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom649.h(537): #define TCCR1B  _SFR_MEM8(0X81)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom649.h(546): #define TCCR1C  _SFR_MEM8(0x82)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom649.h(578): #define TCCR2A  _SFR_MEM8(0xB0)
+Found 'TCCR??' 5 time(s).
+----------------------------------------
+Find 'TCCR??' in 'C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom6490.h' (12/4/2008 1:36:24 PM; 12/4/2008 1:36:24 PM):
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom6490.h(311): #define TCCR0A  _SFR_IO8(0x24)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom6490.h(552): #define TCCR1A  _SFR_MEM8(0X80)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom6490.h(560): #define TCCR1B  _SFR_MEM8(0X81)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom6490.h(569): #define TCCR1C  _SFR_MEM8(0x82)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom6490.h(601): #define TCCR2A  _SFR_MEM8(0xB0)
+Found 'TCCR??' 5 time(s).
+----------------------------------------
+Find 'TCCR??' in 'C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom8.h' (12/4/2008 1:36:24 PM; 12/4/2008 1:36:24 PM):
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom8.h(133): #define TCCR1B _SFR_IO8(0x2E)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom8.h(134): #define TCCR1A _SFR_IO8(0x2F)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom8.h(344): /* TCCR0 */
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom8.h(350): /* TCCR2 */
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom8.h(367): /* TCCR1A */
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom8.h(377): /* TCCR1B */
+Found 'TCCR??' 6 time(s).
+----------------------------------------
+Find 'TCCR??' in 'C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom8515.h' (12/4/2008 1:36:24 PM; 12/4/2008 1:36:24 PM):
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom8515.h(164): #define TCCR1B  _SFR_IO8(0x2E)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom8515.h(167): #define TCCR1A  _SFR_IO8(0x2F)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom8515.h(179): #define TCCR0   _SFR_IO8(0x33)
+Found 'TCCR??' 3 time(s).
+----------------------------------------
+Find 'TCCR??' in 'C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom8535.h' (12/4/2008 1:36:24 PM; 12/4/2008 1:36:24 PM):
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom8535.h(161): #define TCCR2   _SFR_IO8(0x25)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom8535.h(184): #define TCCR1B  _SFR_IO8(0x2E)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom8535.h(187): #define TCCR1A  _SFR_IO8(0x2F)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom8535.h(199): #define TCCR0   _SFR_IO8(0x33)
+Found 'TCCR??' 4 time(s).
+----------------------------------------
+Find 'TCCR??' in 'C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom88p.h' (12/4/2008 1:36:24 PM; 12/4/2008 1:36:24 PM):
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom88p.h(220): #define TCCR0A _SFR_IO8(0x24)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom88p.h(228): #define TCCR0B _SFR_IO8(0x25)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom88p.h(503): #define TCCR1A _SFR_MEM8(0x80)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom88p.h(511): #define TCCR1B _SFR_MEM8(0x81)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom88p.h(520): #define TCCR1C _SFR_MEM8(0x82)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom88p.h(612): #define TCCR2A _SFR_MEM8(0xB0)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iom88p.h(620): #define TCCR2B _SFR_MEM8(0xB1)
+Found 'TCCR??' 7 time(s).
+----------------------------------------
+Find 'TCCR??' in 'C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iomx8.h' (12/4/2008 1:36:24 PM; 12/4/2008 1:36:24 PM):
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iomx8.h(226): #define TCCR0A  _SFR_IO8 (0x24)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iomx8.h(227): /* TCCR0A */
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iomx8.h(235): #define TCCR0B  _SFR_IO8 (0x25)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iomx8.h(236): /* TCCR0A */
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iomx8.h(465): #define TCCR1A  _SFR_MEM8 (0x80)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iomx8.h(466): /* TCCR1A */
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iomx8.h(474): #define TCCR1B  _SFR_MEM8 (0x81)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iomx8.h(475): /* TCCR1B */
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iomx8.h(484): #define TCCR1C  _SFR_MEM8 (0x82)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iomx8.h(485): /* TCCR1C */
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iomx8.h(505): #define TCCR2A  _SFR_MEM8 (0xB0)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iomx8.h(506): /* TCCR2A */
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iomx8.h(514): #define TCCR2B  _SFR_MEM8 (0xB1)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iomx8.h(515): /* TCCR2B */
+Found 'TCCR??' 14 time(s).
+----------------------------------------
+Find 'TCCR??' in 'C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iomxx0_1.h' (12/4/2008 1:36:24 PM; 12/4/2008 1:36:24 PM):
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iomxx0_1.h(359): #define TCCR0A  _SFR_IO8(0x24)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iomxx0_1.h(367): #define TCCR0B  _SFR_IO8(0x25)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iomxx0_1.h(688): #define TCCR1A  _SFR_MEM8(0x80)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iomxx0_1.h(698): #define TCCR1B  _SFR_MEM8(0x81)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iomxx0_1.h(707): #define TCCR1C  _SFR_MEM8(0x82)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iomxx0_1.h(746): #define TCCR3A  _SFR_MEM8(0x90)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iomxx0_1.h(756): #define TCCR3B  _SFR_MEM8(0x91)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iomxx0_1.h(765): #define TCCR3C  _SFR_MEM8(0x92)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iomxx0_1.h(804): #define TCCR4A  _SFR_MEM8(0xA0)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iomxx0_1.h(814): #define TCCR4B  _SFR_MEM8(0xA1)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iomxx0_1.h(823): #define TCCR4C  _SFR_MEM8(0xA2)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iomxx0_1.h(862): #define TCCR2A  _SFR_MEM8(0xB0)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iomxx0_1.h(870): #define TCCR2B  _SFR_MEM8(0xB1)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iomxx0_1.h(1196): #define TCCR5A  _SFR_MEM8(0x120)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iomxx0_1.h(1206): #define TCCR5B  _SFR_MEM8(0x121)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iomxx0_1.h(1215): #define TCCR5C  _SFR_MEM8(0x122)
+Found 'TCCR??' 16 time(s).
+----------------------------------------
+Find 'TCCR??' in 'C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iomxx4.h' (12/4/2008 1:36:24 PM; 12/4/2008 1:36:24 PM):
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iomxx4.h(239): #define TCCR0A _SFR_IO8(0x24)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iomxx4.h(247): #define TCCR0B _SFR_IO8(0x25)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iomxx4.h(513): #define TCCR1A _SFR_MEM8(0x80)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iomxx4.h(521): #define TCCR1B _SFR_MEM8(0x81)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iomxx4.h(530): #define TCCR1C _SFR_MEM8(0x82)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iomxx4.h(562): #define TCCR2A _SFR_MEM8(0xB0)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iomxx4.h(570): #define TCCR2B _SFR_MEM8(0xB1)
+Found 'TCCR??' 7 time(s).
+----------------------------------------
+Find 'TCCR??' in 'C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iomxxhva.h' (12/4/2008 1:36:24 PM; 12/4/2008 1:36:24 PM):
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iomxxhva.h(150): #define TCCR0A  _SFR_IO8(0x24)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iomxxhva.h(158): #define TCCR0B  _SFR_IO8(0x25)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iomxxhva.h(311): #define TCCR1A  _SFR_MEM8(0x80)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iomxxhva.h(319): #define TCCR1B  _SFR_MEM8(0x81)
+Found 'TCCR??' 4 time(s).
+----------------------------------------
+Find 'TCCR??' in 'C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iotn11.h' (12/4/2008 1:36:24 PM; 12/4/2008 1:36:24 PM):
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iotn11.h(152): /* TCCR0 */
+Found 'TCCR??' 1 time(s).
+----------------------------------------
+Find 'TCCR??' in 'C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iotn12.h' (12/4/2008 1:36:24 PM; 12/4/2008 1:36:24 PM):
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iotn12.h(172): /* TCCR0 */
+Found 'TCCR??' 1 time(s).
+----------------------------------------
+Find 'TCCR??' in 'C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iotn13.h' (12/4/2008 1:36:24 PM; 12/4/2008 1:36:24 PM):
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iotn13.h(197): #define TCCR0A               _SFR_IO8(0x2f)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iotn13.h(212): #define TCCR0B               _SFR_IO8(0x33)
+Found 'TCCR??' 2 time(s).
+----------------------------------------
+Find 'TCCR??' in 'C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iotn13a.h' (12/4/2008 1:36:24 PM; 12/4/2008 1:36:24 PM):
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iotn13a.h(224): #define TCCR0A _SFR_IO8(0x2F)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iotn13a.h(255): #define TCCR0B _SFR_IO8(0x33)
+Found 'TCCR??' 2 time(s).
+----------------------------------------
+Find 'TCCR??' in 'C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iotn15.h' (12/4/2008 1:36:24 PM; 12/4/2008 1:36:24 PM):
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iotn15.h(210): /* TCCR0 */
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iotn15.h(215): /* TCCR1 */
+Found 'TCCR??' 2 time(s).
+----------------------------------------
+Find 'TCCR??' in 'C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iotn167.h' (12/4/2008 1:36:24 PM; 12/4/2008 1:36:24 PM):
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iotn167.h(191): #define TCCR0A _SFR_IO8(0x25)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iotn167.h(197): #define TCCR0B _SFR_IO8(0x26)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iotn167.h(479): #define TCCR1A _SFR_MEM8(0x80)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iotn167.h(487): #define TCCR1B _SFR_MEM8(0x81)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iotn167.h(496): #define TCCR1C _SFR_MEM8(0x82)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iotn167.h(500): #define TCCR1D _SFR_MEM8(0x83)
+Found 'TCCR??' 6 time(s).
+----------------------------------------
+Find 'TCCR??' in 'C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iotn2313.h' (12/4/2008 1:36:24 PM; 12/4/2008 1:36:24 PM):
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iotn2313.h(325): /* ATtiny Timer/Counter1 Control Register C TCCR1C */
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iotn2313.h(326): #define TCCR1C  _SFR_IO8(0x22)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iotn2313.h(370): /* ATtiny Timer/Counter 1 Control and Status Register TCCR1B */
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iotn2313.h(371): #define TCCR1B  _SFR_IO8(0x2E)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iotn2313.h(381): /* ATtiny Timer/Counter 1 Control Register TCCR1A */
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iotn2313.h(382): #define TCCR1A  _SFR_IO8(0x2F)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iotn2313.h(391): /* ATtiny Timer/Counter Control Register A TCCR0A */
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iotn2313.h(392): #define TCCR0A  _SFR_IO8(0x30)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iotn2313.h(415): /* ATtiny Timer/Counter 0 Control Register TCCR0B */
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iotn2313.h(416): #define TCCR0B  _SFR_IO8(0x33)
+Found 'TCCR??' 10 time(s).
+----------------------------------------
+Find 'TCCR??' in 'C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iotn26.h' (12/4/2008 1:36:24 PM; 12/4/2008 1:36:24 PM):
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iotn26.h(219): #define TCCR1B  _SFR_IO8(0x2F)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iotn26.h(227): #define TCCR1A  _SFR_IO8(0x30)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iotn26.h(241): #define TCCR0   _SFR_IO8(0x33)
+Found 'TCCR??' 3 time(s).
+----------------------------------------
+Find 'TCCR??' in 'C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iotn28.h' (12/4/2008 1:36:24 PM; 12/4/2008 1:36:24 PM):
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iotn28.h(142): /* TCCR0 */
+Found 'TCCR??' 1 time(s).
+----------------------------------------
+Find 'TCCR??' in 'C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iotn43u.h' (12/4/2008 1:36:24 PM; 12/4/2008 1:36:24 PM):
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iotn43u.h(358): #define TCCR1B _SFR_IO8(0x2E)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iotn43u.h(366): #define TCCR1A _SFR_IO8(0x2F)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iotn43u.h(374): #define TCCR0A _SFR_IO8(0x30)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iotn43u.h(402): #define TCCR0B _SFR_IO8(0x33)
+Found 'TCCR??' 4 time(s).
+----------------------------------------
+Find 'TCCR??' in 'C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iotn48.h' (12/4/2008 1:36:24 PM; 12/4/2008 1:36:24 PM):
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iotn48.h(239): #define TCCR0A _SFR_IO8(0x25)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iotn48.h(513): #define TCCR1A _SFR_MEM8(0x80)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iotn48.h(521): #define TCCR1B _SFR_MEM8(0x81)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iotn48.h(530): #define TCCR1C _SFR_MEM8(0x82)
+Found 'TCCR??' 4 time(s).
+----------------------------------------
+Find 'TCCR??' in 'C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iotn88.h' (12/4/2008 1:36:24 PM; 12/4/2008 1:36:24 PM):
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iotn88.h(239): #define TCCR0A _SFR_IO8(0x25)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iotn88.h(513): #define TCCR1A _SFR_MEM8(0x80)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iotn88.h(521): #define TCCR1B _SFR_MEM8(0x81)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iotn88.h(530): #define TCCR1C _SFR_MEM8(0x82)
+Found 'TCCR??' 4 time(s).
+----------------------------------------
+Find 'TCCR??' in 'C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iotnx4.h' (12/4/2008 1:36:24 PM; 12/4/2008 1:36:24 PM):
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iotnx4.h(252): #define TCCR1C  _SFR_IO8(0x22)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iotnx4.h(294): #define TCCR1B  _SFR_IO8(0x2E)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iotnx4.h(303): #define TCCR1A  _SFR_IO8(0x2F)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iotnx4.h(311): #define TCCR0A  _SFR_IO8(0x30)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iotnx4.h(323): #define TCCR0B  _SFR_IO8(0x33)
+Found 'TCCR??' 5 time(s).
+----------------------------------------
+Find 'TCCR??' in 'C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iotnx5.h' (12/4/2008 1:36:24 PM; 12/4/2008 1:36:24 PM):
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iotnx5.h(245): #define TCCR0A  _SFR_IO8(0x2A)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iotnx5.h(271): #define TCCR1   _SFR_IO8(0x30)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iotnx5.h(285): #define TCCR0B  _SFR_IO8(0x33)
+Found 'TCCR??' 3 time(s).
+----------------------------------------
+Find 'TCCR??' in 'C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iotnx61.h' (12/4/2008 1:36:24 PM; 12/4/2008 1:36:24 PM):
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iotnx61.h(52): #define TCCR1E  _SFR_IO8(0x00)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iotnx61.h(170): #define TCCR0A  _SFR_IO8(0x15)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iotnx61.h(301): #define TCCR1D  _SFR_IO8(0x26)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iotnx61.h(311): #define TCCR1C  _SFR_IO8(0x27)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iotnx61.h(344): #define TCCR1B  _SFR_IO8(0x2F)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iotnx61.h(354): #define TCCR1A  _SFR_IO8(0x30)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iotnx61.h(368): #define TCCR0B  _SFR_IO8(0x33)
+Found 'TCCR??' 7 time(s).
+----------------------------------------
+Find 'TCCR??' in 'C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iousbxx2.h' (12/4/2008 1:36:26 PM; 12/4/2008 1:36:26 PM):
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iousbxx2.h(210): #define TCCR0A  _SFR_IO8(0x24)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iousbxx2.h(218): #define TCCR0B  _SFR_IO8(0x25)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iousbxx2.h(407): #define TCCR1A  _SFR_MEM8(0x80)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iousbxx2.h(417): #define TCCR1B  _SFR_MEM8(0x81)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iousbxx2.h(426): #define TCCR1C  _SFR_MEM8(0x82)
+Found 'TCCR??' 5 time(s).
+----------------------------------------
+Find 'TCCR??' in 'C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iousbxx6_7.h' (12/4/2008 1:36:26 PM; 12/4/2008 1:36:26 PM):
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iousbxx6_7.h(319): #define TCCR0A  _SFR_IO8(0x24)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iousbxx6_7.h(327): #define TCCR0B  _SFR_IO8(0x25)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iousbxx6_7.h(602): #define TCCR1A  _SFR_MEM8(0x80)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iousbxx6_7.h(612): #define TCCR1B  _SFR_MEM8(0x81)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iousbxx6_7.h(621): #define TCCR1C  _SFR_MEM8(0x82)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iousbxx6_7.h(660): #define TCCR3A  _SFR_MEM8(0x90)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iousbxx6_7.h(670): #define TCCR3B  _SFR_MEM8(0x91)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iousbxx6_7.h(679): #define TCCR3C  _SFR_MEM8(0x92)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iousbxx6_7.h(823): #define TCCR2A  _SFR_MEM8(0xB0)
+C:\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\iousbxx6_7.h(831): #define TCCR2B  _SFR_MEM8(0xB1)
+Found 'TCCR??' 10 time(s).
+End makes defines for timer registers  ------------------------
+----------------------------------------
+
+Begin Demo programs ----------------------
+Find 'TCCR??' in 'C:\Program Files (x86)\Arduino\hardware\tools\avr\doc\avr-libc\examples\asmdemo\asmdemo.c' (12/4/2008 10:28:48 AM; 12/4/2008 10:28:48 AM):
+C:\Program Files (x86)\Arduino\hardware\tools\avr\doc\avr-libc\examples\asmdemo\asmdemo.c(55):   TCCR0A = (1 << COM0B1) | (1 << WGM00);
+C:\Program Files (x86)\Arduino\hardware\tools\avr\doc\avr-libc\examples\asmdemo\asmdemo.c(56):   TCCR0B = (1 << CS00);
+C:\Program Files (x86)\Arduino\hardware\tools\avr\doc\avr-libc\examples\asmdemo\asmdemo.c(107):       TCCR1 = (1 << CS12) | (1 << CS10);
+C:\Program Files (x86)\Arduino\hardware\tools\avr\doc\avr-libc\examples\asmdemo\asmdemo.c(113):   TCCR1 = 0;
+Found 'TCCR??' 4 time(s).
+----------------------------------------
+Find 'TCCR??' in 'C:\Program Files (x86)\Arduino\hardware\tools\avr\doc\avr-libc\examples\demo\demo.c' (12/4/2008 10:28:50 AM; 12/4/2008 10:28:50 AM):
+Demo program
+C:\Program Files (x86)\Arduino\hardware\tools\avr\doc\avr-libc\examples\demo\demo.c(51):     TCCR1A = TIMER1_PWM_INIT;
+C:\Program Files (x86)\Arduino\hardware\tools\avr\doc\avr-libc\examples\demo\demo.c(55):      * NB: TCCR1A and TCCR1B could actually be the same register, so
+C:\Program Files (x86)\Arduino\hardware\tools\avr\doc\avr-libc\examples\demo\demo.c(58):     TCCR1B |= TIMER1_CLOCKSOURCE;
+Found 'TCCR??' 4 time(s).
+----------------------------------------
+Find 'TCCR??' in 'C:\Program Files (x86)\Arduino\hardware\tools\avr\doc\avr-libc\examples\demo\iocompat.h' (12/4/2008 10:28:50 AM; 12/4/2008 10:28:50 AM):
+C:\Program Files (x86)\Arduino\hardware\tools\avr\doc\avr-libc\examples\demo\iocompat.h(77): #  define TCCR1A TCCR1
+C:\Program Files (x86)\Arduino\hardware\tools\avr\doc\avr-libc\examples\demo\iocompat.h(78): #  define TCCR1B TCCR1
+Found 'TCCR??' 2 time(s).
+----------------------------------------
+Find 'TCCR??' in 'C:\Program Files (x86)\Arduino\hardware\tools\avr\doc\avr-libc\examples\largedemo\largedemo.c' (12/4/2008 10:28:50 AM; 12/4/2008 10:28:50 AM):
+C:\Program Files (x86)\Arduino\hardware\tools\avr\doc\avr-libc\examples\largedemo\largedemo.c(222):    * The timer will runn on full MCU clock (1 MHz, CS10 in TCCR1B).
+C:\Program Files (x86)\Arduino\hardware\tools\avr\doc\avr-libc\examples\largedemo\largedemo.c(224):   TCCR1A = _BV(WGM10) | _BV(WGM11) | _BV(COM1A1) | _BV(COM1A0);
+C:\Program Files (x86)\Arduino\hardware\tools\avr\doc\avr-libc\examples\largedemo\largedemo.c(225):   TCCR1B = _BV(CS10);
+Found 'TCCR??' 3 time(s).
+----------------------------------------
+End Demo programs  ----------------------
+
+Begin Robot libraries ---------------------------
+Find 'TCCR??' in 'C:\Program Files (x86)\Arduino\libraries\RobotIRremote\IRremoteInt.h' (9/16/2014 7:46:42 AM; 9/16/2014 7:46:42 AM):
+C:\Program Files (x86)\Arduino\libraries\RobotIRremote\IRremoteInt.h(216): #define TIMER_ENABLE_PWM     (TCCR2A |= _BV(COM2B1))
+C:\Program Files (x86)\Arduino\libraries\RobotIRremote\IRremoteInt.h(217): #define TIMER_DISABLE_PWM    (TCCR2A &= ~(_BV(COM2B1)))
+C:\Program Files (x86)\Arduino\libraries\RobotIRremote\IRremoteInt.h(223):   TCCR2A = _BV(WGM20); \
+C:\Program Files (x86)\Arduino\libraries\RobotIRremote\IRremoteInt.h(224):   TCCR2B = _BV(WGM22) | _BV(CS20); \
+C:\Program Files (x86)\Arduino\libraries\RobotIRremote\IRremoteInt.h(231):   TCCR2A = _BV(WGM21); \
+C:\Program Files (x86)\Arduino\libraries\RobotIRremote\IRremoteInt.h(232):   TCCR2B = _BV(CS20); \
+C:\Program Files (x86)\Arduino\libraries\RobotIRremote\IRremoteInt.h(238):   TCCR2A = _BV(WGM21); \
+C:\Program Files (x86)\Arduino\libraries\RobotIRremote\IRremoteInt.h(239):   TCCR2B = _BV(CS21); \
+C:\Program Files (x86)\Arduino\libraries\RobotIRremote\IRremoteInt.h(258): #define TIMER_ENABLE_PWM     (TCCR1A |= _BV(COM1A1))
+C:\Program Files (x86)\Arduino\libraries\RobotIRremote\IRremoteInt.h(259): #define TIMER_DISABLE_PWM    (TCCR1A &= ~(_BV(COM1A1)))
+C:\Program Files (x86)\Arduino\libraries\RobotIRremote\IRremoteInt.h(270):   TCCR1A = _BV(WGM11); \
+C:\Program Files (x86)\Arduino\libraries\RobotIRremote\IRremoteInt.h(271):   TCCR1B = _BV(WGM13) | _BV(CS10); \
+C:\Program Files (x86)\Arduino\libraries\RobotIRremote\IRremoteInt.h(276):   TCCR1A = 0; \
+C:\Program Files (x86)\Arduino\libraries\RobotIRremote\IRremoteInt.h(277):   TCCR1B = _BV(WGM12) | _BV(CS10); \
+C:\Program Files (x86)\Arduino\libraries\RobotIRremote\IRremoteInt.h(295): #define TIMER_ENABLE_PWM     (TCCR3A |= _BV(COM3A1))
+C:\Program Files (x86)\Arduino\libraries\RobotIRremote\IRremoteInt.h(296): #define TIMER_DISABLE_PWM    (TCCR3A &= ~(_BV(COM3A1)))
+C:\Program Files (x86)\Arduino\libraries\RobotIRremote\IRremoteInt.h(302):   TCCR3A = _BV(WGM31); \
+C:\Program Files (x86)\Arduino\libraries\RobotIRremote\IRremoteInt.h(303):   TCCR3B = _BV(WGM33) | _BV(CS30); \
+C:\Program Files (x86)\Arduino\libraries\RobotIRremote\IRremoteInt.h(308):   TCCR3A = 0; \
+C:\Program Files (x86)\Arduino\libraries\RobotIRremote\IRremoteInt.h(309):   TCCR3B = _BV(WGM32) | _BV(CS30); \
+C:\Program Files (x86)\Arduino\libraries\RobotIRremote\IRremoteInt.h(325): #define TIMER_ENABLE_PWM     (TCCR4A |= _BV(COM4A1))
+C:\Program Files (x86)\Arduino\libraries\RobotIRremote\IRremoteInt.h(326): #define TIMER_DISABLE_PWM    (TCCR4A &= ~(_BV(COM4A1)))
+C:\Program Files (x86)\Arduino\libraries\RobotIRremote\IRremoteInt.h(332):   TCCR4A = (1<<PWM4A); \
+C:\Program Files (x86)\Arduino\libraries\RobotIRremote\IRremoteInt.h(333):   TCCR4B = _BV(CS40); \
+C:\Program Files (x86)\Arduino\libraries\RobotIRremote\IRremoteInt.h(334):   TCCR4C = 0; \
+C:\Program Files (x86)\Arduino\libraries\RobotIRremote\IRremoteInt.h(335):   TCCR4D = (1<<WGM40); \
+C:\Program Files (x86)\Arduino\libraries\RobotIRremote\IRremoteInt.h(336):   TCCR4E = 0; \
+C:\Program Files (x86)\Arduino\libraries\RobotIRremote\IRremoteInt.h(343):   TCCR4A = 0; \
+C:\Program Files (x86)\Arduino\libraries\RobotIRremote\IRremoteInt.h(344):   TCCR4B = _BV(CS40); \
+C:\Program Files (x86)\Arduino\libraries\RobotIRremote\IRremoteInt.h(345):   TCCR4C = 0; \
+C:\Program Files (x86)\Arduino\libraries\RobotIRremote\IRremoteInt.h(346):   TCCR4D = 0; \
+C:\Program Files (x86)\Arduino\libraries\RobotIRremote\IRremoteInt.h(347):   TCCR4E = 0; \
+C:\Program Files (x86)\Arduino\libraries\RobotIRremote\IRremoteInt.h(365): #define TIMER_ENABLE_PWM     (TCCR4A |= _BV(COM4A1))
+C:\Program Files (x86)\Arduino\libraries\RobotIRremote\IRremoteInt.h(366): #define TIMER_DISABLE_PWM    (TCCR4A &= ~(_BV(COM4A1)))
+C:\Program Files (x86)\Arduino\libraries\RobotIRremote\IRremoteInt.h(372):   TCCR4A = _BV(WGM41); \
+C:\Program Files (x86)\Arduino\libraries\RobotIRremote\IRremoteInt.h(373):   TCCR4B = _BV(WGM43) | _BV(CS40); \
+C:\Program Files (x86)\Arduino\libraries\RobotIRremote\IRremoteInt.h(378):   TCCR4A = 0; \
+C:\Program Files (x86)\Arduino\libraries\RobotIRremote\IRremoteInt.h(379):   TCCR4B = _BV(WGM42) | _BV(CS40); \
+C:\Program Files (x86)\Arduino\libraries\RobotIRremote\IRremoteInt.h(395): #define TIMER_ENABLE_PWM     (TCCR5A |= _BV(COM5A1))
+C:\Program Files (x86)\Arduino\libraries\RobotIRremote\IRremoteInt.h(396): #define TIMER_DISABLE_PWM    (TCCR5A &= ~(_BV(COM5A1)))
+C:\Program Files (x86)\Arduino\libraries\RobotIRremote\IRremoteInt.h(402):   TCCR5A = _BV(WGM51); \
+C:\Program Files (x86)\Arduino\libraries\RobotIRremote\IRremoteInt.h(403):   TCCR5B = _BV(WGM53) | _BV(CS50); \
+C:\Program Files (x86)\Arduino\libraries\RobotIRremote\IRremoteInt.h(408):   TCCR5A = 0; \
+C:\Program Files (x86)\Arduino\libraries\RobotIRremote\IRremoteInt.h(409):   TCCR5B = _BV(WGM52) | _BV(CS50); \
+Found 'TCCR??' 44 time(s).
+----------------------------------------
+Find 'TCCR??' in 'C:\Program Files (x86)\Arduino\libraries\Robot_Control\Squawk.cpp' (9/16/2014 7:46:42 AM; 9/16/2014 7:46:42 AM):
+C:\Program Files (x86)\Arduino\libraries\Robot_Control\Squawk.cpp(184):     TCCR0A = 0b10000011; // Fast-PWM 8-bit
+C:\Program Files (x86)\Arduino\libraries\Robot_Control\Squawk.cpp(185):     TCCR0B = 0b00000001; // 62500Hz
+C:\Program Files (x86)\Arduino\libraries\Robot_Control\Squawk.cpp(194):     TCCR0A = 0b00100011; // Fast-PWM 8-bit
+C:\Program Files (x86)\Arduino\libraries\Robot_Control\Squawk.cpp(195):     TCCR0B = 0b00000001; // 62500Hz
+C:\Program Files (x86)\Arduino\libraries\Robot_Control\Squawk.cpp(201):     TCCR2A = 0b10000011; // Fast-PWM 8-bit
+C:\Program Files (x86)\Arduino\libraries\Robot_Control\Squawk.cpp(202):     TCCR2B = 0b00000001; // 62500Hz
+C:\Program Files (x86)\Arduino\libraries\Robot_Control\Squawk.cpp(209):     TCCR2A = 0b00100011; // Fast-PWM 8-bit
+C:\Program Files (x86)\Arduino\libraries\Robot_Control\Squawk.cpp(210):     TCCR2B = 0b00000001; // 62500Hz
+C:\Program Files (x86)\Arduino\libraries\Robot_Control\Squawk.cpp(217):     TCCR3A = 0b10000001; // Fast-PWM 8-bit
+C:\Program Files (x86)\Arduino\libraries\Robot_Control\Squawk.cpp(218):     TCCR3B = 0b00001001; // 62500Hz
+C:\Program Files (x86)\Arduino\libraries\Robot_Control\Squawk.cpp(244):   TCCR1A = 0b00000000;     // Set timer mode
+C:\Program Files (x86)\Arduino\libraries\Robot_Control\Squawk.cpp(245):   TCCR1B = 0b00001001;
+Found 'TCCR??' 12 time(s).
+----------------------------------------
+End Robot libraries ---------------------------
+
+Begin Arduino's Servo library
+Find 'TCCR??' in 'C:\Program Files (x86)\Arduino\libraries\Servo\Servo.cpp' (9/16/2014 7:46:42 AM; 9/16/2014 7:46:42 AM):
+C:\Program Files (x86)\Arduino\libraries\Servo\Servo.cpp(151):     TCCR1A = 0;             // normal counting mode 
+C:\Program Files (x86)\Arduino\libraries\Servo\Servo.cpp(152):     TCCR1B = _BV(CS11);     // set prescaler of 8 
+C:\Program Files (x86)\Arduino\libraries\Servo\Servo.cpp(170):     TCCR3A = 0;             // normal counting mode 
+C:\Program Files (x86)\Arduino\libraries\Servo\Servo.cpp(171):     TCCR3B = _BV(CS31);     // set prescaler of 8  
+C:\Program Files (x86)\Arduino\libraries\Servo\Servo.cpp(188):     TCCR4A = 0;             // normal counting mode 
+C:\Program Files (x86)\Arduino\libraries\Servo\Servo.cpp(189):     TCCR4B = _BV(CS41);     // set prescaler of 8  
+C:\Program Files (x86)\Arduino\libraries\Servo\Servo.cpp(198):     TCCR5A = 0;             // normal counting mode 
+C:\Program Files (x86)\Arduino\libraries\Servo\Servo.cpp(199):     TCCR5B = _BV(CS51);     // set prescaler of 8  
+Found 'TCCR??' 8 time(s).
+Search complete, found 'TCCR??' 897 time(s). (98 file(s)).
+End Arduino's Servo library
+
+	

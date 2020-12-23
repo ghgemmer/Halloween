@@ -1,0 +1,49 @@
+Verified this functionality short of the servo detach function.
+Only verified for Meag 2560
+This is more of a true object oriented approach although it generates more code and data
+(note that the tables currently are not in PROGMEM but can be placed in PROGMEM and then adjust the code to handle this with macros)
+
+Added avrTimerCounter class for timer objects and methods
+    avrTimerCounter(timerCounterIdsDef tmrId);
+    static avrTimerCounter * getAvrTimerCounter(timerCounterIdsDef tmrId);
+    bool initialize();
+    uint8_t getNumberChannels();
+    bool setCompareOutputMode(channelDef channel,compareOutputModeDef mode );
+    void setWaveformGenerationMode(waveformGenerationModeDef wgm);
+    void setInputNoiseCanceller(bool enable);
+    void setInputCaptureEdgeSelect(bool positiveEdge);
+    void setInputClockSelect(inputClockSelectDef select);
+	// bool forceOutputCompare(channelDef channel); // Not needed at this time
+bool setOutputCompareReg(channelDef channel, uint16_t val);
+void setInputCaptureReg(uint16_t val);
+void clrAllInterruptEnables();
+void setInputCaptureIntEnable(bool enable);
+bool setOutputCompareIntEnable(channelDef channel, bool enable);
+void setTimerOverflowIntEnable(bool enable);
+.... etc
+
+const avrTimerCounter::HdwrBitDef avrTimerCounter::TimerHdwrBitDefsTable[MAX_NUM_TIMER_BITDEFS] defines bit masks associated with a given timerId.
+const avrTimerCounter::HdwrCntrlInfoDef avrTimerCounter::TimerHdwrCntrlInfo[MAX_NUM_TIMER_COUNTERS] defines the Timer registers and max number of channels for a given timerId as well as an index into the TimerHdwrBitDefsTable for the bit defs associated with that timerId
+This scheme allows the masks if all the same values for two timers to point to the same bit defs index to reduce size if needed (even though the avr includes define separate masks for different timerIds, they actually turn out to be the same 
+values in most all cases which makes sense as the idea is each timer is.
+This scheme assumes a given mask is always used in the same timer register across timerIds (which is true if the masks are the same between timers) which is true for the avr cpus but if that ever changes then would need to account for
+this.
+
+avrTimerCounter.cpp also instantiates the static Timer objects 
+avrTimerCounter avrTimerCounter::timersObjects[MAX_NUM_TIMER_COUNTERS] =
+
+
+The PWMServoNew now has a const servoHdwrCntrlInfoDef servoHdwrCntrlInfo[SERVO_MAX_NUM_PINS];
+where servoHdwrCntrlInfoDef contains the pin number, timer id, and output channel associated with that pin.
+  	struct servoHdwrCntrlInfoDef 
+  	{
+  		// Used to define which 16 bit PWM timer counter and channel is used to control a given servo pin
+  		// This captures this information in a table instead of inline logic for 16 bit counters to generalize the operations
+  		int8_t servoPinIndex;  // Used to verify array index entry matches SERVO_PIN_<n> used as index.  Verifies constant tables
+  		// constructed correctly
+  		uint8_t boardPinNumber; //actual pin number on board
+  		avrTimerCounter::timerCounterIdsDef timerId;
+  	  avrTimerCounter::channelDef outputChannel;
+  	};
+
+PWMServoNew new calls the methods in class avrTimerCounter to do its work

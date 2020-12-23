@@ -1,0 +1,39 @@
+Looks ok as long as don't use these libraries or functions on these pins.
+
+C:\Program Files (x86)\Arduino\hardware\arduino\cores\arduino\wiring.c
+	Initializes timers at startup in init().
+C:\Program Files (x86)\Arduino\hardware\arduino\cores\arduino\wiring_analog.c	
+	Uses timers for analogWrite for pwm. Only needed if call analogwrite(pin, value) which if don't then ok
+	Basically is the low level pwm stuff arduino provides (clocks are fixed) but again only if call analogwrite(pin, value)
+	which won't do if use PWMServo package.
+C:\Program Files (x86)\Arduino\hardware\arduino\cores\arduino\wiring_digital.c
+	digitalWrite(uint8_t pin, uint8_t val) will disconnect a timer whose OCR output goes to that pin. So if using that output
+	for pwm then can't use it for digital write which wouldn't if using it for a servo output.
+	Likewise for digitalRead(uint8_t pin)
+C:\Program Files (x86)\Arduino\hardware\arduino\cores\arduino\Tone.cpp
+	Uses the timers to create Tones.  Only used if using Tone library
+	
+C:\Program Files (x86)\Arduino\hardware\arduino\cores\robot\wiring.c
+	Same as cores\arduino\wiring.c but if use robot library
+C:\Program Files (x86)\Arduino\hardware\arduino\cores\robot\wiring_analog.c
+	Same as cores\arduino\wiring_analog.c	but if use robot library
+C:\Program Files (x86)\Arduino\hardware\arduino\cores\robot\wiring_digital.c
+	Same as cores\arduino\wiring_digital.c	but if use robot library
+C:\Program Files (x86)\Arduino\hardware\arduino\cores\robot\Tone.cpp
+	Same as cores\arduino\Tone.cpp	but if use robot library
+	
+Whole bunch of .h files that define the Timer symbols and their memory mapping based on what the cpu/board is.
+
+C:\Program Files (x86)\Arduino\hardware\tools\avr\doc\avr-libc\examples\asmdemo\asmdemo.c
+C:\Program Files (x86)\Arduino\hardware\tools\avr\doc\avr-libc\examples\demo\demo.c
+C:\Program Files (x86)\Arduino\hardware\tools\avr\doc\avr-libc\examples\demo\iocompat.h
+C:\Program Files (x86)\Arduino\hardware\tools\avr\doc\avr-libc\examples\largedemo\largedemo.c
+	Demo example file so assume only used  if run demo.
+	
+C:\Program Files (x86)\Arduino\libraries\RobotIRremote\IRremoteInt.h
+	timers Only used if use the robotIRremote library
+C:\Program Files (x86)\Arduino\libraries\Robot_Control\Squawk.cpp
+	timers Only used if use this library.
+C:\Program Files (x86)\Arduino\libraries\Servo\Servo.cpp
+	timers Only used if use this library.
+	

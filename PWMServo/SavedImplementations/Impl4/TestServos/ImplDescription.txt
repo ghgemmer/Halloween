@@ -1,0 +1,1 @@
+Same as Impl3 but puts large constants in PROGMEM 

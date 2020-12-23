@@ -1,0 +1,9 @@
+Verified this code short of the servo detach functionality. 
+Only verified for Meag 2560
+Uses hardware lookup table servoHdwrCntrlInfo[SERVO_MAX_NUM_PINS] which uses a pin index to get the associated timer hardware info as follows:
+Registers (tccrA, tccrB, ocrA, ocrB, ocrC, ocr for pin
+Method set clr mask for a given register and given operation (attachTccrnaClrMsk, attachTccrnaSetMsk, seizeTimerTimsknClrMsk, seizeTimerTimsknSetMsk, etc)
+
+Then the class methods attach, detach, seizeTimer, etc set and clear the indicated bits in the appropriate register using those set and clear masks. 
+
+servoInfo[SERVO_MAX_NUM_PINS] keeps track of a pin being attached or not to know if need to seize the timer associated with that pin

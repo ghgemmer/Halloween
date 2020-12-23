@@ -1,0 +1,56 @@
+This is the original PWMServo functionality that was verified to work (others verified it)
+Creates servo pin defines with names that correspond to the timer and channel the name is for.
+(i.e. same servo pin name is used for a given timer and channel across the various cpus)
+#if defined(__AVR_ATmega168__) || defined(__AVR_ATmega328P__) // Arduino
+  #define SERVO_PIN_A 9
+  #define SERVO_PIN_B 10
+#elif defined(__AVR_ATmega1280__) || defined(__AVR_ATmega2560__) // Arduino Mega
+  #define SERVO_PIN_A 11
+  #define SERVO_PIN_B 12
+  #define SERVO_PIN_C 13
+#elif defined(__AVR_ATmega644P__) || defined(__AVR_ATmega644__) // Sanguino
+  #define SERVO_PIN_A 13
+  #define SERVO_PIN_B 12
+#elif defined(__AVR_AT90USB162__) // Teensy 1.0
+  #define SERVO_PIN_A 17
+  #define SERVO_PIN_B 18
+  #define SERVO_PIN_C 15
+#elif defined(__AVR_ATmega32U4__) // Teensy 2.0
+  #define SERVO_PIN_A 14
+  #define SERVO_PIN_B 15
+  #define SERVO_PIN_C 4
+#elif defined(__AVR_AT90USB646__) || defined(__AVR_AT90USB1286__) // Teensy++
+  #define SERVO_PIN_A 25
+  #define SERVO_PIN_B 26
+  #define SERVO_PIN_C 27
+#else
+  #define SERVO_PIN_A 9
+  #define SERVO_PIN_B 10
+#endif  ......
+
+
+Then uses these defines (both with ifdef and if) and pin in inline code to write the appropriate registers using the existing platform Timer register and bit defines.  Thus goes through "if then ..." testing to see which pin and then based on that code writes to the appropriate register inline.
+
+  if (pin == SERVO_PIN_A) OCR1A = p;
+  if (pin == SERVO_PIN_B) OCR1B = p;
+  #ifdef SERVO_PIN_C
+  if (pin == SERVO_PIN_C) OCR1C = p;
+  #endif
+.......
+
+  #ifdef SERVO_PIN_C
+  if (!attachedA && !attachedB && !attachedC) seizeTimer1();
+  #else
+  if (!attachedA && !attachedB) seizeTimer1();
+  #endif
+
+  if (pin == SERVO_PIN_A) {
+    attachedA = 1;
+    TCCR1A = (TCCR1A & ~_BV(COM1A0)) | _BV(COM1A1);
+  }
+
+  if (pin == SERVO_PIN_B) {
+    attachedB = 1;
+    TCCR1A = (TCCR1A & ~_BV(COM1B0)) | _BV(COM1B1);
+  }
+
