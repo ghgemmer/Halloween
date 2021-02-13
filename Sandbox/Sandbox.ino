@@ -373,6 +373,18 @@ struct ImusPitchDiffControlDef {
 };
 ImusPitchDiffControlDef AdafruitImusPitchDiffControl;
 
+// forward prototypes
+int mouthServoSettingsForDegChng(int CurrentDegreeSetting, int degreeChange, int PeriodInMsec, bool BackBentOver, int maxEntries, int * DegreeSettingsToUse);
+void printGyro(float gx, float gy, float gz, bool isCalculated);
+void printAccel(float ax, float ay, float az, bool isCalculated);
+void printMag(float mx, float my, float mz, bool isCalculated);
+void printAttitude(float ax, float ay, float az, float mx, float my, float mz);
+void getAttitude(float ax, float ay, float az, float mx, float my, float mz, float &pitch, float &roll, float &heading);
+int HeadVertServoSettingsForDegChng(int CurrentDegreeSetting, int degreeChange, int PeriodInMsec, bool BackBentOver, int maxEntries, int * DegreeSettingsToUse);
+int HeadHoriServoSettingsForDegChng(int CurrentDegreeSetting, int degreeChange, int PeriodInMsec, bool BackBentOver, int maxEntries, int * DegreeSettingsToUse);
+int scaleMouthAngle(int angle);
+float convertPitchForHeadOrientation( float pitch);
+
 
 // -------------------------------------------
 // Madgwidk items
