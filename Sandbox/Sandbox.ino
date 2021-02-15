@@ -448,14 +448,14 @@ void setup()
     // and turns it on.
     if (!SparkFun_imu.begin())
     {
-      Serial.println("Failed comm with LSM9DS1");
+      Serial.println(F("Failed comm with LSM9DS1"));
     }    
     SparkFun_imu2.settings.device.commInterface = IMU_MODE_I2C;
     SparkFun_imu2.settings.device.mAddress = LSM9DS1_M_IMU2;
     SparkFun_imu2.settings.device.agAddress = LSM9DS1_AG_IMU2;
     if (!SparkFun_imu2.begin())
     {
-      Serial.println("Failed comm LSM9DS1 IMU2");
+      Serial.println(F("Failed comm LSM9DS1 IMU2"));
     } 
     #endif
  
@@ -466,17 +466,17 @@ void setup()
       {
         /* There was a problem detecting the BNO055 ... check your connections */
         Serial.print(Adafruit_sensors[i].name);
-        Serial.println(" BNO055 NOT detected");
+        Serial.println(F(" BNO055 NOT detected"));
       }
       else
       {
         Adafruit_sensors[i].sensor->setExtCrystalUse(true);
       }
     }
-    Serial.println("Start BNO055 Manual Cal");
-    //Serial.println("Let the IMU sit still for 5 seconds for gyro cal");
-    //Serial.println("Then rotate the imu by 45 degree increments for 180 deg total for accel cal, stoping at least 1 second between each");
-    //Serial.println("Then move in figure 8s for a few seconcs for mag cal");
+    Serial.println(F("Start BNO055 Manual Cal"));
+    //Serial.println(F("Let the IMU sit still for 5 seconds for gyro cal"));
+    //Serial.println(F("Then rotate the imu by 45 degree increments for 180 deg total for accel cal, stoping at least 1 second between each"));
+    //Serial.println(F("Then move in figure 8s for a few seconcs for mag cal"));
     
     #ifdef ForceVisualize3DOnStartup
     AdafruitSensorReadPeriodMsec = 100;
@@ -580,19 +580,19 @@ void setup()
     {
       unsigned int k;
 #ifdef WEREWOLVESLONDON_MOVEMENTS
-      Serial.println("Reading from WerewolvesLondon_HeadHoriRotation Last 20 entries");
+      Serial.println(F("Reading from WerewolvesLondon_HeadHoriRotation Last 20 entries"));
       for (k = 0; k < 20; k++)
       {
         unsigned int wordRead = WerewolvesLondon_HeadHori_Reader.read((NUM_ARRAY_ENTRIES(WerewolvesLondon_HeadHoriRotation)) - 20 + k);
         Serial.println(wordRead);
       }    
-      Serial.println("Reading from WerewolvesLondon_Voice_Player Last 20 entries");
+      Serial.println(F("Reading from WerewolvesLondon_Voice_Player Last 20 entries"));
       for (k = 0; k < 20; k++)
       {
 				unsigned int wordRead = WerewolvesLondon_Voice_Reader.read((NUM_ARRAY_ENTRIES(WerewolvesLondon_Voice_Player)) - 20 + k);
         Serial.println(wordRead);
       }
-      Serial.println("Reading from WerewolvesLondon_HeadVertRotation Last 20 entries");
+      Serial.println(F("Reading from WerewolvesLondon_HeadVertRotation Last 20 entries"));
       for (k = 0; k < 20; k++)
       {
 				unsigned int wordRead = WerewolvesLondon_HeadVert_Reader.read((NUM_ARRAY_ENTRIES(WerewolvesLondon_HeadVertRotation)) - 20 + k);
@@ -600,19 +600,19 @@ void setup()
       }
 #endif   
 #ifdef DAYO_MOVEMENTS
-      Serial.println("Reading from DayO_HeadHoriRotation Last 20 entries");
+      Serial.println(F("Reading from DayO_HeadHoriRotation Last 20 entries"));
       for (k = 0; k < 20; k++)
       {
         unsigned int wordRead = DayO_HeadHoriRotation_Reader.read((NUM_ARRAY_ENTRIES(DayO_HeadHoriRotation)) - 20 + k);
         Serial.println(wordRead);
       }    
-      Serial.println("Reading from DayO_MouthRotation Last 20 entries");
+      Serial.println(F("Reading from DayO_MouthRotation Last 20 entries"));
       for (k = 0; k < 20; k++)
       {
         unsigned int wordRead = DayO_MouthRotation_Reader.read((NUM_ARRAY_ENTRIES(DayO_MouthRotation)) - 20 + k);
         Serial.println(wordRead);
       }  
-      Serial.println("Reading from DayO_Voice_Player Last 20 entries");
+      Serial.println(F("Reading from DayO_Voice_Player Last 20 entries"));
       for (k = 0; k < 20; k++)
       {
         unsigned int wordRead = DayO_Voice_Player_Reader.read((NUM_ARRAY_ENTRIES(DayO_Voice_Player)) - 20 + k);
@@ -652,7 +652,7 @@ void loop()
       if (( Carriage_Return == char_value) || (CmdSeperator == char_value))
       {
         cmdLineIndex = 0;
-        Serial.println("CmdLine to long" );
+        Serial.println(F("CmdLine to long") );
       }    
     } 
   }
@@ -667,12 +667,12 @@ void loop()
     
     if ((token = strtok_r(restcmdLine, delimiters, &restcmdLine)))
     {
-      //Serial.print("Token is: ");
+      //Serial.print(F("Token is: "));
       //Serial.println(token);
       if (0 == strcmp(token, "BackDown"))
       {
         Pneumatic_Back_relay.device_write(PNEUMATIC_BACK_BENTOVER);
-        Serial.println("BackDown");
+        Serial.println(F("BackDown"));
       }
       else if (0 == strcmp(token, "BackUp"))
       {
@@ -682,28 +682,28 @@ void loop()
 //        delay(200);
 //        Pneumatic_Back_relay.device_write(PNEUMATIC_BACK_UPRIGHT);
         
-        Serial.println("BackUp");
+        Serial.println(F("BackUp"));
       }
       else if (0 == strcmp(token, "EyesOff"))
       {
         Eyes_LEDs.device_write(EYE_LEDS_OFF);      
-        Serial.println("EyesOff");
+        Serial.println(F("EyesOff"));
       }
       else if (0 == strcmp(token, "EyesOn"))
       {
         Eyes_LEDs.device_write(EYE_LEDS_ON);      
-        Serial.println("EyesOn");
+        Serial.println(F("EyesOn"));
       }
       else if (0 == strcmp(token, "AudioBloodCurdlngScream"))
       {
         Voice_Player.device_write(mp3_device::STOP << 8);
         Voice_Player.device_write((mp3_device::START << 8) + BLOOD_CURDLING_SCREAM_FILE);
-        Serial.println("AudioBloodCurdlngScream"); // "Audio Play on");
+        Serial.println(F("AudioBloodCurdlngScream")); // "Audio Play on");
       }
       else if (0 == strcmp(token, "AudioStop"))
       {
         Voice_Player.device_write(mp3_device::STOP << 8);
-        Serial.println("AudioStop");
+        Serial.println(F("AudioStop"));
       }
       else if (0 == strcmp(token, "HeadHorizontal"))
       {
@@ -712,15 +712,15 @@ void loop()
           if ((value <= 120) && (value >= 60))
           {
             Head_Horizontal_Rotation_servo.device_write(value);
-            Serial.print("head horizontal ");
+            Serial.print(F("head horizontal "));
             Serial.print(value);
-            Serial.println(" deg");
+            Serial.println(F(" deg"));
           }
           else
           {
-            Serial.print("Head horizontal range error ");
+            Serial.print(F("Head horizontal range error "));
             Serial.print(value);
-            Serial.println(" deg");
+            Serial.println(F(" deg"));
           }
         }
       }
@@ -731,15 +731,15 @@ void loop()
           if ((value <= 140) && (value >= 45))
           {
             Head_Vertical_Rotation_servo.device_write(value);
-            Serial.print("head vertical ");
+            Serial.print(F("head vertical "));
             Serial.print(value);
-            Serial.println(" deg");
+            Serial.println(F(" deg"));
           }
           else
           {
-            Serial.print("Head vertical range error ");
+            Serial.print(F("Head vertical range error "));
             Serial.print(value);
-            Serial.println(" deg");
+            Serial.println(F(" deg"));
           }
         }
       }
@@ -747,19 +747,19 @@ void loop()
       {
         Voice_Player.device_write(mp3_device::STOP << 8);
         Voice_Player.device_write((mp3_device::START << 8) + MORE_OFTEN_CHEWING_AT_HEAD_FILE);
-        Serial.println("AudioMoreOftenChewing");
+        Serial.println(F("AudioMoreOftenChewing"));
       }
       else if (0 == strcmp(token, "AudioHissing"))
       {
         Voice_Player.device_write(mp3_device::STOP << 8);
         Voice_Player.device_write((mp3_device::START << 8) + HISSING_FILE);
-        Serial.println("AudioHissing");
+        Serial.println(F("AudioHissing"));
       }
       else if (0 == strcmp(token, "AudioDayO"))
       {
         Voice_Player.device_write(mp3_device::STOP << 8);
         Voice_Player.device_write((mp3_device::START << 8) + DAYO_FILE);
-        Serial.println("AudioDayO");
+        Serial.println(F("AudioDayO"));
       }
       else if (0 == strcmp(token, "AudioWerewolvesLondon"))
       {
@@ -771,34 +771,34 @@ void loop()
       {
         Voice_Player.device_write(mp3_device::STOP << 8);
         Voice_Player.device_write((mp3_device::START << 8) + SHAKE_SHAKE_SENORA_FILE);
-        Serial.println("AudioShakeSenora");
+        Serial.println(F("AudioShakeSenora"));
       }
       else if (0 == strcmp(token, "Delay15SecPlayOnce"))
       {
         delay(15000);  // delay 15 seconds to 
         Devices_Player.start_play(devices_player::PLAY_ONCE);
-        Serial.println("Delay15SecPlayOnce");
+        Serial.println(F("Delay15SecPlayOnce"));
         {
           base_device * p_device = &Eyes_LEDs;
           p_device->device_write(EYE_LEDS_ON);      
-          Serial.println("base device write to set EYE LED ON");
+          Serial.println(F("base device write to set EYE LED ON"));
         }
       }
       else if (0 == strcmp(token, "PlayOnce"))
       {
         Devices_Player.start_play(devices_player::PLAY_ONCE);
-        Serial.println("PlayOnce");
+        Serial.println(F("PlayOnce"));
       }
       else if (0 == strcmp(token, "PlayStop"))
       {
         Devices_Player.stop_play();
-        Serial.println("PlayStop");
+        Serial.println(F("PlayStop"));
       }
       else if (0 == strcmp(token, "DayOPlayerSetup"))
       //else if (0)
       {
 #ifdef DAYO_MOVEMENTS
-        Serial.println("DayOPlayerSetup");
+        Serial.println(F("DayOPlayerSetup"));
         // Stop play and Unregister all devices
         Devices_Player.stop_play();
         Devices_Player.unregister_all_devices();
@@ -836,7 +836,7 @@ void loop()
       //else if (0)
       {
 #ifdef WEREWOLVESLONDON_MOVEMENTS
-        Serial.println("WerewolvesLondonPlayerSetup");
+        Serial.println(F("WerewolvesLondonPlayerSetup"));
         // Stop play and Unregister all devices
         Devices_Player.stop_play();
         Devices_Player.unregister_all_devices();
@@ -872,7 +872,7 @@ void loop()
       }
       else if (0 == strcmp(token, "VampirePlayerSetup"))
       {
-        Serial.println("VampirePlayerSetup");
+        Serial.println(F("VampirePlayerSetup"));
         // Stop play and Unregister all devices
         Devices_Player.stop_play();
         Devices_Player.unregister_all_devices();
@@ -910,15 +910,15 @@ void loop()
           if ((value <= 110) && (value >= 80))
           {
             Head_Mouth_Rotation_servo.device_write(value);
-            Serial.print("Mouth ");
+            Serial.print(F("Mouth "));
             Serial.print(value);
-            Serial.println(" deg");
+            Serial.println(F(" deg"));
           }
           else
           {
-            Serial.print("Mouth Range error ");
+            Serial.print(F("Mouth Range error "));
             Serial.print(value);
-            Serial.println(" deg");
+            Serial.println(F(" deg"));
           }
         }
       }
@@ -935,22 +935,22 @@ void loop()
         
             /* Display the floating point data */
             Serial.print(Adafruit_sensors[sensorNumber].name);
-            Serial.print(" X deg: ");
+            Serial.print(F(" X deg: "));
             Serial.print(event.orientation.x, 4);
-            Serial.print("\tY deg: ");
+            Serial.print(F("\tY deg: "));
             Serial.print(event.orientation.y, 4);
-            Serial.print("\tZ deg: ");
+            Serial.print(F("\tZ deg: "));
             Serial.print(event.orientation.z, 4);
-            Serial.println("");
+            Serial.println(F(""));
           }
           else
           {
-            Serial.println("ImuRead range error");
+            Serial.println(F("ImuRead range error"));
           }
         }
         else
         {
-          Serial.println("ImuRead invalid params");
+          Serial.println(F("ImuRead invalid params"));
         }
         
 #ifdef  IncludeSparkFunLSM9DS1
@@ -1015,69 +1015,69 @@ void loop()
             // Get and display system status 
             Serial.print(Adafruit_sensors[sensorNumber].name);
             Adafruit_sensors[sensorNumber].sensor->getSystemStatus(&system_status, &self_test_result, &system_error);
-            Serial.print(" system_status: ");
+            Serial.print(F(" system_status: "));
             Serial.print(system_status);
-            Serial.print("\tself_test_result: ");
+            Serial.print(F("\tself_test_result: "));
             Serial.print(self_test_result);
-            Serial.print("\tsystem_error: ");
+            Serial.print(F("\tsystem_error: "));
             Serial.print(system_error);
-            Serial.println("");
+            Serial.println(F(""));
             
             // Get and display cal states
             Adafruit_sensors[sensorNumber].sensor->getCalibration( &sysCalState,  &gyroCalState,  &accelCalState,  &magCalState); 
             Serial.print(Adafruit_sensors[sensorNumber].name);
-            Serial.print(" sysCalState: ");
+            Serial.print(F(" sysCalState: "));
             Serial.print(sysCalState);
-            Serial.print("\tgyroCalState: ");
+            Serial.print(F("\tgyroCalState: "));
             Serial.print(gyroCalState);
-            Serial.print("\taccelCalState: ");
+            Serial.print(F("\taccelCalState: "));
             Serial.print(accelCalState);
-            Serial.print("\tmagCalState: ");
+            Serial.print(F("\tmagCalState: "));
             Serial.print(magCalState);
-            Serial.println("");
+            Serial.println(F(""));
   
             // Get and display calibration values
             adafruit_bno055_offsets_t offsets_type;
             if (Adafruit_sensors[sensorNumber].sensor->getSensorOffsets(offsets_type))
             {
               Serial.print(Adafruit_sensors[sensorNumber].name);
-              Serial.print(" gyro offsets: x ");
+              Serial.print(F(" gyro offsets: x "));
               Serial.print(offsets_type.gyro_offset_x);
-              Serial.print(", y "); 
+              Serial.print(F(", y ")); 
               Serial.print(offsets_type.gyro_offset_y);
-              Serial.print(", z "); 
+              Serial.print(F(", z ")); 
               Serial.println(offsets_type.gyro_offset_z);
-              Serial.print(" accel offsets: x ");
+              Serial.print(F(" accel offsets: x "));
               Serial.print(offsets_type.accel_offset_x);
-              Serial.print(", y "); 
+              Serial.print(F(", y ")); 
               Serial.print(offsets_type.accel_offset_y);
-              Serial.print(", z "); 
+              Serial.print(F(", z ")); 
               Serial.print(offsets_type.accel_offset_z);
-              Serial.print(" accel radius: ");
+              Serial.print(F(" accel radius: "));
               Serial.print(offsets_type.accel_radius);
-              Serial.print(" mag offsets: x ");
+              Serial.print(F(" mag offsets: x "));
               Serial.print(offsets_type.mag_offset_x);
-              Serial.print(", y "); 
+              Serial.print(F(", y ")); 
               Serial.print(offsets_type.mag_offset_y);
-              Serial.print(", z "); 
+              Serial.print(F(", z ")); 
               Serial.print(offsets_type.mag_offset_z);
-              Serial.print(" mag radius: ");
+              Serial.print(F(" mag radius: "));
               Serial.print(offsets_type.mag_radius);
-              Serial.println("");
+              Serial.println(F(""));
             }
             else
             {
-              Serial.println("getSensorOffset not fully calibd");
+              Serial.println(F("getSensorOffset not fully calibd"));
             }      
           }
           else
           {
-            Serial.println("ImuRead range error");
+            Serial.println(F("ImuRead range error"));
           }
         }
         else
         {
-          Serial.println("ImuRead invalid parms");
+          Serial.println(F("ImuRead invalid parms"));
         }
         
 #ifdef  IncludeSparkFunLSM9DS1
@@ -1117,9 +1117,9 @@ void loop()
             for (int i = 0; i < Per_Sensor_Cal_Data_Size_Eeprom; i++)
             {
             	adafruit_bno055_offsets_raw[i] = EEPROM.read(Sensors_Cal_Data_Eeprom_adrs + (sensorNumber * Per_Sensor_Cal_Data_Size_Eeprom) + i);
-            	Serial.print("Offset ");
+            	Serial.print(F("Offset "));
             	Serial.print(i);
-            	Serial.print(" Value ");
+            	Serial.print(F(" Value "));
             	Serial.println(adafruit_bno055_offsets_raw[i]);
             }
             // set values into IMU           
@@ -1127,12 +1127,12 @@ void loop()
           }
           else
           {
-            Serial.println("ImuGetStoredCalibData sensor number range error");
+            Serial.println(F("ImuGetStoredCalibData sensor number range error"));
           }
         }
         else
         {
-          Serial.println("ImuGetStoredCalibData invalid parms");
+          Serial.println(F("ImuGetStoredCalibData invalid parms"));
         }
       }
       else if (0 == strcmp(token, "ImuSetStoredCalibData"))
@@ -1151,31 +1151,31 @@ void loop()
 	            for (int i = 0; i < Per_Sensor_Cal_Data_Size_Eeprom; i++)
 	            {
 	            	EEPROM.write(Sensors_Cal_Data_Eeprom_adrs + (sensorNumber * Per_Sensor_Cal_Data_Size_Eeprom) + i, adafruit_bno055_offsets_raw[i]);
-	            	Serial.print("Offset ");
+	            	Serial.print(F("Offset "));
 	            	Serial.print(i);
-	            	Serial.print(" Value ");
+	            	Serial.print(F(" Value "));
 	            	Serial.println(adafruit_bno055_offsets_raw[i]);
 	            }
 						}
             else
             {
-							Serial.println("ImuSetStoredCalibData IMU not calibrated error, not storing offsets from IMU");
+							Serial.println(F("ImuSetStoredCalibData IMU not calibrated error, not storing offsets from IMU"));
             }
           }
           else
           {
-            Serial.println("ImuSetStoredCalibData sensor number range error");
+            Serial.println(F("ImuSetStoredCalibData sensor number range error"));
           }
         }
         else
         {
-          Serial.println("ImuGetStoredCalibData invalid parms");
+          Serial.println(F("ImuGetStoredCalibData invalid parms"));
         }
       }
       else if (0 == strcmp(token, "Visualize3DStop"))
       {
         Adafruit3DVisualizeEnabled = false;
-        Serial.println("Visualize3DStop");
+        Serial.println(F("Visualize3DStop"));
       }
       else if (0 == strcmp(token, "Visualize3D"))
       {
@@ -1186,9 +1186,9 @@ void loop()
         {
           if ((periodMsec >= 10) && ((sensorNumber >= 0) && (sensorNumber < MAX_ADAFRUIT_SENSORS)))
           {
-            Serial.print("Visualize3D: period msec ");
+            Serial.print(F("Visualize3D: period msec "));
             Serial.print(periodMsec);
-            Serial.print(" Sensor to Visualize: ");
+            Serial.print(F(" Sensor to Visualize: "));
             Serial.println(Adafruit_sensors[sensorNumber].name);
             AdafruitSensorReadPeriodMsec = periodMsec;
             AdafruitSensorToVisualize = sensorNumber;
@@ -1197,18 +1197,18 @@ void loop()
           }
           else
           {
-            Serial.println("Visualize3D: range error");
+            Serial.println(F("Visualize3D: range error"));
           }    
         }
         else
         {
-          Serial.println("Visualize3D: Invalid parms");
+          Serial.println(F("Visualize3D: Invalid parms"));
         }
       }
       else if (0 == strcmp(token, "ImusShowPitchDiffStop"))
       {
       	AdafruitImusPitchDiffEnabled = false;
-        Serial.print("ImusShowPitchDiffStop");
+        Serial.print(F("ImusShowPitchDiffStop"));
       }
       else if (0 == strcmp(token, "ImusShowPitchDiff"))
       {
@@ -1223,11 +1223,11 @@ void loop()
           	((sensorNumber2 >= 0) && (sensorNumber2 < MAX_ADAFRUIT_SENSORS))
           	)
           {
-            Serial.print("ImusShowPitchDiff: period msec ");
+            Serial.print(F("ImusShowPitchDiff: period msec "));
             Serial.print(periodMsec);
-            Serial.print(" Sensor1 used: ");
+            Serial.print(F(" Sensor1 used: "));
             Serial.println(Adafruit_sensors[sensorNumber1].name);
-            Serial.print(" Sensor2 used: ");
+            Serial.print(F(" Sensor2 used: "));
             Serial.println(Adafruit_sensors[sensorNumber2].name);
             AdafruitImusPitchDiffControl.periodMs = periodMsec;
             AdafruitImusPitchDiffControl.AdafruitImuCtrlSensor1 = sensorNumber1;
@@ -1244,18 +1244,18 @@ void loop()
           }
           else
           {
-            Serial.println("ImusShowPitchDiff: range error");
+            Serial.println(F("ImusShowPitchDiff: range error"));
           }    
         }
         else
         {
-          Serial.println("ImusShowPitchDiff: Invalid parms");
+          Serial.println(F("ImusShowPitchDiff: Invalid parms"));
         }      
       }
       else if (0 == strcmp(token, "ImuMouthControlStop"))
       {
         AdafruitImuMouthCtrlEnabled = false;
-        Serial.print("ImuMouthControlStop");
+        Serial.print(F("ImuMouthControlStop"));
       }
       else if (0 == strcmp(token, "ImuMouthControl"))
       {
@@ -1266,9 +1266,9 @@ void loop()
         {
           if ((periodMsec >= 10) && ((sensorNumber >= 0) && (sensorNumber < MAX_ADAFRUIT_SENSORS)))
           {
-            Serial.print("ImuMouthControl: period msec ");
+            Serial.print(F("ImuMouthControl: period msec "));
             Serial.print(periodMsec);
-            Serial.print(" Sensor used: ");
+            Serial.print(F(" Sensor used: "));
             Serial.println(Adafruit_sensors[sensorNumber].name);
             AdafruitImuMouthCtrlPeriodMsec = periodMsec;
             AdafruitImuMouthCtrlSensor = sensorNumber;
@@ -1284,12 +1284,12 @@ void loop()
           }
           else
           {
-            Serial.println("ImuMouthControl: range error");
+            Serial.println(F("ImuMouthControl: range error"));
           }    
         }
         else
         {
-          Serial.println("ImuMouthControl: Invalid parms");
+          Serial.println(F("ImuMouthControl: Invalid parms"));
         }
       }
 #ifdef ADAFRUIT_IMU_HEAD_MOUTH_OPS
@@ -1298,7 +1298,7 @@ void loop()
         AdafruitImuHeadMouthEnabled = false;
         // stop any audio file
         Voice_Player.device_write(mp3_device::STOP << 8);
-        Serial.println("ImuHeadMouthStop");
+        Serial.println(F("ImuHeadMouthStop"));
       }
       else if (0 == strcmp(token, "ImuHeadMouth"))
       {
@@ -1310,11 +1310,11 @@ void loop()
         {
           if (periodMsec >= 10)
           {            
-            Serial.print("ImuHeadMouth: period msec ");
+            Serial.print(F("ImuHeadMouth: period msec "));
             Serial.print(periodMsec);
-            Serial.print(" AudioFile ");
+            Serial.print(F(" AudioFile "));
             Serial.print(audioFile);
-            Serial.print(" audioDelayInPeriods ");
+            Serial.print(F(" audioDelayInPeriods "));
             Serial.println(audioDelayInPeriods);
             AdafruitImuHeadMouthPeriodMs = periodMsec;
             AdafruitImuHeadMouthTimeout = millis(); // force timeout right away
@@ -1330,7 +1330,7 @@ void loop()
             ImuHeadVerticalServoControl.ImuCtrlRefFrame.heading = event.orientation.x;
             ImuHeadVerticalServoControl.ImuCtrlRefFrame.pitch = event.orientation.z; 
             ImuHeadVerticalServoControl.ImuCtrlRefFrame.roll = event.orientation.y;
-            Serial.print("ImuHeadMouth Vert: period msec ");
+            Serial.print(F("ImuHeadMouth Vert: period msec "));
             Serial.print(periodMsec);
 
             
@@ -1350,12 +1350,12 @@ void loop()
           }
           else
           {
-            Serial.println("ImuHeadMouth: range error");
+            Serial.println(F("ImuHeadMouth: range error"));
           }    
         }
         else
         {
-          Serial.println("ImuHeadMouth: Invalid parms");
+          Serial.println(F("ImuHeadMouth: Invalid parms"));
         }
       }
 #endif
@@ -1370,31 +1370,31 @@ void loop()
         {
           if (0 == strcmp(filterOutputActionstr, "stop"))
           {
-            Serial.println("Madgwick Filter operation stopped ");
+            Serial.println(F("Madgwick Filter operation stopped "));
             MadgwickFilterTestEnabled = false;
           }
           else if ((value < 1) || (value > 100))
           {          
-            Serial.println("Madgwick Filter Rate out of range ");            
+            Serial.println(F("Madgwick Filter Rate out of range "));            
           }
           else 
           {
             if (0 == strcmp(filterOutputActionstr, "visualize101"))
             {
-              Serial.println("Madgwick Filter Output Action visualize101");
+              Serial.println(F("Madgwick Filter Output Action visualize101"));
               start_filter = true;
               MadgwickFilterAction = FilterActionVisualize101;
             }
             else if (0 == strcmp(filterOutputActionstr, "mouth"))
             {
-              Serial.println("Madgwick Filter Output Action mouth");
+              Serial.println(F("Madgwick Filter Output Action mouth"));
               start_filter = true;
               MouthFilterTimeout = millis();
               MadgwickFilterAction = FilterActionMouth;
             }
             else if (0 == strcmp(filterOutputActionstr, "ImuRead"))
             {
-              Serial.println("Imu Read at rate");
+              Serial.println(F("Imu Read at rate"));
               start_filter = true;
               MouthFilterTimeout = millis();
               MadgwickFilterAction = FilterActionImuRead;
@@ -1409,26 +1409,26 @@ void loop()
             }
             else if (0 == strcmp(filterOutputActionstr, "ImuReadAttitude"))
             {
-              Serial.println("Imu Read at rate");
+              Serial.println(F("Imu Read at rate"));
               start_filter = true;
               MouthFilterTimeout = millis();
               MadgwickFilterAction = FilterActionImuReadAttitude;
             }
 //            else if (0 == strcmp(filterOutputActionstr, "mouthAndhead"))
 //            {
-//              Serial.println("Madgwick Filter Output Action mouth and head");
+//              Serial.println(F("Madgwick Filter Output Action mouth and head"));
 //              start_filter = true;
 //              MadgwickFilterAction = FilterActionMouthAndHead;
 //            }
             else
             {
-              Serial.println("Madgwick Filter Output Action Invalid");
+              Serial.println(F("Madgwick Filter Output Action Invalid"));
             }
             if (start_filter)
             {           
-              Serial.print("Madgwick Filter started with update rate ");
+              Serial.print(F("Madgwick Filter started with update rate "));
               Serial.print(value);
-              Serial.println(" Hz.  Rate you use should yield an integral number of millisecond period ");
+              Serial.println(F(" Hz.  Rate you use should yield an integral number of millisecond period "));
               filter.begin(value);
               MadgwickFilterTestEnabled = true;
               MadgwickFilterTestUpdatePeriod = 1000/value;
@@ -1438,13 +1438,13 @@ void loop()
         }
         else
         {
-          Serial.println("Madgwick Filter Invalid parameters");
+          Serial.println(F("Madgwick Filter Invalid parameters"));
         }
       }
 #endif
       else
       {
-        Serial.print("Unknown Cmd: ");
+        Serial.print(F("Unknown Cmd: "));
         Serial.println(token);       
       }
     }
@@ -1460,7 +1460,7 @@ void loop()
     //    Head_Horizontal_Rotation_servo.device_write(90);
     //    Head_Vertical_Rotation_servo.device_write(90);
         Pneumatic_Back_relay.device_write(PNEUMATIC_BACK_BENTOVER);
-    //    Serial.println("LED high");
+    //    Serial.println(F("LED high"));
         prop_user_control_timeout = millis() + 1000;
         dbg_prop_user_control_state = 2;
       }
@@ -1472,7 +1472,7 @@ void loop()
     //    Head_Horizontal_Rotation_servo.device_write(120);
     //    Head_Vertical_Rotation_servo.device_write(100);
         Pneumatic_Back_relay.device_write(PNEUMATIC_BACK_UPRIGHT);
-    //    Serial.println("LED low");
+    //    Serial.println(F("LED low"));
          prop_user_control_timeout = millis() + 1000;
          dbg_prop_user_control_state = 1;
       }
@@ -1509,7 +1509,7 @@ void loop()
       
       if (AdafruitSensorReadTimeout <= millis())
       {
-        Serial.println("AdafruitSensorReadTimeout to far behind. Resetting to current time");
+        Serial.println(F("AdafruitSensorReadTimeout to far behind. Resetting to current time"));
         AdafruitSensorReadTimeout = millis();
       }
     }
@@ -1559,19 +1559,19 @@ void loop()
         
         
 	      // Print the current angles and difference
-	      Serial.print("diffRelBase, diff, pitch1, pitch2:  ");
+	      Serial.print(F("diffRelBase, diff, pitch1, pitch2:  "));
 	      Serial.print(diffRelativeToBase);
-	      Serial.print(" ");
+	      Serial.print(F(" "));
 	      Serial.print(diff);     
-	      Serial.print(" ");
+	      Serial.print(F(" "));
 	      Serial.print(pitch1);
-	      Serial.print(" ");
+	      Serial.print(F(" "));
 	      Serial.print(pitch2);
-	      Serial.println("");
+	      Serial.println(F(""));
       }      
       if (AdafruitImusPitchDiffControl.timeout <= millis())
       {
-        Serial.println("AdafruitImusPitchDiffControl.timeout to far behind. Resetting to current time");
+        Serial.println(F("AdafruitImusPitchDiffControl.timeout to far behind. Resetting to current time"));
         AdafruitImusPitchDiffControl.timeout = millis();
       }
     }
@@ -1630,7 +1630,7 @@ void loop()
         MouthDegreeSettingsIndex = 0;  // index for first entry in mouth settings array
         if (NumMouthDegreeSettings <= 0)
         {
-          Serial.println("Error: Can't have <= 0 mouth settings ");
+          Serial.println(F("Error: Can't have <= 0 mouth settings "));
           NumMouthDegreeSettings = 0; // to allow things to continue on
         }
         else
@@ -1665,7 +1665,7 @@ void loop()
       
       if (AdafruitImuMouthCtrlTimeout <= millis())
       {
-        Serial.println("AdafruitImuMouthCtrlTimeout to far behind. Resetting to current time");
+        Serial.println(F("AdafruitImuMouthCtrlTimeout to far behind. Resetting to current time"));
         AdafruitImuMouthCtrlTimeout = millis();
       }
     }
@@ -1766,7 +1766,7 @@ void loop()
           ImuServoCtrlUsing.DegreeSettingsIndex = 0;  // index for first entry settings array
           if (ImuServoCtrlUsing.NumDegreeSettings <= 0)
           {
-            Serial.println("Error: Can't have <= 0 mouth settings ");
+            Serial.println(F("Error: Can't have <= 0 mouth settings "));
             ImuServoCtrlUsing.NumDegreeSettings = 0; // to allow things to continue on
           }
           else
@@ -1848,7 +1848,7 @@ void loop()
           ImuServoCtrlUsing.DegreeSettingsIndex = 0;  // index for first entry settings array
           if (ImuServoCtrlUsing.NumDegreeSettings <= 0)
           {
-            Serial.println("Error: Can't have <= 0 Head horizontal settings ");
+            Serial.println(F("Error: Can't have <= 0 Head horizontal settings "));
             ImuServoCtrlUsing.NumDegreeSettings = 0; // to allow things to continue on
           }
           else
@@ -1932,7 +1932,7 @@ void loop()
           ImuServoCtrlUsing.DegreeSettingsIndex = 0;  // index for first entry settings array
           if (ImuServoCtrlUsing.NumDegreeSettings <= 0)
           {
-            Serial.println("Error: Can't have <= 0 Head Vertical settings ");
+            Serial.println(F("Error: Can't have <= 0 Head Vertical settings "));
             ImuServoCtrlUsing.NumDegreeSettings = 0; // to allow things to continue on
           }
           else
@@ -1966,23 +1966,23 @@ void loop()
         }
       }
       // Print the current servo settings for each item (can thn be captured for replay)
-      Serial.print("Servo Vert,Horz,Mouth: ");
+      Serial.print(F("Servo Vert,Horz,Mouth: "));
       Serial.print((int)ImuHeadVerticalServoControl.servo->device_read());
-      Serial.print(" ");
+      Serial.print(F(" "));
       Serial.print((int)ImuHeadHorizontalServoControl.servo->device_read());
-      Serial.print(" ");
+      Serial.print(F(" "));
       Serial.print((int)ImuMouthServoControl.servo->device_read());
       if (markAudioFileStartPoint)
       {
-        Serial.print(" Started Audio File: ");
+        Serial.print(F(" Started Audio File: "));
         Serial.print(AdafruitImuHeadMouthAudioFile);
       }
-      Serial.println("");
+      Serial.println(F(""));
 
      
       if (AdafruitImuHeadMouthTimeout <= millis())
       {
-        Serial.println("AdafruitImuHeadMouthTimeout to far behind. Resetting to current time");
+        Serial.println(F("AdafruitImuHeadMouthTimeout to far behind. Resetting to current time"));
         AdafruitImuHeadMouthTimeout = millis();
       }
     }
@@ -2005,7 +2005,7 @@ void loop()
       {
         // force to use current time
         MadgwickFilterTestTimeout = millis() + MadgwickFilterTestUpdatePeriod;
-        Serial.println("Missed Madgwick Filter Test Timeout. Setting based on current time");
+        Serial.println(F("Missed Madgwick Filter Test Timeout. Setting based on current time"));
       }
       if ( SparkFun_imu.gyroAvailable() )
       {
@@ -2036,11 +2036,11 @@ void loop()
       
       switch (MadgwickFilterAction) {
         case FilterActionVisualize101:
-          Serial.print("Orientation: ");
+          Serial.print(F("Orientation: "));
           Serial.print(heading);
-          Serial.print(" ");
+          Serial.print(F(" "));
           Serial.print(pitch);
-          Serial.print(" ");
+          Serial.print(F(" "));
           Serial.println(roll);
           break;
         case FilterActionMouth:
@@ -2074,11 +2074,11 @@ void loop()
               if ((mouthAngle <= 110) && (mouthAngle >= 80))  // limit mouth excursions to avoid damage
               {
                 Head_Mouth_Rotation_servo.device_write(mouthAngle);
-                Serial.print("Heading, pitch, roll ");
+                Serial.print(F("Heading, pitch, roll "));
                 Serial.print(heading, 2);
-                Serial.print(", ");
+                Serial.print(F(", "));
                 Serial.print(pitch, 2);
-                Serial.print(", ");
+                Serial.print(F(", "));
                 Serial.println(roll, 2);
               }
             }
@@ -2118,66 +2118,66 @@ void printGyro(float gx, float gy, float gz, bool isCalculated)
 {
     if (isCalculated)
     {
-      Serial.print("GyroCalc: ");
+      Serial.print(F("GyroCalc: "));
     }
     else
     {
-      Serial.print("GyroRaw: ");
+      Serial.print(F("GyroRaw: "));
     }
     Serial.print(gx, 2);
-    Serial.print(", ");
+    Serial.print(F(", "));
     Serial.print(gy, 2);
-    Serial.print(", ");
+    Serial.print(F(", "));
     Serial.print(gz, 2);
     if (isCalculated)
     {
-      Serial.print(" deg/s");
+      Serial.print(F(" deg/s"));
     }
-    Serial.println("");
+    Serial.println(F(""));
 }
 
 void printAccel(float ax, float ay, float az, bool isCalculated)
 {  
     if (isCalculated)
     {
-      Serial.print("AccelCalc: ");
+      Serial.print(F("AccelCalc: "));
     }
     else
     {
-      Serial.print("AccelRaw: ");
+      Serial.print(F("AccelRaw: "));
     }
     Serial.print(ax, 2);
-    Serial.print(", ");
+    Serial.print(F(", "));
     Serial.print(ay, 2);
-    Serial.print(", ");
+    Serial.print(F(", "));
     Serial.print(az, 2);
     if (isCalculated)
     {
-      Serial.print(" Gs");
+      Serial.print(F(" Gs"));
     }
-    Serial.println("");
+    Serial.println(F(""));
 }
 
 void printMag(float mx, float my, float mz, bool isCalculated)
 {  
     if (isCalculated)
     {
-      Serial.print("MagCalc: ");
+      Serial.print(F("MagCalc: "));
     }
     else
     {
-      Serial.print("MagRaw: ");
+      Serial.print(F("MagRaw: "));
     }
     Serial.print(mx, 2);
-    Serial.print(", ");
+    Serial.print(F(", "));
     Serial.print(my, 2);
-    Serial.print(", ");
+    Serial.print(F(", "));
     Serial.print(mz, 2);
     if (isCalculated)
     {
-      Serial.print(" Gauss");
+      Serial.print(F(" Gauss"));
     }
-    Serial.println("");
+    Serial.println(F(""));
 }
 
 // Calculate pitch, roll, and heading.
@@ -2206,11 +2206,11 @@ void printAttitude(float ax, float ay, float az, float mx, float my, float mz)
   pitch *= 180.0 / PI;
   roll  *= 180.0 / PI;
   
-  Serial.print("Pitch, Roll, Heading: ");
+  Serial.print(F("Pitch, Roll, Heading: "));
   Serial.print(pitch, 2);
-  Serial.print(", ");
+  Serial.print(F(", "));
   Serial.print(roll, 2);
-  Serial.print(", ");
+  Serial.print(F(", "));
   Serial.println(heading, 2);
 }
 
@@ -2247,7 +2247,7 @@ int mouthServoSettingsForDegChng(int CurrentDegreeSetting, int degreeChange, int
   if (periods > maxEntries)
   {
     periods =  maxEntries;
-    Serial.println("mouthServoSettingsForDegChng: Exceeded max entries");
+    Serial.println(F("mouthServoSettingsForDegChng: Exceeded max entries"));
   }
   if (periods <= 0)
   {
@@ -2273,7 +2273,7 @@ int HeadVertServoSettingsForDegChng(int CurrentDegreeSetting, int degreeChange, 
   if (periods > maxEntries)
   {
     periods =  maxEntries;
-    Serial.println("HeadVertServoSettingsForDegChng: Exceeded max entries");
+    Serial.println(F("HeadVertServoSettingsForDegChng: Exceeded max entries"));
   }
   if (periods <= 0)
   {
@@ -2299,7 +2299,7 @@ int HeadHoriServoSettingsForDegChng(int CurrentDegreeSetting, int degreeChange, 
   if (periods > maxEntries)
   {
     periods =  maxEntries;
-    Serial.println("HeadHoriServoSettingsForDegChng: Exceeded max entries");
+    Serial.println(F("HeadHoriServoSettingsForDegChng: Exceeded max entries"));
   }
   if (periods <= 0)
   {
