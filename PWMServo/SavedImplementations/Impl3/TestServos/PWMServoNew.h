@@ -115,7 +115,7 @@ class PWMServoNew
     uint8_t max16;       // maximum pulse, 16uS units, 0-4ms range (default is 150)
     static const servoHdwrCntrlInfoDef servoHdwrCntrlInfo[SERVO_MAX_NUM_PINS];
     static servoInfoDef servoInfo[SERVO_MAX_NUM_PINS];
-    avrTimerCounter::avrTimerCounter * timerPtr; // timer object associated with this servo pin
+    avrTimerCounter * timerPtr; // timer object associated with this servo pin
     servoHdwrCntrlInfoDef HdwrCntrlInfo; // copy for fast access
         
     void seizeTimer();
