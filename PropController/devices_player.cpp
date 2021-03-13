@@ -1,4 +1,4 @@
-
+ 
 #include "devices_player.h"
 #include <arduino.h>
 
@@ -66,7 +66,7 @@ register_device
 ------------------------------------------------------------------
 */     
 int devices_player::register_device (base_device * p_device,
-                      const uint16_t * p_device_write_value,
+                      indexed_values_reader * pdevice_values_reader,
                       const unsigned long num_write_values)
 {
     int device_number = -1;
@@ -77,7 +77,7 @@ int devices_player::register_device (base_device * p_device,
         if (!registered_devices[i].p_device)
         {
             registered_devices[i].p_device = p_device;
-            registered_devices[i].p_device_write_value = p_device_write_value;
+            registered_devices[i].pdevice_values_reader = pdevice_values_reader;
             registered_devices[i].num_write_values = num_write_values;
             device_number = i;
             break;
@@ -88,6 +88,7 @@ int devices_player::register_device (base_device * p_device,
        
     return i;    
 }
+
 
 /*
 -----------------------------------------------------------------
@@ -111,6 +112,26 @@ bool devices_player::unregister_device (int device_number)
     
     return ok;
 } 
+
+/*
+-----------------------------------------------------------------
+unregister_all_devices
+------------------------------------------------------------------
+*/     
+
+// Return value indicates if successed (true).    
+bool devices_player::unregister_all_devices ()
+{
+  for (int device_number = 0; device_number < MAX_DEVICES; device_number++)
+  {
+    if (registered_devices[device_number].p_device)
+    {
+      unregister_device (device_number);
+    }
+  }
+  return true;
+}
+
 
 /*
 -----------------------------------------------------------------
@@ -171,7 +192,7 @@ bool devices_player::pause_play()
                 registered_devices[i].p_device->pause();
             }
         }
-        playing_state == PAUSED;
+        playing_state = PAUSED;
         ok = true; 
     }
 
@@ -197,7 +218,7 @@ bool devices_player::resume_play()
                 registered_devices[i].p_device->resume();
             }
         }
-        playing_state == PLAYING;
+        playing_state = PLAYING;
         ok = true; 
     }
 
@@ -217,8 +238,11 @@ void devices_player::write_devices (unsigned long index)
     {
         if (registered_devices[i].p_device)
         {
-            registered_devices[i].p_device->device_write(registered_devices[i].p_device_write_value[index % 
-                                                                     registered_devices[i].num_write_values]);
+          uint16_t value_to_write;
+
+          value_to_write = registered_devices[i].pdevice_values_reader->read(index % registered_devices[i].num_write_values);
+          registered_devices[i].p_device->device_write(value_to_write);
+
         }
     }
     

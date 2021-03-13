@@ -1,11 +1,14 @@
 /*
 This class is for playing devices. Each device to be played is registered with this class
-along with a pointer to an array and the number of values in the array.  The class plays the device by calling the devices
-write method for each value in the array in order waiting interval milliseconds between each set.  All
-registered devices are played simultaneously (i.e. the set for each registerd device A is called with its respective
-registered array [1] value, and the interval milliseconds is waited, then the same is done for array[2] value, etc.
+along with the values to write (play) and the max number of values for that device.  
+Values to write are passed via a reader class derived from the 
+indexed_values_reader class to read a device value (to be written) associated with a given index
+The class plays the device by calling the devices
+write method for the value the reader returns in order waiting interval milliseconds between each set.  All
+registered devices are played simultaneously (i.e. Each registerd device is called with its respective
+registered reader.read(1) value, and the interval milliseconds is waited, then the same is done for reader.read(2) value, etc.
 Playing can be done continuously with wraparound or once stopping at the end of the array.
-Wraparound wraps at the end of each array.
+Wraparound wraps at the end of the max entries for that device.
 The playing can also be paused, and then resumed.
 The inteval for playing all registered devices can be set (all devices are played at the same
 interval)
@@ -20,6 +23,7 @@ called periodically.  See the method for further detail.
 #include <inttypes.h>
 #include "devices_player.h"
 #include "base_device.h"
+#include "indexed_values_reader.h"
 
 class devices_player
 {
@@ -39,12 +43,18 @@ class devices_player
     // refer to the registered device.  A return value of -1 indicates the
     // registration failed.    
     int register_device (base_device * p_device,
-                          const uint16_t * p_device_write_value,
-                          const unsigned long num_write_values);
- 
+                         indexed_values_reader * pdevice_values_reader,
+                         const unsigned long num_write_values);
+
+                          
     // unregisters the device associated with device_number.
     // Return value indicates if successed (true).    
     bool unregister_device (int device_number);
+    
+    // unregisters all device .
+    // Return value indicates if successed (true).    
+    bool unregister_all_devices ();
+   
 
     // starts playing the devices at the start of their respective arrays.    
     bool start_play(e_play_type play_type);
@@ -72,8 +82,8 @@ class devices_player
     
     struct device_reg_info_def {
       base_device * p_device;  // null for not registered
-      const uint16_t * p_device_write_value;
-      unsigned long num_write_values; 
+      indexed_values_reader * pdevice_values_reader;
+      unsigned long num_write_values;
     };
     
     e_state_type playing_state;
