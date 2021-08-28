@@ -23,8 +23,10 @@
 #ifdef  IncludeSparkFunLSM9DS1
 #include <SparkFunLSM9DS1.h>
 #endif
+#include <i2cSwitch.h>
 #include <Adafruit_Sensor.h>
-#include <Adafruit_BNO055.h>
+//#include <Adafruit_BNO055.h>
+#include "Adafruit_BNO055_HalloweenProp.h"
 #include <utility/imumaths.h>
 //#define MadgwickFilterTestOps
 #ifdef MadgwickFilterTestOps
@@ -294,17 +296,20 @@ LSM9DS1 SparkFun_imu2;
 //#define DECLINATION -8.58 // 8.58 Declination (degrees) in Boulder, CO. 8.31° E  ± 0.35°  changing by  0.10° W per year
 #define DECLINATION 0.82913 // -0.82913Declination (degrees) in Cedar Rapids IA 0° 50' W  ± 0° 22'  changing by  0° 5' W per year 9-26-2018
 
+// create the i2cSwitch device object used to handle devices with i2c address conflicts such as the BNO055 IMUs
+i2cSwitch i2cSwitchDevice = i2cSwitch(0x70);  // I2C address that switch resides at is passed parameter
+
 // create the BNO055 IMUs
 // The defines also are used as indicies to the Adafruit_sensors
 #define ADAFRUIT_IMU_MOUTH 0
 #define ADAFRUIT_IMU_HEAD 1
 #define MAX_ADAFRUIT_SENSORS 2
-//  Note: sensor number in Adafruit_BNO055 constructor does not change which sensor is which, only the I2C address passed does.
+//  Note: sensor number in Adafruit_BNO055_HalloweenProp constructor does not change which sensor is which, only the I2C address passed does.
 //  Currently the sensor have their I2C address strapping fixed via grounds.   Mouth gaurd sensor isthe one wiht no I2C address passed
-Adafruit_BNO055 bno_head = Adafruit_BNO055(ADAFRUIT_IMU_HEAD    , BNO055_ADDRESS_B);
-Adafruit_BNO055 bno_mouth = Adafruit_BNO055(ADAFRUIT_IMU_MOUTH);
+Adafruit_BNO055_HalloweenProp bno_head = Adafruit_BNO055_HalloweenProp(ADAFRUIT_IMU_HEAD  , BNO055_ADDRESS_B, &i2cSwitchDevice, 0x01,  0xff);
+Adafruit_BNO055_HalloweenProp bno_mouth = Adafruit_BNO055_HalloweenProp(ADAFRUIT_IMU_MOUTH, BNO055_ADDRESS_A, &i2cSwitchDevice, 0x01,  0xff);
 struct Adafruit_sensors_def {
-  Adafruit_BNO055 * sensor;
+  Adafruit_BNO055_HalloweenProp * sensor;
   char * name;
 };
 Adafruit_sensors_def Adafruit_sensors[MAX_ADAFRUIT_SENSORS] = { {&bno_mouth,"Mouth IMU"}, {&bno_head, "Head IMU"}};  // Must match index defines above
