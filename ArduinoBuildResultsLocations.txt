@@ -1,0 +1,12 @@
+To find the build results location (if not changed by overriding them in the config files), simply
+turn on in the IDE preferences menu item verbose output during compile.
+Then compile the sketch and see in the output window 
+you will see somewhere in the first few lines ...... -build-path <path>
+Typically as a default is shows up at C:\Users\GregG\AppData\Local\Temp\arduino_build_nnnnnn
+
+If you want to change the build results location you can modify the preferences.txt file the IDE shows a url to
+and then add the line for example
+
+build.path=<path to the folder the build should be performed in>
+
+Important Note: You must create this empty folder yourself now as Arduino won’t and will give errors.
