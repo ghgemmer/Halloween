@@ -338,7 +338,7 @@ uint8_t PWMServoNew::attach(int pinArg)
   return attach(pinArg, 544, 2400);
 }
 
-uint8_t PWMServoNew::attach(int pinArg, int min, int max)
+uint8_t PWMServoNew::attach(int pinArg, int min, int max, int minAngleDeg, int maxAngleDeg)
 {
 
 	#if defined(PWM_SERVO_DEBUG)
@@ -348,7 +348,11 @@ uint8_t PWMServoNew::attach(int pinArg, int min, int max)
 	Serial.print(F(" min: "));
 	Serial.print(min);
 	Serial.print(F(" max: "));
-	Serial.println(max);
+	Serial.print(max);
+	Serial.print(F(" min angle: "));
+	Serial.print(minAngleDeg);
+	Serial.print(F(" max angle: "));
+	Serial.println(maxAngleDeg);
   #endif
 
 	int8_t newIndex = getServoPinIndex(pinArg);
@@ -388,6 +392,8 @@ uint8_t PWMServoNew::attach(int pinArg, int min, int max)
 
   min16 = min / 16;
   max16 = max / 16;
+  _minAngleDeg = minAngleDeg;
+  _maxAngleDeg = maxAngleDeg;
 
 	pin = pinArg;
   angle = NO_ANGLE;
@@ -490,14 +496,14 @@ void PWMServoNew::write(int angleArg)
   }
 
 
-  if (angleArg < 0) angleArg = 0;
-  if (angleArg > 180) angleArg = 180;
+  if (angleArg < _minAngleDeg) angleArg = _minAngleDeg;
+  if (angleArg > _maxAngleDeg) angleArg = _maxAngleDeg;
   angle = angleArg;
 
   // bleh, have to use longs to prevent overflow, could be tricky if always a 16MHz clock, but not true
   // That 8L on the end is the TCNT1 prescaler, it will need to change if the clock's prescaler changes,
   // but then there will likely be an overflow problem, so it will have to be handled by a human.
-  p = (min16*16L*clockCyclesPerMicrosecond() + (max16-min16)*(16L*clockCyclesPerMicrosecond())*angle/180L)/8L;
+  p = (min16*16L*clockCyclesPerMicrosecond() + (max16-min16)*(16L*clockCyclesPerMicrosecond())*(angle - (long)_minAngleDeg) /((long)_maxAngleDeg - (long)_minAngleDeg))/8L;
   timerPtr->setOutputCompareReg(HdwrCntrlInfo.outputChannel, p);
 
   #if defined(PWM_SERVO_DEBUG)
@@ -568,4 +574,3 @@ void PWMServoNew::printHdwrCntrlInfo(servoHdwrCntrlInfoDef &info)
 
 
 #endif
-

@@ -1,0 +1,31 @@
+All symbols that use RAM.
+332 bytes used by 12 instantiated servos, PWMServoNew static, and 4 instantiated avr timer counters.
+
+
+Symbol table '.symtab' contains 366 entries:
+   Num:    Value  Size Type    Bind   Vis      Ndx Name
+     3: 0080026e     0 SECTION LOCAL  DEFAULT    3 
+    27: 008002de   157 OBJECT  LOCAL  DEFAULT    3 Serial
+   116: 00800473    12 OBJECT  LOCAL  DEFAULT    3 _ZN11PWMServoNew9servoInf      * PWMServoNew static item
+   126: 0080037b    44 OBJECT  LOCAL  DEFAULT    3 _ZN15avrTimerCounter13tim      * avrTimerCounter static timersObjects[4]
+   183: 008003a7   204 OBJECT  LOCAL  DEFAULT    3 myservos			  * 12 Instantiated servo objects
+   184: 008002da     4 OBJECT  LOCAL  DEFAULT    3 timer0_millis
+   185: 008002d9     1 OBJECT  LOCAL  DEFAULT    3 timer0_fract
+   186: 008002d5     4 OBJECT  LOCAL  DEFAULT    3 timer0_overflow_count
+   187: 008002d3     2 OBJECT  LOCAL  DEFAULT    3 cmdLineIndex
+   188: 0080026e     1 OBJECT  LOCAL  DEFAULT    3 cmdComplete
+   189: 0080026f   100 OBJECT  LOCAL  DEFAULT    3 cmdLine
+   282: 0080047f     0 NOTYPE  GLOBAL DEFAULT    3 __bss_end
+   319: 0080026e     0 NOTYPE  GLOBAL DEFAULT    3 __bss_start
+.
+.
+.
+.
+.
+     1: 00800200     0 SECTION LOCAL  DEFAULT    1 
+    35: 00800202    72 OBJECT  LOCAL  DEFAULT    1 _ZN15avrTimerCounter18Tim     * avrTimerCounter const TimerHdwrCntrlInfo[4]
+   182: 0080024a    18 OBJECT  LOCAL  DEFAULT    1 _ZTV14HardwareSerial
+   190: 00800200     2 OBJECT  LOCAL  DEFAULT    1 _ZL10delimiters
+   305: 0080026e     0 NOTYPE  GLOBAL DEFAULT    1 __data_end
+   341: 0080026e     0 NOTYPE  GLOBAL DEFAULT    1 _edata
+   358: 00800200     0 NOTYPE  GLOBAL DEFAULT    1 __data_start

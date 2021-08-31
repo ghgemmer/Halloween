@@ -24,7 +24,7 @@
   License along with this library; if not, write to the Free Software
   Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
-#define PWM_SERVO_DEBUG 0
+//#define PWM_SERVO_DEBUG 0
 #include <inttypes.h>
 #include "avrTimerCounter.h"
 
@@ -112,8 +112,10 @@ class PWMServoNew
     											 // Only one servo can be attached per PWMServoNew object.
     											 
     uint8_t angle;       // in degrees
-    uint8_t min16;       // minimum pulse, 16uS units  (default is 34)
-    uint8_t max16;       // maximum pulse, 16uS units, 0-4ms range (default is 150)
+    uint8_t min16;       // minimum pulse, 16uS units
+    uint8_t max16;       // maximum pulse, 16uS units
+    int _minAngleDeg;   // angle corresponding to min16
+    int _maxAngleDeg;   // angle corersonding to max16
     const static servoHdwrCntrlInfoDef servoHdwrCntrlInfo[SERVO_MAX_NUM_PINS];
     static servoInfoDef servoInfo[SERVO_MAX_NUM_PINS];
     avrTimerCounter * timerPtr; // timer object associated with this servo pin
@@ -130,15 +132,19 @@ class PWMServoNew
 
   public:
     PWMServoNew();
-    uint8_t attach(int);
+    uint8_t attach(int pinArg);
                              // pulse length for 0 degrees in microseconds, 544uS default
                              // pulse length for 180 degrees in microseconds, 2400uS default
-    uint8_t attach(int, int, int);
-                             // attach to a pin, sets pinMode, returns 0 on failure, won't
-                             // position the servo until a subsequent write() happens
-                             // Only works for 9 and 10.
+    uint8_t attach(int pinArg, int min, int max, int minAngleDeg = 0, int maxAngleDeg = 180);
+    // pinArg - pin number to connect servo to
+    // min - min pulse width in microseconds corresponding minAngleDeg
+    // max - max pulse width in microseconds corresponding maxAngleDeg
+    // minAngleDeg - min angle the servo is allowed to be set to and corresponds to min pulse width.
+    //               Note user can set this and min, max to limit travel of the servo less than it can actually do.
+    // maxAngleDeg - max angle the servo is allowed to be set to and corresponds to max pulse width
+    //               Note user can set this and min, max to limit travel of the servo less than it can actually do.
     void detach();
-    void write(int);         // specify the angle in degrees, 0 to 180
+    void write(int angleArg); // specify the angle in degrees
     uint8_t read();
     uint8_t attached();
 };
