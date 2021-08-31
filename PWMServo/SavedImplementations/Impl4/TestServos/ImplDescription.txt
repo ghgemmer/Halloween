@@ -1,1 +1,1 @@
-Same as Impl3 but puts large constants in PROGMEM, and also adds optional min/max degree parameters that correspond to min/max pulse width in PWMServoNew constructor
+Same as Impl3 but puts large constants in PROGMEM, and also adds optional min/max degree parameters that correspond to min/max pulse width in PWMServoNew.attach method
