@@ -144,9 +144,12 @@ class PWMServoNew
     // maxAngleDeg - max angle the servo is allowed to be set to and corresponds to max pulse width
     //               Note user can set this and min, max to limit travel of the servo less than it can actually do.
     void detach();
-    void write(int angleArg); // specify the angle in degrees
+    void write(int angleArg, bool force = true); //
+    // angleArg - Angle in degrees to set the servo to
+    // force - force the write to the servo control hardware regardless of whether it has changed or not.
     uint8_t read();
     uint8_t attached();
+    void getMinMaxDeg(int &min, int &max); // returns the min and max degree setting allowed.
 };
 
 #endif

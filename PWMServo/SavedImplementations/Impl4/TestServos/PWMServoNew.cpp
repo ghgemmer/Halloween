@@ -485,7 +485,7 @@ void PWMServoNew::detach()
   #endif
 }
 
-void PWMServoNew::write(int angleArg)
+void PWMServoNew::write(int angleArg, bool force)
 {
   uint16_t p;
 
@@ -495,9 +495,13 @@ void PWMServoNew::write(int angleArg)
   	return;
   }
 
-
+  
   if (angleArg < _minAngleDeg) angleArg = _minAngleDeg;
   if (angleArg > _maxAngleDeg) angleArg = _maxAngleDeg;
+  if (!force && (angle == angleArg))
+  {
+    return;
+  }
   angle = angleArg;
 
   // bleh, have to use longs to prevent overflow, could be tricky if always a 16MHz clock, but not true
@@ -534,6 +538,12 @@ uint8_t PWMServoNew::attached()
   	attached = 1;
   }
   return (attached);
+}
+
+void PWMServoNew::getMinMaxDeg(int &min, int &max)
+{
+  min = _minAngleDeg;
+  max = _maxAngleDeg;    
 }
 
 #ifdef PWM_SERVO_DEBUG
