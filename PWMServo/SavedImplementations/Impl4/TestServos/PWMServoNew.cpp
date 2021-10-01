@@ -390,8 +390,8 @@ uint8_t PWMServoNew::attach(int pinArg, int min, int max, int minAngleDeg, int m
   timerPtr->printHdwrCntrlInfo();
   #endif
 
-  min16 = min / 16;
-  max16 = max / 16;
+  minPulseWidth = min;
+  maxPulseWidth = max;
   _minAngleDeg = minAngleDeg;
   _maxAngleDeg = maxAngleDeg;
 
@@ -507,7 +507,7 @@ void PWMServoNew::write(int angleArg, bool force)
   // bleh, have to use longs to prevent overflow, could be tricky if always a 16MHz clock, but not true
   // That 8L on the end is the TCNT1 prescaler, it will need to change if the clock's prescaler changes,
   // but then there will likely be an overflow problem, so it will have to be handled by a human.
-  p = (min16*16L*clockCyclesPerMicrosecond() + (max16-min16)*(16L*clockCyclesPerMicrosecond())*(angle - (long)_minAngleDeg) /((long)_maxAngleDeg - (long)_minAngleDeg))/8L;
+  p = ( (long)minPulseWidth*(long)clockCyclesPerMicrosecond() + ((long)(maxPulseWidth- minPulseWidth)* (long)(clockCyclesPerMicrosecond())*((long)angle - (long)_minAngleDeg) /((long)_maxAngleDeg - (long)_minAngleDeg)))/8L;
   timerPtr->setOutputCompareReg(HdwrCntrlInfo.outputChannel, p);
 
   #if defined(PWM_SERVO_DEBUG)

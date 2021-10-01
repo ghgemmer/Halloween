@@ -111,11 +111,11 @@ class PWMServoNew
     											 //-1 means no servo attached for this object.  
     											 // Only one servo can be attached per PWMServoNew object.
     											 
-    uint8_t angle;       // in degrees
-    uint8_t min16;       // minimum pulse, 16uS units
-    uint8_t max16;       // maximum pulse, 16uS units
-    int _minAngleDeg;   // angle corresponding to min16
-    int _maxAngleDeg;   // angle corersonding to max16
+    uint16_t angle;       // in degrees
+    uint16_t  minPulseWidth;       // minimum servo pulse width, uS units
+    uint16_t  maxPulseWidth;       // maximum servo pulse width, uS units
+    int _minAngleDeg;   // angle corresponding to  minPulseWidth
+    int _maxAngleDeg;   // angle corersonding to  maxPulseWidth
     const static servoHdwrCntrlInfoDef servoHdwrCntrlInfo[SERVO_MAX_NUM_PINS];
     static servoInfoDef servoInfo[SERVO_MAX_NUM_PINS];
     avrTimerCounter * timerPtr; // timer object associated with this servo pin

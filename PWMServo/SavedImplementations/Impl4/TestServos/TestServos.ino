@@ -41,7 +41,7 @@ void setup()
     myservos[6 ].attach (SERVO_PIN_G,500,1700,0,180 );  // Pin 6 
     myservos[7 ].attach (SERVO_PIN_H,800,2200 );  // Pin 7 
     myservos[8 ].attach (SERVO_PIN_I,800,2200 );  // Pin 8 
-    myservos[9 ].attach (SERVO_PIN_J,500,1700,0,180 );  // Pin 46 
+    myservos[9 ].attach (SERVO_PIN_J,500,2500,0,300 );  // Pin 46 
     myservos[10].attach (SERVO_PIN_K,800,2200 );  // Pin 45 
     myservos[11].attach (SERVO_PIN_L,800,2200,0,135 );  // Pin 44 
   
