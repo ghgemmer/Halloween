@@ -1,0 +1,22 @@
+gobilda 2000 series 25-2 on arm pitch
+SetServo 11 90;SetServo 9 175;SetServo 10 120;SetServo 4 180; SetServo 0 90; SetServo 1 90;SetServo 2 110
+hitec HS-7950TH servo on arm pitch 
+SetServo 11 90;SetServo 9 165;SetServo 10 120;SetServo 0 90; SetServo 1 90;SetServo 2 110
+
+SetServo 9 45;
+SetServo 9 90;
+SetServo 9 135;
+SetServo 9 180
+
+gobilda 2000 series 25-2 on arm pitch
+SetServo 9 90;Delay 1500;SetServo 9 135;Delay 1500;SetServo 9 175
+hitec HS-7950TH servo on arm pitch going from 35 to 165
+SetServo 9 75;Delay 1500;SetServo 9 120;Delay 1500;SetServo 9 165
+going from 75 to 165
+SetServo 9 100;Delay 1500;SetServo 9 135;Delay 1500;SetServo 9 165
+
+
+SetServo 11 100;Delay 700;SetServo 11 80;Delay 700;SetServo 11 90;Delay 700;SetServo 11 80;Delay 500;
+
+SetServo 11 100;Delay 500;SetServo 11 80;Delay 500;SetServo 11 90;
+SetServo 10 140;Delay 500;SetServo 10 120;Delay 500;

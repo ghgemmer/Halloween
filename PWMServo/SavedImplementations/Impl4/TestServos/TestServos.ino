@@ -9,7 +9,7 @@
 #include <inttypes.h>
 
 // Command Line structures
-#define CmdLineMaxSize  100
+#define CmdLineMaxSize  150
 char cmdLine [CmdLineMaxSize];
 unsigned int cmdLineIndex;
 const char Carriage_Return = 13;
@@ -30,20 +30,22 @@ void setup()
     cmdLineIndex = 0;
     cmdComplete = false;
 // goBILDA 2000 Series Dual Mode Servo (25-2):   300 degrees for 500-2500.  Thus for 0-180 deg use 500 - 1700
-// Savox SA1230SG Coreless Digital Servo: 135 degrees for 800-2200µsec. Thus use truncates to 
+// Savox SA1230SG Coreless Digital Servo: 0 to 135 degrees for 800-2200µsec.
+// Hitec HS-7950th servo: 900-2100 usec for 0 to 198 dgrees
     Serial.begin(115200);
-    myservos[0 ].attach (SERVO_PIN_A,500,1700,0,180 );  // Pin 11 
-    myservos[1 ].attach (SERVO_PIN_B,800,2200 );  // Pin 12 
-    myservos[2 ].attach (SERVO_PIN_C,800,2200 );  // Pin 13 
+    myservos[0 ].attach (SERVO_PIN_A,1267,1733, 60, 120);  // Pin 11  
+    myservos[1 ].attach (SERVO_PIN_B,1150,1889, 45, 140 ); // Pin 12 
+    myservos[2 ].attach (SERVO_PIN_C,1422,1656, 80, 110 ); // Pin 13
     myservos[3 ].attach (SERVO_PIN_D,500,1700,0,180 );  // Pin 5 
-    myservos[4 ].attach (SERVO_PIN_E,800,2200 );  // Pin 2 
+    myservos[4 ].attach (SERVO_PIN_E,967,1767,70,190 );  // Pin 2 
     myservos[5 ].attach (SERVO_PIN_F,800,2200 );  // Pin 3 
     myservos[6 ].attach (SERVO_PIN_G,500,1700,0,180 );  // Pin 6 
     myservos[7 ].attach (SERVO_PIN_H,800,2200 );  // Pin 7 
     myservos[8 ].attach (SERVO_PIN_I,800,2200 );  // Pin 8 
-    myservos[9 ].attach (SERVO_PIN_J,500,2500,0,300 );  // Pin 46 
-    myservos[10].attach (SERVO_PIN_K,800,2200 );  // Pin 45 
-    myservos[11].attach (SERVO_PIN_L,800,2200,0,135 );  // Pin 44 
+    myservos[9 ].attach (SERVO_PIN_J,500,1833,0,200 );  // Pin 46  // GoBilda 2000 series 25-2 servo
+//    myservos[9 ].attach (SERVO_PIN_J,900,2100,0,198 );  // Pin 46  // Hitec HS-7950th servo 
+    myservos[10].attach (SERVO_PIN_K,1300,2100,120,240 );  // Pin 45 
+    myservos[11].attach (SERVO_PIN_L,800,1700,45,180 );  // Pin 44 
   
 } 
 
@@ -127,6 +129,27 @@ void loop()
             else
             {
                 Serial.println(F("Invalid number of arguements to cmd: "));
+                Serial.println(token);
+            }
+        }
+        else if (0 == strcmp(token, "Delay"))
+        {
+            int delayTimeMs;
+            if (sscanf(restcmdLine, "%d", &delayTimeMs) == 1)
+            {
+                if ((delayTimeMs > 0) && (delayTimeMs < 5000))
+                {
+                    delay(delayTimeMs);
+                }
+                else
+                {
+                    Serial.print(F("Delay out of range: "));
+                    Serial.println(delayTimeMs);
+                }
+            }
+            else
+            {
+                Serial.println(F("Invalid number of arguements or type to cmd: "));
                 Serial.println(token);
             }
         }
