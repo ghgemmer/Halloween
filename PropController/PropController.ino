@@ -19,24 +19,16 @@
 #include "ProgMemArray_values_reader.h"
 #include <Wire.h>
 #include <SPI.h>
-//#define IncludeSparkFunLSM9DS1
-#ifdef  IncludeSparkFunLSM9DS1
-#include <SparkFunLSM9DS1.h>
-#endif
 #include <i2cSwitch.h>
 #include <Adafruit_Sensor.h>
 //#include <Adafruit_BNO055.h>
 #include "Adafruit_BNO055_HalloweenProp.h"
 #include <utility/imumaths.h>
-//#define MadgwickFilterTestOps
-#ifdef MadgwickFilterTestOps
-#include <MadgwickAHRS.h>
-#endif
 
 #include "program_memory_misc.h"
 
 const int  Per_Sensor_Cal_Data_Size_Eeprom = NUM_BNO055_OFFSET_REGISTERS;  // in bytes per sensor
-const int  Num_Eeprom_Cal_Sensors = 2;
+const int  Num_Eeprom_Cal_Sensors = 4;
 const int  Sensors_Cal_Data_Eeprom_adrs = 0x2ff;  // max is 0x3ff
 const int  Mouth_Max_Position = 110; // corresponds to mouth closed
 const int  Mouth_Min_Position = 80;  // corresponds to mouth fully open
@@ -276,19 +268,6 @@ const char CmdSeperator = ';';
 const char delimiters[] = " ";
 bool cmdComplete;
 
-// ---------create the inertial measurement units (each has a accel,gyro,mag) objects
-#ifdef  IncludeSparkFunLSM9DS1
-// Create the LSM9DS1 IMUs
-LSM9DS1 SparkFun_imu;
-LSM9DS1 SparkFun_imu2;
-#define LSM9DS1_M	0x1E // Would be 0x1C if SDO_M is LOW
-#define LSM9DS1_AG	0x6B // Would be 0x6A if SDO_AG is LOW
-#define LSM9DS1_M_IMU2	0x1C // Would be 0x1C if SDO_M is LOW
-#define LSM9DS1_AG_IMU2	0x6A // Would be 0x6A if SDO_AG is LOW
-
-// imu  Output Settings
-
-#endif
 // Earth's magnetic field varies by location. Add or subtract 
 // a declination to get a more accurate heading. Calculate 
 // your's here:
@@ -403,30 +382,6 @@ float convertPitchForHeadOrientation( float pitch);
 
 
 // -------------------------------------------
-// Madgwidk items
-#ifdef MadgwickFilterTestOps
-enum e_MadgwickFilterActionsDef {
-    FilterActionStop,
-    FilterActionVisualize101,
-    FilterActionMouth,
-    FilterActionMouthAndHead,
-    FilterActionImuRead,
-    FilterActionImuReadAttitude
-};
-int ImuReadOps = 0; 
-// bit 0 - gyro raw
-// bit 1 - gyro calc
-// bit 2 - accel raw
-// bit 3 - accel calc
-// bit 4 - mag raw
-// bit 5 - mag calc
-int MadgwickFilterAction = 0;
-Madgwick filter;
-bool MadgwickFilterTestEnabled;
-unsigned int MadgwickFilterTestUpdatePeriod;
-unsigned long MadgwickFilterTestTimeout;
-unsigned long MouthFilterTimeout = 0;
-#endif
 
 // ------------Create the devices that make up the Prop
 
@@ -453,28 +408,7 @@ void setup()
     prop_user_control_timeout = 1000 + millis();
     //Serial.begin(9600);
     Serial.begin(115200);
-    
-    // initialize the inertial measurement units (imu)
-    #ifdef  IncludeSparkFunLSM9DS1
-    SparkFun_imu.settings.device.commInterface = IMU_MODE_I2C;
-    SparkFun_imu.settings.device.mAddress = LSM9DS1_M;
-    SparkFun_imu.settings.device.agAddress = LSM9DS1_AG;
-    // The above lines will only take effect AFTER calling
-    // SparkFun_imu.begin(), which verifies communication with the IMU
-    // and turns it on.
-    if (!SparkFun_imu.begin())
-    {
-      Serial.println(F("Failed comm with LSM9DS1"));
-    }    
-    SparkFun_imu2.settings.device.commInterface = IMU_MODE_I2C;
-    SparkFun_imu2.settings.device.mAddress = LSM9DS1_M_IMU2;
-    SparkFun_imu2.settings.device.agAddress = LSM9DS1_AG_IMU2;
-    if (!SparkFun_imu2.begin())
-    {
-      Serial.println(F("Failed comm LSM9DS1 IMU2"));
-    } 
-    #endif
- 
+     
     // Initializethe BNO055 IMUs
     for (i = 0 ; i < MAX_ADAFRUIT_SENSORS; i++)
     {
@@ -517,11 +451,6 @@ void setup()
     ImuMouthServoControl.servo =  &Head_Mouth_Rotation_servo;
 #endif
     
-    // Initialze the Madgwick Filter items
-#ifdef MadgwickFilterTestOps
-    MadgwickFilterTestEnabled = false;
-    MadgwickFilterTestTimeout = 0;
-#endif    
     // attach Head servos to specific pins on the cpu board
     // Only can use pins 11,12,or 13 as these are the only hardware only PWM control pins supported by PWMServo at this time
     // (i.e. the PWM is completely done in hardware)
@@ -977,54 +906,9 @@ void loop()
         {
           Serial.println(F("ImuRead invalid params"));
         }
-        
-#ifdef  IncludeSparkFunLSM9DS1
-        if ( SparkFun_imu.gyroAvailable() )
-        {
-          SparkFun_imu.readGyro();
-        }
-        if ( SparkFun_imu.accelAvailable() )
-        {
-          SparkFun_imu.readAccel();
-        }
-        if ( SparkFun_imu.magAvailable() )
-        {
-          SparkFun_imu.readMag();
-        }
-        printGyro(SparkFun_imu.gx, SparkFun_imu.gy, SparkFun_imu.gz, false);
-        printGyro(SparkFun_imu.calcGyro(SparkFun_imu.gx), SparkFun_imu.calcGyro(SparkFun_imu.gy), SparkFun_imu.calcGyro(SparkFun_imu.gz), true);
-        printAccel(SparkFun_imu.ax, SparkFun_imu.ay, SparkFun_imu.az, false);
-        printAccel(SparkFun_imu.calcAccel(SparkFun_imu.ax), SparkFun_imu.calcAccel(SparkFun_imu.ay), SparkFun_imu.calcAccel(SparkFun_imu.az), true);
-        printMag(SparkFun_imu.mx, SparkFun_imu.my, SparkFun_imu.mz, false);
-        printMag(SparkFun_imu.calcMag(SparkFun_imu.mx), SparkFun_imu.calcMag(SparkFun_imu.my), SparkFun_imu.calcMag(SparkFun_imu.mz), true);        
-        printAttitude(SparkFun_imu.ax, SparkFun_imu.ay, SparkFun_imu.az, 
-                     -SparkFun_imu.my, -SparkFun_imu.mx, SparkFun_imu.mz);
-#endif
       }
       else if (0 == strcmp(token, "Imu2Read"))
       {
- #ifdef  IncludeSparkFunLSM9DS1       
-        if ( SparkFun_imu2.gyroAvailable() )
-        {
-          SparkFun_imu2.readGyro();
-        }
-        if ( SparkFun_imu2.accelAvailable() )
-        {
-          SparkFun_imu2.readAccel();
-        }
-        if ( SparkFun_imu2.magAvailable() )
-        {
-          SparkFun_imu2.readMag();
-        }
-        printGyro(SparkFun_imu2.gx, SparkFun_imu2.gy, SparkFun_imu2.gz, false);
-        printGyro(SparkFun_imu2.calcGyro(SparkFun_imu2.gx), SparkFun_imu2.calcGyro(SparkFun_imu2.gy), SparkFun_imu2.calcGyro(SparkFun_imu2.gz), true);
-        printAccel(SparkFun_imu2.ax, SparkFun_imu2.ay, SparkFun_imu2.az, false);
-        printAccel(SparkFun_imu2.calcAccel(SparkFun_imu2.ax), SparkFun_imu2.calcAccel(SparkFun_imu2.ay), SparkFun_imu2.calcAccel(SparkFun_imu2.az), true);
-        printMag(SparkFun_imu2.mx, SparkFun_imu2.my, SparkFun_imu2.mz, false);
-        printMag(SparkFun_imu2.calcMag(SparkFun_imu2.mx), SparkFun_imu2.calcMag(SparkFun_imu2.my), SparkFun_imu2.calcMag(SparkFun_imu2.mz), true);        
-        printAttitude(SparkFun_imu2.ax, SparkFun_imu2.ay, SparkFun_imu2.az, 
-                     -SparkFun_imu2.my, -SparkFun_imu2.mx, SparkFun_imu2.mz);
-#endif
       }
       else if (0 == strcmp(token, "ImuCalibrate"))
       {
@@ -1104,30 +988,10 @@ void loop()
         {
           Serial.println(F("ImuRead invalid parms"));
         }
-        
-#ifdef  IncludeSparkFunLSM9DS1
-        SparkFun_imu.calibrate(false);
-        printGyro(SparkFun_imu.gBiasRaw[0], SparkFun_imu.gBiasRaw[1], SparkFun_imu.gBiasRaw[2], false);
-        printGyro(SparkFun_imu.gBias[0], SparkFun_imu.gBias[1], SparkFun_imu.gBias[2], true);
-        printAccel(SparkFun_imu.aBiasRaw[0], SparkFun_imu.aBiasRaw[1], SparkFun_imu.aBiasRaw[2], false);
-        printAccel(SparkFun_imu.aBias[0], SparkFun_imu.aBias[1], SparkFun_imu.aBias[2], true);
-        printMag(SparkFun_imu.mBiasRaw[0], SparkFun_imu.mBiasRaw[1], SparkFun_imu.mBiasRaw[2], false);
-        printMag(SparkFun_imu.mBias[0], SparkFun_imu.mBias[1], SparkFun_imu.mBias[2], true);
-#endif       
-
       }
       else if (0 == strcmp(token, "Imu2Calibrate"))
       {
-#ifdef  IncludeSparkFunLSM9DS1        
-        SparkFun_imu2.calibrate(false);
-        printGyro(SparkFun_imu2.gBiasRaw[0], SparkFun_imu2.gBiasRaw[1], SparkFun_imu2.gBiasRaw[2], false);
-        printGyro(SparkFun_imu2.gBias[0], SparkFun_imu2.gBias[1], SparkFun_imu2.gBias[2], true);
-        printAccel(SparkFun_imu2.aBiasRaw[0], SparkFun_imu2.aBiasRaw[1], SparkFun_imu2.aBiasRaw[2], false);
-        printAccel(SparkFun_imu2.aBias[0], SparkFun_imu2.aBias[1], SparkFun_imu2.aBias[2], true);
-        printMag(SparkFun_imu2.mBiasRaw[0], SparkFun_imu2.mBiasRaw[1], SparkFun_imu2.mBiasRaw[2], false);
-        printMag(SparkFun_imu2.mBias[0], SparkFun_imu2.mBias[1], SparkFun_imu2.mBias[2], true); 
-#endif      
-			}
+	  }
       else if (0 == strcmp(token, "ImuGetStoredCalibData"))
       	// gets stored calib offsets data from eeprom and sets IMU with that offset data
       {
@@ -1381,89 +1245,6 @@ void loop()
         else
         {
           Serial.println(F("ImuHeadMouth: Invalid parms"));
-        }
-      }
-#endif
-#ifdef MadgwickFilterTestOps
-      else if (0 == strcmp(token, "MadgwickFilter"))
-      {
-        char filterOutputActionstr [30];
-        bool start_filter = false;
-        int numItems = 0;
-        int filterOutputParam2;
-        if ((numItems = sscanf(restcmdLine, "%d %29s %d", &value, filterOutputActionstr, &filterOutputParam2)) >= 2)                   
-        {
-          if (0 == strcmp(filterOutputActionstr, "stop"))
-          {
-            Serial.println(F("Madgwick Filter operation stopped "));
-            MadgwickFilterTestEnabled = false;
-          }
-          else if ((value < 1) || (value > 100))
-          {          
-            Serial.println(F("Madgwick Filter Rate out of range "));            
-          }
-          else 
-          {
-            if (0 == strcmp(filterOutputActionstr, "visualize101"))
-            {
-              Serial.println(F("Madgwick Filter Output Action visualize101"));
-              start_filter = true;
-              MadgwickFilterAction = FilterActionVisualize101;
-            }
-            else if (0 == strcmp(filterOutputActionstr, "mouth"))
-            {
-              Serial.println(F("Madgwick Filter Output Action mouth"));
-              start_filter = true;
-              MouthFilterTimeout = millis();
-              MadgwickFilterAction = FilterActionMouth;
-            }
-            else if (0 == strcmp(filterOutputActionstr, "ImuRead"))
-            {
-              Serial.println(F("Imu Read at rate"));
-              start_filter = true;
-              MouthFilterTimeout = millis();
-              MadgwickFilterAction = FilterActionImuRead;
-              if (numItems >= 3)
-              {
-                ImuReadOps = filterOutputParam2;
-              }
-              else
-              {
-                ImuReadOps = 0xFF; // all of them
-              }
-            }
-            else if (0 == strcmp(filterOutputActionstr, "ImuReadAttitude"))
-            {
-              Serial.println(F("Imu Read at rate"));
-              start_filter = true;
-              MouthFilterTimeout = millis();
-              MadgwickFilterAction = FilterActionImuReadAttitude;
-            }
-//            else if (0 == strcmp(filterOutputActionstr, "mouthAndhead"))
-//            {
-//              Serial.println(F("Madgwick Filter Output Action mouth and head"));
-//              start_filter = true;
-//              MadgwickFilterAction = FilterActionMouthAndHead;
-//            }
-            else
-            {
-              Serial.println(F("Madgwick Filter Output Action Invalid"));
-            }
-            if (start_filter)
-            {           
-              Serial.print(F("Madgwick Filter started with update rate "));
-              Serial.print(value);
-              Serial.println(F(" Hz.  Rate you use should yield an integral number of millisecond period "));
-              filter.begin(value);
-              MadgwickFilterTestEnabled = true;
-              MadgwickFilterTestUpdatePeriod = 1000/value;
-              MadgwickFilterTestTimeout = millis() + MadgwickFilterTestUpdatePeriod;
-            }
-          }
-        }
-        else
-        {
-          Serial.println(F("Madgwick Filter Invalid parameters"));
         }
       }
 #endif
@@ -2014,129 +1795,6 @@ void loop()
   }  
 #endif
  
-  // Madgwick Filter Test
-#ifdef MadgwickFilterTestOps
-  if (MadgwickFilterTestEnabled)
-  {
-    if (MadgwickFilterTestTimeout <= millis())
-    {
-      float ax, ay, az;
-      float gx, gy, gz;
-      float mx, my, mz;
-      float roll, pitch, heading;
-
-      MadgwickFilterTestTimeout += MadgwickFilterTestUpdatePeriod;
-      if (MadgwickFilterTestTimeout <= millis())
-      {
-        // force to use current time
-        MadgwickFilterTestTimeout = millis() + MadgwickFilterTestUpdatePeriod;
-        Serial.println(F("Missed Madgwick Filter Test Timeout. Setting based on current time"));
-      }
-      if ( SparkFun_imu.gyroAvailable() )
-      {
-        SparkFun_imu.readGyro();
-      }
-      if ( SparkFun_imu.accelAvailable() )
-      {
-        SparkFun_imu.readAccel();
-      }
-      if ( SparkFun_imu.magAvailable() )
-      {
-        SparkFun_imu.readMag();
-      }
-      gx = SparkFun_imu.calcGyro(SparkFun_imu.gx);
-      gy = SparkFun_imu.calcGyro(SparkFun_imu.gy);
-      gz = SparkFun_imu.calcGyro(SparkFun_imu.gz);
-      ax = SparkFun_imu.calcAccel(SparkFun_imu.ax);
-      ay = SparkFun_imu.calcAccel(SparkFun_imu.ay);
-      az = SparkFun_imu.calcAccel(SparkFun_imu.az);
-      mx = SparkFun_imu.calcMag(SparkFun_imu.mx);
-      my = SparkFun_imu.calcMag(SparkFun_imu.my);
-      mz = SparkFun_imu.calcMag(SparkFun_imu.mz);
-      filter.update( gx,  gy,  gz-1.71F,  ax,  ay,  az, mx, my, mz); //try without magnetometer reading to see if works better ,  -my,  -mx,  mz);  // my and mx for LSM9DS1 are opposite to the accel so swap and take negative of them
-      // print the heading, pitch and roll in the format needed by Visualize 101
-      roll = filter.getRoll();
-      pitch = filter.getPitch();
-      heading = filter.getYaw();
-      
-      switch (MadgwickFilterAction) {
-        case FilterActionVisualize101:
-          Serial.print(F("Orientation: "));
-          Serial.print(heading);
-          Serial.print(F(" "));
-          Serial.print(pitch);
-          Serial.print(F(" "));
-          Serial.println(roll);
-          break;
-        case FilterActionMouth:
-          {
-//            if (MouthFilterTimeout <= millis())
-            {
-              const int pitchToMouthAngeOffsetDeg = 90;
-              const int MaxMouthChangePerPeriod = 40;  //degrees
-              int mouthAngle;
-              int currentMouthAngle = (int)(Head_Mouth_Rotation_servo.device_read());
-              
-              getAttitude(SparkFun_imu.ax, SparkFun_imu.ay, SparkFun_imu.az, -SparkFun_imu.my, -SparkFun_imu.mx, SparkFun_imu.mz, pitch, roll, heading);
-              mouthAngle = (int)(pitch) + pitchToMouthAngeOffsetDeg;
-              //int degreeArray[6];
-              //int periods;
-              //periods = mouthServoSettingsForDegChng(currentMouthAngle, currentMouthAngle - mouthAngle, 120, false, 6, degreeArray);
-              
-              MouthFilterTimeout = 120 + millis();  // limit updates to no faster than this.
-              if (abs( mouthAngle - currentMouthAngle) >  MaxMouthChangePerPeriod)
-              {
-                // limit to this much changee each timeout period.
-                if (mouthAngle > currentMouthAngle)
-                {
-                  mouthAngle = currentMouthAngle + MaxMouthChangePerPeriod;
-                }
-                else
-                {
-                  mouthAngle = currentMouthAngle - MaxMouthChangePerPeriod;
-                }              
-              }
-              if ((mouthAngle <= Mouth_Max_Position) && (mouthAngle >= Mouth_Min_Position))  // limit mouth excursions to avoid damage
-              {
-                Head_Mouth_Rotation_servo.device_write(mouthAngle);
-                Serial.print(F("Heading, pitch, roll "));
-                Serial.print(heading, 2);
-                Serial.print(F(", "));
-                Serial.print(pitch, 2);
-                Serial.print(F(", "));
-                Serial.println(roll, 2);
-              }
-            }
-          }
-          break;
-        case FilterActionImuRead:
-          if (ImuReadOps & 0x01){
-            printGyro(SparkFun_imu.gx, SparkFun_imu.gy, SparkFun_imu.gz, false);
-          }
-          if (ImuReadOps & 0x02){
-            printGyro(SparkFun_imu.calcGyro(SparkFun_imu.gx), SparkFun_imu.calcGyro(SparkFun_imu.gy), SparkFun_imu.calcGyro(SparkFun_imu.gz), true);
-          }
-          if (ImuReadOps & 0x04){
-            printAccel(SparkFun_imu.ax, SparkFun_imu.ay, SparkFun_imu.az, false);
-          }
-          if (ImuReadOps & 0x08){
-            printAccel(SparkFun_imu.calcAccel(SparkFun_imu.ax), SparkFun_imu.calcAccel(SparkFun_imu.ay), SparkFun_imu.calcAccel(SparkFun_imu.az), true);
-          }
-          if (ImuReadOps & 0x10){
-            printMag(SparkFun_imu.mx, SparkFun_imu.my, SparkFun_imu.mz, false);
-          }
-          if (ImuReadOps & 0x20){
-            printMag(SparkFun_imu.calcMag(SparkFun_imu.mx), SparkFun_imu.calcMag(SparkFun_imu.my), SparkFun_imu.calcMag(SparkFun_imu.mz), true); 
-          }            
-          break;    
-        case FilterActionImuReadAttitude:
-          printAttitude(SparkFun_imu.ax, SparkFun_imu.ay, SparkFun_imu.az, 
-                       -SparkFun_imu.my, -SparkFun_imu.mx, SparkFun_imu.mz);       
-          break;    
-      }
-    }
-  }
-#endif
 }
 
 void printGyro(float gx, float gy, float gz, bool isCalculated)
