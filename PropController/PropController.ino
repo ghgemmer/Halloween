@@ -268,7 +268,7 @@ const uint16_t Silly_Voice_Player[] = {  MKVoiceEntry(START,  MORE_OFTEN_CHEWING
 																																																																																																																						
 
 // Command Line structures
-#define CmdLineMaxSize  100
+#define CmdLineMaxSize  150
 char cmdLine [CmdLineMaxSize];
 unsigned int cmdLineIndex;
 const char Carriage_Return = 13;
@@ -303,16 +303,21 @@ i2cSwitch i2cSwitchDevice = i2cSwitch(0x70);  // I2C address that switch resides
 // The defines also are used as indicies to the Adafruit_sensors
 #define ADAFRUIT_IMU_MOUTH 0
 #define ADAFRUIT_IMU_HEAD 1
-#define MAX_ADAFRUIT_SENSORS 2
+#define ADAFRUIT_IMU_ARM 2
+#define ADAFRUIT_IMU_FOREARM 3
+
+#define MAX_ADAFRUIT_SENSORS 4
 //  Note: sensor number in Adafruit_BNO055_HalloweenProp constructor does not change which sensor is which, only the I2C address passed does.
 //  Currently the sensor have their I2C address strapping fixed via grounds.   Mouth gaurd sensor isthe one wiht no I2C address passed
 Adafruit_BNO055_HalloweenProp bno_head = Adafruit_BNO055_HalloweenProp(ADAFRUIT_IMU_HEAD  , BNO055_ADDRESS_B, &i2cSwitchDevice, 0x01,  0xff);
 Adafruit_BNO055_HalloweenProp bno_mouth = Adafruit_BNO055_HalloweenProp(ADAFRUIT_IMU_MOUTH, BNO055_ADDRESS_A, &i2cSwitchDevice, 0x01,  0xff);
+Adafruit_BNO055_HalloweenProp bno_arm = Adafruit_BNO055_HalloweenProp(ADAFRUIT_IMU_ARM  , BNO055_ADDRESS_B, &i2cSwitchDevice, 0x02,  0xff);
+Adafruit_BNO055_HalloweenProp bno_forearm = Adafruit_BNO055_HalloweenProp(ADAFRUIT_IMU_FOREARM, BNO055_ADDRESS_A, &i2cSwitchDevice, 0x02,  0xff);
 struct Adafruit_sensors_def {
   Adafruit_BNO055_HalloweenProp * sensor;
   char * name;
 };
-Adafruit_sensors_def Adafruit_sensors[MAX_ADAFRUIT_SENSORS] = { {&bno_mouth,"Mouth IMU"}, {&bno_head, "Head IMU"}};  // Must match index defines above
+Adafruit_sensors_def Adafruit_sensors[MAX_ADAFRUIT_SENSORS] = { {&bno_mouth,"Mouth IMU"}, {&bno_head, "Head IMU"}, {&bno_arm, "Arm IMU"}, {&bno_forearm, "Forearm IMU"}};  // Must match index defines above
 
 // General Adafruit items
 unsigned long AdafruitSensorReadPeriodMsec;
