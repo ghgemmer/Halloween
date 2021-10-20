@@ -327,7 +327,7 @@ void PWMServoNew::releaseTimer()
 
 }
 
-#define NO_ANGLE (0xff)
+#define NO_ANGLE (0xffff)
 
 PWMServoNew::PWMServoNew() :  pin(0), servoPinIndex(-1), angle(NO_ANGLE), timerPtr(NULL)
 {
