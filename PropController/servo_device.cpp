@@ -1,8 +1,8 @@
 #include <inttypes.h>
-#include <PWMServo.h>
+#include <PWMServoNew.h>
 #include "servo_device.h"
 
-servo_device::servo_device(): base_device(), PWMServo()   
+servo_device::servo_device(): base_device(), PWMServoNew()   
 {    
 }
  

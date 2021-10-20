@@ -7,9 +7,9 @@ servo device class
 
 #include <inttypes.h>
 #include "base_device.h"
-#include <PWMServo.h>
+#include <PWMServoNew.h>
 
-class servo_device : public base_device, public PWMServo
+class servo_device : public base_device, public PWMServoNew
 {  
   public:
     servo_device();

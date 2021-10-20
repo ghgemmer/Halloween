@@ -4,7 +4,7 @@
 #include <stdio.h> 
 #include <string.h> 
 #include "Arduino.h"
-#include <PWMServo.h>
+#include <PWMServoNew.h>
 #include <inttypes.h>
 #include <EEPROM.h>
 #include "base_device.h"
@@ -36,6 +36,15 @@ const int  Head_Vertical_Max_Position = 140; // corresponds to head forward
 const int  Head_Vertical_Min_Position = 45;  // corresponds to head back
 const int  Head_Horizontal_Max_Position = 120;
 const int  Head_Horizontal_Min_Position = 60;
+const int  Arm_Yaw_Min_Position = 45;
+const int  Arm_Yaw_Max_Position = 180;
+const int  Arm_Roll_Min_Position = 120;
+const int  Arm_Roll_Max_Position = 240;
+const int  Arm_Pitch_Min_Position = 0;
+const int  Arm_Pitch_Max_Position = 200;
+const int  Elbow_Pitch_Min_Position = 70;
+const int  Elbow_Pitch_Max_Position = 190;
+
 const int  Servo_Min_Update_Period = 10; 
 
 enum e_pneumatic_back_position_def {
@@ -388,6 +397,10 @@ float convertPitchForHeadOrientation( float pitch);
 servo_device    Head_Horizontal_Rotation_servo      ;   // attached to pins in setup
 servo_device    Head_Vertical_Rotation_servo        ;   // attached to pins in setup
 servo_device    Head_Mouth_Rotation_servo           ;   // attached to pins in setup
+servo_device    Arm_Yaw_servo                       ;   // attached to pins in setup
+servo_device    Arm_Roll_servo                      ;   // attached to pins in setup
+servo_device    Arm_Pitch_servo                     ;   // attached to pins in setup
+servo_device    Elbow_Pitch_servo                   ;   // attached to pins in setup
 LED_device      Eyes_LEDs                           (22); // pin 22
 relay_device    Pneumatic_Back_relay                (23); // pin 23
 mp3_device      Voice_Player                        ;
@@ -452,22 +465,21 @@ void setup()
 #endif
     
     // attach Head servos to specific pins on the cpu board
-    // Only can use pins 11,12,or 13 as these are the only hardware only PWM control pins supported by PWMServo at this time
-    // (i.e. the PWM is completely done in hardware)
-    Head_Horizontal_Rotation_servo.attach (SERVO_PIN_A,800,2200 );  // pin 11 on Mega2560,
-                                                                    // 800usec for 0 degrees
-                                                                    // 2200usec for 180 degrees
-    Head_Vertical_Rotation_servo.attach   (SERVO_PIN_B,800,2200);   // pin 12 on Mega2560
-                                                                    // 800usec for 0 degrees
-                                                                    // 2200usec for 180 degrees
-    Head_Mouth_Rotation_servo.attach   (SERVO_PIN_C,800,2200);   // pin 12 on Mega2560
-                                                                    // 800usec for 0 degrees
-                                                                    // 2200usec for 180 degrees
+    // (PWM is completely done in hardware to avoid pwm signal jitter)
+    Head_Horizontal_Rotation_servo.attach (SERVO_PIN_A, 1267,1733, 60, 120 );  // pin 11 on Mega2560
+    Head_Vertical_Rotation_servo.attach   (SERVO_PIN_B, 1150,1889, 45, 140);   // pin 12 on Mega2560
+    Head_Mouth_Rotation_servo.attach      (SERVO_PIN_C, 1422,1656, 80, 110);   // pin 13 on Mega2560
 //    // setup prop head to be completely level and looking straight forward.
     Head_Horizontal_Rotation_servo.device_write(90);               
     Head_Vertical_Rotation_servo.device_write(90);
-// Setup mouth servo to be slightly open
+// Setup mouth servo to be slightly open (margin so servo not fighting fully closed mouth position)
     Head_Mouth_Rotation_servo.device_write(110);
+    // attach Arm servos to specific pins on the cpu board
+    Arm_Yaw_servo.attach                  (SERVO_PIN_L,800,1700,45,180 );  // Pin 44 on Mega2560
+    Arm_Roll_servo.attach                 (SERVO_PIN_K,1300,2100,120,240 );  // Pin 45 on Mega2560
+    Arm_Pitch_servo.attach                (SERVO_PIN_J,500,1833,0,200 );  // Pin 46 on Mega2560
+    Elbow_Pitch_servo.attach              (SERVO_PIN_E,967,1767,70,190 );  // pin 2 on Mega2560
+
 
 //    
     // Setup Eye LEDs to be off
@@ -871,6 +883,82 @@ void loop()
           else
           {
             Serial.print(F("Mouth Range error "));
+            Serial.print(value);
+            Serial.println(F(" deg"));
+          }
+        }
+      }
+      else if (0 == strcmp(token, "ArmYaw"))
+      {
+        if (sscanf(restcmdLine, "%d", &value) == 1)                   
+        {
+          if ((value <= Arm_Yaw_Max_Position) && (value >= Arm_Yaw_Min_Position))
+          {
+            Arm_Yaw_servo.device_write(value);
+            Serial.print(F("Arm Yaw "));
+            Serial.print(value);
+            Serial.println(F(" deg"));
+          }
+          else
+          {
+            Serial.print(F("Arm Yaw range error "));
+            Serial.print(value);
+            Serial.println(F(" deg"));
+          }
+        }
+      }
+      else if (0 == strcmp(token, "ArmRoll"))
+      {
+        if (sscanf(restcmdLine, "%d", &value) == 1)                   
+        {
+          if ((value <= Arm_Roll_Max_Position) && (value >= Arm_Roll_Min_Position))
+          {
+            Arm_Roll_servo.device_write(value);
+            Serial.print(F("Arm Roll "));
+            Serial.print(value);
+            Serial.println(F(" deg"));
+          }
+          else
+          {
+            Serial.print(F("Arm Roll range error "));
+            Serial.print(value);
+            Serial.println(F(" deg"));
+          }
+        }
+      }
+      else if (0 == strcmp(token, "ArmPitch"))
+      {
+        if (sscanf(restcmdLine, "%d", &value) == 1)                   
+        {
+          if ((value <= Arm_Pitch_Max_Position) && (value >= Arm_Pitch_Min_Position))
+          {
+            Arm_Pitch_servo.device_write(value);
+            Serial.print(F("Arm Pitch "));
+            Serial.print(value);
+            Serial.println(F(" deg"));
+          }
+          else
+          {
+            Serial.print(F("Arm Pitch range error "));
+            Serial.print(value);
+            Serial.println(F(" deg"));
+          }
+        }
+      }
+      else if (0 == strcmp(token, "ElbowPitch"))
+      {
+        if (sscanf(restcmdLine, "%d", &value) == 1)                   
+        {
+          if ((value <= Elbow_Pitch_Max_Position) && (value >= Elbow_Pitch_Min_Position))
+          {
+            Elbow_Pitch_servo.device_write(value);
+            Serial.print(F("Elbow Pitch "));
+            Serial.print(value);
+            Serial.println(F(" deg"));
+          }
+          else
+          {
+            Serial.print(F("Elbow Pitch range error "));
             Serial.print(value);
             Serial.println(F(" deg"));
           }

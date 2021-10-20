@@ -2,9 +2,15 @@
 // ImuGetStoredCalibData for getting calibration data from eeprom and restoring to IMUs
 
 
-ImuGetStoredCalibData 0;ImuGetStoredCalibData 1
+ImuGetStoredCalibData 0;ImuGetStoredCalibData 1;ImuGetStoredCalibData 2;ImuGetStoredCalibData 3
+// Hat IMU
 Visualize3D 50 0
+// Mouth IMU
 Visualize3D 50 1
+// Arm IMU
+Visualize3D 50 2
+// Forearm IMU
+Visualize3D 50 3
 Visualize3DStop
 ImuHeadMouth 50 7 40
 ImuHeadMouth 50 0 0
@@ -15,12 +21,12 @@ WerewolvesLondonPlayerSetup;PlayOnce
 DayOPlayerSetup;PlayOnce
 PlayStop;HeadVertical 79;Mouth 110;HeadHorizontal 90
 
-// Get ready for removing Vertical power.  !!! Always remove Mouth power first before powering down any servos and bring up last after powering up any servos.
-ImuHeadMouthStop;AudioStop;HeadVertical 50;HeadHorizontal 90; Mouth 110;
+// Get ready for removing Head power.  !!! Always remove Mouth power first before powering down any servos and bring up last after powering up any servos.
+ImuHeadMouthStop;AudioStop;HeadVertical 50;HeadHorizontal 90; Mouth 110;ArmYaw 90;ArmRoll 120;ArmPitch 175;ElbowPitch 180
 
 
-// The following is for a nominal position where servos are quiet,  Head level, forward, mouthclosed
-ImuHeadMouthStop;HeadVertical 79;HeadHorizontal 90;Mouth 110
+// The following is for a nominal position where servos are quiet,  Head level, forward, mouthclosed, right arm down at side
+ImuHeadMouthStop;HeadVertical 79;HeadHorizontal 90;Mouth 110;ArmYaw 90;ArmRoll 120;ArmPitch 175;ElbowPitch 180
 
 // Position for looking at most of sidewalk by house
 HeadVertical 90;HeadHorizontal 90
