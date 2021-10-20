@@ -1,0 +1,5788 @@
+Enter PWMServoNew::attachint pinArg: 11 min: 800 max: 2200
+Servo HdwrCntrlInfo:
+sizeof volatile unit16_t * :2
+servoPinIndex: 0
+boardPinNumber: 11
+timerId;: 1
+outputChannel;	: 0
+attach Before - Reg Contents
+Timer:1
+TCCR1A:Adrs: 80 Val:1
+
+TCCR1B:Adrs: 81 Val:3
+
+OCR1A:Adrs: 88 Val:0
+
+OCR1B:Adrs: 8A Val:0
+
+OCR1C:Adrs: 8C Val:0
+
+TIMSK1:Adrs: 6F Val:0
+
+ICR1:Adrs: 86 Val:0
+
+Timer:3
+TCCR3A:Adrs: 90 Val:1
+
+TCCR3B:Adrs: 91 Val:3
+
+OCR3A:Adrs: 98 Val:0
+
+OCR3B:Adrs: 9A Val:0
+
+OCR3C:Adrs: 9C Val:0
+
+TIMSK3:Adrs: 71 Val:0
+
+ICR3:Adrs: 96 Val:0
+
+Timer:4
+TCCR4A:Adrs: A0 Val:1
+
+TCCR4B:Adrs: A1 Val:3
+
+OCR4A:Adrs: A8 Val:0
+
+OCR4B:Adrs: AA Val:0
+
+OCR4C:Adrs: AC Val:0
+
+TIMSK4:Adrs: 72 Val:0
+
+ICR4:Adrs: A6 Val:0
+
+Timer:5
+TCCR5A:Adrs: 120 Val:1
+
+TCCR5B:Adrs: 121 Val:3
+
+OCR5A:Adrs: 128 Val:0
+
+OCR5B:Adrs: 12A Val:0
+
+OCR5C:Adrs: 12C Val:0
+
+TIMSK5:Adrs: 73 Val:0
+
+ICR5:Adrs: 126 Val:0
+
+Timer HdwrCntrlInfo:
+avrTimerCounter::timerId  1
+avrTimerCounter::timerIndex: 0
+TimerHdwrCntrlInfo[timerIndex].timerId: 1
+sizeof volatile unit16_t * :2
+tccrnA: 80
+tccrnB: 81
+numberOfChannels: 3
+ocrnA: 88
+ocrnB: 8A
+ocrnC: 8C
+timskn: 6F
+icrn: 86
+bitDefsIndex: 0
+bitDefsIndex: Timer HdwrBitDef Info: 
+0
+Channel: 0 com0BitMsk: 40
+Channel: 0 com1BitMsk: 80
+Channel: 1 com0BitMsk: 10
+Channel: 1 com1BitMsk: 20
+Channel: 2 com0BitMsk: 4
+Channel: 2 com1BitMsk: 8
+wgm0BitMsk: 1
+wgm1BitMsk: 2
+icncBitMsk: 80
+icesBitMsk: 40
+cs0BitMsk: 1
+cs1BitMsk: 2
+cs2BitMsk: 4
+wgm2BitMsk: 8
+wgm3BitMsk: 10
+Channel: 0 focBitMsk: 80
+Channel: 1 focBitMsk: 40
+Channel: 2 focBitMsk: 20
+icieBitMsk: 20
+Channel: 0 ocieBitMsk: 2
+Channel: 1 ocieBitMsk: 4
+Channel: 2 ocieBitMsk: 8
+toieBitMsk: 1
+icfBitMsk: 20
+Channel: 0 ocfBitMsk: 2
+Channel: 1 ocfBitMsk: 4
+Channel: 2 ocfBitMsk: 8
+tovBitMsk: 1
+Enter PWMServoNew::seizeTimer
+Reg Contents Before
+Timer:1
+TCCR1A:Adrs: 80 Val:1
+
+TCCR1B:Adrs: 81 Val:3
+
+OCR1A:Adrs: 88 Val:0
+
+OCR1B:Adrs: 8A Val:0
+
+OCR1C:Adrs: 8C Val:0
+
+TIMSK1:Adrs: 6F Val:0
+
+ICR1:Adrs: 86 Val:0
+
+Timer:3
+TCCR3A:Adrs: 90 Val:1
+
+TCCR3B:Adrs: 91 Val:3
+
+OCR3A:Adrs: 98 Val:0
+
+OCR3B:Adrs: 9A Val:0
+
+OCR3C:Adrs: 9C Val:0
+
+TIMSK3:Adrs: 71 Val:0
+
+ICR3:Adrs: 96 Val:0
+
+Timer:4
+TCCR4A:Adrs: A0 Val:1
+
+TCCR4B:Adrs: A1 Val:3
+
+OCR4A:Adrs: A8 Val:0
+
+OCR4B:Adrs: AA Val:0
+
+OCR4C:Adrs: AC Val:0
+
+TIMSK4:Adrs: 72 Val:0
+
+ICR4:Adrs: A6 Val:0
+
+Timer:5
+TCCR5A:Adrs: 120 Val:1
+
+TCCR5B:Adrs: 121 Val:3
+
+OCR5A:Adrs: 128 Val:0
+
+OCR5B:Adrs: 12A Val:0
+
+OCR5C:Adrs: 12C Val:0
+
+TIMSK5:Adrs: 73 Val:0
+
+ICR5:Adrs: 126 Val:0
+
+Reg Contents After
+Timer:1
+TCCR1A:Adrs: 80 Val:2
+
+TCCR1B:Adrs: 81 Val:1A
+
+OCR1A:Adrs: 88 Val:BB8
+
+OCR1B:Adrs: 8A Val:BB8
+
+OCR1C:Adrs: 8C Val:BB8
+
+TIMSK1:Adrs: 6F Val:0
+
+ICR1:Adrs: 86 Val:9C40
+
+Timer:3
+TCCR3A:Adrs: 90 Val:1
+
+TCCR3B:Adrs: 91 Val:3
+
+OCR3A:Adrs: 98 Val:0
+
+OCR3B:Adrs: 9A Val:0
+
+OCR3C:Adrs: 9C Val:0
+
+TIMSK3:Adrs: 71 Val:0
+
+ICR3:Adrs: 96 Val:0
+
+Timer:4
+TCCR4A:Adrs: A0 Val:1
+
+TCCR4B:Adrs: A1 Val:3
+
+OCR4A:Adrs: A8 Val:0
+
+OCR4B:Adrs: AA Val:0
+
+OCR4C:Adrs: AC Val:0
+
+TIMSK4:Adrs: 72 Val:0
+
+ICR4:Adrs: A6 Val:0
+
+Timer:5
+TCCR5A:Adrs: 120 Val:1
+
+TCCR5B:Adrs: 121 Val:3
+
+OCR5A:Adrs: 128 Val:0
+
+OCR5B:Adrs: 12A Val:0
+
+OCR5C:Adrs: 12C Val:0
+
+TIMSK5:Adrs: 73 Val:0
+
+ICR5:Adrs: 126 Val:0
+
+Exit PWMServoNew::seizeTimer
+attach After - Reg Contents
+Timer:1
+TCCR1A:Adrs: 80 Val:82
+
+TCCR1B:Adrs: 81 Val:1A
+
+OCR1A:Adrs: 88 Val:BB8
+
+OCR1B:Adrs: 8A Val:BB8
+
+OCR1C:Adrs: 8C Val:BB8
+
+TIMSK1:Adrs: 6F Val:0
+
+ICR1:Adrs: 86 Val:9C40
+
+Timer:3
+TCCR3A:Adrs: 90 Val:1
+
+TCCR3B:Adrs: 91 Val:3
+
+OCR3A:Adrs: 98 Val:0
+
+OCR3B:Adrs: 9A Val:0
+
+OCR3C:Adrs: 9C Val:0
+
+TIMSK3:Adrs: 71 Val:0
+
+ICR3:Adrs: 96 Val:0
+
+Timer:4
+TCCR4A:Adrs: A0 Val:1
+
+TCCR4B:Adrs: A1 Val:3
+
+OCR4A:Adrs: A8 Val:0
+
+OCR4B:Adrs: AA Val:0
+
+OCR4C:Adrs: AC Val:0
+
+TIMSK4:Adrs: 72 Val:0
+
+ICR4:Adrs: A6 Val:0
+
+Timer:5
+TCCR5A:Adrs: 120 Val:1
+
+TCCR5B:Adrs: 121 Val:3
+
+OCR5A:Adrs: 128 Val:0
+
+OCR5B:Adrs: 12A Val:0
+
+OCR5C:Adrs: 12C Val:0
+
+TIMSK5:Adrs: 73 Val:0
+
+ICR5:Adrs: 126 Val:0
+
+Servo Index:0 Attached:1
+Servo Index:1 Attached:0
+Servo Index:2 Attached:0
+Servo Index:3 Attached:0
+Servo Index:4 Attached:0
+Servo Index:5 Attached:0
+Servo Index:6 Attached:0
+Servo Index:7 Attached:0
+Servo Index:8 Attached:0
+Servo Index:9 Attached:0
+Servo Index:10 Attached:0
+Servo Index:11 Attached:0
+Exit PWMServoNew::attach
+Enter PWMServoNew::attachint pinArg: 12 min: 800 max: 2200
+Servo HdwrCntrlInfo:
+sizeof volatile unit16_t * :2
+servoPinIndex: 1
+boardPinNumber: 12
+timerId;: 1
+outputChannel;	: 1
+attach Before - Reg Contents
+Timer:1
+TCCR1A:Adrs: 80 Val:82
+
+TCCR1B:Adrs: 81 Val:1A
+
+OCR1A:Adrs: 88 Val:BB8
+
+OCR1B:Adrs: 8A Val:BB8
+
+OCR1C:Adrs: 8C Val:BB8
+
+TIMSK1:Adrs: 6F Val:0
+
+ICR1:Adrs: 86 Val:9C40
+
+Timer:3
+TCCR3A:Adrs: 90 Val:1
+
+TCCR3B:Adrs: 91 Val:3
+
+OCR3A:Adrs: 98 Val:0
+
+OCR3B:Adrs: 9A Val:0
+
+OCR3C:Adrs: 9C Val:0
+
+TIMSK3:Adrs: 71 Val:0
+
+ICR3:Adrs: 96 Val:0
+
+Timer:4
+TCCR4A:Adrs: A0 Val:1
+
+TCCR4B:Adrs: A1 Val:3
+
+OCR4A:Adrs: A8 Val:0
+
+OCR4B:Adrs: AA Val:0
+
+OCR4C:Adrs: AC Val:0
+
+TIMSK4:Adrs: 72 Val:0
+
+ICR4:Adrs: A6 Val:0
+
+Timer:5
+TCCR5A:Adrs: 120 Val:1
+
+TCCR5B:Adrs: 121 Val:3
+
+OCR5A:Adrs: 128 Val:0
+
+OCR5B:Adrs: 12A Val:0
+
+OCR5C:Adrs: 12C Val:0
+
+TIMSK5:Adrs: 73 Val:0
+
+ICR5:Adrs: 126 Val:0
+
+Timer HdwrCntrlInfo:
+avrTimerCounter::timerId  1
+avrTimerCounter::timerIndex: 0
+TimerHdwrCntrlInfo[timerIndex].timerId: 1
+sizeof volatile unit16_t * :2
+tccrnA: 80
+tccrnB: 81
+numberOfChannels: 3
+ocrnA: 88
+ocrnB: 8A
+ocrnC: 8C
+timskn: 6F
+icrn: 86
+bitDefsIndex: 0
+bitDefsIndex: Timer HdwrBitDef Info: 
+0
+Channel: 0 com0BitMsk: 40
+Channel: 0 com1BitMsk: 80
+Channel: 1 com0BitMsk: 10
+Channel: 1 com1BitMsk: 20
+Channel: 2 com0BitMsk: 4
+Channel: 2 com1BitMsk: 8
+wgm0BitMsk: 1
+wgm1BitMsk: 2
+icncBitMsk: 80
+icesBitMsk: 40
+cs0BitMsk: 1
+cs1BitMsk: 2
+cs2BitMsk: 4
+wgm2BitMsk: 8
+wgm3BitMsk: 10
+Channel: 0 focBitMsk: 80
+Channel: 1 focBitMsk: 40
+Channel: 2 focBitMsk: 20
+icieBitMsk: 20
+Channel: 0 ocieBitMsk: 2
+Channel: 1 ocieBitMsk: 4
+Channel: 2 ocieBitMsk: 8
+toieBitMsk: 1
+icfBitMsk: 20
+Channel: 0 ocfBitMsk: 2
+Channel: 1 ocfBitMsk: 4
+Channel: 2 ocfBitMsk: 8
+tovBitMsk: 1
+attach After - Reg Contents
+Timer:1
+TCCR1A:Adrs: 80 Val:A2
+
+TCCR1B:Adrs: 81 Val:1A
+
+OCR1A:Adrs: 88 Val:BB8
+
+OCR1B:Adrs: 8A Val:BB8
+
+OCR1C:Adrs: 8C Val:BB8
+
+TIMSK1:Adrs: 6F Val:0
+
+ICR1:Adrs: 86 Val:9C40
+
+Timer:3
+TCCR3A:Adrs: 90 Val:1
+
+TCCR3B:Adrs: 91 Val:3
+
+OCR3A:Adrs: 98 Val:0
+
+OCR3B:Adrs: 9A Val:0
+
+OCR3C:Adrs: 9C Val:0
+
+TIMSK3:Adrs: 71 Val:0
+
+ICR3:Adrs: 96 Val:0
+
+Timer:4
+TCCR4A:Adrs: A0 Val:1
+
+TCCR4B:Adrs: A1 Val:3
+
+OCR4A:Adrs: A8 Val:0
+
+OCR4B:Adrs: AA Val:0
+
+OCR4C:Adrs: AC Val:0
+
+TIMSK4:Adrs: 72 Val:0
+
+ICR4:Adrs: A6 Val:0
+
+Timer:5
+TCCR5A:Adrs: 120 Val:1
+
+TCCR5B:Adrs: 121 Val:3
+
+OCR5A:Adrs: 128 Val:0
+
+OCR5B:Adrs: 12A Val:0
+
+OCR5C:Adrs: 12C Val:0
+
+TIMSK5:Adrs: 73 Val:0
+
+ICR5:Adrs: 126 Val:0
+
+Servo Index:0 Attached:1
+Servo Index:1 Attached:1
+Servo Index:2 Attached:0
+Servo Index:3 Attached:0
+Servo Index:4 Attached:0
+Servo Index:5 Attached:0
+Servo Index:6 Attached:0
+Servo Index:7 Attached:0
+Servo Index:8 Attached:0
+Servo Index:9 Attached:0
+Servo Index:10 Attached:0
+Servo Index:11 Attached:0
+Exit PWMServoNew::attach
+Enter PWMServoNew::attachint pinArg: 13 min: 800 max: 2200
+Servo HdwrCntrlInfo:
+sizeof volatile unit16_t * :2
+servoPinIndex: 2
+boardPinNumber: 13
+timerId;: 1
+outputChannel;	: 2
+attach Before - Reg Contents
+Timer:1
+TCCR1A:Adrs: 80 Val:A2
+
+TCCR1B:Adrs: 81 Val:1A
+
+OCR1A:Adrs: 88 Val:BB8
+
+OCR1B:Adrs: 8A Val:BB8
+
+OCR1C:Adrs: 8C Val:BB8
+
+TIMSK1:Adrs: 6F Val:0
+
+ICR1:Adrs: 86 Val:9C40
+
+Timer:3
+TCCR3A:Adrs: 90 Val:1
+
+TCCR3B:Adrs: 91 Val:3
+
+OCR3A:Adrs: 98 Val:0
+
+OCR3B:Adrs: 9A Val:0
+
+OCR3C:Adrs: 9C Val:0
+
+TIMSK3:Adrs: 71 Val:0
+
+ICR3:Adrs: 96 Val:0
+
+Timer:4
+TCCR4A:Adrs: A0 Val:1
+
+TCCR4B:Adrs: A1 Val:3
+
+OCR4A:Adrs: A8 Val:0
+
+OCR4B:Adrs: AA Val:0
+
+OCR4C:Adrs: AC Val:0
+
+TIMSK4:Adrs: 72 Val:0
+
+ICR4:Adrs: A6 Val:0
+
+Timer:5
+TCCR5A:Adrs: 120 Val:1
+
+TCCR5B:Adrs: 121 Val:3
+
+OCR5A:Adrs: 128 Val:0
+
+OCR5B:Adrs: 12A Val:0
+
+OCR5C:Adrs: 12C Val:0
+
+TIMSK5:Adrs: 73 Val:0
+
+ICR5:Adrs: 126 Val:0
+
+Timer HdwrCntrlInfo:
+avrTimerCounter::timerId  1
+avrTimerCounter::timerIndex: 0
+TimerHdwrCntrlInfo[timerIndex].timerId: 1
+sizeof volatile unit16_t * :2
+tccrnA: 80
+tccrnB: 81
+numberOfChannels: 3
+ocrnA: 88
+ocrnB: 8A
+ocrnC: 8C
+timskn: 6F
+icrn: 86
+bitDefsIndex: 0
+bitDefsIndex: Timer HdwrBitDef Info: 
+0
+Channel: 0 com0BitMsk: 40
+Channel: 0 com1BitMsk: 80
+Channel: 1 com0BitMsk: 10
+Channel: 1 com1BitMsk: 20
+Channel: 2 com0BitMsk: 4
+Channel: 2 com1BitMsk: 8
+wgm0BitMsk: 1
+wgm1BitMsk: 2
+icncBitMsk: 80
+icesBitMsk: 40
+cs0BitMsk: 1
+cs1BitMsk: 2
+cs2BitMsk: 4
+wgm2BitMsk: 8
+wgm3BitMsk: 10
+Channel: 0 focBitMsk: 80
+Channel: 1 focBitMsk: 40
+Channel: 2 focBitMsk: 20
+icieBitMsk: 20
+Channel: 0 ocieBitMsk: 2
+Channel: 1 ocieBitMsk: 4
+Channel: 2 ocieBitMsk: 8
+toieBitMsk: 1
+icfBitMsk: 20
+Channel: 0 ocfBitMsk: 2
+Channel: 1 ocfBitMsk: 4
+Channel: 2 ocfBitMsk: 8
+tovBitMsk: 1
+attach After - Reg Contents
+Timer:1
+TCCR1A:Adrs: 80 Val:AA
+
+TCCR1B:Adrs: 81 Val:1A
+
+OCR1A:Adrs: 88 Val:BB8
+
+OCR1B:Adrs: 8A Val:BB8
+
+OCR1C:Adrs: 8C Val:BB8
+
+TIMSK1:Adrs: 6F Val:0
+
+ICR1:Adrs: 86 Val:9C40
+
+Timer:3
+TCCR3A:Adrs: 90 Val:1
+
+TCCR3B:Adrs: 91 Val:3
+
+OCR3A:Adrs: 98 Val:0
+
+OCR3B:Adrs: 9A Val:0
+
+OCR3C:Adrs: 9C Val:0
+
+TIMSK3:Adrs: 71 Val:0
+
+ICR3:Adrs: 96 Val:0
+
+Timer:4
+TCCR4A:Adrs: A0 Val:1
+
+TCCR4B:Adrs: A1 Val:3
+
+OCR4A:Adrs: A8 Val:0
+
+OCR4B:Adrs: AA Val:0
+
+OCR4C:Adrs: AC Val:0
+
+TIMSK4:Adrs: 72 Val:0
+
+ICR4:Adrs: A6 Val:0
+
+Timer:5
+TCCR5A:Adrs: 120 Val:1
+
+TCCR5B:Adrs: 121 Val:3
+
+OCR5A:Adrs: 128 Val:0
+
+OCR5B:Adrs: 12A Val:0
+
+OCR5C:Adrs: 12C Val:0
+
+TIMSK5:Adrs: 73 Val:0
+
+ICR5:Adrs: 126 Val:0
+
+Servo Index:0 Attached:1
+Servo Index:1 Attached:1
+Servo Index:2 Attached:1
+Servo Index:3 Attached:0
+Servo Index:4 Attached:0
+Servo Index:5 Attached:0
+Servo Index:6 Attached:0
+Servo Index:7 Attached:0
+Servo Index:8 Attached:0
+Servo Index:9 Attached:0
+Servo Index:10 Attached:0
+Servo Index:11 Attached:0
+Exit PWMServoNew::attach
+Enter PWMServoNew::attachint pinArg: 5 min: 800 max: 2200
+Servo HdwrCntrlInfo:
+sizeof volatile unit16_t * :2
+servoPinIndex: 3
+boardPinNumber: 5
+timerId;: 3
+outputChannel;	: 0
+attach Before - Reg Contents
+Timer:1
+TCCR1A:Adrs: 80 Val:AA
+
+TCCR1B:Adrs: 81 Val:1A
+
+OCR1A:Adrs: 88 Val:BB8
+
+OCR1B:Adrs: 8A Val:BB8
+
+OCR1C:Adrs: 8C Val:BB8
+
+TIMSK1:Adrs: 6F Val:0
+
+ICR1:Adrs: 86 Val:9C40
+
+Timer:3
+TCCR3A:Adrs: 90 Val:1
+
+TCCR3B:Adrs: 91 Val:3
+
+OCR3A:Adrs: 98 Val:0
+
+OCR3B:Adrs: 9A Val:0
+
+OCR3C:Adrs: 9C Val:0
+
+TIMSK3:Adrs: 71 Val:0
+
+ICR3:Adrs: 96 Val:0
+
+Timer:4
+TCCR4A:Adrs: A0 Val:1
+
+TCCR4B:Adrs: A1 Val:3
+
+OCR4A:Adrs: A8 Val:0
+
+OCR4B:Adrs: AA Val:0
+
+OCR4C:Adrs: AC Val:0
+
+TIMSK4:Adrs: 72 Val:0
+
+ICR4:Adrs: A6 Val:0
+
+Timer:5
+TCCR5A:Adrs: 120 Val:1
+
+TCCR5B:Adrs: 121 Val:3
+
+OCR5A:Adrs: 128 Val:0
+
+OCR5B:Adrs: 12A Val:0
+
+OCR5C:Adrs: 12C Val:0
+
+TIMSK5:Adrs: 73 Val:0
+
+ICR5:Adrs: 126 Val:0
+
+Timer HdwrCntrlInfo:
+avrTimerCounter::timerId  3
+avrTimerCounter::timerIndex: 1
+TimerHdwrCntrlInfo[timerIndex].timerId: 3
+sizeof volatile unit16_t * :2
+tccrnA: 90
+tccrnB: 91
+numberOfChannels: 3
+ocrnA: 98
+ocrnB: 9A
+ocrnC: 9C
+timskn: 71
+icrn: 96
+bitDefsIndex: 1
+bitDefsIndex: Timer HdwrBitDef Info: 
+1
+Channel: 0 com0BitMsk: 40
+Channel: 0 com1BitMsk: 80
+Channel: 1 com0BitMsk: 10
+Channel: 1 com1BitMsk: 20
+Channel: 2 com0BitMsk: 4
+Channel: 2 com1BitMsk: 8
+wgm0BitMsk: 1
+wgm1BitMsk: 2
+icncBitMsk: 80
+icesBitMsk: 40
+cs0BitMsk: 1
+cs1BitMsk: 2
+cs2BitMsk: 4
+wgm2BitMsk: 8
+wgm3BitMsk: 10
+Channel: 0 focBitMsk: 80
+Channel: 1 focBitMsk: 40
+Channel: 2 focBitMsk: 20
+icieBitMsk: 20
+Channel: 0 ocieBitMsk: 2
+Channel: 1 ocieBitMsk: 4
+Channel: 2 ocieBitMsk: 8
+toieBitMsk: 1
+icfBitMsk: 20
+Channel: 0 ocfBitMsk: 2
+Channel: 1 ocfBitMsk: 4
+Channel: 2 ocfBitMsk: 8
+tovBitMsk: 1
+Enter PWMServoNew::seizeTimer
+Reg Contents Before
+Timer:1
+TCCR1A:Adrs: 80 Val:AA
+
+TCCR1B:Adrs: 81 Val:1A
+
+OCR1A:Adrs: 88 Val:BB8
+
+OCR1B:Adrs: 8A Val:BB8
+
+OCR1C:Adrs: 8C Val:BB8
+
+TIMSK1:Adrs: 6F Val:0
+
+ICR1:Adrs: 86 Val:9C40
+
+Timer:3
+TCCR3A:Adrs: 90 Val:1
+
+TCCR3B:Adrs: 91 Val:3
+
+OCR3A:Adrs: 98 Val:0
+
+OCR3B:Adrs: 9A Val:0
+
+OCR3C:Adrs: 9C Val:0
+
+TIMSK3:Adrs: 71 Val:0
+
+ICR3:Adrs: 96 Val:0
+
+Timer:4
+TCCR4A:Adrs: A0 Val:1
+
+TCCR4B:Adrs: A1 Val:3
+
+OCR4A:Adrs: A8 Val:0
+
+OCR4B:Adrs: AA Val:0
+
+OCR4C:Adrs: AC Val:0
+
+TIMSK4:Adrs: 72 Val:0
+
+ICR4:Adrs: A6 Val:0
+
+Timer:5
+TCCR5A:Adrs: 120 Val:1
+
+TCCR5B:Adrs: 121 Val:3
+
+OCR5A:Adrs: 128 Val:0
+
+OCR5B:Adrs: 12A Val:0
+
+OCR5C:Adrs: 12C Val:0
+
+TIMSK5:Adrs: 73 Val:0
+
+ICR5:Adrs: 126 Val:0
+
+Reg Contents After
+Timer:1
+TCCR1A:Adrs: 80 Val:AA
+
+TCCR1B:Adrs: 81 Val:1A
+
+OCR1A:Adrs: 88 Val:BB8
+
+OCR1B:Adrs: 8A Val:BB8
+
+OCR1C:Adrs: 8C Val:BB8
+
+TIMSK1:Adrs: 6F Val:0
+
+ICR1:Adrs: 86 Val:9C40
+
+Timer:3
+TCCR3A:Adrs: 90 Val:2
+
+TCCR3B:Adrs: 91 Val:1A
+
+OCR3A:Adrs: 98 Val:BB8
+
+OCR3B:Adrs: 9A Val:BB8
+
+OCR3C:Adrs: 9C Val:BB8
+
+TIMSK3:Adrs: 71 Val:0
+
+ICR3:Adrs: 96 Val:9C40
+
+Timer:4
+TCCR4A:Adrs: A0 Val:1
+
+TCCR4B:Adrs: A1 Val:3
+
+OCR4A:Adrs: A8 Val:0
+
+OCR4B:Adrs: AA Val:0
+
+OCR4C:Adrs: AC Val:0
+
+TIMSK4:Adrs: 72 Val:0
+
+ICR4:Adrs: A6 Val:0
+
+Timer:5
+TCCR5A:Adrs: 120 Val:1
+
+TCCR5B:Adrs: 121 Val:3
+
+OCR5A:Adrs: 128 Val:0
+
+OCR5B:Adrs: 12A Val:0
+
+OCR5C:Adrs: 12C Val:0
+
+TIMSK5:Adrs: 73 Val:0
+
+ICR5:Adrs: 126 Val:0
+
+Exit PWMServoNew::seizeTimer
+attach After - Reg Contents
+Timer:1
+TCCR1A:Adrs: 80 Val:AA
+
+TCCR1B:Adrs: 81 Val:1A
+
+OCR1A:Adrs: 88 Val:BB8
+
+OCR1B:Adrs: 8A Val:BB8
+
+OCR1C:Adrs: 8C Val:BB8
+
+TIMSK1:Adrs: 6F Val:0
+
+ICR1:Adrs: 86 Val:9C40
+
+Timer:3
+TCCR3A:Adrs: 90 Val:82
+
+TCCR3B:Adrs: 91 Val:1A
+
+OCR3A:Adrs: 98 Val:BB8
+
+OCR3B:Adrs: 9A Val:BB8
+
+OCR3C:Adrs: 9C Val:BB8
+
+TIMSK3:Adrs: 71 Val:0
+
+ICR3:Adrs: 96 Val:9C40
+
+Timer:4
+TCCR4A:Adrs: A0 Val:1
+
+TCCR4B:Adrs: A1 Val:3
+
+OCR4A:Adrs: A8 Val:0
+
+OCR4B:Adrs: AA Val:0
+
+OCR4C:Adrs: AC Val:0
+
+TIMSK4:Adrs: 72 Val:0
+
+ICR4:Adrs: A6 Val:0
+
+Timer:5
+TCCR5A:Adrs: 120 Val:1
+
+TCCR5B:Adrs: 121 Val:3
+
+OCR5A:Adrs: 128 Val:0
+
+OCR5B:Adrs: 12A Val:0
+
+OCR5C:Adrs: 12C Val:0
+
+TIMSK5:Adrs: 73 Val:0
+
+ICR5:Adrs: 126 Val:0
+
+Servo Index:0 Attached:1
+Servo Index:1 Attached:1
+Servo Index:2 Attached:1
+Servo Index:3 Attached:1
+Servo Index:4 Attached:0
+Servo Index:5 Attached:0
+Servo Index:6 Attached:0
+Servo Index:7 Attached:0
+Servo Index:8 Attached:0
+Servo Index:9 Attached:0
+Servo Index:10 Attached:0
+Servo Index:11 Attached:0
+Exit PWMServoNew::attach
+Enter PWMServoNew::attachint pinArg: 2 min: 800 max: 2200
+Servo HdwrCntrlInfo:
+sizeof volatile unit16_t * :2
+servoPinIndex: 4
+boardPinNumber: 2
+timerId;: 3
+outputChannel;	: 1
+attach Before - Reg Contents
+Timer:1
+TCCR1A:Adrs: 80 Val:AA
+
+TCCR1B:Adrs: 81 Val:1A
+
+OCR1A:Adrs: 88 Val:BB8
+
+OCR1B:Adrs: 8A Val:BB8
+
+OCR1C:Adrs: 8C Val:BB8
+
+TIMSK1:Adrs: 6F Val:0
+
+ICR1:Adrs: 86 Val:9C40
+
+Timer:3
+TCCR3A:Adrs: 90 Val:82
+
+TCCR3B:Adrs: 91 Val:1A
+
+OCR3A:Adrs: 98 Val:BB8
+
+OCR3B:Adrs: 9A Val:BB8
+
+OCR3C:Adrs: 9C Val:BB8
+
+TIMSK3:Adrs: 71 Val:0
+
+ICR3:Adrs: 96 Val:9C40
+
+Timer:4
+TCCR4A:Adrs: A0 Val:1
+
+TCCR4B:Adrs: A1 Val:3
+
+OCR4A:Adrs: A8 Val:0
+
+OCR4B:Adrs: AA Val:0
+
+OCR4C:Adrs: AC Val:0
+
+TIMSK4:Adrs: 72 Val:0
+
+ICR4:Adrs: A6 Val:0
+
+Timer:5
+TCCR5A:Adrs: 120 Val:1
+
+TCCR5B:Adrs: 121 Val:3
+
+OCR5A:Adrs: 128 Val:0
+
+OCR5B:Adrs: 12A Val:0
+
+OCR5C:Adrs: 12C Val:0
+
+TIMSK5:Adrs: 73 Val:0
+
+ICR5:Adrs: 126 Val:0
+
+Timer HdwrCntrlInfo:
+avrTimerCounter::timerId  3
+avrTimerCounter::timerIndex: 1
+TimerHdwrCntrlInfo[timerIndex].timerId: 3
+sizeof volatile unit16_t * :2
+tccrnA: 90
+tccrnB: 91
+numberOfChannels: 3
+ocrnA: 98
+ocrnB: 9A
+ocrnC: 9C
+timskn: 71
+icrn: 96
+bitDefsIndex: 1
+bitDefsIndex: Timer HdwrBitDef Info: 
+1
+Channel: 0 com0BitMsk: 40
+Channel: 0 com1BitMsk: 80
+Channel: 1 com0BitMsk: 10
+Channel: 1 com1BitMsk: 20
+Channel: 2 com0BitMsk: 4
+Channel: 2 com1BitMsk: 8
+wgm0BitMsk: 1
+wgm1BitMsk: 2
+icncBitMsk: 80
+icesBitMsk: 40
+cs0BitMsk: 1
+cs1BitMsk: 2
+cs2BitMsk: 4
+wgm2BitMsk: 8
+wgm3BitMsk: 10
+Channel: 0 focBitMsk: 80
+Channel: 1 focBitMsk: 40
+Channel: 2 focBitMsk: 20
+icieBitMsk: 20
+Channel: 0 ocieBitMsk: 2
+Channel: 1 ocieBitMsk: 4
+Channel: 2 ocieBitMsk: 8
+toieBitMsk: 1
+icfBitMsk: 20
+Channel: 0 ocfBitMsk: 2
+Channel: 1 ocfBitMsk: 4
+Channel: 2 ocfBitMsk: 8
+tovBitMsk: 1
+attach After - Reg Contents
+Timer:1
+TCCR1A:Adrs: 80 Val:AA
+
+TCCR1B:Adrs: 81 Val:1A
+
+OCR1A:Adrs: 88 Val:BB8
+
+OCR1B:Adrs: 8A Val:BB8
+
+OCR1C:Adrs: 8C Val:BB8
+
+TIMSK1:Adrs: 6F Val:0
+
+ICR1:Adrs: 86 Val:9C40
+
+Timer:3
+TCCR3A:Adrs: 90 Val:A2
+
+TCCR3B:Adrs: 91 Val:1A
+
+OCR3A:Adrs: 98 Val:BB8
+
+OCR3B:Adrs: 9A Val:BB8
+
+OCR3C:Adrs: 9C Val:BB8
+
+TIMSK3:Adrs: 71 Val:0
+
+ICR3:Adrs: 96 Val:9C40
+
+Timer:4
+TCCR4A:Adrs: A0 Val:1
+
+TCCR4B:Adrs: A1 Val:3
+
+OCR4A:Adrs: A8 Val:0
+
+OCR4B:Adrs: AA Val:0
+
+OCR4C:Adrs: AC Val:0
+
+TIMSK4:Adrs: 72 Val:0
+
+ICR4:Adrs: A6 Val:0
+
+Timer:5
+TCCR5A:Adrs: 120 Val:1
+
+TCCR5B:Adrs: 121 Val:3
+
+OCR5A:Adrs: 128 Val:0
+
+OCR5B:Adrs: 12A Val:0
+
+OCR5C:Adrs: 12C Val:0
+
+TIMSK5:Adrs: 73 Val:0
+
+ICR5:Adrs: 126 Val:0
+
+Servo Index:0 Attached:1
+Servo Index:1 Attached:1
+Servo Index:2 Attached:1
+Servo Index:3 Attached:1
+Servo Index:4 Attached:1
+Servo Index:5 Attached:0
+Servo Index:6 Attached:0
+Servo Index:7 Attached:0
+Servo Index:8 Attached:0
+Servo Index:9 Attached:0
+Servo Index:10 Attached:0
+Servo Index:11 Attached:0
+Exit PWMServoNew::attach
+Enter PWMServoNew::attachint pinArg: 3 min: 800 max: 2200
+Servo HdwrCntrlInfo:
+sizeof volatile unit16_t * :2
+servoPinIndex: 5
+boardPinNumber: 3
+timerId;: 3
+outputChannel;	: 2
+attach Before - Reg Contents
+Timer:1
+TCCR1A:Adrs: 80 Val:AA
+
+TCCR1B:Adrs: 81 Val:1A
+
+OCR1A:Adrs: 88 Val:BB8
+
+OCR1B:Adrs: 8A Val:BB8
+
+OCR1C:Adrs: 8C Val:BB8
+
+TIMSK1:Adrs: 6F Val:0
+
+ICR1:Adrs: 86 Val:9C40
+
+Timer:3
+TCCR3A:Adrs: 90 Val:A2
+
+TCCR3B:Adrs: 91 Val:1A
+
+OCR3A:Adrs: 98 Val:BB8
+
+OCR3B:Adrs: 9A Val:BB8
+
+OCR3C:Adrs: 9C Val:BB8
+
+TIMSK3:Adrs: 71 Val:0
+
+ICR3:Adrs: 96 Val:9C40
+
+Timer:4
+TCCR4A:Adrs: A0 Val:1
+
+TCCR4B:Adrs: A1 Val:3
+
+OCR4A:Adrs: A8 Val:0
+
+OCR4B:Adrs: AA Val:0
+
+OCR4C:Adrs: AC Val:0
+
+TIMSK4:Adrs: 72 Val:0
+
+ICR4:Adrs: A6 Val:0
+
+Timer:5
+TCCR5A:Adrs: 120 Val:1
+
+TCCR5B:Adrs: 121 Val:3
+
+OCR5A:Adrs: 128 Val:0
+
+OCR5B:Adrs: 12A Val:0
+
+OCR5C:Adrs: 12C Val:0
+
+TIMSK5:Adrs: 73 Val:0
+
+ICR5:Adrs: 126 Val:0
+
+Timer HdwrCntrlInfo:
+avrTimerCounter::timerId  3
+avrTimerCounter::timerIndex: 1
+TimerHdwrCntrlInfo[timerIndex].timerId: 3
+sizeof volatile unit16_t * :2
+tccrnA: 90
+tccrnB: 91
+numberOfChannels: 3
+ocrnA: 98
+ocrnB: 9A
+ocrnC: 9C
+timskn: 71
+icrn: 96
+bitDefsIndex: 1
+bitDefsIndex: Timer HdwrBitDef Info: 
+1
+Channel: 0 com0BitMsk: 40
+Channel: 0 com1BitMsk: 80
+Channel: 1 com0BitMsk: 10
+Channel: 1 com1BitMsk: 20
+Channel: 2 com0BitMsk: 4
+Channel: 2 com1BitMsk: 8
+wgm0BitMsk: 1
+wgm1BitMsk: 2
+icncBitMsk: 80
+icesBitMsk: 40
+cs0BitMsk: 1
+cs1BitMsk: 2
+cs2BitMsk: 4
+wgm2BitMsk: 8
+wgm3BitMsk: 10
+Channel: 0 focBitMsk: 80
+Channel: 1 focBitMsk: 40
+Channel: 2 focBitMsk: 20
+icieBitMsk: 20
+Channel: 0 ocieBitMsk: 2
+Channel: 1 ocieBitMsk: 4
+Channel: 2 ocieBitMsk: 8
+toieBitMsk: 1
+icfBitMsk: 20
+Channel: 0 ocfBitMsk: 2
+Channel: 1 ocfBitMsk: 4
+Channel: 2 ocfBitMsk: 8
+tovBitMsk: 1
+attach After - Reg Contents
+Timer:1
+TCCR1A:Adrs: 80 Val:AA
+
+TCCR1B:Adrs: 81 Val:1A
+
+OCR1A:Adrs: 88 Val:BB8
+
+OCR1B:Adrs: 8A Val:BB8
+
+OCR1C:Adrs: 8C Val:BB8
+
+TIMSK1:Adrs: 6F Val:0
+
+ICR1:Adrs: 86 Val:9C40
+
+Timer:3
+TCCR3A:Adrs: 90 Val:AA
+
+TCCR3B:Adrs: 91 Val:1A
+
+OCR3A:Adrs: 98 Val:BB8
+
+OCR3B:Adrs: 9A Val:BB8
+
+OCR3C:Adrs: 9C Val:BB8
+
+TIMSK3:Adrs: 71 Val:0
+
+ICR3:Adrs: 96 Val:9C40
+
+Timer:4
+TCCR4A:Adrs: A0 Val:1
+
+TCCR4B:Adrs: A1 Val:3
+
+OCR4A:Adrs: A8 Val:0
+
+OCR4B:Adrs: AA Val:0
+
+OCR4C:Adrs: AC Val:0
+
+TIMSK4:Adrs: 72 Val:0
+
+ICR4:Adrs: A6 Val:0
+
+Timer:5
+TCCR5A:Adrs: 120 Val:1
+
+TCCR5B:Adrs: 121 Val:3
+
+OCR5A:Adrs: 128 Val:0
+
+OCR5B:Adrs: 12A Val:0
+
+OCR5C:Adrs: 12C Val:0
+
+TIMSK5:Adrs: 73 Val:0
+
+ICR5:Adrs: 126 Val:0
+
+Servo Index:0 Attached:1
+Servo Index:1 Attached:1
+Servo Index:2 Attached:1
+Servo Index:3 Attached:1
+Servo Index:4 Attached:1
+Servo Index:5 Attached:1
+Servo Index:6 Attached:0
+Servo Index:7 Attached:0
+Servo Index:8 Attached:0
+Servo Index:9 Attached:0
+Servo Index:10 Attached:0
+Servo Index:11 Attached:0
+Exit PWMServoNew::attach
+Enter PWMServoNew::attachint pinArg: 6 min: 800 max: 2200
+Servo HdwrCntrlInfo:
+sizeof volatile unit16_t * :2
+servoPinIndex: 6
+boardPinNumber: 6
+timerId;: 4
+outputChannel;	: 0
+attach Before - Reg Contents
+Timer:1
+TCCR1A:Adrs: 80 Val:AA
+
+TCCR1B:Adrs: 81 Val:1A
+
+OCR1A:Adrs: 88 Val:BB8
+
+OCR1B:Adrs: 8A Val:BB8
+
+OCR1C:Adrs: 8C Val:BB8
+
+TIMSK1:Adrs: 6F Val:0
+
+ICR1:Adrs: 86 Val:9C40
+
+Timer:3
+TCCR3A:Adrs: 90 Val:AA
+
+TCCR3B:Adrs: 91 Val:1A
+
+OCR3A:Adrs: 98 Val:BB8
+
+OCR3B:Adrs: 9A Val:BB8
+
+OCR3C:Adrs: 9C Val:BB8
+
+TIMSK3:Adrs: 71 Val:0
+
+ICR3:Adrs: 96 Val:9C40
+
+Timer:4
+TCCR4A:Adrs: A0 Val:1
+
+TCCR4B:Adrs: A1 Val:3
+
+OCR4A:Adrs: A8 Val:0
+
+OCR4B:Adrs: AA Val:0
+
+OCR4C:Adrs: AC Val:0
+
+TIMSK4:Adrs: 72 Val:0
+
+ICR4:Adrs: A6 Val:0
+
+Timer:5
+TCCR5A:Adrs: 120 Val:1
+
+TCCR5B:Adrs: 121 Val:3
+
+OCR5A:Adrs: 128 Val:0
+
+OCR5B:Adrs: 12A Val:0
+
+OCR5C:Adrs: 12C Val:0
+
+TIMSK5:Adrs: 73 Val:0
+
+ICR5:Adrs: 126 Val:0
+
+Timer HdwrCntrlInfo:
+avrTimerCounter::timerId  4
+avrTimerCounter::timerIndex: 2
+TimerHdwrCntrlInfo[timerIndex].timerId: 4
+sizeof volatile unit16_t * :2
+tccrnA: A0
+tccrnB: A1
+numberOfChannels: 3
+ocrnA: A8
+ocrnB: AA
+ocrnC: AC
+timskn: 72
+icrn: A6
+bitDefsIndex: 2
+bitDefsIndex: Timer HdwrBitDef Info: 
+2
+Channel: 0 com0BitMsk: 40
+Channel: 0 com1BitMsk: 80
+Channel: 1 com0BitMsk: 10
+Channel: 1 com1BitMsk: 20
+Channel: 2 com0BitMsk: 4
+Channel: 2 com1BitMsk: 8
+wgm0BitMsk: 1
+wgm1BitMsk: 2
+icncBitMsk: 80
+icesBitMsk: 40
+cs0BitMsk: 1
+cs1BitMsk: 2
+cs2BitMsk: 4
+wgm2BitMsk: 8
+wgm3BitMsk: 10
+Channel: 0 focBitMsk: 80
+Channel: 1 focBitMsk: 40
+Channel: 2 focBitMsk: 20
+icieBitMsk: 20
+Channel: 0 ocieBitMsk: 2
+Channel: 1 ocieBitMsk: 4
+Channel: 2 ocieBitMsk: 8
+toieBitMsk: 1
+icfBitMsk: 20
+Channel: 0 ocfBitMsk: 2
+Channel: 1 ocfBitMsk: 4
+Channel: 2 ocfBitMsk: 8
+tovBitMsk: 1
+Enter PWMServoNew::seizeTimer
+Reg Contents Before
+Timer:1
+TCCR1A:Adrs: 80 Val:AA
+
+TCCR1B:Adrs: 81 Val:1A
+
+OCR1A:Adrs: 88 Val:BB8
+
+OCR1B:Adrs: 8A Val:BB8
+
+OCR1C:Adrs: 8C Val:BB8
+
+TIMSK1:Adrs: 6F Val:0
+
+ICR1:Adrs: 86 Val:9C40
+
+Timer:3
+TCCR3A:Adrs: 90 Val:AA
+
+TCCR3B:Adrs: 91 Val:1A
+
+OCR3A:Adrs: 98 Val:BB8
+
+OCR3B:Adrs: 9A Val:BB8
+
+OCR3C:Adrs: 9C Val:BB8
+
+TIMSK3:Adrs: 71 Val:0
+
+ICR3:Adrs: 96 Val:9C40
+
+Timer:4
+TCCR4A:Adrs: A0 Val:1
+
+TCCR4B:Adrs: A1 Val:3
+
+OCR4A:Adrs: A8 Val:0
+
+OCR4B:Adrs: AA Val:0
+
+OCR4C:Adrs: AC Val:0
+
+TIMSK4:Adrs: 72 Val:0
+
+ICR4:Adrs: A6 Val:0
+
+Timer:5
+TCCR5A:Adrs: 120 Val:1
+
+TCCR5B:Adrs: 121 Val:3
+
+OCR5A:Adrs: 128 Val:0
+
+OCR5B:Adrs: 12A Val:0
+
+OCR5C:Adrs: 12C Val:0
+
+TIMSK5:Adrs: 73 Val:0
+
+ICR5:Adrs: 126 Val:0
+
+Reg Contents After
+Timer:1
+TCCR1A:Adrs: 80 Val:AA
+
+TCCR1B:Adrs: 81 Val:1A
+
+OCR1A:Adrs: 88 Val:BB8
+
+OCR1B:Adrs: 8A Val:BB8
+
+OCR1C:Adrs: 8C Val:BB8
+
+TIMSK1:Adrs: 6F Val:0
+
+ICR1:Adrs: 86 Val:9C40
+
+Timer:3
+TCCR3A:Adrs: 90 Val:AA
+
+TCCR3B:Adrs: 91 Val:1A
+
+OCR3A:Adrs: 98 Val:BB8
+
+OCR3B:Adrs: 9A Val:BB8
+
+OCR3C:Adrs: 9C Val:BB8
+
+TIMSK3:Adrs: 71 Val:0
+
+ICR3:Adrs: 96 Val:9C40
+
+Timer:4
+TCCR4A:Adrs: A0 Val:2
+
+TCCR4B:Adrs: A1 Val:1A
+
+OCR4A:Adrs: A8 Val:BB8
+
+OCR4B:Adrs: AA Val:BB8
+
+OCR4C:Adrs: AC Val:BB8
+
+TIMSK4:Adrs: 72 Val:0
+
+ICR4:Adrs: A6 Val:9C40
+
+Timer:5
+TCCR5A:Adrs: 120 Val:1
+
+TCCR5B:Adrs: 121 Val:3
+
+OCR5A:Adrs: 128 Val:0
+
+OCR5B:Adrs: 12A Val:0
+
+OCR5C:Adrs: 12C Val:0
+
+TIMSK5:Adrs: 73 Val:0
+
+ICR5:Adrs: 126 Val:0
+
+Exit PWMServoNew::seizeTimer
+attach After - Reg Contents
+Timer:1
+TCCR1A:Adrs: 80 Val:AA
+
+TCCR1B:Adrs: 81 Val:1A
+
+OCR1A:Adrs: 88 Val:BB8
+
+OCR1B:Adrs: 8A Val:BB8
+
+OCR1C:Adrs: 8C Val:BB8
+
+TIMSK1:Adrs: 6F Val:0
+
+ICR1:Adrs: 86 Val:9C40
+
+Timer:3
+TCCR3A:Adrs: 90 Val:AA
+
+TCCR3B:Adrs: 91 Val:1A
+
+OCR3A:Adrs: 98 Val:BB8
+
+OCR3B:Adrs: 9A Val:BB8
+
+OCR3C:Adrs: 9C Val:BB8
+
+TIMSK3:Adrs: 71 Val:0
+
+ICR3:Adrs: 96 Val:9C40
+
+Timer:4
+TCCR4A:Adrs: A0 Val:82
+
+TCCR4B:Adrs: A1 Val:1A
+
+OCR4A:Adrs: A8 Val:BB8
+
+OCR4B:Adrs: AA Val:BB8
+
+OCR4C:Adrs: AC Val:BB8
+
+TIMSK4:Adrs: 72 Val:0
+
+ICR4:Adrs: A6 Val:9C40
+
+Timer:5
+TCCR5A:Adrs: 120 Val:1
+
+TCCR5B:Adrs: 121 Val:3
+
+OCR5A:Adrs: 128 Val:0
+
+OCR5B:Adrs: 12A Val:0
+
+OCR5C:Adrs: 12C Val:0
+
+TIMSK5:Adrs: 73 Val:0
+
+ICR5:Adrs: 126 Val:0
+
+Servo Index:0 Attached:1
+Servo Index:1 Attached:1
+Servo Index:2 Attached:1
+Servo Index:3 Attached:1
+Servo Index:4 Attached:1
+Servo Index:5 Attached:1
+Servo Index:6 Attached:1
+Servo Index:7 Attached:0
+Servo Index:8 Attached:0
+Servo Index:9 Attached:0
+Servo Index:10 Attached:0
+Servo Index:11 Attached:0
+Exit PWMServoNew::attach
+Enter PWMServoNew::attachint pinArg: 7 min: 800 max: 2200
+Servo HdwrCntrlInfo:
+sizeof volatile unit16_t * :2
+servoPinIndex: 7
+boardPinNumber: 7
+timerId;: 4
+outputChannel;	: 1
+attach Before - Reg Contents
+Timer:1
+TCCR1A:Adrs: 80 Val:AA
+
+TCCR1B:Adrs: 81 Val:1A
+
+OCR1A:Adrs: 88 Val:BB8
+
+OCR1B:Adrs: 8A Val:BB8
+
+OCR1C:Adrs: 8C Val:BB8
+
+TIMSK1:Adrs: 6F Val:0
+
+ICR1:Adrs: 86 Val:9C40
+
+Timer:3
+TCCR3A:Adrs: 90 Val:AA
+
+TCCR3B:Adrs: 91 Val:1A
+
+OCR3A:Adrs: 98 Val:BB8
+
+OCR3B:Adrs: 9A Val:BB8
+
+OCR3C:Adrs: 9C Val:BB8
+
+TIMSK3:Adrs: 71 Val:0
+
+ICR3:Adrs: 96 Val:9C40
+
+Timer:4
+TCCR4A:Adrs: A0 Val:82
+
+TCCR4B:Adrs: A1 Val:1A
+
+OCR4A:Adrs: A8 Val:BB8
+
+OCR4B:Adrs: AA Val:BB8
+
+OCR4C:Adrs: AC Val:BB8
+
+TIMSK4:Adrs: 72 Val:0
+
+ICR4:Adrs: A6 Val:9C40
+
+Timer:5
+TCCR5A:Adrs: 120 Val:1
+
+TCCR5B:Adrs: 121 Val:3
+
+OCR5A:Adrs: 128 Val:0
+
+OCR5B:Adrs: 12A Val:0
+
+OCR5C:Adrs: 12C Val:0
+
+TIMSK5:Adrs: 73 Val:0
+
+ICR5:Adrs: 126 Val:0
+
+Timer HdwrCntrlInfo:
+avrTimerCounter::timerId  4
+avrTimerCounter::timerIndex: 2
+TimerHdwrCntrlInfo[timerIndex].timerId: 4
+sizeof volatile unit16_t * :2
+tccrnA: A0
+tccrnB: A1
+numberOfChannels: 3
+ocrnA: A8
+ocrnB: AA
+ocrnC: AC
+timskn: 72
+icrn: A6
+bitDefsIndex: 2
+bitDefsIndex: Timer HdwrBitDef Info: 
+2
+Channel: 0 com0BitMsk: 40
+Channel: 0 com1BitMsk: 80
+Channel: 1 com0BitMsk: 10
+Channel: 1 com1BitMsk: 20
+Channel: 2 com0BitMsk: 4
+Channel: 2 com1BitMsk: 8
+wgm0BitMsk: 1
+wgm1BitMsk: 2
+icncBitMsk: 80
+icesBitMsk: 40
+cs0BitMsk: 1
+cs1BitMsk: 2
+cs2BitMsk: 4
+wgm2BitMsk: 8
+wgm3BitMsk: 10
+Channel: 0 focBitMsk: 80
+Channel: 1 focBitMsk: 40
+Channel: 2 focBitMsk: 20
+icieBitMsk: 20
+Channel: 0 ocieBitMsk: 2
+Channel: 1 ocieBitMsk: 4
+Channel: 2 ocieBitMsk: 8
+toieBitMsk: 1
+icfBitMsk: 20
+Channel: 0 ocfBitMsk: 2
+Channel: 1 ocfBitMsk: 4
+Channel: 2 ocfBitMsk: 8
+tovBitMsk: 1
+attach After - Reg Contents
+Timer:1
+TCCR1A:Adrs: 80 Val:AA
+
+TCCR1B:Adrs: 81 Val:1A
+
+OCR1A:Adrs: 88 Val:BB8
+
+OCR1B:Adrs: 8A Val:BB8
+
+OCR1C:Adrs: 8C Val:BB8
+
+TIMSK1:Adrs: 6F Val:0
+
+ICR1:Adrs: 86 Val:9C40
+
+Timer:3
+TCCR3A:Adrs: 90 Val:AA
+
+TCCR3B:Adrs: 91 Val:1A
+
+OCR3A:Adrs: 98 Val:BB8
+
+OCR3B:Adrs: 9A Val:BB8
+
+OCR3C:Adrs: 9C Val:BB8
+
+TIMSK3:Adrs: 71 Val:0
+
+ICR3:Adrs: 96 Val:9C40
+
+Timer:4
+TCCR4A:Adrs: A0 Val:A2
+
+TCCR4B:Adrs: A1 Val:1A
+
+OCR4A:Adrs: A8 Val:BB8
+
+OCR4B:Adrs: AA Val:BB8
+
+OCR4C:Adrs: AC Val:BB8
+
+TIMSK4:Adrs: 72 Val:0
+
+ICR4:Adrs: A6 Val:9C40
+
+Timer:5
+TCCR5A:Adrs: 120 Val:1
+
+TCCR5B:Adrs: 121 Val:3
+
+OCR5A:Adrs: 128 Val:0
+
+OCR5B:Adrs: 12A Val:0
+
+OCR5C:Adrs: 12C Val:0
+
+TIMSK5:Adrs: 73 Val:0
+
+ICR5:Adrs: 126 Val:0
+
+Servo Index:0 Attached:1
+Servo Index:1 Attached:1
+Servo Index:2 Attached:1
+Servo Index:3 Attached:1
+Servo Index:4 Attached:1
+Servo Index:5 Attached:1
+Servo Index:6 Attached:1
+Servo Index:7 Attached:1
+Servo Index:8 Attached:0
+Servo Index:9 Attached:0
+Servo Index:10 Attached:0
+Servo Index:11 Attached:0
+Exit PWMServoNew::attach
+Enter PWMServoNew::attachint pinArg: 8 min: 800 max: 2200
+Servo HdwrCntrlInfo:
+sizeof volatile unit16_t * :2
+servoPinIndex: 8
+boardPinNumber: 8
+timerId;: 4
+outputChannel;	: 2
+attach Before - Reg Contents
+Timer:1
+TCCR1A:Adrs: 80 Val:AA
+
+TCCR1B:Adrs: 81 Val:1A
+
+OCR1A:Adrs: 88 Val:BB8
+
+OCR1B:Adrs: 8A Val:BB8
+
+OCR1C:Adrs: 8C Val:BB8
+
+TIMSK1:Adrs: 6F Val:0
+
+ICR1:Adrs: 86 Val:9C40
+
+Timer:3
+TCCR3A:Adrs: 90 Val:AA
+
+TCCR3B:Adrs: 91 Val:1A
+
+OCR3A:Adrs: 98 Val:BB8
+
+OCR3B:Adrs: 9A Val:BB8
+
+OCR3C:Adrs: 9C Val:BB8
+
+TIMSK3:Adrs: 71 Val:0
+
+ICR3:Adrs: 96 Val:9C40
+
+Timer:4
+TCCR4A:Adrs: A0 Val:A2
+
+TCCR4B:Adrs: A1 Val:1A
+
+OCR4A:Adrs: A8 Val:BB8
+
+OCR4B:Adrs: AA Val:BB8
+
+OCR4C:Adrs: AC Val:BB8
+
+TIMSK4:Adrs: 72 Val:0
+
+ICR4:Adrs: A6 Val:9C40
+
+Timer:5
+TCCR5A:Adrs: 120 Val:1
+
+TCCR5B:Adrs: 121 Val:3
+
+OCR5A:Adrs: 128 Val:0
+
+OCR5B:Adrs: 12A Val:0
+
+OCR5C:Adrs: 12C Val:0
+
+TIMSK5:Adrs: 73 Val:0
+
+ICR5:Adrs: 126 Val:0
+
+Timer HdwrCntrlInfo:
+avrTimerCounter::timerId  4
+avrTimerCounter::timerIndex: 2
+TimerHdwrCntrlInfo[timerIndex].timerId: 4
+sizeof volatile unit16_t * :2
+tccrnA: A0
+tccrnB: A1
+numberOfChannels: 3
+ocrnA: A8
+ocrnB: AA
+ocrnC: AC
+timskn: 72
+icrn: A6
+bitDefsIndex: 2
+bitDefsIndex: Timer HdwrBitDef Info: 
+2
+Channel: 0 com0BitMsk: 40
+Channel: 0 com1BitMsk: 80
+Channel: 1 com0BitMsk: 10
+Channel: 1 com1BitMsk: 20
+Channel: 2 com0BitMsk: 4
+Channel: 2 com1BitMsk: 8
+wgm0BitMsk: 1
+wgm1BitMsk: 2
+icncBitMsk: 80
+icesBitMsk: 40
+cs0BitMsk: 1
+cs1BitMsk: 2
+cs2BitMsk: 4
+wgm2BitMsk: 8
+wgm3BitMsk: 10
+Channel: 0 focBitMsk: 80
+Channel: 1 focBitMsk: 40
+Channel: 2 focBitMsk: 20
+icieBitMsk: 20
+Channel: 0 ocieBitMsk: 2
+Channel: 1 ocieBitMsk: 4
+Channel: 2 ocieBitMsk: 8
+toieBitMsk: 1
+icfBitMsk: 20
+Channel: 0 ocfBitMsk: 2
+Channel: 1 ocfBitMsk: 4
+Channel: 2 ocfBitMsk: 8
+tovBitMsk: 1
+attach After - Reg Contents
+Timer:1
+TCCR1A:Adrs: 80 Val:AA
+
+TCCR1B:Adrs: 81 Val:1A
+
+OCR1A:Adrs: 88 Val:BB8
+
+OCR1B:Adrs: 8A Val:BB8
+
+OCR1C:Adrs: 8C Val:BB8
+
+TIMSK1:Adrs: 6F Val:0
+
+ICR1:Adrs: 86 Val:9C40
+
+Timer:3
+TCCR3A:Adrs: 90 Val:AA
+
+TCCR3B:Adrs: 91 Val:1A
+
+OCR3A:Adrs: 98 Val:BB8
+
+OCR3B:Adrs: 9A Val:BB8
+
+OCR3C:Adrs: 9C Val:BB8
+
+TIMSK3:Adrs: 71 Val:0
+
+ICR3:Adrs: 96 Val:9C40
+
+Timer:4
+TCCR4A:Adrs: A0 Val:AA
+
+TCCR4B:Adrs: A1 Val:1A
+
+OCR4A:Adrs: A8 Val:BB8
+
+OCR4B:Adrs: AA Val:BB8
+
+OCR4C:Adrs: AC Val:BB8
+
+TIMSK4:Adrs: 72 Val:0
+
+ICR4:Adrs: A6 Val:9C40
+
+Timer:5
+TCCR5A:Adrs: 120 Val:1
+
+TCCR5B:Adrs: 121 Val:3
+
+OCR5A:Adrs: 128 Val:0
+
+OCR5B:Adrs: 12A Val:0
+
+OCR5C:Adrs: 12C Val:0
+
+TIMSK5:Adrs: 73 Val:0
+
+ICR5:Adrs: 126 Val:0
+
+Servo Index:0 Attached:1
+Servo Index:1 Attached:1
+Servo Index:2 Attached:1
+Servo Index:3 Attached:1
+Servo Index:4 Attached:1
+Servo Index:5 Attached:1
+Servo Index:6 Attached:1
+Servo Index:7 Attached:1
+Servo Index:8 Attached:1
+Servo Index:9 Attached:0
+Servo Index:10 Attached:0
+Servo Index:11 Attached:0
+Exit PWMServoNew::attach
+Enter PWMServoNew::attachint pinArg: 46 min: 800 max: 2200
+Servo HdwrCntrlInfo:
+sizeof volatile unit16_t * :2
+servoPinIndex: 9
+boardPinNumber: 46
+timerId;: 5
+outputChannel;	: 0
+attach Before - Reg Contents
+Timer:1
+TCCR1A:Adrs: 80 Val:AA
+
+TCCR1B:Adrs: 81 Val:1A
+
+OCR1A:Adrs: 88 Val:BB8
+
+OCR1B:Adrs: 8A Val:BB8
+
+OCR1C:Adrs: 8C Val:BB8
+
+TIMSK1:Adrs: 6F Val:0
+
+ICR1:Adrs: 86 Val:9C40
+
+Timer:3
+TCCR3A:Adrs: 90 Val:AA
+
+TCCR3B:Adrs: 91 Val:1A
+
+OCR3A:Adrs: 98 Val:BB8
+
+OCR3B:Adrs: 9A Val:BB8
+
+OCR3C:Adrs: 9C Val:BB8
+
+TIMSK3:Adrs: 71 Val:0
+
+ICR3:Adrs: 96 Val:9C40
+
+Timer:4
+TCCR4A:Adrs: A0 Val:AA
+
+TCCR4B:Adrs: A1 Val:1A
+
+OCR4A:Adrs: A8 Val:BB8
+
+OCR4B:Adrs: AA Val:BB8
+
+OCR4C:Adrs: AC Val:BB8
+
+TIMSK4:Adrs: 72 Val:0
+
+ICR4:Adrs: A6 Val:9C40
+
+Timer:5
+TCCR5A:Adrs: 120 Val:1
+
+TCCR5B:Adrs: 121 Val:3
+
+OCR5A:Adrs: 128 Val:0
+
+OCR5B:Adrs: 12A Val:0
+
+OCR5C:Adrs: 12C Val:0
+
+TIMSK5:Adrs: 73 Val:0
+
+ICR5:Adrs: 126 Val:0
+
+Timer HdwrCntrlInfo:
+avrTimerCounter::timerId  5
+avrTimerCounter::timerIndex: 3
+TimerHdwrCntrlInfo[timerIndex].timerId: 5
+sizeof volatile unit16_t * :2
+tccrnA: 120
+tccrnB: 121
+numberOfChannels: 3
+ocrnA: 128
+ocrnB: 12A
+ocrnC: 12C
+timskn: 73
+icrn: 126
+bitDefsIndex: 3
+bitDefsIndex: Timer HdwrBitDef Info: 
+3
+Channel: 0 com0BitMsk: 40
+Channel: 0 com1BitMsk: 80
+Channel: 1 com0BitMsk: 10
+Channel: 1 com1BitMsk: 20
+Channel: 2 com0BitMsk: 4
+Channel: 2 com1BitMsk: 8
+wgm0BitMsk: 1
+wgm1BitMsk: 2
+icncBitMsk: 80
+icesBitMsk: 40
+cs0BitMsk: 1
+cs1BitMsk: 2
+cs2BitMsk: 4
+wgm2BitMsk: 8
+wgm3BitMsk: 10
+Channel: 0 focBitMsk: 80
+Channel: 1 focBitMsk: 40
+Channel: 2 focBitMsk: 20
+icieBitMsk: 20
+Channel: 0 ocieBitMsk: 2
+Channel: 1 ocieBitMsk: 4
+Channel: 2 ocieBitMsk: 8
+toieBitMsk: 1
+icfBitMsk: 20
+Channel: 0 ocfBitMsk: 2
+Channel: 1 ocfBitMsk: 4
+Channel: 2 ocfBitMsk: 8
+tovBitMsk: 1
+Enter PWMServoNew::seizeTimer
+Reg Contents Before
+Timer:1
+TCCR1A:Adrs: 80 Val:AA
+
+TCCR1B:Adrs: 81 Val:1A
+
+OCR1A:Adrs: 88 Val:BB8
+
+OCR1B:Adrs: 8A Val:BB8
+
+OCR1C:Adrs: 8C Val:BB8
+
+TIMSK1:Adrs: 6F Val:0
+
+ICR1:Adrs: 86 Val:9C40
+
+Timer:3
+TCCR3A:Adrs: 90 Val:AA
+
+TCCR3B:Adrs: 91 Val:1A
+
+OCR3A:Adrs: 98 Val:BB8
+
+OCR3B:Adrs: 9A Val:BB8
+
+OCR3C:Adrs: 9C Val:BB8
+
+TIMSK3:Adrs: 71 Val:0
+
+ICR3:Adrs: 96 Val:9C40
+
+Timer:4
+TCCR4A:Adrs: A0 Val:AA
+
+TCCR4B:Adrs: A1 Val:1A
+
+OCR4A:Adrs: A8 Val:BB8
+
+OCR4B:Adrs: AA Val:BB8
+
+OCR4C:Adrs: AC Val:BB8
+
+TIMSK4:Adrs: 72 Val:0
+
+ICR4:Adrs: A6 Val:9C40
+
+Timer:5
+TCCR5A:Adrs: 120 Val:1
+
+TCCR5B:Adrs: 121 Val:3
+
+OCR5A:Adrs: 128 Val:0
+
+OCR5B:Adrs: 12A Val:0
+
+OCR5C:Adrs: 12C Val:0
+
+TIMSK5:Adrs: 73 Val:0
+
+ICR5:Adrs: 126 Val:0
+
+Reg Contents After
+Timer:1
+TCCR1A:Adrs: 80 Val:AA
+
+TCCR1B:Adrs: 81 Val:1A
+
+OCR1A:Adrs: 88 Val:BB8
+
+OCR1B:Adrs: 8A Val:BB8
+
+OCR1C:Adrs: 8C Val:BB8
+
+TIMSK1:Adrs: 6F Val:0
+
+ICR1:Adrs: 86 Val:9C40
+
+Timer:3
+TCCR3A:Adrs: 90 Val:AA
+
+TCCR3B:Adrs: 91 Val:1A
+
+OCR3A:Adrs: 98 Val:BB8
+
+OCR3B:Adrs: 9A Val:BB8
+
+OCR3C:Adrs: 9C Val:BB8
+
+TIMSK3:Adrs: 71 Val:0
+
+ICR3:Adrs: 96 Val:9C40
+
+Timer:4
+TCCR4A:Adrs: A0 Val:AA
+
+TCCR4B:Adrs: A1 Val:1A
+
+OCR4A:Adrs: A8 Val:BB8
+
+OCR4B:Adrs: AA Val:BB8
+
+OCR4C:Adrs: AC Val:BB8
+
+TIMSK4:Adrs: 72 Val:0
+
+ICR4:Adrs: A6 Val:9C40
+
+Timer:5
+TCCR5A:Adrs: 120 Val:2
+
+TCCR5B:Adrs: 121 Val:1A
+
+OCR5A:Adrs: 128 Val:BB8
+
+OCR5B:Adrs: 12A Val:BB8
+
+OCR5C:Adrs: 12C Val:BB8
+
+TIMSK5:Adrs: 73 Val:0
+
+ICR5:Adrs: 126 Val:9C40
+
+Exit PWMServoNew::seizeTimer
+attach After - Reg Contents
+Timer:1
+TCCR1A:Adrs: 80 Val:AA
+
+TCCR1B:Adrs: 81 Val:1A
+
+OCR1A:Adrs: 88 Val:BB8
+
+OCR1B:Adrs: 8A Val:BB8
+
+OCR1C:Adrs: 8C Val:BB8
+
+TIMSK1:Adrs: 6F Val:0
+
+ICR1:Adrs: 86 Val:9C40
+
+Timer:3
+TCCR3A:Adrs: 90 Val:AA
+
+TCCR3B:Adrs: 91 Val:1A
+
+OCR3A:Adrs: 98 Val:BB8
+
+OCR3B:Adrs: 9A Val:BB8
+
+OCR3C:Adrs: 9C Val:BB8
+
+TIMSK3:Adrs: 71 Val:0
+
+ICR3:Adrs: 96 Val:9C40
+
+Timer:4
+TCCR4A:Adrs: A0 Val:AA
+
+TCCR4B:Adrs: A1 Val:1A
+
+OCR4A:Adrs: A8 Val:BB8
+
+OCR4B:Adrs: AA Val:BB8
+
+OCR4C:Adrs: AC Val:BB8
+
+TIMSK4:Adrs: 72 Val:0
+
+ICR4:Adrs: A6 Val:9C40
+
+Timer:5
+TCCR5A:Adrs: 120 Val:82
+
+TCCR5B:Adrs: 121 Val:1A
+
+OCR5A:Adrs: 128 Val:BB8
+
+OCR5B:Adrs: 12A Val:BB8
+
+OCR5C:Adrs: 12C Val:BB8
+
+TIMSK5:Adrs: 73 Val:0
+
+ICR5:Adrs: 126 Val:9C40
+
+Servo Index:0 Attached:1
+Servo Index:1 Attached:1
+Servo Index:2 Attached:1
+Servo Index:3 Attached:1
+Servo Index:4 Attached:1
+Servo Index:5 Attached:1
+Servo Index:6 Attached:1
+Servo Index:7 Attached:1
+Servo Index:8 Attached:1
+Servo Index:9 Attached:1
+Servo Index:10 Attached:0
+Servo Index:11 Attached:0
+Exit PWMServoNew::attach
+Enter PWMServoNew::attachint pinArg: 45 min: 800 max: 2200
+Servo HdwrCntrlInfo:
+sizeof volatile unit16_t * :2
+servoPinIndex: 10
+boardPinNumber: 45
+timerId;: 5
+outputChannel;	: 1
+attach Before - Reg Contents
+Timer:1
+TCCR1A:Adrs: 80 Val:AA
+
+TCCR1B:Adrs: 81 Val:1A
+
+OCR1A:Adrs: 88 Val:BB8
+
+OCR1B:Adrs: 8A Val:BB8
+
+OCR1C:Adrs: 8C Val:BB8
+
+TIMSK1:Adrs: 6F Val:0
+
+ICR1:Adrs: 86 Val:9C40
+
+Timer:3
+TCCR3A:Adrs: 90 Val:AA
+
+TCCR3B:Adrs: 91 Val:1A
+
+OCR3A:Adrs: 98 Val:BB8
+
+OCR3B:Adrs: 9A Val:BB8
+
+OCR3C:Adrs: 9C Val:BB8
+
+TIMSK3:Adrs: 71 Val:0
+
+ICR3:Adrs: 96 Val:9C40
+
+Timer:4
+TCCR4A:Adrs: A0 Val:AA
+
+TCCR4B:Adrs: A1 Val:1A
+
+OCR4A:Adrs: A8 Val:BB8
+
+OCR4B:Adrs: AA Val:BB8
+
+OCR4C:Adrs: AC Val:BB8
+
+TIMSK4:Adrs: 72 Val:0
+
+ICR4:Adrs: A6 Val:9C40
+
+Timer:5
+TCCR5A:Adrs: 120 Val:82
+
+TCCR5B:Adrs: 121 Val:1A
+
+OCR5A:Adrs: 128 Val:BB8
+
+OCR5B:Adrs: 12A Val:BB8
+
+OCR5C:Adrs: 12C Val:BB8
+
+TIMSK5:Adrs: 73 Val:0
+
+ICR5:Adrs: 126 Val:9C40
+
+Timer HdwrCntrlInfo:
+avrTimerCounter::timerId  5
+avrTimerCounter::timerIndex: 3
+TimerHdwrCntrlInfo[timerIndex].timerId: 5
+sizeof volatile unit16_t * :2
+tccrnA: 120
+tccrnB: 121
+numberOfChannels: 3
+ocrnA: 128
+ocrnB: 12A
+ocrnC: 12C
+timskn: 73
+icrn: 126
+bitDefsIndex: 3
+bitDefsIndex: Timer HdwrBitDef Info: 
+3
+Channel: 0 com0BitMsk: 40
+Channel: 0 com1BitMsk: 80
+Channel: 1 com0BitMsk: 10
+Channel: 1 com1BitMsk: 20
+Channel: 2 com0BitMsk: 4
+Channel: 2 com1BitMsk: 8
+wgm0BitMsk: 1
+wgm1BitMsk: 2
+icncBitMsk: 80
+icesBitMsk: 40
+cs0BitMsk: 1
+cs1BitMsk: 2
+cs2BitMsk: 4
+wgm2BitMsk: 8
+wgm3BitMsk: 10
+Channel: 0 focBitMsk: 80
+Channel: 1 focBitMsk: 40
+Channel: 2 focBitMsk: 20
+icieBitMsk: 20
+Channel: 0 ocieBitMsk: 2
+Channel: 1 ocieBitMsk: 4
+Channel: 2 ocieBitMsk: 8
+toieBitMsk: 1
+icfBitMsk: 20
+Channel: 0 ocfBitMsk: 2
+Channel: 1 ocfBitMsk: 4
+Channel: 2 ocfBitMsk: 8
+tovBitMsk: 1
+attach After - Reg Contents
+Timer:1
+TCCR1A:Adrs: 80 Val:AA
+
+TCCR1B:Adrs: 81 Val:1A
+
+OCR1A:Adrs: 88 Val:BB8
+
+OCR1B:Adrs: 8A Val:BB8
+
+OCR1C:Adrs: 8C Val:BB8
+
+TIMSK1:Adrs: 6F Val:0
+
+ICR1:Adrs: 86 Val:9C40
+
+Timer:3
+TCCR3A:Adrs: 90 Val:AA
+
+TCCR3B:Adrs: 91 Val:1A
+
+OCR3A:Adrs: 98 Val:BB8
+
+OCR3B:Adrs: 9A Val:BB8
+
+OCR3C:Adrs: 9C Val:BB8
+
+TIMSK3:Adrs: 71 Val:0
+
+ICR3:Adrs: 96 Val:9C40
+
+Timer:4
+TCCR4A:Adrs: A0 Val:AA
+
+TCCR4B:Adrs: A1 Val:1A
+
+OCR4A:Adrs: A8 Val:BB8
+
+OCR4B:Adrs: AA Val:BB8
+
+OCR4C:Adrs: AC Val:BB8
+
+TIMSK4:Adrs: 72 Val:0
+
+ICR4:Adrs: A6 Val:9C40
+
+Timer:5
+TCCR5A:Adrs: 120 Val:A2
+
+TCCR5B:Adrs: 121 Val:1A
+
+OCR5A:Adrs: 128 Val:BB8
+
+OCR5B:Adrs: 12A Val:BB8
+
+OCR5C:Adrs: 12C Val:BB8
+
+TIMSK5:Adrs: 73 Val:0
+
+ICR5:Adrs: 126 Val:9C40
+
+Servo Index:0 Attached:1
+Servo Index:1 Attached:1
+Servo Index:2 Attached:1
+Servo Index:3 Attached:1
+Servo Index:4 Attached:1
+Servo Index:5 Attached:1
+Servo Index:6 Attached:1
+Servo Index:7 Attached:1
+Servo Index:8 Attached:1
+Servo Index:9 Attached:1
+Servo Index:10 Attached:1
+Servo Index:11 Attached:0
+Exit PWMServoNew::attach
+Enter PWMServoNew::attachint pinArg: 44 min: 800 max: 2200
+Servo HdwrCntrlInfo:
+sizeof volatile unit16_t * :2
+servoPinIndex: 11
+boardPinNumber: 44
+timerId;: 5
+outputChannel;	: 2
+attach Before - Reg Contents
+Timer:1
+TCCR1A:Adrs: 80 Val:AA
+
+TCCR1B:Adrs: 81 Val:1A
+
+OCR1A:Adrs: 88 Val:BB8
+
+OCR1B:Adrs: 8A Val:BB8
+
+OCR1C:Adrs: 8C Val:BB8
+
+TIMSK1:Adrs: 6F Val:0
+
+ICR1:Adrs: 86 Val:9C40
+
+Timer:3
+TCCR3A:Adrs: 90 Val:AA
+
+TCCR3B:Adrs: 91 Val:1A
+
+OCR3A:Adrs: 98 Val:BB8
+
+OCR3B:Adrs: 9A Val:BB8
+
+OCR3C:Adrs: 9C Val:BB8
+
+TIMSK3:Adrs: 71 Val:0
+
+ICR3:Adrs: 96 Val:9C40
+
+Timer:4
+TCCR4A:Adrs: A0 Val:AA
+
+TCCR4B:Adrs: A1 Val:1A
+
+OCR4A:Adrs: A8 Val:BB8
+
+OCR4B:Adrs: AA Val:BB8
+
+OCR4C:Adrs: AC Val:BB8
+
+TIMSK4:Adrs: 72 Val:0
+
+ICR4:Adrs: A6 Val:9C40
+
+Timer:5
+TCCR5A:Adrs: 120 Val:A2
+
+TCCR5B:Adrs: 121 Val:1A
+
+OCR5A:Adrs: 128 Val:BB8
+
+OCR5B:Adrs: 12A Val:BB8
+
+OCR5C:Adrs: 12C Val:BB8
+
+TIMSK5:Adrs: 73 Val:0
+
+ICR5:Adrs: 126 Val:9C40
+
+Timer HdwrCntrlInfo:
+avrTimerCounter::timerId  5
+avrTimerCounter::timerIndex: 3
+TimerHdwrCntrlInfo[timerIndex].timerId: 5
+sizeof volatile unit16_t * :2
+tccrnA: 120
+tccrnB: 121
+numberOfChannels: 3
+ocrnA: 128
+ocrnB: 12A
+ocrnC: 12C
+timskn: 73
+icrn: 126
+bitDefsIndex: 3
+bitDefsIndex: Timer HdwrBitDef Info: 
+3
+Channel: 0 com0BitMsk: 40
+Channel: 0 com1BitMsk: 80
+Channel: 1 com0BitMsk: 10
+Channel: 1 com1BitMsk: 20
+Channel: 2 com0BitMsk: 4
+Channel: 2 com1BitMsk: 8
+wgm0BitMsk: 1
+wgm1BitMsk: 2
+icncBitMsk: 80
+icesBitMsk: 40
+cs0BitMsk: 1
+cs1BitMsk: 2
+cs2BitMsk: 4
+wgm2BitMsk: 8
+wgm3BitMsk: 10
+Channel: 0 focBitMsk: 80
+Channel: 1 focBitMsk: 40
+Channel: 2 focBitMsk: 20
+icieBitMsk: 20
+Channel: 0 ocieBitMsk: 2
+Channel: 1 ocieBitMsk: 4
+Channel: 2 ocieBitMsk: 8
+toieBitMsk: 1
+icfBitMsk: 20
+Channel: 0 ocfBitMsk: 2
+Channel: 1 ocfBitMsk: 4
+Channel: 2 ocfBitMsk: 8
+tovBitMsk: 1
+attach After - Reg Contents
+Timer:1
+TCCR1A:Adrs: 80 Val:AA
+
+TCCR1B:Adrs: 81 Val:1A
+
+OCR1A:Adrs: 88 Val:BB8
+
+OCR1B:Adrs: 8A Val:BB8
+
+OCR1C:Adrs: 8C Val:BB8
+
+TIMSK1:Adrs: 6F Val:0
+
+ICR1:Adrs: 86 Val:9C40
+
+Timer:3
+TCCR3A:Adrs: 90 Val:AA
+
+TCCR3B:Adrs: 91 Val:1A
+
+OCR3A:Adrs: 98 Val:BB8
+
+OCR3B:Adrs: 9A Val:BB8
+
+OCR3C:Adrs: 9C Val:BB8
+
+TIMSK3:Adrs: 71 Val:0
+
+ICR3:Adrs: 96 Val:9C40
+
+Timer:4
+TCCR4A:Adrs: A0 Val:AA
+
+TCCR4B:Adrs: A1 Val:1A
+
+OCR4A:Adrs: A8 Val:BB8
+
+OCR4B:Adrs: AA Val:BB8
+
+OCR4C:Adrs: AC Val:BB8
+
+TIMSK4:Adrs: 72 Val:0
+
+ICR4:Adrs: A6 Val:9C40
+
+Timer:5
+TCCR5A:Adrs: 120 Val:AA
+
+TCCR5B:Adrs: 121 Val:1A
+
+OCR5A:Adrs: 128 Val:BB8
+
+OCR5B:Adrs: 12A Val:BB8
+
+OCR5C:Adrs: 12C Val:BB8
+
+TIMSK5:Adrs: 73 Val:0
+
+ICR5:Adrs: 126 Val:9C40
+
+Servo Index:0 Attached:1
+Servo Index:1 Attached:1
+Servo Index:2 Attached:1
+Servo Index:3 Attached:1
+Servo Index:4 Attached:1
+Servo Index:5 Attached:1
+Servo Index:6 Attached:1
+Servo Index:7 Attached:1
+Servo Index:8 Attached:1
+Servo Index:9 Attached:1
+Servo Index:10 Attached:1
+Servo Index:11 Attached:1
+Exit PWMServoNew::attach
+PWMServoNew::write wrote angle 0 to channel 0 of timer 1 for pin 11
+Timer:1
+TCCR1A:Adrs: 80 Val:AA
+
+TCCR1B:Adrs: 81 Val:1A
+
+OCR1A:Adrs: 88 Val:640
+
+OCR1B:Adrs: 8A Val:BB8
+
+OCR1C:Adrs: 8C Val:BB8
+
+TIMSK1:Adrs: 6F Val:0
+
+ICR1:Adrs: 86 Val:9C40
+
+
+PWMServoNew::write wrote angle 15 to channel 0 of timer 1 for pin 11
+Timer:1
+TCCR1A:Adrs: 80 Val:AA
+
+TCCR1B:Adrs: 81 Val:1A
+
+OCR1A:Adrs: 88 Val:728
+
+OCR1B:Adrs: 8A Val:BB8
+
+OCR1C:Adrs: 8C Val:BB8
+
+TIMSK1:Adrs: 6F Val:0
+
+ICR1:Adrs: 86 Val:9C40
+
+
+PWMServoNew::write wrote angle 30 to channel 0 of timer 1 for pin 11
+Timer:1
+TCCR1A:Adrs: 80 Val:AA
+
+TCCR1B:Adrs: 81 Val:1A
+
+OCR1A:Adrs: 88 Val:810
+
+OCR1B:Adrs: 8A Val:BB8
+
+OCR1C:Adrs: 8C Val:BB8
+
+TIMSK1:Adrs: 6F Val:0
+
+ICR1:Adrs: 86 Val:9C40
+
+
+PWMServoNew::write wrote angle 45 to channel 0 of timer 1 for pin 11
+Timer:1
+TCCR1A:Adrs: 80 Val:AA
+
+TCCR1B:Adrs: 81 Val:1A
+
+OCR1A:Adrs: 88 Val:8F8
+
+OCR1B:Adrs: 8A Val:BB8
+
+OCR1C:Adrs: 8C Val:BB8
+
+TIMSK1:Adrs: 6F Val:0
+
+ICR1:Adrs: 86 Val:9C40
+
+
+PWMServoNew::write wrote angle 60 to channel 0 of timer 1 for pin 11
+Timer:1
+TCCR1A:Adrs: 80 Val:AA
+
+TCCR1B:Adrs: 81 Val:1A
+
+OCR1A:Adrs: 88 Val:9E0
+
+OCR1B:Adrs: 8A Val:BB8
+
+OCR1C:Adrs: 8C Val:BB8
+
+TIMSK1:Adrs: 6F Val:0
+
+ICR1:Adrs: 86 Val:9C40
+
+
+PWMServoNew::write wrote angle 75 to channel 0 of timer 1 for pin 11
+Timer:1
+TCCR1A:Adrs: 80 Val:AA
+
+TCCR1B:Adrs: 81 Val:1A
+
+OCR1A:Adrs: 88 Val:AC8
+
+OCR1B:Adrs: 8A Val:BB8
+
+OCR1C:Adrs: 8C Val:BB8
+
+TIMSK1:Adrs: 6F Val:0
+
+ICR1:Adrs: 86 Val:9C40
+
+
+PWMServoNew::write wrote angle 90 to channel 0 of timer 1 for pin 11
+Timer:1
+TCCR1A:Adrs: 80 Val:AA
+
+TCCR1B:Adrs: 81 Val:1A
+
+OCR1A:Adrs: 88 Val:BB0
+
+OCR1B:Adrs: 8A Val:BB8
+
+OCR1C:Adrs: 8C Val:BB8
+
+TIMSK1:Adrs: 6F Val:0
+
+ICR1:Adrs: 86 Val:9C40
+
+
+PWMServoNew::write wrote angle 105 to channel 0 of timer 1 for pin 11
+Timer:1
+TCCR1A:Adrs: 80 Val:AA
+
+TCCR1B:Adrs: 81 Val:1A
+
+OCR1A:Adrs: 88 Val:C98
+
+OCR1B:Adrs: 8A Val:BB8
+
+OCR1C:Adrs: 8C Val:BB8
+
+TIMSK1:Adrs: 6F Val:0
+
+ICR1:Adrs: 86 Val:9C40
+
+
+PWMServoNew::write wrote angle 120 to channel 0 of timer 1 for pin 11
+Timer:1
+TCCR1A:Adrs: 80 Val:AA
+
+TCCR1B:Adrs: 81 Val:1A
+
+OCR1A:Adrs: 88 Val:D80
+
+OCR1B:Adrs: 8A Val:BB8
+
+OCR1C:Adrs: 8C Val:BB8
+
+TIMSK1:Adrs: 6F Val:0
+
+ICR1:Adrs: 86 Val:9C40
+
+
+PWMServoNew::write wrote angle 135 to channel 0 of timer 1 for pin 11
+Timer:1
+TCCR1A:Adrs: 80 Val:AA
+
+TCCR1B:Adrs: 81 Val:1A
+
+OCR1A:Adrs: 88 Val:E68
+
+OCR1B:Adrs: 8A Val:BB8
+
+OCR1C:Adrs: 8C Val:BB8
+
+TIMSK1:Adrs: 6F Val:0
+
+ICR1:Adrs: 86 Val:9C40
+
+
+PWMServoNew::write wrote angle 150 to channel 0 of timer 1 for pin 11
+Timer:1
+TCCR1A:Adrs: 80 Val:AA
+
+TCCR1B:Adrs: 81 Val:1A
+
+OCR1A:Adrs: 88 Val:F50
+
+OCR1B:Adrs: 8A Val:BB8
+
+OCR1C:Adrs: 8C Val:BB8
+
+TIMSK1:Adrs: 6F Val:0
+
+ICR1:Adrs: 86 Val:9C40
+
+
+PWMServoNew::write wrote angle 165 to channel 0 of timer 1 for pin 11
+Timer:1
+TCCR1A:Adrs: 80 Val:AA
+
+TCCR1B:Adrs: 81 Val:1A
+
+OCR1A:Adrs: 88 Val:1038
+
+OCR1B:Adrs: 8A Val:BB8
+
+OCR1C:Adrs: 8C Val:BB8
+
+TIMSK1:Adrs: 6F Val:0
+
+ICR1:Adrs: 86 Val:9C40
+
+
+PWMServoNew::write wrote angle 180 to channel 0 of timer 1 for pin 11
+Timer:1
+TCCR1A:Adrs: 80 Val:AA
+
+TCCR1B:Adrs: 81 Val:1A
+
+OCR1A:Adrs: 88 Val:1120
+
+OCR1B:Adrs: 8A Val:BB8
+
+OCR1C:Adrs: 8C Val:BB8
+
+TIMSK1:Adrs: 6F Val:0
+
+ICR1:Adrs: 86 Val:9C40
+
+
+PWMServoNew::write wrote angle 0 to channel 1 of timer 1 for pin 12
+Timer:1
+TCCR1A:Adrs: 80 Val:AA
+
+TCCR1B:Adrs: 81 Val:1A
+
+OCR1A:Adrs: 88 Val:1120
+
+OCR1B:Adrs: 8A Val:640
+
+OCR1C:Adrs: 8C Val:BB8
+
+TIMSK1:Adrs: 6F Val:0
+
+ICR1:Adrs: 86 Val:9C40
+
+
+PWMServoNew::write wrote angle 15 to channel 1 of timer 1 for pin 12
+Timer:1
+TCCR1A:Adrs: 80 Val:AA
+
+TCCR1B:Adrs: 81 Val:1A
+
+OCR1A:Adrs: 88 Val:1120
+
+OCR1B:Adrs: 8A Val:728
+
+OCR1C:Adrs: 8C Val:BB8
+
+TIMSK1:Adrs: 6F Val:0
+
+ICR1:Adrs: 86 Val:9C40
+
+
+PWMServoNew::write wrote angle 30 to channel 1 of timer 1 for pin 12
+Timer:1
+TCCR1A:Adrs: 80 Val:AA
+
+TCCR1B:Adrs: 81 Val:1A
+
+OCR1A:Adrs: 88 Val:1120
+
+OCR1B:Adrs: 8A Val:810
+
+OCR1C:Adrs: 8C Val:BB8
+
+TIMSK1:Adrs: 6F Val:0
+
+ICR1:Adrs: 86 Val:9C40
+
+
+PWMServoNew::write wrote angle 45 to channel 1 of timer 1 for pin 12
+Timer:1
+TCCR1A:Adrs: 80 Val:AA
+
+TCCR1B:Adrs: 81 Val:1A
+
+OCR1A:Adrs: 88 Val:1120
+
+OCR1B:Adrs: 8A Val:8F8
+
+OCR1C:Adrs: 8C Val:BB8
+
+TIMSK1:Adrs: 6F Val:0
+
+ICR1:Adrs: 86 Val:9C40
+
+
+PWMServoNew::write wrote angle 60 to channel 1 of timer 1 for pin 12
+Timer:1
+TCCR1A:Adrs: 80 Val:AA
+
+TCCR1B:Adrs: 81 Val:1A
+
+OCR1A:Adrs: 88 Val:1120
+
+OCR1B:Adrs: 8A Val:9E0
+
+OCR1C:Adrs: 8C Val:BB8
+
+TIMSK1:Adrs: 6F Val:0
+
+ICR1:Adrs: 86 Val:9C40
+
+
+PWMServoNew::write wrote angle 75 to channel 1 of timer 1 for pin 12
+Timer:1
+TCCR1A:Adrs: 80 Val:AA
+
+TCCR1B:Adrs: 81 Val:1A
+
+OCR1A:Adrs: 88 Val:1120
+
+OCR1B:Adrs: 8A Val:AC8
+
+OCR1C:Adrs: 8C Val:BB8
+
+TIMSK1:Adrs: 6F Val:0
+
+ICR1:Adrs: 86 Val:9C40
+
+
+PWMServoNew::write wrote angle 90 to channel 1 of timer 1 for pin 12
+Timer:1
+TCCR1A:Adrs: 80 Val:AA
+
+TCCR1B:Adrs: 81 Val:1A
+
+OCR1A:Adrs: 88 Val:1120
+
+OCR1B:Adrs: 8A Val:BB0
+
+OCR1C:Adrs: 8C Val:BB8
+
+TIMSK1:Adrs: 6F Val:0
+
+ICR1:Adrs: 86 Val:9C40
+
+
+PWMServoNew::write wrote angle 105 to channel 1 of timer 1 for pin 12
+Timer:1
+TCCR1A:Adrs: 80 Val:AA
+
+TCCR1B:Adrs: 81 Val:1A
+
+OCR1A:Adrs: 88 Val:1120
+
+OCR1B:Adrs: 8A Val:C98
+
+OCR1C:Adrs: 8C Val:BB8
+
+TIMSK1:Adrs: 6F Val:0
+
+ICR1:Adrs: 86 Val:9C40
+
+
+PWMServoNew::write wrote angle 120 to channel 1 of timer 1 for pin 12
+Timer:1
+TCCR1A:Adrs: 80 Val:AA
+
+TCCR1B:Adrs: 81 Val:1A
+
+OCR1A:Adrs: 88 Val:1120
+
+OCR1B:Adrs: 8A Val:D80
+
+OCR1C:Adrs: 8C Val:BB8
+
+TIMSK1:Adrs: 6F Val:0
+
+ICR1:Adrs: 86 Val:9C40
+
+
+PWMServoNew::write wrote angle 135 to channel 1 of timer 1 for pin 12
+Timer:1
+TCCR1A:Adrs: 80 Val:AA
+
+TCCR1B:Adrs: 81 Val:1A
+
+OCR1A:Adrs: 88 Val:1120
+
+OCR1B:Adrs: 8A Val:E68
+
+OCR1C:Adrs: 8C Val:BB8
+
+TIMSK1:Adrs: 6F Val:0
+
+ICR1:Adrs: 86 Val:9C40
+
+
+PWMServoNew::write wrote angle 150 to channel 1 of timer 1 for pin 12
+Timer:1
+TCCR1A:Adrs: 80 Val:AA
+
+TCCR1B:Adrs: 81 Val:1A
+
+OCR1A:Adrs: 88 Val:1120
+
+OCR1B:Adrs: 8A Val:F50
+
+OCR1C:Adrs: 8C Val:BB8
+
+TIMSK1:Adrs: 6F Val:0
+
+ICR1:Adrs: 86 Val:9C40
+
+
+PWMServoNew::write wrote angle 165 to channel 1 of timer 1 for pin 12
+Timer:1
+TCCR1A:Adrs: 80 Val:AA
+
+TCCR1B:Adrs: 81 Val:1A
+
+OCR1A:Adrs: 88 Val:1120
+
+OCR1B:Adrs: 8A Val:1038
+
+OCR1C:Adrs: 8C Val:BB8
+
+TIMSK1:Adrs: 6F Val:0
+
+ICR1:Adrs: 86 Val:9C40
+
+
+PWMServoNew::write wrote angle 180 to channel 1 of timer 1 for pin 12
+Timer:1
+TCCR1A:Adrs: 80 Val:AA
+
+TCCR1B:Adrs: 81 Val:1A
+
+OCR1A:Adrs: 88 Val:1120
+
+OCR1B:Adrs: 8A Val:1120
+
+OCR1C:Adrs: 8C Val:BB8
+
+TIMSK1:Adrs: 6F Val:0
+
+ICR1:Adrs: 86 Val:9C40
+
+
+PWMServoNew::write wrote angle 0 to channel 2 of timer 1 for pin 13
+Timer:1
+TCCR1A:Adrs: 80 Val:AA
+
+TCCR1B:Adrs: 81 Val:1A
+
+OCR1A:Adrs: 88 Val:1120
+
+OCR1B:Adrs: 8A Val:1120
+
+OCR1C:Adrs: 8C Val:640
+
+TIMSK1:Adrs: 6F Val:0
+
+ICR1:Adrs: 86 Val:9C40
+
+
+PWMServoNew::write wrote angle 15 to channel 2 of timer 1 for pin 13
+Timer:1
+TCCR1A:Adrs: 80 Val:AA
+
+TCCR1B:Adrs: 81 Val:1A
+
+OCR1A:Adrs: 88 Val:1120
+
+OCR1B:Adrs: 8A Val:1120
+
+OCR1C:Adrs: 8C Val:728
+
+TIMSK1:Adrs: 6F Val:0
+
+ICR1:Adrs: 86 Val:9C40
+
+
+PWMServoNew::write wrote angle 30 to channel 2 of timer 1 for pin 13
+Timer:1
+TCCR1A:Adrs: 80 Val:AA
+
+TCCR1B:Adrs: 81 Val:1A
+
+OCR1A:Adrs: 88 Val:1120
+
+OCR1B:Adrs: 8A Val:1120
+
+OCR1C:Adrs: 8C Val:810
+
+TIMSK1:Adrs: 6F Val:0
+
+ICR1:Adrs: 86 Val:9C40
+
+
+PWMServoNew::write wrote angle 45 to channel 2 of timer 1 for pin 13
+Timer:1
+TCCR1A:Adrs: 80 Val:AA
+
+TCCR1B:Adrs: 81 Val:1A
+
+OCR1A:Adrs: 88 Val:1120
+
+OCR1B:Adrs: 8A Val:1120
+
+OCR1C:Adrs: 8C Val:8F8
+
+TIMSK1:Adrs: 6F Val:0
+
+ICR1:Adrs: 86 Val:9C40
+
+
+PWMServoNew::write wrote angle 60 to channel 2 of timer 1 for pin 13
+Timer:1
+TCCR1A:Adrs: 80 Val:AA
+
+TCCR1B:Adrs: 81 Val:1A
+
+OCR1A:Adrs: 88 Val:1120
+
+OCR1B:Adrs: 8A Val:1120
+
+OCR1C:Adrs: 8C Val:9E0
+
+TIMSK1:Adrs: 6F Val:0
+
+ICR1:Adrs: 86 Val:9C40
+
+
+PWMServoNew::write wrote angle 75 to channel 2 of timer 1 for pin 13
+Timer:1
+TCCR1A:Adrs: 80 Val:AA
+
+TCCR1B:Adrs: 81 Val:1A
+
+OCR1A:Adrs: 88 Val:1120
+
+OCR1B:Adrs: 8A Val:1120
+
+OCR1C:Adrs: 8C Val:AC8
+
+TIMSK1:Adrs: 6F Val:0
+
+ICR1:Adrs: 86 Val:9C40
+
+
+PWMServoNew::write wrote angle 90 to channel 2 of timer 1 for pin 13
+Timer:1
+TCCR1A:Adrs: 80 Val:AA
+
+TCCR1B:Adrs: 81 Val:1A
+
+OCR1A:Adrs: 88 Val:1120
+
+OCR1B:Adrs: 8A Val:1120
+
+OCR1C:Adrs: 8C Val:BB0
+
+TIMSK1:Adrs: 6F Val:0
+
+ICR1:Adrs: 86 Val:9C40
+
+
+PWMServoNew::write wrote angle 105 to channel 2 of timer 1 for pin 13
+Timer:1
+TCCR1A:Adrs: 80 Val:AA
+
+TCCR1B:Adrs: 81 Val:1A
+
+OCR1A:Adrs: 88 Val:1120
+
+OCR1B:Adrs: 8A Val:1120
+
+OCR1C:Adrs: 8C Val:C98
+
+TIMSK1:Adrs: 6F Val:0
+
+ICR1:Adrs: 86 Val:9C40
+
+
+PWMServoNew::write wrote angle 120 to channel 2 of timer 1 for pin 13
+Timer:1
+TCCR1A:Adrs: 80 Val:AA
+
+TCCR1B:Adrs: 81 Val:1A
+
+OCR1A:Adrs: 88 Val:1120
+
+OCR1B:Adrs: 8A Val:1120
+
+OCR1C:Adrs: 8C Val:D80
+
+TIMSK1:Adrs: 6F Val:0
+
+ICR1:Adrs: 86 Val:9C40
+
+
+PWMServoNew::write wrote angle 135 to channel 2 of timer 1 for pin 13
+Timer:1
+TCCR1A:Adrs: 80 Val:AA
+
+TCCR1B:Adrs: 81 Val:1A
+
+OCR1A:Adrs: 88 Val:1120
+
+OCR1B:Adrs: 8A Val:1120
+
+OCR1C:Adrs: 8C Val:E68
+
+TIMSK1:Adrs: 6F Val:0
+
+ICR1:Adrs: 86 Val:9C40
+
+
+PWMServoNew::write wrote angle 150 to channel 2 of timer 1 for pin 13
+Timer:1
+TCCR1A:Adrs: 80 Val:AA
+
+TCCR1B:Adrs: 81 Val:1A
+
+OCR1A:Adrs: 88 Val:1120
+
+OCR1B:Adrs: 8A Val:1120
+
+OCR1C:Adrs: 8C Val:F50
+
+TIMSK1:Adrs: 6F Val:0
+
+ICR1:Adrs: 86 Val:9C40
+
+
+PWMServoNew::write wrote angle 165 to channel 2 of timer 1 for pin 13
+Timer:1
+TCCR1A:Adrs: 80 Val:AA
+
+TCCR1B:Adrs: 81 Val:1A
+
+OCR1A:Adrs: 88 Val:1120
+
+OCR1B:Adrs: 8A Val:1120
+
+OCR1C:Adrs: 8C Val:1038
+
+TIMSK1:Adrs: 6F Val:0
+
+ICR1:Adrs: 86 Val:9C40
+
+
+PWMServoNew::write wrote angle 180 to channel 2 of timer 1 for pin 13
+Timer:1
+TCCR1A:Adrs: 80 Val:AA
+
+TCCR1B:Adrs: 81 Val:1A
+
+OCR1A:Adrs: 88 Val:1120
+
+OCR1B:Adrs: 8A Val:1120
+
+OCR1C:Adrs: 8C Val:1120
+
+TIMSK1:Adrs: 6F Val:0
+
+ICR1:Adrs: 86 Val:9C40
+
+
+PWMServoNew::write wrote angle 0 to channel 0 of timer 3 for pin 5
+Timer:3
+TCCR3A:Adrs: 90 Val:AA
+
+TCCR3B:Adrs: 91 Val:1A
+
+OCR3A:Adrs: 98 Val:640
+
+OCR3B:Adrs: 9A Val:BB8
+
+OCR3C:Adrs: 9C Val:BB8
+
+TIMSK3:Adrs: 71 Val:0
+
+ICR3:Adrs: 96 Val:9C40
+
+
+PWMServoNew::write wrote angle 15 to channel 0 of timer 3 for pin 5
+Timer:3
+TCCR3A:Adrs: 90 Val:AA
+
+TCCR3B:Adrs: 91 Val:1A
+
+OCR3A:Adrs: 98 Val:728
+
+OCR3B:Adrs: 9A Val:BB8
+
+OCR3C:Adrs: 9C Val:BB8
+
+TIMSK3:Adrs: 71 Val:0
+
+ICR3:Adrs: 96 Val:9C40
+
+
+PWMServoNew::write wrote angle 30 to channel 0 of timer 3 for pin 5
+Timer:3
+TCCR3A:Adrs: 90 Val:AA
+
+TCCR3B:Adrs: 91 Val:1A
+
+OCR3A:Adrs: 98 Val:810
+
+OCR3B:Adrs: 9A Val:BB8
+
+OCR3C:Adrs: 9C Val:BB8
+
+TIMSK3:Adrs: 71 Val:0
+
+ICR3:Adrs: 96 Val:9C40
+
+
+PWMServoNew::write wrote angle 45 to channel 0 of timer 3 for pin 5
+Timer:3
+TCCR3A:Adrs: 90 Val:AA
+
+TCCR3B:Adrs: 91 Val:1A
+
+OCR3A:Adrs: 98 Val:8F8
+
+OCR3B:Adrs: 9A Val:BB8
+
+OCR3C:Adrs: 9C Val:BB8
+
+TIMSK3:Adrs: 71 Val:0
+
+ICR3:Adrs: 96 Val:9C40
+
+
+PWMServoNew::write wrote angle 60 to channel 0 of timer 3 for pin 5
+Timer:3
+TCCR3A:Adrs: 90 Val:AA
+
+TCCR3B:Adrs: 91 Val:1A
+
+OCR3A:Adrs: 98 Val:9E0
+
+OCR3B:Adrs: 9A Val:BB8
+
+OCR3C:Adrs: 9C Val:BB8
+
+TIMSK3:Adrs: 71 Val:0
+
+ICR3:Adrs: 96 Val:9C40
+
+
+PWMServoNew::write wrote angle 75 to channel 0 of timer 3 for pin 5
+Timer:3
+TCCR3A:Adrs: 90 Val:AA
+
+TCCR3B:Adrs: 91 Val:1A
+
+OCR3A:Adrs: 98 Val:AC8
+
+OCR3B:Adrs: 9A Val:BB8
+
+OCR3C:Adrs: 9C Val:BB8
+
+TIMSK3:Adrs: 71 Val:0
+
+ICR3:Adrs: 96 Val:9C40
+
+
+PWMServoNew::write wrote angle 90 to channel 0 of timer 3 for pin 5
+Timer:3
+TCCR3A:Adrs: 90 Val:AA
+
+TCCR3B:Adrs: 91 Val:1A
+
+OCR3A:Adrs: 98 Val:BB0
+
+OCR3B:Adrs: 9A Val:BB8
+
+OCR3C:Adrs: 9C Val:BB8
+
+TIMSK3:Adrs: 71 Val:0
+
+ICR3:Adrs: 96 Val:9C40
+
+
+PWMServoNew::write wrote angle 105 to channel 0 of timer 3 for pin 5
+Timer:3
+TCCR3A:Adrs: 90 Val:AA
+
+TCCR3B:Adrs: 91 Val:1A
+
+OCR3A:Adrs: 98 Val:C98
+
+OCR3B:Adrs: 9A Val:BB8
+
+OCR3C:Adrs: 9C Val:BB8
+
+TIMSK3:Adrs: 71 Val:0
+
+ICR3:Adrs: 96 Val:9C40
+
+
+PWMServoNew::write wrote angle 120 to channel 0 of timer 3 for pin 5
+Timer:3
+TCCR3A:Adrs: 90 Val:AA
+
+TCCR3B:Adrs: 91 Val:1A
+
+OCR3A:Adrs: 98 Val:D80
+
+OCR3B:Adrs: 9A Val:BB8
+
+OCR3C:Adrs: 9C Val:BB8
+
+TIMSK3:Adrs: 71 Val:0
+
+ICR3:Adrs: 96 Val:9C40
+
+
+PWMServoNew::write wrote angle 135 to channel 0 of timer 3 for pin 5
+Timer:3
+TCCR3A:Adrs: 90 Val:AA
+
+TCCR3B:Adrs: 91 Val:1A
+
+OCR3A:Adrs: 98 Val:E68
+
+OCR3B:Adrs: 9A Val:BB8
+
+OCR3C:Adrs: 9C Val:BB8
+
+TIMSK3:Adrs: 71 Val:0
+
+ICR3:Adrs: 96 Val:9C40
+
+
+PWMServoNew::write wrote angle 150 to channel 0 of timer 3 for pin 5
+Timer:3
+TCCR3A:Adrs: 90 Val:AA
+
+TCCR3B:Adrs: 91 Val:1A
+
+OCR3A:Adrs: 98 Val:F50
+
+OCR3B:Adrs: 9A Val:BB8
+
+OCR3C:Adrs: 9C Val:BB8
+
+TIMSK3:Adrs: 71 Val:0
+
+ICR3:Adrs: 96 Val:9C40
+
+
+PWMServoNew::write wrote angle 165 to channel 0 of timer 3 for pin 5
+Timer:3
+TCCR3A:Adrs: 90 Val:AA
+
+TCCR3B:Adrs: 91 Val:1A
+
+OCR3A:Adrs: 98 Val:1038
+
+OCR3B:Adrs: 9A Val:BB8
+
+OCR3C:Adrs: 9C Val:BB8
+
+TIMSK3:Adrs: 71 Val:0
+
+ICR3:Adrs: 96 Val:9C40
+
+
+PWMServoNew::write wrote angle 180 to channel 0 of timer 3 for pin 5
+Timer:3
+TCCR3A:Adrs: 90 Val:AA
+
+TCCR3B:Adrs: 91 Val:1A
+
+OCR3A:Adrs: 98 Val:1120
+
+OCR3B:Adrs: 9A Val:BB8
+
+OCR3C:Adrs: 9C Val:BB8
+
+TIMSK3:Adrs: 71 Val:0
+
+ICR3:Adrs: 96 Val:9C40
+
+
+PWMServoNew::write wrote angle 0 to channel 1 of timer 3 for pin 2
+Timer:3
+TCCR3A:Adrs: 90 Val:AA
+
+TCCR3B:Adrs: 91 Val:1A
+
+OCR3A:Adrs: 98 Val:1120
+
+OCR3B:Adrs: 9A Val:640
+
+OCR3C:Adrs: 9C Val:BB8
+
+TIMSK3:Adrs: 71 Val:0
+
+ICR3:Adrs: 96 Val:9C40
+
+
+PWMServoNew::write wrote angle 15 to channel 1 of timer 3 for pin 2
+Timer:3
+TCCR3A:Adrs: 90 Val:AA
+
+TCCR3B:Adrs: 91 Val:1A
+
+OCR3A:Adrs: 98 Val:1120
+
+OCR3B:Adrs: 9A Val:728
+
+OCR3C:Adrs: 9C Val:BB8
+
+TIMSK3:Adrs: 71 Val:0
+
+ICR3:Adrs: 96 Val:9C40
+
+
+PWMServoNew::write wrote angle 30 to channel 1 of timer 3 for pin 2
+Timer:3
+TCCR3A:Adrs: 90 Val:AA
+
+TCCR3B:Adrs: 91 Val:1A
+
+OCR3A:Adrs: 98 Val:1120
+
+OCR3B:Adrs: 9A Val:810
+
+OCR3C:Adrs: 9C Val:BB8
+
+TIMSK3:Adrs: 71 Val:0
+
+ICR3:Adrs: 96 Val:9C40
+
+
+PWMServoNew::write wrote angle 45 to channel 1 of timer 3 for pin 2
+Timer:3
+TCCR3A:Adrs: 90 Val:AA
+
+TCCR3B:Adrs: 91 Val:1A
+
+OCR3A:Adrs: 98 Val:1120
+
+OCR3B:Adrs: 9A Val:8F8
+
+OCR3C:Adrs: 9C Val:BB8
+
+TIMSK3:Adrs: 71 Val:0
+
+ICR3:Adrs: 96 Val:9C40
+
+
+PWMServoNew::write wrote angle 60 to channel 1 of timer 3 for pin 2
+Timer:3
+TCCR3A:Adrs: 90 Val:AA
+
+TCCR3B:Adrs: 91 Val:1A
+
+OCR3A:Adrs: 98 Val:1120
+
+OCR3B:Adrs: 9A Val:9E0
+
+OCR3C:Adrs: 9C Val:BB8
+
+TIMSK3:Adrs: 71 Val:0
+
+ICR3:Adrs: 96 Val:9C40
+
+
+PWMServoNew::write wrote angle 75 to channel 1 of timer 3 for pin 2
+Timer:3
+TCCR3A:Adrs: 90 Val:AA
+
+TCCR3B:Adrs: 91 Val:1A
+
+OCR3A:Adrs: 98 Val:1120
+
+OCR3B:Adrs: 9A Val:AC8
+
+OCR3C:Adrs: 9C Val:BB8
+
+TIMSK3:Adrs: 71 Val:0
+
+ICR3:Adrs: 96 Val:9C40
+
+
+PWMServoNew::write wrote angle 90 to channel 1 of timer 3 for pin 2
+Timer:3
+TCCR3A:Adrs: 90 Val:AA
+
+TCCR3B:Adrs: 91 Val:1A
+
+OCR3A:Adrs: 98 Val:1120
+
+OCR3B:Adrs: 9A Val:BB0
+
+OCR3C:Adrs: 9C Val:BB8
+
+TIMSK3:Adrs: 71 Val:0
+
+ICR3:Adrs: 96 Val:9C40
+
+
+PWMServoNew::write wrote angle 105 to channel 1 of timer 3 for pin 2
+Timer:3
+TCCR3A:Adrs: 90 Val:AA
+
+TCCR3B:Adrs: 91 Val:1A
+
+OCR3A:Adrs: 98 Val:1120
+
+OCR3B:Adrs: 9A Val:C98
+
+OCR3C:Adrs: 9C Val:BB8
+
+TIMSK3:Adrs: 71 Val:0
+
+ICR3:Adrs: 96 Val:9C40
+
+
+PWMServoNew::write wrote angle 120 to channel 1 of timer 3 for pin 2
+Timer:3
+TCCR3A:Adrs: 90 Val:AA
+
+TCCR3B:Adrs: 91 Val:1A
+
+OCR3A:Adrs: 98 Val:1120
+
+OCR3B:Adrs: 9A Val:D80
+
+OCR3C:Adrs: 9C Val:BB8
+
+TIMSK3:Adrs: 71 Val:0
+
+ICR3:Adrs: 96 Val:9C40
+
+
+PWMServoNew::write wrote angle 135 to channel 1 of timer 3 for pin 2
+Timer:3
+TCCR3A:Adrs: 90 Val:AA
+
+TCCR3B:Adrs: 91 Val:1A
+
+OCR3A:Adrs: 98 Val:1120
+
+OCR3B:Adrs: 9A Val:E68
+
+OCR3C:Adrs: 9C Val:BB8
+
+TIMSK3:Adrs: 71 Val:0
+
+ICR3:Adrs: 96 Val:9C40
+
+
+PWMServoNew::write wrote angle 150 to channel 1 of timer 3 for pin 2
+Timer:3
+TCCR3A:Adrs: 90 Val:AA
+
+TCCR3B:Adrs: 91 Val:1A
+
+OCR3A:Adrs: 98 Val:1120
+
+OCR3B:Adrs: 9A Val:F50
+
+OCR3C:Adrs: 9C Val:BB8
+
+TIMSK3:Adrs: 71 Val:0
+
+ICR3:Adrs: 96 Val:9C40
+
+
+PWMServoNew::write wrote angle 165 to channel 1 of timer 3 for pin 2
+Timer:3
+TCCR3A:Adrs: 90 Val:AA
+
+TCCR3B:Adrs: 91 Val:1A
+
+OCR3A:Adrs: 98 Val:1120
+
+OCR3B:Adrs: 9A Val:1038
+
+OCR3C:Adrs: 9C Val:BB8
+
+TIMSK3:Adrs: 71 Val:0
+
+ICR3:Adrs: 96 Val:9C40
+
+
+PWMServoNew::write wrote angle 180 to channel 1 of timer 3 for pin 2
+Timer:3
+TCCR3A:Adrs: 90 Val:AA
+
+TCCR3B:Adrs: 91 Val:1A
+
+OCR3A:Adrs: 98 Val:1120
+
+OCR3B:Adrs: 9A Val:1120
+
+OCR3C:Adrs: 9C Val:BB8
+
+TIMSK3:Adrs: 71 Val:0
+
+ICR3:Adrs: 96 Val:9C40
+
+
+PWMServoNew::write wrote angle 0 to channel 2 of timer 3 for pin 3
+Timer:3
+TCCR3A:Adrs: 90 Val:AA
+
+TCCR3B:Adrs: 91 Val:1A
+
+OCR3A:Adrs: 98 Val:1120
+
+OCR3B:Adrs: 9A Val:1120
+
+OCR3C:Adrs: 9C Val:640
+
+TIMSK3:Adrs: 71 Val:0
+
+ICR3:Adrs: 96 Val:9C40
+
+
+PWMServoNew::write wrote angle 15 to channel 2 of timer 3 for pin 3
+Timer:3
+TCCR3A:Adrs: 90 Val:AA
+
+TCCR3B:Adrs: 91 Val:1A
+
+OCR3A:Adrs: 98 Val:1120
+
+OCR3B:Adrs: 9A Val:1120
+
+OCR3C:Adrs: 9C Val:728
+
+TIMSK3:Adrs: 71 Val:0
+
+ICR3:Adrs: 96 Val:9C40
+
+
+PWMServoNew::write wrote angle 30 to channel 2 of timer 3 for pin 3
+Timer:3
+TCCR3A:Adrs: 90 Val:AA
+
+TCCR3B:Adrs: 91 Val:1A
+
+OCR3A:Adrs: 98 Val:1120
+
+OCR3B:Adrs: 9A Val:1120
+
+OCR3C:Adrs: 9C Val:810
+
+TIMSK3:Adrs: 71 Val:0
+
+ICR3:Adrs: 96 Val:9C40
+
+
+PWMServoNew::write wrote angle 45 to channel 2 of timer 3 for pin 3
+Timer:3
+TCCR3A:Adrs: 90 Val:AA
+
+TCCR3B:Adrs: 91 Val:1A
+
+OCR3A:Adrs: 98 Val:1120
+
+OCR3B:Adrs: 9A Val:1120
+
+OCR3C:Adrs: 9C Val:8F8
+
+TIMSK3:Adrs: 71 Val:0
+
+ICR3:Adrs: 96 Val:9C40
+
+
+PWMServoNew::write wrote angle 60 to channel 2 of timer 3 for pin 3
+Timer:3
+TCCR3A:Adrs: 90 Val:AA
+
+TCCR3B:Adrs: 91 Val:1A
+
+OCR3A:Adrs: 98 Val:1120
+
+OCR3B:Adrs: 9A Val:1120
+
+OCR3C:Adrs: 9C Val:9E0
+
+TIMSK3:Adrs: 71 Val:0
+
+ICR3:Adrs: 96 Val:9C40
+
+
+PWMServoNew::write wrote angle 75 to channel 2 of timer 3 for pin 3
+Timer:3
+TCCR3A:Adrs: 90 Val:AA
+
+TCCR3B:Adrs: 91 Val:1A
+
+OCR3A:Adrs: 98 Val:1120
+
+OCR3B:Adrs: 9A Val:1120
+
+OCR3C:Adrs: 9C Val:AC8
+
+TIMSK3:Adrs: 71 Val:0
+
+ICR3:Adrs: 96 Val:9C40
+
+
+PWMServoNew::write wrote angle 90 to channel 2 of timer 3 for pin 3
+Timer:3
+TCCR3A:Adrs: 90 Val:AA
+
+TCCR3B:Adrs: 91 Val:1A
+
+OCR3A:Adrs: 98 Val:1120
+
+OCR3B:Adrs: 9A Val:1120
+
+OCR3C:Adrs: 9C Val:BB0
+
+TIMSK3:Adrs: 71 Val:0
+
+ICR3:Adrs: 96 Val:9C40
+
+
+PWMServoNew::write wrote angle 105 to channel 2 of timer 3 for pin 3
+Timer:3
+TCCR3A:Adrs: 90 Val:AA
+
+TCCR3B:Adrs: 91 Val:1A
+
+OCR3A:Adrs: 98 Val:1120
+
+OCR3B:Adrs: 9A Val:1120
+
+OCR3C:Adrs: 9C Val:C98
+
+TIMSK3:Adrs: 71 Val:0
+
+ICR3:Adrs: 96 Val:9C40
+
+
+PWMServoNew::write wrote angle 120 to channel 2 of timer 3 for pin 3
+Timer:3
+TCCR3A:Adrs: 90 Val:AA
+
+TCCR3B:Adrs: 91 Val:1A
+
+OCR3A:Adrs: 98 Val:1120
+
+OCR3B:Adrs: 9A Val:1120
+
+OCR3C:Adrs: 9C Val:D80
+
+TIMSK3:Adrs: 71 Val:0
+
+ICR3:Adrs: 96 Val:9C40
+
+
+PWMServoNew::write wrote angle 135 to channel 2 of timer 3 for pin 3
+Timer:3
+TCCR3A:Adrs: 90 Val:AA
+
+TCCR3B:Adrs: 91 Val:1A
+
+OCR3A:Adrs: 98 Val:1120
+
+OCR3B:Adrs: 9A Val:1120
+
+OCR3C:Adrs: 9C Val:E68
+
+TIMSK3:Adrs: 71 Val:0
+
+ICR3:Adrs: 96 Val:9C40
+
+
+PWMServoNew::write wrote angle 150 to channel 2 of timer 3 for pin 3
+Timer:3
+TCCR3A:Adrs: 90 Val:AA
+
+TCCR3B:Adrs: 91 Val:1A
+
+OCR3A:Adrs: 98 Val:1120
+
+OCR3B:Adrs: 9A Val:1120
+
+OCR3C:Adrs: 9C Val:F50
+
+TIMSK3:Adrs: 71 Val:0
+
+ICR3:Adrs: 96 Val:9C40
+
+
+PWMServoNew::write wrote angle 165 to channel 2 of timer 3 for pin 3
+Timer:3
+TCCR3A:Adrs: 90 Val:AA
+
+TCCR3B:Adrs: 91 Val:1A
+
+OCR3A:Adrs: 98 Val:1120
+
+OCR3B:Adrs: 9A Val:1120
+
+OCR3C:Adrs: 9C Val:1038
+
+TIMSK3:Adrs: 71 Val:0
+
+ICR3:Adrs: 96 Val:9C40
+
+
+PWMServoNew::write wrote angle 180 to channel 2 of timer 3 for pin 3
+Timer:3
+TCCR3A:Adrs: 90 Val:AA
+
+TCCR3B:Adrs: 91 Val:1A
+
+OCR3A:Adrs: 98 Val:1120
+
+OCR3B:Adrs: 9A Val:1120
+
+OCR3C:Adrs: 9C Val:1120
+
+TIMSK3:Adrs: 71 Val:0
+
+ICR3:Adrs: 96 Val:9C40
+
+
+PWMServoNew::write wrote angle 0 to channel 0 of timer 4 for pin 6
+Timer:4
+TCCR4A:Adrs: A0 Val:AA
+
+TCCR4B:Adrs: A1 Val:1A
+
+OCR4A:Adrs: A8 Val:640
+
+OCR4B:Adrs: AA Val:BB8
+
+OCR4C:Adrs: AC Val:BB8
+
+TIMSK4:Adrs: 72 Val:0
+
+ICR4:Adrs: A6 Val:9C40
+
+
+PWMServoNew::write wrote angle 15 to channel 0 of timer 4 for pin 6
+Timer:4
+TCCR4A:Adrs: A0 Val:AA
+
+TCCR4B:Adrs: A1 Val:1A
+
+OCR4A:Adrs: A8 Val:728
+
+OCR4B:Adrs: AA Val:BB8
+
+OCR4C:Adrs: AC Val:BB8
+
+TIMSK4:Adrs: 72 Val:0
+
+ICR4:Adrs: A6 Val:9C40
+
+
+PWMServoNew::write wrote angle 30 to channel 0 of timer 4 for pin 6
+Timer:4
+TCCR4A:Adrs: A0 Val:AA
+
+TCCR4B:Adrs: A1 Val:1A
+
+OCR4A:Adrs: A8 Val:810
+
+OCR4B:Adrs: AA Val:BB8
+
+OCR4C:Adrs: AC Val:BB8
+
+TIMSK4:Adrs: 72 Val:0
+
+ICR4:Adrs: A6 Val:9C40
+
+
+PWMServoNew::write wrote angle 45 to channel 0 of timer 4 for pin 6
+Timer:4
+TCCR4A:Adrs: A0 Val:AA
+
+TCCR4B:Adrs: A1 Val:1A
+
+OCR4A:Adrs: A8 Val:8F8
+
+OCR4B:Adrs: AA Val:BB8
+
+OCR4C:Adrs: AC Val:BB8
+
+TIMSK4:Adrs: 72 Val:0
+
+ICR4:Adrs: A6 Val:9C40
+
+
+PWMServoNew::write wrote angle 60 to channel 0 of timer 4 for pin 6
+Timer:4
+TCCR4A:Adrs: A0 Val:AA
+
+TCCR4B:Adrs: A1 Val:1A
+
+OCR4A:Adrs: A8 Val:9E0
+
+OCR4B:Adrs: AA Val:BB8
+
+OCR4C:Adrs: AC Val:BB8
+
+TIMSK4:Adrs: 72 Val:0
+
+ICR4:Adrs: A6 Val:9C40
+
+
+PWMServoNew::write wrote angle 75 to channel 0 of timer 4 for pin 6
+Timer:4
+TCCR4A:Adrs: A0 Val:AA
+
+TCCR4B:Adrs: A1 Val:1A
+
+OCR4A:Adrs: A8 Val:AC8
+
+OCR4B:Adrs: AA Val:BB8
+
+OCR4C:Adrs: AC Val:BB8
+
+TIMSK4:Adrs: 72 Val:0
+
+ICR4:Adrs: A6 Val:9C40
+
+
+PWMServoNew::write wrote angle 90 to channel 0 of timer 4 for pin 6
+Timer:4
+TCCR4A:Adrs: A0 Val:AA
+
+TCCR4B:Adrs: A1 Val:1A
+
+OCR4A:Adrs: A8 Val:BB0
+
+OCR4B:Adrs: AA Val:BB8
+
+OCR4C:Adrs: AC Val:BB8
+
+TIMSK4:Adrs: 72 Val:0
+
+ICR4:Adrs: A6 Val:9C40
+
+
+PWMServoNew::write wrote angle 105 to channel 0 of timer 4 for pin 6
+Timer:4
+TCCR4A:Adrs: A0 Val:AA
+
+TCCR4B:Adrs: A1 Val:1A
+
+OCR4A:Adrs: A8 Val:C98
+
+OCR4B:Adrs: AA Val:BB8
+
+OCR4C:Adrs: AC Val:BB8
+
+TIMSK4:Adrs: 72 Val:0
+
+ICR4:Adrs: A6 Val:9C40
+
+
+PWMServoNew::write wrote angle 120 to channel 0 of timer 4 for pin 6
+Timer:4
+TCCR4A:Adrs: A0 Val:AA
+
+TCCR4B:Adrs: A1 Val:1A
+
+OCR4A:Adrs: A8 Val:D80
+
+OCR4B:Adrs: AA Val:BB8
+
+OCR4C:Adrs: AC Val:BB8
+
+TIMSK4:Adrs: 72 Val:0
+
+ICR4:Adrs: A6 Val:9C40
+
+
+PWMServoNew::write wrote angle 135 to channel 0 of timer 4 for pin 6
+Timer:4
+TCCR4A:Adrs: A0 Val:AA
+
+TCCR4B:Adrs: A1 Val:1A
+
+OCR4A:Adrs: A8 Val:E68
+
+OCR4B:Adrs: AA Val:BB8
+
+OCR4C:Adrs: AC Val:BB8
+
+TIMSK4:Adrs: 72 Val:0
+
+ICR4:Adrs: A6 Val:9C40
+
+
+PWMServoNew::write wrote angle 150 to channel 0 of timer 4 for pin 6
+Timer:4
+TCCR4A:Adrs: A0 Val:AA
+
+TCCR4B:Adrs: A1 Val:1A
+
+OCR4A:Adrs: A8 Val:F50
+
+OCR4B:Adrs: AA Val:BB8
+
+OCR4C:Adrs: AC Val:BB8
+
+TIMSK4:Adrs: 72 Val:0
+
+ICR4:Adrs: A6 Val:9C40
+
+
+PWMServoNew::write wrote angle 165 to channel 0 of timer 4 for pin 6
+Timer:4
+TCCR4A:Adrs: A0 Val:AA
+
+TCCR4B:Adrs: A1 Val:1A
+
+OCR4A:Adrs: A8 Val:1038
+
+OCR4B:Adrs: AA Val:BB8
+
+OCR4C:Adrs: AC Val:BB8
+
+TIMSK4:Adrs: 72 Val:0
+
+ICR4:Adrs: A6 Val:9C40
+
+
+PWMServoNew::write wrote angle 180 to channel 0 of timer 4 for pin 6
+Timer:4
+TCCR4A:Adrs: A0 Val:AA
+
+TCCR4B:Adrs: A1 Val:1A
+
+OCR4A:Adrs: A8 Val:1120
+
+OCR4B:Adrs: AA Val:BB8
+
+OCR4C:Adrs: AC Val:BB8
+
+TIMSK4:Adrs: 72 Val:0
+
+ICR4:Adrs: A6 Val:9C40
+
+
+PWMServoNew::write wrote angle 0 to channel 1 of timer 4 for pin 7
+Timer:4
+TCCR4A:Adrs: A0 Val:AA
+
+TCCR4B:Adrs: A1 Val:1A
+
+OCR4A:Adrs: A8 Val:1120
+
+OCR4B:Adrs: AA Val:640
+
+OCR4C:Adrs: AC Val:BB8
+
+TIMSK4:Adrs: 72 Val:0
+
+ICR4:Adrs: A6 Val:9C40
+
+
+PWMServoNew::write wrote angle 15 to channel 1 of timer 4 for pin 7
+Timer:4
+TCCR4A:Adrs: A0 Val:AA
+
+TCCR4B:Adrs: A1 Val:1A
+
+OCR4A:Adrs: A8 Val:1120
+
+OCR4B:Adrs: AA Val:728
+
+OCR4C:Adrs: AC Val:BB8
+
+TIMSK4:Adrs: 72 Val:0
+
+ICR4:Adrs: A6 Val:9C40
+
+
+PWMServoNew::write wrote angle 30 to channel 1 of timer 4 for pin 7
+Timer:4
+TCCR4A:Adrs: A0 Val:AA
+
+TCCR4B:Adrs: A1 Val:1A
+
+OCR4A:Adrs: A8 Val:1120
+
+OCR4B:Adrs: AA Val:810
+
+OCR4C:Adrs: AC Val:BB8
+
+TIMSK4:Adrs: 72 Val:0
+
+ICR4:Adrs: A6 Val:9C40
+
+
+PWMServoNew::write wrote angle 45 to channel 1 of timer 4 for pin 7
+Timer:4
+TCCR4A:Adrs: A0 Val:AA
+
+TCCR4B:Adrs: A1 Val:1A
+
+OCR4A:Adrs: A8 Val:1120
+
+OCR4B:Adrs: AA Val:8F8
+
+OCR4C:Adrs: AC Val:BB8
+
+TIMSK4:Adrs: 72 Val:0
+
+ICR4:Adrs: A6 Val:9C40
+
+
+PWMServoNew::write wrote angle 60 to channel 1 of timer 4 for pin 7
+Timer:4
+TCCR4A:Adrs: A0 Val:AA
+
+TCCR4B:Adrs: A1 Val:1A
+
+OCR4A:Adrs: A8 Val:1120
+
+OCR4B:Adrs: AA Val:9E0
+
+OCR4C:Adrs: AC Val:BB8
+
+TIMSK4:Adrs: 72 Val:0
+
+ICR4:Adrs: A6 Val:9C40
+
+
+PWMServoNew::write wrote angle 75 to channel 1 of timer 4 for pin 7
+Timer:4
+TCCR4A:Adrs: A0 Val:AA
+
+TCCR4B:Adrs: A1 Val:1A
+
+OCR4A:Adrs: A8 Val:1120
+
+OCR4B:Adrs: AA Val:AC8
+
+OCR4C:Adrs: AC Val:BB8
+
+TIMSK4:Adrs: 72 Val:0
+
+ICR4:Adrs: A6 Val:9C40
+
+
+PWMServoNew::write wrote angle 90 to channel 1 of timer 4 for pin 7
+Timer:4
+TCCR4A:Adrs: A0 Val:AA
+
+TCCR4B:Adrs: A1 Val:1A
+
+OCR4A:Adrs: A8 Val:1120
+
+OCR4B:Adrs: AA Val:BB0
+
+OCR4C:Adrs: AC Val:BB8
+
+TIMSK4:Adrs: 72 Val:0
+
+ICR4:Adrs: A6 Val:9C40
+
+
+PWMServoNew::write wrote angle 105 to channel 1 of timer 4 for pin 7
+Timer:4
+TCCR4A:Adrs: A0 Val:AA
+
+TCCR4B:Adrs: A1 Val:1A
+
+OCR4A:Adrs: A8 Val:1120
+
+OCR4B:Adrs: AA Val:C98
+
+OCR4C:Adrs: AC Val:BB8
+
+TIMSK4:Adrs: 72 Val:0
+
+ICR4:Adrs: A6 Val:9C40
+
+
+PWMServoNew::write wrote angle 120 to channel 1 of timer 4 for pin 7
+Timer:4
+TCCR4A:Adrs: A0 Val:AA
+
+TCCR4B:Adrs: A1 Val:1A
+
+OCR4A:Adrs: A8 Val:1120
+
+OCR4B:Adrs: AA Val:D80
+
+OCR4C:Adrs: AC Val:BB8
+
+TIMSK4:Adrs: 72 Val:0
+
+ICR4:Adrs: A6 Val:9C40
+
+
+PWMServoNew::write wrote angle 135 to channel 1 of timer 4 for pin 7
+Timer:4
+TCCR4A:Adrs: A0 Val:AA
+
+TCCR4B:Adrs: A1 Val:1A
+
+OCR4A:Adrs: A8 Val:1120
+
+OCR4B:Adrs: AA Val:E68
+
+OCR4C:Adrs: AC Val:BB8
+
+TIMSK4:Adrs: 72 Val:0
+
+ICR4:Adrs: A6 Val:9C40
+
+
+PWMServoNew::write wrote angle 150 to channel 1 of timer 4 for pin 7
+Timer:4
+TCCR4A:Adrs: A0 Val:AA
+
+TCCR4B:Adrs: A1 Val:1A
+
+OCR4A:Adrs: A8 Val:1120
+
+OCR4B:Adrs: AA Val:F50
+
+OCR4C:Adrs: AC Val:BB8
+
+TIMSK4:Adrs: 72 Val:0
+
+ICR4:Adrs: A6 Val:9C40
+
+
+PWMServoNew::write wrote angle 165 to channel 1 of timer 4 for pin 7
+Timer:4
+TCCR4A:Adrs: A0 Val:AA
+
+TCCR4B:Adrs: A1 Val:1A
+
+OCR4A:Adrs: A8 Val:1120
+
+OCR4B:Adrs: AA Val:1038
+
+OCR4C:Adrs: AC Val:BB8
+
+TIMSK4:Adrs: 72 Val:0
+
+ICR4:Adrs: A6 Val:9C40
+
+
+PWMServoNew::write wrote angle 180 to channel 1 of timer 4 for pin 7
+Timer:4
+TCCR4A:Adrs: A0 Val:AA
+
+TCCR4B:Adrs: A1 Val:1A
+
+OCR4A:Adrs: A8 Val:1120
+
+OCR4B:Adrs: AA Val:1120
+
+OCR4C:Adrs: AC Val:BB8
+
+TIMSK4:Adrs: 72 Val:0
+
+ICR4:Adrs: A6 Val:9C40
+
+
+PWMServoNew::write wrote angle 0 to channel 2 of timer 4 for pin 8
+Timer:4
+TCCR4A:Adrs: A0 Val:AA
+
+TCCR4B:Adrs: A1 Val:1A
+
+OCR4A:Adrs: A8 Val:1120
+
+OCR4B:Adrs: AA Val:1120
+
+OCR4C:Adrs: AC Val:640
+
+TIMSK4:Adrs: 72 Val:0
+
+ICR4:Adrs: A6 Val:9C40
+
+
+PWMServoNew::write wrote angle 15 to channel 2 of timer 4 for pin 8
+Timer:4
+TCCR4A:Adrs: A0 Val:AA
+
+TCCR4B:Adrs: A1 Val:1A
+
+OCR4A:Adrs: A8 Val:1120
+
+OCR4B:Adrs: AA Val:1120
+
+OCR4C:Adrs: AC Val:728
+
+TIMSK4:Adrs: 72 Val:0
+
+ICR4:Adrs: A6 Val:9C40
+
+
+PWMServoNew::write wrote angle 30 to channel 2 of timer 4 for pin 8
+Timer:4
+TCCR4A:Adrs: A0 Val:AA
+
+TCCR4B:Adrs: A1 Val:1A
+
+OCR4A:Adrs: A8 Val:1120
+
+OCR4B:Adrs: AA Val:1120
+
+OCR4C:Adrs: AC Val:810
+
+TIMSK4:Adrs: 72 Val:0
+
+ICR4:Adrs: A6 Val:9C40
+
+
+PWMServoNew::write wrote angle 45 to channel 2 of timer 4 for pin 8
+Timer:4
+TCCR4A:Adrs: A0 Val:AA
+
+TCCR4B:Adrs: A1 Val:1A
+
+OCR4A:Adrs: A8 Val:1120
+
+OCR4B:Adrs: AA Val:1120
+
+OCR4C:Adrs: AC Val:8F8
+
+TIMSK4:Adrs: 72 Val:0
+
+ICR4:Adrs: A6 Val:9C40
+
+
+PWMServoNew::write wrote angle 60 to channel 2 of timer 4 for pin 8
+Timer:4
+TCCR4A:Adrs: A0 Val:AA
+
+TCCR4B:Adrs: A1 Val:1A
+
+OCR4A:Adrs: A8 Val:1120
+
+OCR4B:Adrs: AA Val:1120
+
+OCR4C:Adrs: AC Val:9E0
+
+TIMSK4:Adrs: 72 Val:0
+
+ICR4:Adrs: A6 Val:9C40
+
+
+PWMServoNew::write wrote angle 75 to channel 2 of timer 4 for pin 8
+Timer:4
+TCCR4A:Adrs: A0 Val:AA
+
+TCCR4B:Adrs: A1 Val:1A
+
+OCR4A:Adrs: A8 Val:1120
+
+OCR4B:Adrs: AA Val:1120
+
+OCR4C:Adrs: AC Val:AC8
+
+TIMSK4:Adrs: 72 Val:0
+
+ICR4:Adrs: A6 Val:9C40
+
+
+PWMServoNew::write wrote angle 90 to channel 2 of timer 4 for pin 8
+Timer:4
+TCCR4A:Adrs: A0 Val:AA
+
+TCCR4B:Adrs: A1 Val:1A
+
+OCR4A:Adrs: A8 Val:1120
+
+OCR4B:Adrs: AA Val:1120
+
+OCR4C:Adrs: AC Val:BB0
+
+TIMSK4:Adrs: 72 Val:0
+
+ICR4:Adrs: A6 Val:9C40
+
+
+PWMServoNew::write wrote angle 105 to channel 2 of timer 4 for pin 8
+Timer:4
+TCCR4A:Adrs: A0 Val:AA
+
+TCCR4B:Adrs: A1 Val:1A
+
+OCR4A:Adrs: A8 Val:1120
+
+OCR4B:Adrs: AA Val:1120
+
+OCR4C:Adrs: AC Val:C98
+
+TIMSK4:Adrs: 72 Val:0
+
+ICR4:Adrs: A6 Val:9C40
+
+
+PWMServoNew::write wrote angle 120 to channel 2 of timer 4 for pin 8
+Timer:4
+TCCR4A:Adrs: A0 Val:AA
+
+TCCR4B:Adrs: A1 Val:1A
+
+OCR4A:Adrs: A8 Val:1120
+
+OCR4B:Adrs: AA Val:1120
+
+OCR4C:Adrs: AC Val:D80
+
+TIMSK4:Adrs: 72 Val:0
+
+ICR4:Adrs: A6 Val:9C40
+
+
+PWMServoNew::write wrote angle 135 to channel 2 of timer 4 for pin 8
+Timer:4
+TCCR4A:Adrs: A0 Val:AA
+
+TCCR4B:Adrs: A1 Val:1A
+
+OCR4A:Adrs: A8 Val:1120
+
+OCR4B:Adrs: AA Val:1120
+
+OCR4C:Adrs: AC Val:E68
+
+TIMSK4:Adrs: 72 Val:0
+
+ICR4:Adrs: A6 Val:9C40
+
+
+PWMServoNew::write wrote angle 150 to channel 2 of timer 4 for pin 8
+Timer:4
+TCCR4A:Adrs: A0 Val:AA
+
+TCCR4B:Adrs: A1 Val:1A
+
+OCR4A:Adrs: A8 Val:1120
+
+OCR4B:Adrs: AA Val:1120
+
+OCR4C:Adrs: AC Val:F50
+
+TIMSK4:Adrs: 72 Val:0
+
+ICR4:Adrs: A6 Val:9C40
+
+
+PWMServoNew::write wrote angle 165 to channel 2 of timer 4 for pin 8
+Timer:4
+TCCR4A:Adrs: A0 Val:AA
+
+TCCR4B:Adrs: A1 Val:1A
+
+OCR4A:Adrs: A8 Val:1120
+
+OCR4B:Adrs: AA Val:1120
+
+OCR4C:Adrs: AC Val:1038
+
+TIMSK4:Adrs: 72 Val:0
+
+ICR4:Adrs: A6 Val:9C40
+
+
+PWMServoNew::write wrote angle 180 to channel 2 of timer 4 for pin 8
+Timer:4
+TCCR4A:Adrs: A0 Val:AA
+
+TCCR4B:Adrs: A1 Val:1A
+
+OCR4A:Adrs: A8 Val:1120
+
+OCR4B:Adrs: AA Val:1120
+
+OCR4C:Adrs: AC Val:1120
+
+TIMSK4:Adrs: 72 Val:0
+
+ICR4:Adrs: A6 Val:9C40
+
+
+PWMServoNew::write wrote angle 0 to channel 0 of timer 5 for pin 46
+Timer:5
+TCCR5A:Adrs: 120 Val:AA
+
+TCCR5B:Adrs: 121 Val:1A
+
+OCR5A:Adrs: 128 Val:640
+
+OCR5B:Adrs: 12A Val:BB8
+
+OCR5C:Adrs: 12C Val:BB8
+
+TIMSK5:Adrs: 73 Val:0
+
+ICR5:Adrs: 126 Val:9C40
+
+
+PWMServoNew::write wrote angle 15 to channel 0 of timer 5 for pin 46
+Timer:5
+TCCR5A:Adrs: 120 Val:AA
+
+TCCR5B:Adrs: 121 Val:1A
+
+OCR5A:Adrs: 128 Val:728
+
+OCR5B:Adrs: 12A Val:BB8
+
+OCR5C:Adrs: 12C Val:BB8
+
+TIMSK5:Adrs: 73 Val:0
+
+ICR5:Adrs: 126 Val:9C40
+
+
+PWMServoNew::write wrote angle 30 to channel 0 of timer 5 for pin 46
+Timer:5
+TCCR5A:Adrs: 120 Val:AA
+
+TCCR5B:Adrs: 121 Val:1A
+
+OCR5A:Adrs: 128 Val:810
+
+OCR5B:Adrs: 12A Val:BB8
+
+OCR5C:Adrs: 12C Val:BB8
+
+TIMSK5:Adrs: 73 Val:0
+
+ICR5:Adrs: 126 Val:9C40
+
+
+PWMServoNew::write wrote angle 45 to channel 0 of timer 5 for pin 46
+Timer:5
+TCCR5A:Adrs: 120 Val:AA
+
+TCCR5B:Adrs: 121 Val:1A
+
+OCR5A:Adrs: 128 Val:8F8
+
+OCR5B:Adrs: 12A Val:BB8
+
+OCR5C:Adrs: 12C Val:BB8
+
+TIMSK5:Adrs: 73 Val:0
+
+ICR5:Adrs: 126 Val:9C40
+
+
+PWMServoNew::write wrote angle 60 to channel 0 of timer 5 for pin 46
+Timer:5
+TCCR5A:Adrs: 120 Val:AA
+
+TCCR5B:Adrs: 121 Val:1A
+
+OCR5A:Adrs: 128 Val:9E0
+
+OCR5B:Adrs: 12A Val:BB8
+
+OCR5C:Adrs: 12C Val:BB8
+
+TIMSK5:Adrs: 73 Val:0
+
+ICR5:Adrs: 126 Val:9C40
+
+
+PWMServoNew::write wrote angle 75 to channel 0 of timer 5 for pin 46
+Timer:5
+TCCR5A:Adrs: 120 Val:AA
+
+TCCR5B:Adrs: 121 Val:1A
+
+OCR5A:Adrs: 128 Val:AC8
+
+OCR5B:Adrs: 12A Val:BB8
+
+OCR5C:Adrs: 12C Val:BB8
+
+TIMSK5:Adrs: 73 Val:0
+
+ICR5:Adrs: 126 Val:9C40
+
+
+PWMServoNew::write wrote angle 90 to channel 0 of timer 5 for pin 46
+Timer:5
+TCCR5A:Adrs: 120 Val:AA
+
+TCCR5B:Adrs: 121 Val:1A
+
+OCR5A:Adrs: 128 Val:BB0
+
+OCR5B:Adrs: 12A Val:BB8
+
+OCR5C:Adrs: 12C Val:BB8
+
+TIMSK5:Adrs: 73 Val:0
+
+ICR5:Adrs: 126 Val:9C40
+
+
+PWMServoNew::write wrote angle 105 to channel 0 of timer 5 for pin 46
+Timer:5
+TCCR5A:Adrs: 120 Val:AA
+
+TCCR5B:Adrs: 121 Val:1A
+
+OCR5A:Adrs: 128 Val:C98
+
+OCR5B:Adrs: 12A Val:BB8
+
+OCR5C:Adrs: 12C Val:BB8
+
+TIMSK5:Adrs: 73 Val:0
+
+ICR5:Adrs: 126 Val:9C40
+
+
+PWMServoNew::write wrote angle 120 to channel 0 of timer 5 for pin 46
+Timer:5
+TCCR5A:Adrs: 120 Val:AA
+
+TCCR5B:Adrs: 121 Val:1A
+
+OCR5A:Adrs: 128 Val:D80
+
+OCR5B:Adrs: 12A Val:BB8
+
+OCR5C:Adrs: 12C Val:BB8
+
+TIMSK5:Adrs: 73 Val:0
+
+ICR5:Adrs: 126 Val:9C40
+
+
+PWMServoNew::write wrote angle 135 to channel 0 of timer 5 for pin 46
+Timer:5
+TCCR5A:Adrs: 120 Val:AA
+
+TCCR5B:Adrs: 121 Val:1A
+
+OCR5A:Adrs: 128 Val:E68
+
+OCR5B:Adrs: 12A Val:BB8
+
+OCR5C:Adrs: 12C Val:BB8
+
+TIMSK5:Adrs: 73 Val:0
+
+ICR5:Adrs: 126 Val:9C40
+
+
+PWMServoNew::write wrote angle 150 to channel 0 of timer 5 for pin 46
+Timer:5
+TCCR5A:Adrs: 120 Val:AA
+
+TCCR5B:Adrs: 121 Val:1A
+
+OCR5A:Adrs: 128 Val:F50
+
+OCR5B:Adrs: 12A Val:BB8
+
+OCR5C:Adrs: 12C Val:BB8
+
+TIMSK5:Adrs: 73 Val:0
+
+ICR5:Adrs: 126 Val:9C40
+
+
+PWMServoNew::write wrote angle 165 to channel 0 of timer 5 for pin 46
+Timer:5
+TCCR5A:Adrs: 120 Val:AA
+
+TCCR5B:Adrs: 121 Val:1A
+
+OCR5A:Adrs: 128 Val:1038
+
+OCR5B:Adrs: 12A Val:BB8
+
+OCR5C:Adrs: 12C Val:BB8
+
+TIMSK5:Adrs: 73 Val:0
+
+ICR5:Adrs: 126 Val:9C40
+
+
+PWMServoNew::write wrote angle 180 to channel 0 of timer 5 for pin 46
+Timer:5
+TCCR5A:Adrs: 120 Val:AA
+
+TCCR5B:Adrs: 121 Val:1A
+
+OCR5A:Adrs: 128 Val:1120
+
+OCR5B:Adrs: 12A Val:BB8
+
+OCR5C:Adrs: 12C Val:BB8
+
+TIMSK5:Adrs: 73 Val:0
+
+ICR5:Adrs: 126 Val:9C40
+
+
+PWMServoNew::write wrote angle 0 to channel 1 of timer 5 for pin 45
+Timer:5
+TCCR5A:Adrs: 120 Val:AA
+
+TCCR5B:Adrs: 121 Val:1A
+
+OCR5A:Adrs: 128 Val:1120
+
+OCR5B:Adrs: 12A Val:640
+
+OCR5C:Adrs: 12C Val:BB8
+
+TIMSK5:Adrs: 73 Val:0
+
+ICR5:Adrs: 126 Val:9C40
+
+
+PWMServoNew::write wrote angle 15 to channel 1 of timer 5 for pin 45
+Timer:5
+TCCR5A:Adrs: 120 Val:AA
+
+TCCR5B:Adrs: 121 Val:1A
+
+OCR5A:Adrs: 128 Val:1120
+
+OCR5B:Adrs: 12A Val:728
+
+OCR5C:Adrs: 12C Val:BB8
+
+TIMSK5:Adrs: 73 Val:0
+
+ICR5:Adrs: 126 Val:9C40
+
+
+PWMServoNew::write wrote angle 30 to channel 1 of timer 5 for pin 45
+Timer:5
+TCCR5A:Adrs: 120 Val:AA
+
+TCCR5B:Adrs: 121 Val:1A
+
+OCR5A:Adrs: 128 Val:1120
+
+OCR5B:Adrs: 12A Val:810
+
+OCR5C:Adrs: 12C Val:BB8
+
+TIMSK5:Adrs: 73 Val:0
+
+ICR5:Adrs: 126 Val:9C40
+
+
+PWMServoNew::write wrote angle 45 to channel 1 of timer 5 for pin 45
+Timer:5
+TCCR5A:Adrs: 120 Val:AA
+
+TCCR5B:Adrs: 121 Val:1A
+
+OCR5A:Adrs: 128 Val:1120
+
+OCR5B:Adrs: 12A Val:8F8
+
+OCR5C:Adrs: 12C Val:BB8
+
+TIMSK5:Adrs: 73 Val:0
+
+ICR5:Adrs: 126 Val:9C40
+
+
+PWMServoNew::write wrote angle 60 to channel 1 of timer 5 for pin 45
+Timer:5
+TCCR5A:Adrs: 120 Val:AA
+
+TCCR5B:Adrs: 121 Val:1A
+
+OCR5A:Adrs: 128 Val:1120
+
+OCR5B:Adrs: 12A Val:9E0
+
+OCR5C:Adrs: 12C Val:BB8
+
+TIMSK5:Adrs: 73 Val:0
+
+ICR5:Adrs: 126 Val:9C40
+
+
+PWMServoNew::write wrote angle 75 to channel 1 of timer 5 for pin 45
+Timer:5
+TCCR5A:Adrs: 120 Val:AA
+
+TCCR5B:Adrs: 121 Val:1A
+
+OCR5A:Adrs: 128 Val:1120
+
+OCR5B:Adrs: 12A Val:AC8
+
+OCR5C:Adrs: 12C Val:BB8
+
+TIMSK5:Adrs: 73 Val:0
+
+ICR5:Adrs: 126 Val:9C40
+
+
+PWMServoNew::write wrote angle 90 to channel 1 of timer 5 for pin 45
+Timer:5
+TCCR5A:Adrs: 120 Val:AA
+
+TCCR5B:Adrs: 121 Val:1A
+
+OCR5A:Adrs: 128 Val:1120
+
+OCR5B:Adrs: 12A Val:BB0
+
+OCR5C:Adrs: 12C Val:BB8
+
+TIMSK5:Adrs: 73 Val:0
+
+ICR5:Adrs: 126 Val:9C40
+
+
+PWMServoNew::write wrote angle 105 to channel 1 of timer 5 for pin 45
+Timer:5
+TCCR5A:Adrs: 120 Val:AA
+
+TCCR5B:Adrs: 121 Val:1A
+
+OCR5A:Adrs: 128 Val:1120
+
+OCR5B:Adrs: 12A Val:C98
+
+OCR5C:Adrs: 12C Val:BB8
+
+TIMSK5:Adrs: 73 Val:0
+
+ICR5:Adrs: 126 Val:9C40
+
+
+PWMServoNew::write wrote angle 120 to channel 1 of timer 5 for pin 45
+Timer:5
+TCCR5A:Adrs: 120 Val:AA
+
+TCCR5B:Adrs: 121 Val:1A
+
+OCR5A:Adrs: 128 Val:1120
+
+OCR5B:Adrs: 12A Val:D80
+
+OCR5C:Adrs: 12C Val:BB8
+
+TIMSK5:Adrs: 73 Val:0
+
+ICR5:Adrs: 126 Val:9C40
+
+
+PWMServoNew::write wrote angle 135 to channel 1 of timer 5 for pin 45
+Timer:5
+TCCR5A:Adrs: 120 Val:AA
+
+TCCR5B:Adrs: 121 Val:1A
+
+OCR5A:Adrs: 128 Val:1120
+
+OCR5B:Adrs: 12A Val:E68
+
+OCR5C:Adrs: 12C Val:BB8
+
+TIMSK5:Adrs: 73 Val:0
+
+ICR5:Adrs: 126 Val:9C40
+
+
+PWMServoNew::write wrote angle 150 to channel 1 of timer 5 for pin 45
+Timer:5
+TCCR5A:Adrs: 120 Val:AA
+
+TCCR5B:Adrs: 121 Val:1A
+
+OCR5A:Adrs: 128 Val:1120
+
+OCR5B:Adrs: 12A Val:F50
+
+OCR5C:Adrs: 12C Val:BB8
+
+TIMSK5:Adrs: 73 Val:0
+
+ICR5:Adrs: 126 Val:9C40
+
+
+PWMServoNew::write wrote angle 165 to channel 1 of timer 5 for pin 45
+Timer:5
+TCCR5A:Adrs: 120 Val:AA
+
+TCCR5B:Adrs: 121 Val:1A
+
+OCR5A:Adrs: 128 Val:1120
+
+OCR5B:Adrs: 12A Val:1038
+
+OCR5C:Adrs: 12C Val:BB8
+
+TIMSK5:Adrs: 73 Val:0
+
+ICR5:Adrs: 126 Val:9C40
+
+
+PWMServoNew::write wrote angle 180 to channel 1 of timer 5 for pin 45
+Timer:5
+TCCR5A:Adrs: 120 Val:AA
+
+TCCR5B:Adrs: 121 Val:1A
+
+OCR5A:Adrs: 128 Val:1120
+
+OCR5B:Adrs: 12A Val:1120
+
+OCR5C:Adrs: 12C Val:BB8
+
+TIMSK5:Adrs: 73 Val:0
+
+ICR5:Adrs: 126 Val:9C40
+
+
+PWMServoNew::write wrote angle 0 to channel 2 of timer 5 for pin 44
+Timer:5
+TCCR5A:Adrs: 120 Val:AA
+
+TCCR5B:Adrs: 121 Val:1A
+
+OCR5A:Adrs: 128 Val:1120
+
+OCR5B:Adrs: 12A Val:1120
+
+OCR5C:Adrs: 12C Val:640
+
+TIMSK5:Adrs: 73 Val:0
+
+ICR5:Adrs: 126 Val:9C40
+
+
+PWMServoNew::write wrote angle 15 to channel 2 of timer 5 for pin 44
+Timer:5
+TCCR5A:Adrs: 120 Val:AA
+
+TCCR5B:Adrs: 121 Val:1A
+
+OCR5A:Adrs: 128 Val:1120
+
+OCR5B:Adrs: 12A Val:1120
+
+OCR5C:Adrs: 12C Val:728
+
+TIMSK5:Adrs: 73 Val:0
+
+ICR5:Adrs: 126 Val:9C40
+
+
+PWMServoNew::write wrote angle 30 to channel 2 of timer 5 for pin 44
+Timer:5
+TCCR5A:Adrs: 120 Val:AA
+
+TCCR5B:Adrs: 121 Val:1A
+
+OCR5A:Adrs: 128 Val:1120
+
+OCR5B:Adrs: 12A Val:1120
+
+OCR5C:Adrs: 12C Val:810
+
+TIMSK5:Adrs: 73 Val:0
+
+ICR5:Adrs: 126 Val:9C40
+
+
+PWMServoNew::write wrote angle 45 to channel 2 of timer 5 for pin 44
+Timer:5
+TCCR5A:Adrs: 120 Val:AA
+
+TCCR5B:Adrs: 121 Val:1A
+
+OCR5A:Adrs: 128 Val:1120
+
+OCR5B:Adrs: 12A Val:1120
+
+OCR5C:Adrs: 12C Val:8F8
+
+TIMSK5:Adrs: 73 Val:0
+
+ICR5:Adrs: 126 Val:9C40
+
+
+PWMServoNew::write wrote angle 60 to channel 2 of timer 5 for pin 44
+Timer:5
+TCCR5A:Adrs: 120 Val:AA
+
+TCCR5B:Adrs: 121 Val:1A
+
+OCR5A:Adrs: 128 Val:1120
+
+OCR5B:Adrs: 12A Val:1120
+
+OCR5C:Adrs: 12C Val:9E0
+
+TIMSK5:Adrs: 73 Val:0
+
+ICR5:Adrs: 126 Val:9C40
+
+
+PWMServoNew::write wrote angle 75 to channel 2 of timer 5 for pin 44
+Timer:5
+TCCR5A:Adrs: 120 Val:AA
+
+TCCR5B:Adrs: 121 Val:1A
+
+OCR5A:Adrs: 128 Val:1120
+
+OCR5B:Adrs: 12A Val:1120
+
+OCR5C:Adrs: 12C Val:AC8
+
+TIMSK5:Adrs: 73 Val:0
+
+ICR5:Adrs: 126 Val:9C40
+
+
+PWMServoNew::write wrote angle 90 to channel 2 of timer 5 for pin 44
+Timer:5
+TCCR5A:Adrs: 120 Val:AA
+
+TCCR5B:Adrs: 121 Val:1A
+
+OCR5A:Adrs: 128 Val:1120
+
+OCR5B:Adrs: 12A Val:1120
+
+OCR5C:Adrs: 12C Val:BB0
+
+TIMSK5:Adrs: 73 Val:0
+
+ICR5:Adrs: 126 Val:9C40
+
+
+PWMServoNew::write wrote angle 105 to channel 2 of timer 5 for pin 44
+Timer:5
+TCCR5A:Adrs: 120 Val:AA
+
+TCCR5B:Adrs: 121 Val:1A
+
+OCR5A:Adrs: 128 Val:1120
+
+OCR5B:Adrs: 12A Val:1120
+
+OCR5C:Adrs: 12C Val:C98
+
+TIMSK5:Adrs: 73 Val:0
+
+ICR5:Adrs: 126 Val:9C40
+
+
+PWMServoNew::write wrote angle 120 to channel 2 of timer 5 for pin 44
+Timer:5
+TCCR5A:Adrs: 120 Val:AA
+
+TCCR5B:Adrs: 121 Val:1A
+
+OCR5A:Adrs: 128 Val:1120
+
+OCR5B:Adrs: 12A Val:1120
+
+OCR5C:Adrs: 12C Val:D80
+
+TIMSK5:Adrs: 73 Val:0
+
+ICR5:Adrs: 126 Val:9C40
+
+
+PWMServoNew::write wrote angle 135 to channel 2 of timer 5 for pin 44
+Timer:5
+TCCR5A:Adrs: 120 Val:AA
+
+TCCR5B:Adrs: 121 Val:1A
+
+OCR5A:Adrs: 128 Val:1120
+
+OCR5B:Adrs: 12A Val:1120
+
+OCR5C:Adrs: 12C Val:E68
+
+TIMSK5:Adrs: 73 Val:0
+
+ICR5:Adrs: 126 Val:9C40
+
+
+PWMServoNew::write wrote angle 150 to channel 2 of timer 5 for pin 44
+Timer:5
+TCCR5A:Adrs: 120 Val:AA
+
+TCCR5B:Adrs: 121 Val:1A
+
+OCR5A:Adrs: 128 Val:1120
+
+OCR5B:Adrs: 12A Val:1120
+
+OCR5C:Adrs: 12C Val:F50
+
+TIMSK5:Adrs: 73 Val:0
+
+ICR5:Adrs: 126 Val:9C40
+
+
+PWMServoNew::write wrote angle 165 to channel 2 of timer 5 for pin 44
+Timer:5
+TCCR5A:Adrs: 120 Val:AA
+
+TCCR5B:Adrs: 121 Val:1A
+
+OCR5A:Adrs: 128 Val:1120
+
+OCR5B:Adrs: 12A Val:1120
+
+OCR5C:Adrs: 12C Val:1038
+
+TIMSK5:Adrs: 73 Val:0
+
+ICR5:Adrs: 126 Val:9C40
+
+
+PWMServoNew::write wrote angle 180 to channel 2 of timer 5 for pin 44
+Timer:5
+TCCR5A:Adrs: 120 Val:AA
+
+TCCR5B:Adrs: 121 Val:1A
+
+OCR5A:Adrs: 128 Val:1120
+
+OCR5B:Adrs: 12A Val:1120
+
+OCR5C:Adrs: 12C Val:1120
+
+TIMSK5:Adrs: 73 Val:0
+
+ICR5:Adrs: 126 Val:9C40
+
+
+PWMServoNew::write wrote angle 0 to channel 0 of timer 1 for pin 11
+Timer:1
+TCCR1A:Adrs: 80 Val:AA
+
+TCCR1B:Adrs: 81 Val:1A
+
+OCR1A:Adrs: 88 Val:640
+
+OCR1B:Adrs: 8A Val:1120
+
+OCR1C:Adrs: 8C Val:1120
+
+TIMSK1:Adrs: 6F Val:0
+
+ICR1:Adrs: 86 Val:9C40
+
+
+PWMServoNew::write wrote angle 15 to channel 0 of timer 1 for pin 11
+Timer:1
+TCCR1A:Adrs: 80 Val:AA
+
+TCCR1B:Adrs: 81 Val:1A
+
+OCR1A:Adrs: 88 Val:728
+
+OCR1B:Adrs: 8A Val:1120
+
+OCR1C:Adrs: 8C Val:1120
+
+TIMSK1:Adrs: 6F Val:0
+
+ICR1:Adrs: 86 Val:9C40
+
+
+PWMServoNew::write wrote angle 30 to channel 0 of timer 1 for pin 11
+Timer:1
+TCCR1A:Adrs: 80 Val:AA
+
+TCCR1B:Adrs: 81 Val:1A
+
+OCR1A:Adrs: 88 Val:810
+
+OCR1B:Adrs: 8A Val:1120
+
+OCR1C:Adrs: 8C Val:1120
+
+TIMSK1:Adrs: 6F Val:0
+
+ICR1:Adrs: 86 Val:9C40
+
+
+PWMServoNew::write wrote angle 45 to channel 0 of timer 1 for pin 11
+Timer:1
+TCCR1A:Adrs: 80 Val:AA
+
+TCCR1B:Adrs: 81 Val:1A
+
+OCR1A:Adrs: 88 Val:8F8
+
+OCR1B:Adrs: 8A Val:1120
+
+OCR1C:Adrs: 8C Val:1120
+
+TIMSK1:Adrs: 6F Val:0
+
+ICR1:Adrs: 86 Val:9C40
+
+
+PWMServoNew::write wrote angle 60 to channel 0 of timer 1 for pin 11
+Timer:1
+TCCR1A:Adrs: 80 Val:AA
+
+TCCR1B:Adrs: 81 Val:1A
+
+OCR1A:Adrs: 88 Val:9E0
+
+OCR1B:Adrs: 8A Val:1120
+
+OCR1C:Adrs: 8C Val:1120
+
+TIMSK1:Adrs: 6F Val:0
+
+ICR1:Adrs: 86 Val:9C40
+
+
+PWMServoNew::write wrote angle 75 to channel 0 of timer 1 for pin 11
+Timer:1
+TCCR1A:Adrs: 80 Val:AA
+
+TCCR1B:Adrs: 81 Val:1A
+
+OCR1A:Adrs: 88 Val:AC8
+
+OCR1B:Adrs: 8A Val:1120
+
+OCR1C:Adrs: 8C Val:1120
+
+TIMSK1:Adrs: 6F Val:0
+
+ICR1:Adrs: 86 Val:9C40
+
+
+PWMServoNew::write wrote angle 90 to channel 0 of timer 1 for pin 11
+Timer:1
+TCCR1A:Adrs: 80 Val:AA
+
+TCCR1B:Adrs: 81 Val:1A
+
+OCR1A:Adrs: 88 Val:BB0
+
+OCR1B:Adrs: 8A Val:1120
+
+OCR1C:Adrs: 8C Val:1120
+
+TIMSK1:Adrs: 6F Val:0
+
+ICR1:Adrs: 86 Val:9C40
+
+
+PWMServoNew::write wrote angle 105 to channel 0 of timer 1 for pin 11
+Timer:1
+TCCR1A:Adrs: 80 Val:AA
+
+TCCR1B:Adrs: 81 Val:1A
+
+OCR1A:Adrs: 88 Val:C98
+
+OCR1B:Adrs: 8A Val:1120
+
+OCR1C:Adrs: 8C Val:1120
+
+TIMSK1:Adrs: 6F Val:0
+
+ICR1:Adrs: 86 Val:9C40
+
+
+PWMServoNew::write wrote angle 120 to channel 0 of timer 1 for pin 11
+Timer:1
+TCCR1A:Adrs: 80 Val:AA
+
+TCCR1B:Adrs: 81 Val:1A
+
+OCR1A:Adrs: 88 Val:D80
+
+OCR1B:Adrs: 8A Val:1120
+
+OCR1C:Adrs: 8C Val:1120
+
+TIMSK1:Adrs: 6F Val:0
+
+ICR1:Adrs: 86 Val:9C40
+
+
+PWMServoNew::write wrote angle 135 to channel 0 of timer 1 for pin 11
+Timer:1
+TCCR1A:Adrs: 80 Val:AA
+
+TCCR1B:Adrs: 81 Val:1A
+
+OCR1A:Adrs: 88 Val:E68
+
+OCR1B:Adrs: 8A Val:1120
+
+OCR1C:Adrs: 8C Val:1120
+
+TIMSK1:Adrs: 6F Val:0
+
+ICR1:Adrs: 86 Val:9C40
+
+
+PWMServoNew::write wrote angle 150 to channel 0 of timer 1 for pin 11
+Timer:1
+TCCR1A:Adrs: 80 Val:AA
+
+TCCR1B:Adrs: 81 Val:1A
+
+OCR1A:Adrs: 88 Val:F50
+
+OCR1B:Adrs: 8A Val:1120
+
+OCR1C:Adrs: 8C Val:1120
+
+TIMSK1:Adrs: 6F Val:0
+
+ICR1:Adrs: 86 Val:9C40
+
+
+PWMServoNew::write wrote angle 165 to channel 0 of timer 1 for pin 11
+Timer:1
+TCCR1A:Adrs: 80 Val:AA
+
+TCCR1B:Adrs: 81 Val:1A
+
+OCR1A:Adrs: 88 Val:1038
+
+OCR1B:Adrs: 8A Val:1120
+
+OCR1C:Adrs: 8C Val:1120
+
+TIMSK1:Adrs: 6F Val:0
+
+ICR1:Adrs: 86 Val:9C40
+
+
+PWMServoNew::write wrote angle 180 to channel 0 of timer 1 for pin 11
+Timer:1
+TCCR1A:Adrs: 80 Val:AA
+
+TCCR1B:Adrs: 81 Val:1A
+
+OCR1A:Adrs: 88 Val:1120
+
+OCR1B:Adrs: 8A Val:1120
+
+OCR1C:Adrs: 8C Val:1120
+
+TIMSK1:Adrs: 6F Val:0
+
+ICR1:Adrs: 86 Val:9C40
+
+
+PWMServoNew::write wrote angle 0 to channel 1 of timer 1 for pin 12
+Timer:1
+TCCR1A:Adrs: 80 Val:AA
+
+TCCR1B:Adrs: 81 Val:1A
+
+OCR1A:Adrs: 88 Val:1120
+
+OCR1B:Adrs: 8A Val:640
+
+OCR1C:Adrs: 8C Val:1120
+
+TIMSK1:Adrs: 6F Val:0
+
+ICR1:Adrs: 86 Val:9C40
+
+
+PWMServoNew::write wrote angle 15 to channel 1 of timer 1 for pin 12
+Timer:1
+TCCR1A:Adrs: 80 Val:AA
+
+TCCR1B:Adrs: 81 Val:1A
+
+OCR1A:Adrs: 88 Val:1120
+
+OCR1B:Adrs: 8A Val:728
+
+OCR1C:Adrs: 8C Val:1120
+
+TIMSK1:Adrs: 6F Val:0
+
+ICR1:Adrs: 86 Val:9C40
+
+
+PWMServoNew::write wrote angle 30 to channel 1 of timer 1 for pin 12
+Timer:1
+TCCR1A:Adrs: 80 Val:AA
+
+TCCR1B:Adrs: 81 Val:1A
+
+OCR1A:Adrs: 88 Val:1120
+
+OCR1B:Adrs: 8A Val:810
+
+OCR1C:Adrs: 8C Val:1120
+
+TIMSK1:Adrs: 6F Val:0
+
+ICR1:Adrs: 86 Val:9C40
+
+
+PWMServoNew::write wrote angle 45 to channel 1 of timer 1 for pin 12
+Timer:1
+TCCR1A:Adrs: 80 Val:AA
+
+TCCR1B:Adrs: 81 Val:1A
+
+OCR1A:Adrs: 88 Val:1120
+
+OCR1B:Adrs: 8A Val:8F8
+
+OCR1C:Adrs: 8C Val:1120
+
+TIMSK1:Adrs: 6F Val:0
+
+ICR1:Adrs: 86 Val:9C40
+
+
+PWMServoNew::write wrote angle 60 to channel 1 of timer 1 for pin 12
+Timer:1
+TCCR1A:Adrs: 80 Val:AA
+
+TCCR1B:Adrs: 81 Val:1A
+
+OCR1A:Adrs: 88 Val:1120
+
+OCR1B:Adrs: 8A Val:9E0
+
+OCR1C:Adrs: 8C Val:1120
+
+TIMSK1:Adrs: 6F Val:0
+
+ICR1:Adrs: 86 Val:9C40
+
+
+PWMServoNew::write wrote angle 75 to channel 1 of timer 1 for pin 12
+Timer:1
+TCCR1A:Adrs: 80 Val:AA
+
+TCCR1B:Adrs: 81 Val:1A
+
+OCR1A:Adrs: 88 Val:1120
+
+OCR1B:Adrs: 8A Val:AC8
+
+OCR1C:Adrs: 8C Val:1120
+
+TIMSK1:Adrs: 6F Val:0
+
+ICR1:Adrs: 86 Val:9C40
+
+
+PWMServoNew::write wrote angle 90 to channel 1 of timer 1 for pin 12
+Timer:1
+TCCR1A:Adrs: 80 Val:AA
+
+TCCR1B:Adrs: 81 Val:1A
+
+OCR1A:Adrs: 88 Val:1120
+
+OCR1B:Adrs: 8A Val:BB0
+
+OCR1C:Adrs: 8C Val:1120
+
+TIMSK1:Adrs: 6F Val:0
+
+ICR1:Adrs: 86 Val:9C40
+
+
+PWMServoNew::write wrote angle 105 to channel 1 of timer 1 for pin 12
+Timer:1
+TCCR1A:Adrs: 80 Val:AA
+
+TCCR1B:Adrs: 81 Val:1A
+
+OCR1A:Adrs: 88 Val:1120
+
+OCR1B:Adrs: 8A Val:C98
+
+OCR1C:Adrs: 8C Val:1120
+
+TIMSK1:Adrs: 6F Val:0
+
+ICR1:Adrs: 86 Val:9C40
+
+
+PWMServoNew::write wrote angle 120 to channel 1 of timer 1 for pin 12
+Timer:1
+TCCR1A:Adrs: 80 Val:AA
+
+TCCR1B:Adrs: 81 Val:1A
+
+OCR1A:Adrs: 88 Val:1120
+
+OCR1B:Adrs: 8A Val:D80
+
+OCR1C:Adrs: 8C Val:1120
+
+TIMSK1:Adrs: 6F Val:0
+
+ICR1:Adrs: 86 Val:9C40
+
+
+PWMServoNew::write wrote angle 135 to channel 1 of timer 1 for pin 12
+Timer:1
+TCCR1A:Adrs: 80 Val:AA
+
+TCCR1B:Adrs: 81 Val:1A
+
+OCR1A:Adrs: 88 Val:1120
+
+OCR1B:Adrs: 8A Val:E68
+
+OCR1C:Adrs: 8C Val:1120
+
+TIMSK1:Adrs: 6F Val:0
+
+ICR1:Adrs: 86 Val:9C40
+
+
+PWMServoNew::write wrote angle 150 to channel 1 of timer 1 for pin 12
+Timer:1
+TCCR1A:Adrs: 80 Val:AA
+
+TCCR1B:Adrs: 81 Val:1A
+
+OCR1A:Adrs: 88 Val:1120
+
+OCR1B:Adrs: 8A Val:F50
+
+OCR1C:Adrs: 8C Val:1120
+
+TIMSK1:Adrs: 6F Val:0
+
+ICR1:Adrs: 86 Val:9C40
+
+
