@@ -9,6 +9,7 @@
 #include <EEPROM.h>
 #include "base_device.h"
 #include "servo_device.h"
+#include "servo_filter.h"
 #include "relay_device.h"
 #include "mp3_device.h"
 #include "LED_device.h"
@@ -345,13 +346,10 @@ struct ImuCtrlRefFrameDef {
   float pitch;
   float roll;
 };
-#define MaxServoDegreeSettings 10
 struct ImuServoControlDef {
   int AdafruitImuCtrlSensor;
   servo_device * servo;
-  int DegreeSettings[MaxServoDegreeSettings];
-  int NumDegreeSettings;
-  int DegreeSettingsIndex;
+  servo_filter * servoFilter;
   struct ImuCtrlRefFrameDef ImuCtrlRefFrame;
 };
 bool AdafruitImuHeadMouthEnabled = false;
@@ -378,14 +376,11 @@ struct ImusPitchDiffControlDef {
 ImusPitchDiffControlDef AdafruitImusPitchDiffControl;
 
 // forward prototypes
-int mouthServoSettingsForDegChng(int CurrentDegreeSetting, int degreeChange, int PeriodInMsec, bool BackBentOver, int maxEntries, int * DegreeSettingsToUse);
 void printGyro(float gx, float gy, float gz, bool isCalculated);
 void printAccel(float ax, float ay, float az, bool isCalculated);
 void printMag(float mx, float my, float mz, bool isCalculated);
 void printAttitude(float ax, float ay, float az, float mx, float my, float mz);
 void getAttitude(float ax, float ay, float az, float mx, float my, float mz, float &pitch, float &roll, float &heading);
-int HeadVertServoSettingsForDegChng(int CurrentDegreeSetting, int degreeChange, int PeriodInMsec, bool BackBentOver, int maxEntries, int * DegreeSettingsToUse);
-int HeadHoriServoSettingsForDegChng(int CurrentDegreeSetting, int degreeChange, int PeriodInMsec, bool BackBentOver, int maxEntries, int * DegreeSettingsToUse);
 int scaleMouthAngle(int angle);
 float convertPitchForHeadOrientation( float pitch);
 
@@ -395,12 +390,34 @@ float convertPitchForHeadOrientation( float pitch);
 // ------------Create the devices that make up the Prop
 
 servo_device    Head_Horizontal_Rotation_servo      ;   // attached to pins in setup
+servo_filter    Head_Horizontal_Servo_Filter(50.0/150.0, 333.0);
+  // For the head horizontal servo HS7954HS, per its spec,  it can move, no load, 0.15 sec/60° at 6volt supply voltage to the servo,
+  // but give it an extra marign for now
 servo_device    Head_Vertical_Rotation_servo        ;   // attached to pins in setup
+servo_filter    Head_Vertical_Servo_Filter(50.0/150.0, 333.0);
+  // For the head vertical servo HS7954HS, per its spec,  it can move, no load, 0.15 sec/60° at 6volt supply voltage to the servo,
+  // but give it an extra marign for now
 servo_device    Head_Mouth_Rotation_servo           ;   // attached to pins in setup
+servo_filter    Head_Mouth_Servo_Filter(50.0/120.0, 76.0);
+  // For the mouth servo HS5245MG, per its spec,  it can move, no load, 60 degrees in 120 milliseconds at 6volt supply voltage to the servo at no load,
+  // but give it an extra marign for now
 servo_device    Arm_Yaw_servo                       ;   // attached to pins in setup
+servo_filter    Arm_Yaw_Servo_Filter(50.0/200.0, 300.0);
+  // For the Arm Yaw servo GoBilda 2000-0025-0002, per its spec,  it can move, no load, 60 degrees in 200 milliseconds at 6volt supply voltage to the servo at no load,
+  // but give it an extra marign for now
 servo_device    Arm_Roll_servo                      ;   // attached to pins in setup
+servo_filter    Arm_Roll_Servo_Filter(50.0/200.0, 300.0);
+  // For the Arm Roll servo GoBilda 2000-0025-0002, per its spec,  it can move, no load, 60 degrees in 200 milliseconds at 6volt supply voltage to the servo at no load,
+  // but give it an extra marign for now.
 servo_device    Arm_Pitch_servo                     ;   // attached to pins in setup
+servo_filter    Arm_Pitch_Servo_Filter(135.0/670.0, 350.0);
+  // For the Arm Pitch servo GoBilda 2000-0025-0002, per its spec,  it can move, no load, 60 degrees in 160 milliseconds at 7.5 volt supply voltage to the servo at no load,
+  // but give it what measurements indicate for traveling 135 degrees from the arm hanging straight down which is 670 milliseconds
+  // Measurements indicate 
 servo_device    Elbow_Pitch_servo                   ;   // attached to pins in setup
+servo_filter    Elbow_Pitch_Servo_Filter(50.0/200.0, 300.0);
+  // For the Arm Roll servo GoBilda 2000-0025-0002, per its spec,  it can move, no load, 60 degrees in 200 milliseconds at 6volt supply voltage to the servo at no load,
+  // but give it an extra marign for now.
 LED_device      Eyes_LEDs                           (22); // pin 22
 relay_device    Pneumatic_Back_relay                (23); // pin 23
 mp3_device      Voice_Player                        ;
@@ -451,17 +468,17 @@ void setup()
 #ifdef ADAFRUIT_IMU_HEAD_MOUTH_OPS
     // initialize IMU head mouth control items
     ImuHeadVerticalServoControl.AdafruitImuCtrlSensor = ADAFRUIT_IMU_HEAD;
-    ImuHeadVerticalServoControl.NumDegreeSettings= 0; // start over
     ImuHeadVerticalServoControl.servo =  &Head_Vertical_Rotation_servo;
+    ImuHeadVerticalServoControl.servoFilter = &Head_Vertical_Servo_Filter;
     
       // Horizontal uses same Head IMU
     ImuHeadHorizontalServoControl.AdafruitImuCtrlSensor = ADAFRUIT_IMU_HEAD;  
-    ImuHeadHorizontalServoControl.NumDegreeSettings= 0; // start over
     ImuHeadHorizontalServoControl.servo =  &Head_Horizontal_Rotation_servo;
+    ImuHeadHorizontalServoControl.servoFilter = &Head_Horizontal_Servo_Filter;
      
     ImuMouthServoControl.AdafruitImuCtrlSensor = ADAFRUIT_IMU_MOUTH;
-    ImuMouthServoControl.NumDegreeSettings= 0; // start over
     ImuMouthServoControl.servo =  &Head_Mouth_Rotation_servo;
+    ImuMouthServoControl.servoFilter = &Head_Mouth_Servo_Filter;
 #endif
     
     // attach Head servos to specific pins on the cpu board
@@ -1248,6 +1265,9 @@ void loop()
             Serial.print(F(" Sensor used: "));
             Serial.println(Adafruit_sensors[sensorNumber].name);
             AdafruitImuMouthCtrlPeriodMsec = periodMsec;
+            Head_Mouth_Servo_Filter.setUpdatePeriod(periodMsec);
+            Head_Mouth_Servo_Filter.startingPointDegrees(Head_Mouth_Rotation_servo.device_read());
+            Head_Mouth_Servo_Filter.flush();
             AdafruitImuMouthCtrlSensor = sensorNumber;
             AdafruitImuMouthCtrlTimeout = millis(); // force timeout right away
             AdafruitImuMouthCtrlEnabled = true;
@@ -1294,6 +1314,15 @@ void loop()
             Serial.print(F(" audioDelayInPeriods "));
             Serial.println(audioDelayInPeriods);
             AdafruitImuHeadMouthPeriodMs = periodMsec;
+            Head_Mouth_Servo_Filter.setUpdatePeriod(periodMsec);
+            Head_Mouth_Servo_Filter.startingPointDegrees(Head_Mouth_Rotation_servo.device_read());
+            Head_Mouth_Servo_Filter.flush();
+            Head_Horizontal_Servo_Filter.setUpdatePeriod(periodMsec);
+            Head_Horizontal_Servo_Filter.startingPointDegrees(Head_Horizontal_Rotation_servo.device_read());
+            Head_Horizontal_Servo_Filter.flush();
+            Head_Vertical_Servo_Filter.setUpdatePeriod(periodMsec);
+            Head_Vertical_Servo_Filter.startingPointDegrees(Head_Vertical_Rotation_servo.device_read());
+            Head_Vertical_Servo_Filter.flush();
             AdafruitImuHeadMouthTimeout = millis(); // force timeout right away
             AdafruitImuHeadMouthAudioFile = audioFile;
             AdafruitImuHeadMouthAudioDelay = audioDelayInPeriods;            
@@ -1303,7 +1332,6 @@ void loop()
             // Get Reference Frames to start from
             sensors_event_t event; 
             Adafruit_sensors[ImuHeadVerticalServoControl.AdafruitImuCtrlSensor].sensor->getEvent(&event);
-            ImuHeadVerticalServoControl.NumDegreeSettings= 0; // start over
             ImuHeadVerticalServoControl.ImuCtrlRefFrame.heading = event.orientation.x;
             ImuHeadVerticalServoControl.ImuCtrlRefFrame.pitch = event.orientation.z; 
             ImuHeadVerticalServoControl.ImuCtrlRefFrame.roll = event.orientation.y;
@@ -1311,7 +1339,6 @@ void loop()
             Serial.print(periodMsec);
 
             
-            ImuHeadHorizontalServoControl.NumDegreeSettings= 0; // start over
             // Horizontal uses same IMU as vertical 
             ImuHeadHorizontalServoControl.ImuCtrlRefFrame.heading = event.orientation.x;
             ImuHeadHorizontalServoControl.ImuCtrlRefFrame.pitch = event.orientation.z; 
@@ -1319,7 +1346,6 @@ void loop()
             
             
             Adafruit_sensors[ImuMouthServoControl.AdafruitImuCtrlSensor].sensor->getEvent(&event);
-            ImuMouthServoControl.NumDegreeSettings= 0; // start over
             ImuMouthServoControl.ImuCtrlRefFrame.heading = event.orientation.x;
             ImuMouthServoControl.ImuCtrlRefFrame.pitch = event.orientation.z; 
             ImuMouthServoControl.ImuCtrlRefFrame.roll = event.orientation.y;
@@ -1474,27 +1500,16 @@ void loop()
   {
     if (AdafruitImuMouthCtrlTimeout <= millis())
     {
-      AdafruitImuMouthCtrlTimeout += AdafruitImuMouthCtrlPeriodMsec;
-      if (NumMouthDegreeSettings > 0)
-      // still moving servo to final position using calculated array of mouth positions (settings)
-      {
-          Head_Mouth_Rotation_servo.device_write(MouthDegreeSettings[MouthDegreeSettingsIndex]);
-          // increment index, decrement num settings
-          MouthDegreeSettingsIndex++;
-          NumMouthDegreeSettings--;
-      }
-      else
-      {
+        AdafruitImuMouthCtrlTimeout += AdafruitImuMouthCtrlPeriodMsec;
+
         int mouthAngle;
-        int degreeChange;
-        int currentMouthAngle;
+        int filteredServoAngle;
         const int pitchToMouthAngeOffsetDeg = 90; // position for mouth relative to pitch .  adjusted pitch + offset = mouth angle to use
         // Get new IMU position for moving servo to
         sensors_event_t event; 
         Adafruit_sensors[AdafruitImuMouthCtrlSensor].sensor->getEvent(&event);
         // Use pitch for the mouth control
         int pitch = (int)(event.orientation.y);
-        currentMouthAngle = (int)(Head_Mouth_Rotation_servo.device_read());
         int zeroBasedPitch = pitch - (int)(ImuMouthCtrlRefFrame.pitch);
         // Handle the case where heading start and end point cross over the 0/360 point by 
         // by assuming that the abs (end - start) < 180 degrees  ).  Thus if the raw zeroBasedPitch it > 180 it is assuemd to 
@@ -1517,24 +1532,12 @@ void loop()
         {
           mouthAngle = Mouth_Min_Position;
         }
-       
-        degreeChange = mouthAngle - currentMouthAngle;
-        bool BackBentOver = (Pneumatic_Back_relay.device_read() == PNEUMATIC_BACK_BENTOVER);
-        NumMouthDegreeSettings = mouthServoSettingsForDegChng(currentMouthAngle, degreeChange, AdafruitImuMouthCtrlPeriodMsec, BackBentOver, MaxMouthDegreeSettings, MouthDegreeSettings);
-        MouthDegreeSettingsIndex = 0;  // index for first entry in mouth settings array
-        if (NumMouthDegreeSettings <= 0)
-        {
-          Serial.println(F("Error: Can't have <= 0 mouth settings "));
-          NumMouthDegreeSettings = 0; // to allow things to continue on
-        }
-        else
-        {
-          // set servo to first angle in the mouth degree settings array
-          Head_Mouth_Rotation_servo.device_write(MouthDegreeSettings[MouthDegreeSettingsIndex]);
-          // increment index, decrement num settings
-          MouthDegreeSettingsIndex++;
-          NumMouthDegreeSettings--;
-        }
+        // feed servoAngle to filter
+        Head_Mouth_Servo_Filter.input(mouthAngle); // ignore torqueload for now
+        // Read Filter Output angle and set servo to it
+        Head_Mouth_Servo_Filter.output(filteredServoAngle);
+        Head_Mouth_Rotation_servo.device_write(filteredServoAngle);
+
         /* 
         Serial.print(F("Orientation: "));
         Serial.print((float)event.orientation.x);
@@ -1555,13 +1558,12 @@ void loop()
         Serial.print(F(" "));
         Serial.println(mag, DEC);
        */ 
-      }
       
-      if (AdafruitImuMouthCtrlTimeout <= millis())
-      {
-        Serial.println(F("AdafruitImuMouthCtrlTimeout to far behind. Resetting to current time"));
-        AdafruitImuMouthCtrlTimeout = millis();
-      }
+        if (AdafruitImuMouthCtrlTimeout <= millis())
+        {
+          Serial.println(F("AdafruitImuMouthCtrlTimeout to far behind. Resetting to current time"));
+          AdafruitImuMouthCtrlTimeout = millis();
+        }
     }
   }  
 // ------------------------------------------------------
@@ -1596,21 +1598,9 @@ void loop()
    
       // Handle Mouth control part ------------------------------------------------
       {
-        ImuServoControlDef & ImuServoCtrlUsing = ImuMouthServoControl;
-        
-        if (ImuServoCtrlUsing.NumDegreeSettings > 0)
-        // still moving servo to final position using calculated array of positions (settings)
-        {
-            ImuServoCtrlUsing.servo->device_write(ImuServoCtrlUsing.DegreeSettings[ImuServoCtrlUsing.DegreeSettingsIndex]);
-            // increment index, decrement num settings
-            ImuServoCtrlUsing.DegreeSettingsIndex++;
-            ImuServoCtrlUsing.NumDegreeSettings--;
-        }
-        else
-        {
+          ImuServoControlDef & ImuServoCtrlUsing = ImuMouthServoControl;        
           int servoAngle;
-          int degreeChange;
-          int currentServoAngle;
+          int filteredServoAngle;
           const int pitchToMouthAngeOffsetDeg = Mouth_Max_Position; // Mouth closed positon associated with zero based pitch angle.  Assumes we start in mouth closed position
           // Use pitch for the mouth control
           float fpitchMouth = mouth_event.orientation.z;         
@@ -1654,23 +1644,11 @@ void loop()
           {
             servoAngle = Mouth_Min_Position;
           }
-          currentServoAngle = (int)(ImuServoCtrlUsing.servo->device_read());        
-          degreeChange = servoAngle - currentServoAngle;
-          ImuServoCtrlUsing.NumDegreeSettings = mouthServoSettingsForDegChng(currentServoAngle, degreeChange, AdafruitImuHeadMouthPeriodMs, BackBentOver, MaxServoDegreeSettings, ImuServoCtrlUsing.DegreeSettings);
-          ImuServoCtrlUsing.DegreeSettingsIndex = 0;  // index for first entry settings array
-          if (ImuServoCtrlUsing.NumDegreeSettings <= 0)
-          {
-            Serial.println(F("Error: Can't have <= 0 mouth settings "));
-            ImuServoCtrlUsing.NumDegreeSettings = 0; // to allow things to continue on
-          }
-          else
-          {
-            // set servo to first angle in the degree settings array
-            ImuServoCtrlUsing.servo->device_write(ImuServoCtrlUsing.DegreeSettings[ImuServoCtrlUsing.DegreeSettingsIndex]);
-            // increment index, decrement num settings
-            ImuServoCtrlUsing.DegreeSettingsIndex++;
-            ImuServoCtrlUsing.NumDegreeSettings--;
-          }
+          // feed servoAngle to filter
+          ImuServoCtrlUsing.servoFilter->input(servoAngle); // ignore torqueload for now
+          // Read Filter Output angle and set servo to it
+          ImuServoCtrlUsing.servoFilter->output(filteredServoAngle);
+          ImuServoCtrlUsing.servo->device_write(filteredServoAngle);
           /* 
           Serial.print(F("Orientation: "));
           Serial.print((float)event.orientation.x);
@@ -1691,29 +1669,15 @@ void loop()
           Serial.print(F(" "));
           Serial.println(mag, DEC);
          */ 
-        }
       }
       // Handle Head Horizontal control part ------------------------------------------------
       {
-        ImuServoControlDef & ImuServoCtrlUsing = ImuHeadHorizontalServoControl;
-        
-        if (ImuServoCtrlUsing.NumDegreeSettings > 0)
-        // still moving servo to final position using calculated array of positions (settings)
-        {
-            ImuServoCtrlUsing.servo->device_write(ImuServoCtrlUsing.DegreeSettings[ImuServoCtrlUsing.DegreeSettingsIndex]);
-            // increment index, decrement num settings
-            ImuServoCtrlUsing.DegreeSettingsIndex++;
-            ImuServoCtrlUsing.NumDegreeSettings--;
-        }
-        else
-        {
+          ImuServoControlDef & ImuServoCtrlUsing = ImuHeadHorizontalServoControl;        
           int servoAngle;
-          int degreeChange;
-          int currentServoAngle;
+          int filteredServoAngle;
           const int headingToHorizAngeOffsetDeg = 90; // position associated with zero based heading angle
           // Use heading for the head horizontal control
           int heading = (int)(head_event.orientation.x);
-          currentServoAngle = (int)(ImuServoCtrlUsing.servo->device_read());
           int zeroBasedImuAngle = heading - (int)(ImuServoCtrlUsing.ImuCtrlRefFrame.heading);
           // Handle the case where heading start and end point cross over the 0/360 point by 
           // by assuming that the abs (end - start) < 180 degrees  ).  Thus if the raw zeroBasedPitch it > 180 it is assuemd to 
@@ -1736,23 +1700,12 @@ void loop()
           {
             servoAngle = Head_Horizontal_Min_Position;
           }
+          // feed servoAngle to filter
+          ImuServoCtrlUsing.servoFilter->input(servoAngle); // ignore torqueload for now
+          // Read Filter Output angle and set servo to it
+          ImuServoCtrlUsing.servoFilter->output(filteredServoAngle);
+          ImuServoCtrlUsing.servo->device_write(filteredServoAngle);
          
-          degreeChange = servoAngle - currentServoAngle;
-          ImuServoCtrlUsing.NumDegreeSettings = HeadHoriServoSettingsForDegChng(currentServoAngle, degreeChange, AdafruitImuHeadMouthPeriodMs, BackBentOver, MaxServoDegreeSettings, ImuServoCtrlUsing.DegreeSettings);
-          ImuServoCtrlUsing.DegreeSettingsIndex = 0;  // index for first entry settings array
-          if (ImuServoCtrlUsing.NumDegreeSettings <= 0)
-          {
-            Serial.println(F("Error: Can't have <= 0 Head horizontal settings "));
-            ImuServoCtrlUsing.NumDegreeSettings = 0; // to allow things to continue on
-          }
-          else
-          {
-            // set servo to first angle in the degree settings array
-            ImuServoCtrlUsing.servo->device_write(ImuServoCtrlUsing.DegreeSettings[ImuServoCtrlUsing.DegreeSettingsIndex]);
-            // increment index, decrement num settings
-            ImuServoCtrlUsing.DegreeSettingsIndex++;
-            ImuServoCtrlUsing.NumDegreeSettings--;
-          }
           /* 
           Serial.print(F("Orientation: "));
           Serial.print((float)event.orientation.x);
@@ -1773,28 +1726,15 @@ void loop()
           Serial.print(F(" "));
           Serial.println(mag, DEC);
          */ 
-        }
       }
       // Handle Head Vertical control part ------------------------------------------------
       {
-        ImuServoControlDef & ImuServoCtrlUsing = ImuHeadVerticalServoControl;
-        if (ImuServoCtrlUsing.NumDegreeSettings > 0)
-        // still moving servo to final position using calculated array of positions (settings)
-        {
-            ImuServoCtrlUsing.servo->device_write(ImuServoCtrlUsing.DegreeSettings[ImuServoCtrlUsing.DegreeSettingsIndex]);
-            // increment index, decrement num settings
-            ImuServoCtrlUsing.DegreeSettingsIndex++;
-            ImuServoCtrlUsing.NumDegreeSettings--;
-        }
-        else
-        {
+          ImuServoControlDef & ImuServoCtrlUsing = ImuHeadVerticalServoControl;
           int servoAngle;
-          int degreeChange;
-          int currentServoAngle;
+          int filteredServoAngle;
           const int pitchToVertAngeOffsetDeg = 80; // position associated with zero based pitch angle (this seems to keep head jitter down)
           // Use heading for the head horizontal control
           int pitch = (int)(head_event.orientation.z);
-          currentServoAngle = (int)(ImuServoCtrlUsing.servo->device_read());
           int zeroBasedImuAngle = pitch - (int)(ImuServoCtrlUsing.ImuCtrlRefFrame.pitch);
           // Handle the case where heading start and end point cross over the 0/360 point by 
           // by assuming that the abs (end - start) < 180 degrees  ).  Thus if the raw zeroBasedPitch it > 180 it is assuemd to 
@@ -1820,23 +1760,12 @@ void loop()
           {
             servoAngle = Head_Vertical_Min_Position;
           }
+          // feed servoAngle to filter
+          ImuServoCtrlUsing.servoFilter->input(servoAngle); // ignore torqueload for now
+          // Read Filter Output angle and set servo to it
+          ImuServoCtrlUsing.servoFilter->output(filteredServoAngle);
+          ImuServoCtrlUsing.servo->device_write(filteredServoAngle);
          
-          degreeChange = servoAngle - currentServoAngle;
-          ImuServoCtrlUsing.NumDegreeSettings = HeadVertServoSettingsForDegChng(currentServoAngle, degreeChange, AdafruitImuHeadMouthPeriodMs, BackBentOver, MaxServoDegreeSettings, ImuServoCtrlUsing.DegreeSettings);
-          ImuServoCtrlUsing.DegreeSettingsIndex = 0;  // index for first entry settings array
-          if (ImuServoCtrlUsing.NumDegreeSettings <= 0)
-          {
-            Serial.println(F("Error: Can't have <= 0 Head Vertical settings "));
-            ImuServoCtrlUsing.NumDegreeSettings = 0; // to allow things to continue on
-          }
-          else
-          {
-            // set servo to first angle in the degree settings array
-            ImuServoCtrlUsing.servo->device_write(ImuServoCtrlUsing.DegreeSettings[ImuServoCtrlUsing.DegreeSettingsIndex]);
-            // increment index, decrement num settings
-            ImuServoCtrlUsing.DegreeSettingsIndex++;
-            ImuServoCtrlUsing.NumDegreeSettings--;
-          }
           /* 
           Serial.print(F("Orientation: "));
           Serial.print((float)event.orientation.x);
@@ -1857,7 +1786,6 @@ void loop()
           Serial.print(F(" "));
           Serial.println(mag, DEC);
          */ 
-        }
       }
       // Print the current servo settings for each item (can thn be captured for replay)
       Serial.print(F("Servo Vert,Horz,Mouth: "));
@@ -2006,93 +1934,15 @@ void getAttitude(float ax, float ay, float az, float mx, float my, float mz, flo
   
 }
 
-int mouthServoSettingsForDegChng(int CurrentDegreeSetting, int degreeChange, int PeriodInMsec, bool BackBentOver, int maxEntries, int * DegreeSettingsToUse)
-{
-  // Determines (returns) the number of periods (each PeriodMillis long) for the servo to move the indicated number of degrees
-  // as well as an arry of the degree settings to use for period 0,to num periods - 1 to set the servo to at the end of period point.
-  // The array is needed as for example for a the Head vertical servo moving from the 45 degree to the 90 degree position when the back is bent over
-  // requires a few 66 degree settings in between for some unknown reason. that is ......45,45,45, 45, 66,66,66,66, 90,90,90,90, ....
-  // For the mouth servo, per its spec,  it can move, no load, 60 degrees in 120 milliseconds at 6volt supply voltage to the servo at no load
-  float degreesPerMsec =  50.0/120.0; // Give mouth servo extra time.
-  int periods = ceil(abs((((float)degreeChange) / degreesPerMsec)/(float)PeriodInMsec));
-  if (periods > maxEntries)
-  {
-    periods =  maxEntries;
-    Serial.println(F("mouthServoSettingsForDegChng: Exceeded max entries"));
-  }
-  if (periods <= 0)
-  {
-    periods = 1;
-  }
-  // set all entries to the final end point (i.e. no intermediate settings and just allow the number of periods time to reach that point)
-  for (int i = 0; i < periods; i++)
-  {
-    DegreeSettingsToUse[i] = CurrentDegreeSetting + degreeChange;
-  }
-  return periods;   
-}
-
-int HeadVertServoSettingsForDegChng(int CurrentDegreeSetting, int degreeChange, int PeriodInMsec, bool BackBentOver, int maxEntries, int * DegreeSettingsToUse)
-{
-  // Determines (returns) the number of periods (each PeriodMillis long) for the servo to move the indicated number of degrees
-  // as well as an arry of the degree settings to use for period 0,to num periods - 1 to set the servo to at the end of period point.
-  // The array is needed as for example for a the Head vertical servo moving from the 45 degree to the 90 degree position when the back is bent over
-  // requires a few 66 degree settings in between for some unknown reason. that is ......45,45,45, 45, 66,66,66,66, 90,90,90,90, ....
-  // For the head veritcal servo, per its spec,  it can move, no load, 0.15 sec/60° at 6volt supply voltage to the servo at no load
-  float degreesPerMsec =  50.0/150.0; // Give head vertical servo extra time due to load. For now don't use BackBentOver or Current Position but TODO if see transitino time issues
-  int periods = ceil(abs((((float)degreeChange) / degreesPerMsec)/(float)PeriodInMsec));
-  if (periods > maxEntries)
-  {
-    periods =  maxEntries;
-    Serial.println(F("HeadVertServoSettingsForDegChng: Exceeded max entries"));
-  }
-  if (periods <= 0)
-  {
-    periods = 1;
-  }
-  // set all entries to the final end point (i.e. no intermediate settings and just allow the number of periods time to reach that point)
-  for (int i = 0; i < periods; i++)
-  {
-    DegreeSettingsToUse[i] = CurrentDegreeSetting + degreeChange;
-  }
-  return periods;   
-}
-
-int HeadHoriServoSettingsForDegChng(int CurrentDegreeSetting, int degreeChange, int PeriodInMsec, bool BackBentOver, int maxEntries, int * DegreeSettingsToUse)
-{
-  // Determines (returns) the number of periods (each PeriodMillis long) for the servo to move the indicated number of degrees
-  // as well as an arry of the degree settings to use for period 0,to num periods - 1 to set the servo to at the end of period point.
-  // The array is needed as for example for a the Head horizontal servo moving from the 45 degree to the 90 degree position when the back is bent over
-  // requires a few 66 degree settings in between for some unknown reason. that is ......45,45,45, 45, 66,66,66,66, 90,90,90,90, ....
-  // For the head horizontal servo, per its spec,  it can move, no load, 0.15 sec/60° at 6volt supply voltage to the servo at no load
-  float degreesPerMsec =  50.0/150.0; // Give head vertical servo extra time due to load. For now don't use BackBentOver or Current Position but TODO if see transitino time issues
-  int periods = ceil(abs((((float)degreeChange) / degreesPerMsec)/(float)PeriodInMsec));
-  if (periods > maxEntries)
-  {
-    periods =  maxEntries;
-    Serial.println(F("HeadHoriServoSettingsForDegChng: Exceeded max entries"));
-  }
-  if (periods <= 0)
-  {
-    periods = 1;
-  }
-  // set all entries to the final end point (i.e. no intermediate settings and just allow the number of periods time to reach that point)
-  for (int i = 0; i < periods; i++)
-  {
-    DegreeSettingsToUse[i] = CurrentDegreeSetting + degreeChange;
-  }
-  return periods;   
-}
-
 int scaleMouthAngle(int angle)
 // scales the mouth open angle for the servo
 // Used to make the mouth open wider than the normal human mouth or increase the degree of openness.
 {
-  if (abs(angle) <= 5) {
+  if (abs(angle) <= 4) {
     // leave as is
   }
   else{
-    angle = (angle * 8)/4;
+    angle = (angle * 10)/4;
   }
   return angle;
 }
