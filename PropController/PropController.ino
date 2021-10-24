@@ -25,6 +25,7 @@
 //#include <Adafruit_BNO055.h>
 #include "Adafruit_BNO055_HalloweenProp.h"
 #include <utility/imumaths.h>
+#include <utility/quaternion.h>
 
 #include "program_memory_misc.h"
 
@@ -33,18 +34,18 @@ const int  Num_Eeprom_Cal_Sensors = 4;
 const int  Sensors_Cal_Data_Eeprom_adrs = 0x2ff;  // max is 0x3ff
 const int  Mouth_Max_Position = 110; // corresponds to mouth closed
 const int  Mouth_Min_Position = 80;  // corresponds to mouth fully open
-const int  Head_Vertical_Max_Position = 140; // corresponds to head forward
-const int  Head_Vertical_Min_Position = 45;  // corresponds to head back
-const int  Head_Horizontal_Max_Position = 120;
+const int  Head_Vertical_Max_Position = 140; // corresponds to head tilted forward.   Approx 90 degrees is not tilt.
+const int  Head_Vertical_Min_Position = 45;  // corresponds to head tilted back
+const int  Head_Horizontal_Max_Position = 120;  // Corresponds to head turned to right some (view from prop). 90 degrees is head looking straight forward.
 const int  Head_Horizontal_Min_Position = 60;
-const int  Arm_Yaw_Min_Position = 45;
-const int  Arm_Yaw_Max_Position = 180;
-const int  Arm_Roll_Min_Position = 120;
-const int  Arm_Roll_Max_Position = 240;
-const int  Arm_Pitch_Min_Position = 0;
-const int  Arm_Pitch_Max_Position = 200;
-const int  Elbow_Pitch_Min_Position = 70;
-const int  Elbow_Pitch_Max_Position = 190;
+const int  Arm_Yaw_Min_Position = 45;  // 90 degrees is arm pointed straight out front.  45 is arm at 45 degree angle from chest (view from prop)
+const int  Arm_Yaw_Max_Position = 180; // arm staight out to right (view from prop)
+const int  Arm_Roll_Min_Position = 120;  // corresponds to level no roll
+const int  Arm_Roll_Max_Position = 240;  // corresopnds to 120 degree roll toward chest
+const int  Arm_Pitch_Min_Position = 0;  // arm straight up
+const int  Arm_Pitch_Max_Position = 200;  // 180 is arm straigh down.  200 is arm 20 degrees toward the back from straight down.
+const int  Elbow_Pitch_Min_Position = 70; // forearm 10 degrees up from bend at 90 degree angle
+const int  Elbow_Pitch_Max_Position = 190; // foreamr at 175 is straightened elbow.  190 is 15 bent backwards (not a possible human move)
 
 const int  Servo_Min_Update_Period = 10; 
 
@@ -320,6 +321,10 @@ unsigned long AdafruitSensorReadTimeout;
 //#define ForceVisualize3DOnStartup
 bool Adafruit3DVisualizeEnabled = false;
 int AdafruitSensorToVisualize = 0;
+#define direct_Euler_fmt 0
+#define quat_converted_to_Euler_fmt 1
+int Adafruit3DVisualizeFormat = direct_Euler_fmt;
+
 
 
 // Adafruit IMU sensor controls Mouth items
@@ -1176,7 +1181,8 @@ void loop()
         int numItems = 0;
         int periodMsec;
         int sensorNumber = 0;
-        if ((numItems = sscanf(restcmdLine, "%d %d", &periodMsec, &sensorNumber)) >= 2)
+        int format = direct_Euler_fmt;
+        if ((numItems = sscanf(restcmdLine, "%d %d %d", &periodMsec, &sensorNumber, &format)) >= 2)
         {
           if ((periodMsec >= 10) && ((sensorNumber >= 0) && (sensorNumber < MAX_ADAFRUIT_SENSORS)))
           {
@@ -1187,7 +1193,27 @@ void loop()
             AdafruitSensorReadPeriodMsec = periodMsec;
             AdafruitSensorToVisualize = sensorNumber;
             AdafruitSensorReadTimeout = millis(); // force timeout right away
-            Adafruit3DVisualizeEnabled = true; 
+            if (numItems >= 3) 
+            // format specified
+            {
+                switch (format)
+                {
+                    case direct_Euler_fmt:
+                        Adafruit3DVisualizeFormat = direct_Euler_fmt;
+                        break;
+                    case quat_converted_to_Euler_fmt:
+                        Adafruit3DVisualizeFormat = quat_converted_to_Euler_fmt;
+                        break;
+                    default:
+                        Adafruit3DVisualizeFormat = direct_Euler_fmt;
+                        break;
+                }
+            }
+            else
+            {
+                Adafruit3DVisualizeFormat = direct_Euler_fmt;
+            }
+            Adafruit3DVisualizeEnabled = true;
           }
           else
           {
@@ -1404,17 +1430,36 @@ void loop()
     if (AdafruitSensorReadTimeout <= millis())
     {
       AdafruitSensorReadTimeout += AdafruitSensorReadPeriodMsec;
-      sensors_event_t event; 
-      Adafruit_sensors[AdafruitSensorToVisualize].sensor->getEvent(&event);
-  
-      /* Display the information as the visualize processing sketch needs it */
-      Serial.print(F("Orientation: "));
-      Serial.print((float)event.orientation.x);
-      Serial.print(F(" "));
-      Serial.print((float)event.orientation.y);
-      Serial.print(F(" "));
-      Serial.print((float)event.orientation.z);
-      Serial.println(F(""));
+      if (direct_Euler_fmt == Adafruit3DVisualizeFormat)
+      {
+          sensors_event_t event; 
+          Adafruit_sensors[AdafruitSensorToVisualize].sensor->getEvent(&event);
+          /* Display the information as the visualize processing sketch needs it */
+          Serial.print(F("Orientation: "));
+          Serial.print((float)event.orientation.x);
+          Serial.print(F(" "));
+          Serial.print((float)event.orientation.y);
+          Serial.print(F(" "));
+          Serial.print((float)event.orientation.z);
+          Serial.println(F(""));
+      }
+      else if (quat_converted_to_Euler_fmt == Adafruit3DVisualizeFormat)
+      {
+          imu::Quaternion quat;
+          quat = Adafruit_sensors[AdafruitSensorToVisualize].sensor->getQuat();
+          imu::Vector<3> eulerFromQuat = quat.toEuler();
+          Serial.print(F("OrientationEulerFromQuat: "));
+          Serial.print((float)eulerFromQuat.x()* 180.0/PI);
+          Serial.print(F(" "));
+          Serial.print((float)eulerFromQuat.y()* 180.0/PI);
+          Serial.print(F(" "));
+          Serial.print((float)eulerFromQuat.z()* 180.0/PI);
+          Serial.println(F(""));
+      }
+      else
+      {
+        // do nothing
+      }
       /* Also send calibration data for each sensor. */
       uint8_t sys, gyro, accel, mag = 0;
       Adafruit_sensors[AdafruitSensorToVisualize].sensor->getCalibration(&sys, &gyro, &accel, &mag);

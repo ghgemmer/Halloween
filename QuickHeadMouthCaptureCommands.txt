@@ -3,9 +3,9 @@
 
 
 ImuGetStoredCalibData 0;ImuGetStoredCalibData 1;ImuGetStoredCalibData 2;ImuGetStoredCalibData 3
-// Hat IMU
-Visualize3D 50 0
 // Mouth IMU
+Visualize3D 50 0
+// Hat IMU
 Visualize3D 50 1
 // Arm IMU
 Visualize3D 50 2
