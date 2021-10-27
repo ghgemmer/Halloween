@@ -1,3 +1,10 @@
+/*
+ Author: Greg Gemmer, ghgemmer@gmail.com
+ Copyright (c) 2021 Greg Gemmer.
+ MIT license.
+ Dervied class from Adafruit Industries class Adafruit_BNO055
+ See Adafruit_BNO055.h header for licensing and distrubution. 
+/*
 /***************************************************************************
   This is a derived library for the BNO055 orientation sensor
 

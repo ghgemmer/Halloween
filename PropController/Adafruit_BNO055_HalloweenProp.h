@@ -1,3 +1,11 @@
+/*
+ Author: Greg Gemmer, ghgemmer@gmail.com
+ Copyright (c) 2021 Greg Gemmer.
+ MIT license.
+ Dervied class from Adafruit Industries class Adafruit_BNO055
+ See Adafruit_BNO055.h header for licensing and distrubution.
+/*
+
 /***************************************************************************
   This class is derived from the Adafruit_BNO055 class.
   It additionally accomodates multiple BNO055s with the same I2C address.
