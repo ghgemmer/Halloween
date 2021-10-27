@@ -10,6 +10,7 @@
 #include "base_device.h"
 #include "servo_device.h"
 #include "servo_filter.h"
+#include "imu_filter.h"
 #include "relay_device.h"
 #include "mp3_device.h"
 #include "LED_device.h"
@@ -34,18 +35,39 @@ const int  Num_Eeprom_Cal_Sensors = 4;
 const int  Sensors_Cal_Data_Eeprom_adrs = 0x2ff;  // max is 0x3ff
 const int  Mouth_Max_Position = 110; // corresponds to mouth closed
 const int  Mouth_Min_Position = 80;  // corresponds to mouth fully open
+const int  Mouth_Rest_Position = 110; // corresponds to mouth normal rest position of closed
 const int  Head_Vertical_Max_Position = 140; // corresponds to head tilted forward.   Approx 90 degrees is not tilt.
 const int  Head_Vertical_Min_Position = 45;  // corresponds to head tilted back
+const int  Head_Vertical_Default_Position = 79;  // corresponds to head normal rest position of level which generally causes very little servo noise.
 const int  Head_Horizontal_Max_Position = 120;  // Corresponds to head turned to right some (view from prop). 90 degrees is head looking straight forward.
 const int  Head_Horizontal_Min_Position = 60;
+const int  Head_Horizontal_Default_Position = 90; // corresponds to head normal rest position of looking straight forward
 const int  Arm_Yaw_Min_Position = 45;  // 90 degrees is arm pointed straight out front.  45 is arm at 45 degree angle from chest (view from prop)
 const int  Arm_Yaw_Max_Position = 180; // arm staight out to right (view from prop)
+const int  Arm_Yaw_Default_Position = 90; // corresponds to arm normal rest position of straight out
 const int  Arm_Roll_Min_Position = 120;  // corresponds to level no roll
 const int  Arm_Roll_Max_Position = 240;  // corresopnds to 120 degree roll toward chest
+const int  Arm_Roll_Default_Position = 120;  // corresopnds to normal rest position of no roll (i.e. no tilt)
 const int  Arm_Pitch_Min_Position = 0;  // arm straight up
-const int  Arm_Pitch_Max_Position = 200;  // 180 is arm straigh down.  200 is arm 20 degrees toward the back from straight down.
+const int  Arm_Pitch_Max_Position = 200;  // 179 is arm straigh down.  200 is arm 21 degrees toward the back from straight down.
+const int  Arm_Pitch_Default_Position = 179;  // corresopnds to normal rest position of arm hanging straight down
 const int  Elbow_Pitch_Min_Position = 70; // forearm 10 degrees up from bend at 90 degree angle
 const int  Elbow_Pitch_Max_Position = 190; // foreamr at 175 is straightened elbow.  190 is 15 bent backwards (not a possible human move)
+const int  Elbow_Pitch_Default_Position = 175; // corresopnds to normal rest position of elbow straightened
+
+const int  Imu_Arm_Yaw_Min_Position = 0;
+const int  Imu_Arm_Yaw_Max_Position = 359;
+const int  Imu_Arm_Yaw_Default_Position = 90;  // straight forward
+const int  Imu_Arm_Roll_Min_Position = -80;
+const int  Imu_Arm_Roll_Max_Position = 80;
+const int  Imu_Arm_Roll_Default_Position = 0; // level
+const int  Imu_Arm_Pitch_Min_Position = -110;
+const int  Imu_Arm_Pitch_Max_Position = 60;
+const int  Imu_Arm_Pitch_Default_Position = -90;  // straight down
+const int  Imu_Elbow_Pitch_Min_Position = Imu_Arm_Pitch_Min_Position;
+const int  Imu_Elbow_Pitch_Max_Position = Imu_Arm_Pitch_Max_Position + 90; // Max arm pitch + bend 90 degrees up
+const int  Imu_Elbow_Pitch_Default_Position = Imu_Arm_Pitch_Min_Position;
+
 
 const int  Servo_Min_Update_Period = 10; 
 
@@ -299,15 +321,27 @@ i2cSwitch i2cSwitchDevice = i2cSwitch(0x70);  // I2C address that switch resides
 #define MAX_ADAFRUIT_SENSORS 4
 //  Note: sensor number in Adafruit_BNO055_HalloweenProp constructor does not change which sensor is which, only the I2C address passed does.
 //  Currently the sensor have their I2C address strapping fixed via grounds.   Mouth gaurd sensor isthe one wiht no I2C address passed
-Adafruit_BNO055_HalloweenProp bno_head = Adafruit_BNO055_HalloweenProp(ADAFRUIT_IMU_HEAD  , BNO055_ADDRESS_B, &i2cSwitchDevice, 0x01,  0xff);
-Adafruit_BNO055_HalloweenProp bno_mouth = Adafruit_BNO055_HalloweenProp(ADAFRUIT_IMU_MOUTH, BNO055_ADDRESS_A, &i2cSwitchDevice, 0x01,  0xff);
-Adafruit_BNO055_HalloweenProp bno_arm = Adafruit_BNO055_HalloweenProp(ADAFRUIT_IMU_ARM  , BNO055_ADDRESS_B, &i2cSwitchDevice, 0x02,  0xff);
-Adafruit_BNO055_HalloweenProp bno_forearm = Adafruit_BNO055_HalloweenProp(ADAFRUIT_IMU_FOREARM, BNO055_ADDRESS_A, &i2cSwitchDevice, 0x02,  0xff);
+Adafruit_BNO055_HalloweenProp bno_head(ADAFRUIT_IMU_HEAD  , BNO055_ADDRESS_B, &i2cSwitchDevice, 0x01,  0xff);
+Adafruit_BNO055_HalloweenProp bno_mouth(ADAFRUIT_IMU_MOUTH, BNO055_ADDRESS_A, &i2cSwitchDevice, 0x01,  0xff);
+Adafruit_BNO055_HalloweenProp bno_arm(ADAFRUIT_IMU_ARM  , BNO055_ADDRESS_B, &i2cSwitchDevice, 0x02,  0xff);
+Adafruit_BNO055_HalloweenProp bno_forearm(ADAFRUIT_IMU_FOREARM, BNO055_ADDRESS_A, &i2cSwitchDevice, 0x02,  0xff);
 struct Adafruit_sensors_def {
   Adafruit_BNO055_HalloweenProp * sensor;
   char * name;
 };
 Adafruit_sensors_def Adafruit_sensors[MAX_ADAFRUIT_SENSORS] = { {&bno_mouth,"Mouth IMU"}, {&bno_head, "Head IMU"}, {&bno_arm, "Arm IMU"}, {&bno_forearm, "Forearm IMU"}};  // Must match index defines above
+
+// create IMU filters
+imu_filter armImuFilter(Imu_Arm_Yaw_Default_Position, Imu_Arm_Roll_Default_Position, Imu_Arm_Pitch_Default_Position,
+                        Imu_Arm_Yaw_Min_Position, Imu_Arm_Yaw_Max_Position,
+                        Imu_Arm_Roll_Min_Position, Imu_Arm_Roll_Max_Position,
+                        Imu_Arm_Pitch_Min_Position, Imu_Arm_Pitch_Max_Position
+                        );
+imu_filter forearmImuFilter(Imu_Arm_Yaw_Default_Position, Imu_Arm_Roll_Default_Position, Imu_Elbow_Pitch_Default_Position,
+                        Imu_Arm_Yaw_Min_Position, Imu_Arm_Yaw_Max_Position,
+                        Imu_Arm_Roll_Min_Position, Imu_Arm_Roll_Max_Position,
+                        Imu_Elbow_Pitch_Min_Position, Imu_Elbow_Pitch_Max_Position
+                        );
 
 // General Adafruit items
 unsigned long AdafruitSensorReadPeriodMsec;
@@ -358,11 +392,16 @@ struct ImuServoControlDef {
   struct ImuCtrlRefFrameDef ImuCtrlRefFrame;
 };
 bool AdafruitImuHeadMouthEnabled = false;
+bool AdafruitImuHeadMouthIncludeArm = false;
 unsigned long AdafruitImuHeadMouthPeriodMs;
 unsigned long AdafruitImuHeadMouthTimeout;
 ImuServoControlDef ImuHeadVerticalServoControl;
 ImuServoControlDef ImuHeadHorizontalServoControl;
 ImuServoControlDef ImuMouthServoControl;
+ImuServoControlDef ImuArmYawServoControl;
+ImuServoControlDef ImuArmRollServoControl;
+ImuServoControlDef ImuArmPitchServoControl;
+ImuServoControlDef ImuElbowPitchServoControl;
 int AdafruitImuHeadMouthAudioFile = 0;
 int AdafruitImuHeadMouthAudioDelay = 0;
 
@@ -484,6 +523,21 @@ void setup()
     ImuMouthServoControl.AdafruitImuCtrlSensor = ADAFRUIT_IMU_MOUTH;
     ImuMouthServoControl.servo =  &Head_Mouth_Rotation_servo;
     ImuMouthServoControl.servoFilter = &Head_Mouth_Servo_Filter;
+    
+    // initialize IMU arm yaw, roll, pitch, elbow pitch control items
+    ImuArmYawServoControl.AdafruitImuCtrlSensor = ADAFRUIT_IMU_ARM;
+    ImuArmYawServoControl.servo =  &Arm_Yaw_servo;
+    ImuArmYawServoControl.servoFilter = &Arm_Yaw_Servo_Filter;
+    ImuArmRollServoControl.AdafruitImuCtrlSensor = ADAFRUIT_IMU_ARM;
+    ImuArmRollServoControl.servo =  &Arm_Roll_servo;
+    ImuArmRollServoControl.servoFilter = &Arm_Roll_Servo_Filter;
+    ImuArmPitchServoControl.AdafruitImuCtrlSensor = ADAFRUIT_IMU_ARM;
+    ImuArmPitchServoControl.servo =  &Arm_Pitch_servo;
+    ImuArmPitchServoControl.servoFilter = &Arm_Pitch_Servo_Filter;
+    ImuElbowPitchServoControl.AdafruitImuCtrlSensor = ADAFRUIT_IMU_FOREARM;
+    ImuElbowPitchServoControl.servo =  &Elbow_Pitch_servo;
+    ImuElbowPitchServoControl.servoFilter = &Elbow_Pitch_Servo_Filter;
+
 #endif
     
     // attach Head servos to specific pins on the cpu board
@@ -1329,7 +1383,8 @@ void loop()
         int periodMsec;
         int audioFile;
         int audioDelayInPeriods;
-        if ((numItems = sscanf(restcmdLine, "%d %d %d", &periodMsec, &audioFile, &audioDelayInPeriods)) >= 3)
+        int includeArm = 0;
+        if ((numItems = sscanf(restcmdLine, "%d %d %d %d", &periodMsec, &audioFile, &audioDelayInPeriods, &includeArm)) >= 3)
         {
           if (periodMsec >= Servo_Min_Update_Period)
           {            
@@ -1338,8 +1393,23 @@ void loop()
             Serial.print(F(" AudioFile "));
             Serial.print(audioFile);
             Serial.print(F(" audioDelayInPeriods "));
-            Serial.println(audioDelayInPeriods);
+            Serial.print(audioDelayInPeriods);
+            if (numItems >= 4)
+            {
+              Serial.print(F(" includeArm "));
+              Serial.print(includeArm);
+            }
+            Serial.println("");
+            
             AdafruitImuHeadMouthPeriodMs = periodMsec;
+            if ((numItems >= 4) && (includeArm == 1))
+            {
+              AdafruitImuHeadMouthIncludeArm = true;
+            }
+            else
+            {
+              AdafruitImuHeadMouthIncludeArm = false;
+            }
             Head_Mouth_Servo_Filter.setUpdatePeriod(periodMsec);
             Head_Mouth_Servo_Filter.startingPointDegrees(Head_Mouth_Rotation_servo.device_read());
             Head_Mouth_Servo_Filter.flush();
@@ -1349,6 +1419,23 @@ void loop()
             Head_Vertical_Servo_Filter.setUpdatePeriod(periodMsec);
             Head_Vertical_Servo_Filter.startingPointDegrees(Head_Vertical_Rotation_servo.device_read());
             Head_Vertical_Servo_Filter.flush();
+            if (AdafruitImuHeadMouthIncludeArm)
+            {
+              Arm_Yaw_Servo_Filter.setUpdatePeriod(periodMsec);
+              Arm_Yaw_Servo_Filter.startingPointDegrees(Arm_Yaw_servo.device_read());
+              Arm_Yaw_Servo_Filter.flush();
+              Arm_Roll_Servo_Filter.setUpdatePeriod(periodMsec);
+              Arm_Roll_Servo_Filter.startingPointDegrees(Arm_Roll_servo.device_read());
+              Arm_Roll_Servo_Filter.flush();
+              Arm_Pitch_Servo_Filter.setUpdatePeriod(periodMsec);
+              Arm_Pitch_Servo_Filter.startingPointDegrees(Arm_Pitch_servo.device_read());
+              Arm_Pitch_Servo_Filter.flush();
+              Elbow_Pitch_Servo_Filter.setUpdatePeriod(periodMsec);
+              Elbow_Pitch_Servo_Filter.startingPointDegrees(Elbow_Pitch_servo.device_read());
+              Elbow_Pitch_Servo_Filter.flush();
+              
+              
+            }           
             AdafruitImuHeadMouthTimeout = millis(); // force timeout right away
             AdafruitImuHeadMouthAudioFile = audioFile;
             AdafruitImuHeadMouthAudioDelay = audioDelayInPeriods;            
@@ -1376,6 +1463,37 @@ void loop()
             ImuMouthServoControl.ImuCtrlRefFrame.pitch = event.orientation.z; 
             ImuMouthServoControl.ImuCtrlRefFrame.roll = event.orientation.y;
 
+            if (AdafruitImuHeadMouthIncludeArm)
+            {
+              int heading;
+              int roll;
+              int pitch;
+              Adafruit_sensors[ImuArmYawServoControl.AdafruitImuCtrlSensor].sensor->getEvent(&event);
+              armImuFilter.input(event.orientation.x, event.orientation.y, event.orientation.z );
+              armImuFilter.output(heading, roll, pitch );
+
+              
+              // arm sensor used for arm yaw,roll,pitch servos
+              ImuArmYawServoControl.ImuCtrlRefFrame.heading = heading;
+              ImuArmYawServoControl.ImuCtrlRefFrame.pitch = pitch; 
+              ImuArmYawServoControl.ImuCtrlRefFrame.roll = roll;
+              
+              ImuArmRollServoControl.ImuCtrlRefFrame.heading = heading;
+              ImuArmRollServoControl.ImuCtrlRefFrame.pitch = pitch; 
+              ImuArmRollServoControl.ImuCtrlRefFrame.roll = roll;
+
+              ImuArmPitchServoControl.ImuCtrlRefFrame.heading = heading;
+              ImuArmPitchServoControl.ImuCtrlRefFrame.pitch = pitch; 
+              ImuArmPitchServoControl.ImuCtrlRefFrame.roll = roll;
+              
+              // read forearm sensor for elbow pitch servo
+              Adafruit_sensors[ImuElbowPitchServoControl.AdafruitImuCtrlSensor].sensor->getEvent(&event);
+              forearmImuFilter.input(event.orientation.x, event.orientation.y, event.orientation.z );
+              forearmImuFilter.output(heading, roll, pitch );
+              ImuElbowPitchServoControl.ImuCtrlRefFrame.heading = heading;
+              ImuElbowPitchServoControl.ImuCtrlRefFrame.pitch = pitch; 
+              ImuElbowPitchServoControl.ImuCtrlRefFrame.roll = roll;
+            }
           }
           else
           {
@@ -1624,6 +1742,13 @@ void loop()
       Adafruit_sensors[ADAFRUIT_IMU_HEAD].sensor->getEvent(&head_event);
       sensors_event_t mouth_event; 
       Adafruit_sensors[ADAFRUIT_IMU_MOUTH].sensor->getEvent(&mouth_event);
+      sensors_event_t arm_event; 
+      sensors_event_t forearm_event;
+      if (AdafruitImuHeadMouthIncludeArm)
+      {
+        Adafruit_sensors[ADAFRUIT_IMU_ARM].sensor->getEvent(&arm_event);
+        Adafruit_sensors[ADAFRUIT_IMU_FOREARM].sensor->getEvent(&forearm_event);
+      }
       // Read current back setting
       bool BackBentOver = (Pneumatic_Back_relay.device_read() == PNEUMATIC_BACK_BENTOVER);
       
@@ -1694,26 +1819,6 @@ void loop()
           // Read Filter Output angle and set servo to it
           ImuServoCtrlUsing.servoFilter->output(filteredServoAngle);
           ImuServoCtrlUsing.servo->device_write(filteredServoAngle);
-          /* 
-          Serial.print(F("Orientation: "));
-          Serial.print((float)event.orientation.x);
-          Serial.print(F(" "));
-          Serial.print((float)event.orientation.y);
-          Serial.print(F(" "));
-          Serial.print((float)event.orientation.z);
-          Serial.println(F(""));
-          
-          uint8_t sys, gyro, accel, mag = 0;
-          Adafruit_sensors[AdafruitSensorToVisualize].sensor->getCalibration(&sys, &gyro, &accel, &mag);
-          Serial.print(F("Calibration: "));
-          Serial.print(sys, DEC);
-          Serial.print(F(" "));
-          Serial.print(gyro, DEC);
-          Serial.print(F(" "));
-          Serial.print(accel, DEC);
-          Serial.print(F(" "));
-          Serial.println(mag, DEC);
-         */ 
       }
       // Handle Head Horizontal control part ------------------------------------------------
       {
@@ -1751,26 +1856,6 @@ void loop()
           ImuServoCtrlUsing.servoFilter->output(filteredServoAngle);
           ImuServoCtrlUsing.servo->device_write(filteredServoAngle);
          
-          /* 
-          Serial.print(F("Orientation: "));
-          Serial.print((float)event.orientation.x);
-          Serial.print(F(" "));
-          Serial.print((float)event.orientation.y);
-          Serial.print(F(" "));
-          Serial.print((float)event.orientation.z);
-          Serial.println(F(""));
-          
-          uint8_t sys, gyro, accel, mag = 0;
-          Adafruit_sensors[AdafruitSensorToVisualize].sensor->getCalibration(&sys, &gyro, &accel, &mag);
-          Serial.print(F("Calibration: "));
-          Serial.print(sys, DEC);
-          Serial.print(F(" "));
-          Serial.print(gyro, DEC);
-          Serial.print(F(" "));
-          Serial.print(accel, DEC);
-          Serial.print(F(" "));
-          Serial.println(mag, DEC);
-         */ 
       }
       // Handle Head Vertical control part ------------------------------------------------
       {
@@ -1782,7 +1867,7 @@ void loop()
           int pitch = (int)(head_event.orientation.z);
           int zeroBasedImuAngle = pitch - (int)(ImuServoCtrlUsing.ImuCtrlRefFrame.pitch);
           // Handle the case where heading start and end point cross over the 0/360 point by 
-          // by assuming that the abs (end - start) < 180 degrees  ).  Thus if the raw zeroBasedPitch it > 180 it is assuemd to 
+          // by assuming that the abs (end - start) < 180 degrees  ).  Thus if the raw zeroBasedPitch it > 180 it is assumed to 
           // be because we have transitioned across the 0/360 boundary going form the start to end point
           if (zeroBasedImuAngle > 179)
           {
@@ -1811,29 +1896,195 @@ void loop()
           ImuServoCtrlUsing.servoFilter->output(filteredServoAngle);
           ImuServoCtrlUsing.servo->device_write(filteredServoAngle);
          
-          /* 
-          Serial.print(F("Orientation: "));
-          Serial.print((float)event.orientation.x);
-          Serial.print(F(" "));
-          Serial.print((float)event.orientation.y);
-          Serial.print(F(" "));
-          Serial.print((float)event.orientation.z);
-          Serial.println(F(""));
-          
-          uint8_t sys, gyro, accel, mag = 0;
-          Adafruit_sensors[AdafruitSensorToVisualize].sensor->getCalibration(&sys, &gyro, &accel, &mag);
-          Serial.print(F("Calibration: "));
-          Serial.print(sys, DEC);
-          Serial.print(F(" "));
-          Serial.print(gyro, DEC);
-          Serial.print(F(" "));
-          Serial.print(accel, DEC);
-          Serial.print(F(" "));
-          Serial.println(mag, DEC);
-         */ 
       }
-      // Print the current servo settings for each item (can thn be captured for replay)
-      Serial.print(F("Servo Vert,Horz,Mouth: "));
+      if (AdafruitImuHeadMouthIncludeArm)
+      {
+        int heading; //yaw
+        int roll;
+        int pitch;
+        int armHeading; //yaw
+        int armRoll;
+        int armPitch;
+        // Get filtered Arm IMU output
+        armImuFilter.input(arm_event.orientation.x, arm_event.orientation.y, arm_event.orientation.z);
+        armImuFilter.output(heading, roll, pitch );
+        // Save these for use later for handling elbow servo
+        armHeading = heading;
+        armRoll = roll;
+        armPitch = pitch;
+        
+        // Handle arm yaw(heading) servo
+        {
+            ImuServoControlDef & ImuServoCtrlUsing = ImuArmYawServoControl;        
+            int servoAngle;
+            int filteredServoAngle;
+            // Use heading for the servo control
+            int zeroBasedImuAngle = heading - (int)(ImuServoCtrlUsing.ImuCtrlRefFrame.heading);
+            // Handle the case where the reference to current imu angle crosses over the 0/360 point by 
+            // by assuming that the abs (current - reference) < 180 degrees.  Thus if the raw zeroBasedImuAngle is > 180 it is assuemd to 
+            // be because we have transitioned across the 0/360 boundary going form the reference to the current imu angle
+            if (zeroBasedImuAngle > 179)
+            {
+              zeroBasedImuAngle -= 360;
+            }
+            else if (zeroBasedImuAngle < -179)
+            {
+              zeroBasedImuAngle += 360;
+            }
+            servoAngle = zeroBasedImuAngle + Arm_Yaw_Default_Position; // add the default position of the servo that zeroBasedImuAngle = 0 corresponds to
+            // Limit  Angle
+            if (servoAngle > Arm_Yaw_Max_Position)
+            {
+              servoAngle = Arm_Yaw_Max_Position;
+            }      
+            else if (servoAngle < Arm_Yaw_Min_Position)
+            {
+              servoAngle = Arm_Yaw_Min_Position;
+            }
+            // feed servoAngle to filter
+            ImuServoCtrlUsing.servoFilter->input(servoAngle); // ignore torqueload for now
+            // Read Filter Output angle and set servo to it
+            ImuServoCtrlUsing.servoFilter->output(filteredServoAngle);
+            ImuServoCtrlUsing.servo->device_write(filteredServoAngle);
+        }
+        
+        // Handle arm roll servo
+        {
+            ImuServoControlDef & ImuServoCtrlUsing = ImuArmRollServoControl;        
+            int servoAngle;
+            int filteredServoAngle;
+            // Use roll for the servo control
+            int zeroBasedImuAngle = roll - (int)(ImuServoCtrlUsing.ImuCtrlRefFrame.roll);
+            // Currently the imu roll does not ever get at or above 90 or at or below -90 and so the code below while not needed
+            // can be left in, just in case the roll ever gets extended to 0 to 180 and 0 to -180.
+            // Handle the case where the reference to current imu angle crosses over the  -180/180 point by 
+            // by assuming that the abs (current - reference) < 180 degrees.  Thus if the raw zeroBasedImuAngle is > 180 it is assumed to 
+            // be because we have transitioned across the -180/180 boundary going form the reference to the current imu angle
+            if (zeroBasedImuAngle > 179)
+            {
+              zeroBasedImuAngle -= 360;
+            }
+            else if (zeroBasedImuAngle < -179)
+            {
+              zeroBasedImuAngle += 360;
+            }
+            // take the negative of the zeroBasedImuAngle as incresing servo roll angle rolls
+            // the arm  toward the body (counter clockwise when viewed from the prop itself)
+            // , whereas increasing arm Imu roll
+            // rolls the arm away from the body (clockwise when viewed from the prop itself)
+            zeroBasedImuAngle = 0 - zeroBasedImuAngle;
+            servoAngle = zeroBasedImuAngle + Arm_Roll_Default_Position; // add the default position of the servo that zeroBasedImuAngle = 0 corresponds to
+            // Limit  Angle
+            if (servoAngle > Arm_Roll_Max_Position)
+            {
+              servoAngle = Arm_Roll_Max_Position;
+            }      
+            else if (servoAngle < Arm_Roll_Min_Position)
+            {
+              servoAngle = Arm_Roll_Min_Position;
+            }
+            // feed servoAngle to filter
+            ImuServoCtrlUsing.servoFilter->input(servoAngle); // ignore torqueload for now
+            // Read Filter Output angle and set servo to it
+            ImuServoCtrlUsing.servoFilter->output(filteredServoAngle);
+            ImuServoCtrlUsing.servo->device_write(filteredServoAngle);
+        }
+        
+        // Handle arm pitch servo
+        {
+            ImuServoControlDef & ImuServoCtrlUsing = ImuArmPitchServoControl;        
+            int servoAngle;
+            int filteredServoAngle;
+            // Use pitch for the servo control
+            int zeroBasedImuAngle = pitch - (int)(ImuServoCtrlUsing.ImuCtrlRefFrame.pitch);
+            // Handle the case where the reference to current imu angle crosses over the -180/180 point by 
+            // by assuming that the abs (current - reference) < 180 degrees.  Thus if the raw zeroBasedImuAngle is > 180 it is assumed to 
+            // be because we have transitioned across the -180/180 boundary going form the reference to the current imu angle
+            if (zeroBasedImuAngle > 179)
+            {
+              zeroBasedImuAngle -= 360;
+            }
+            else if (zeroBasedImuAngle < -179)
+            {
+              zeroBasedImuAngle += 360;
+            }
+            // take the negative of the zeroBasedImuAngle as incresing arm servo pitch pitches the arm down
+            // (counter clockwise when point of view is from the prop itself)
+            // , whereas increasing arm Imu pitch 
+            // happens when the arm pitch goes up (clockwise when point of view is from the prop itself)
+            zeroBasedImuAngle = 0 - zeroBasedImuAngle;
+            servoAngle = zeroBasedImuAngle + Arm_Pitch_Default_Position; // add the default position of the servo that zeroBasedImuAngle = 0 corresponds to
+            // Limit  Angle
+            if (servoAngle > Arm_Pitch_Max_Position)
+            {
+              servoAngle = Arm_Pitch_Max_Position;
+            }      
+            else if (servoAngle < Arm_Pitch_Min_Position)
+            {
+              servoAngle = Arm_Pitch_Min_Position;
+            }
+            // feed servoAngle to filter
+            ImuServoCtrlUsing.servoFilter->input(servoAngle); // ignore torqueload for now
+            // Read Filter Output angle and set servo to it
+            ImuServoCtrlUsing.servoFilter->output(filteredServoAngle);
+            ImuServoCtrlUsing.servo->device_write(filteredServoAngle);
+        }
+
+
+        // Get filtered Forearm IMU output
+        forearmImuFilter.input(forearm_event.orientation.x, forearm_event.orientation.y, forearm_event.orientation.z);
+        forearmImuFilter.output(heading, roll, pitch );
+        
+        // Handle elbow pitch servo
+        {
+            ImuServoControlDef & ImuServoCtrlUsing = ImuElbowPitchServoControl;        
+            int servoAngle;
+            int filteredServoAngle;
+
+            float fpitchForearm = pitch;         
+            float fpitchArm = (float)armPitch;
+            float fpitchArmRef = (float)ImuArmPitchServoControl.ImuCtrlRefFrame.pitch;
+            float fpitchForearmRef = ImuServoCtrlUsing.ImuCtrlRefFrame.pitch;         
+            float fpitch = fpitchForearm - fpitchArm - (fpitchForearmRef - fpitchArmRef);
+            int zeroBasedImuAngle = (int)fpitch;
+            // Handle the case where the reference to current imu angle crosses over the -180/180 point by 
+            // by assuming that the abs (current - reference) < 180 degrees.  Thus if the raw zeroBasedImuAngle is > 180 it is assumed to 
+            // be because we have transitioned across the -180/180 boundary going form the reference to the current imu angle
+            if (zeroBasedImuAngle > 179)
+            {
+              zeroBasedImuAngle -= 360;
+            }
+            else if (zeroBasedImuAngle < -179)
+            {
+              zeroBasedImuAngle += 360;
+            }
+            // No scaling of angle needed at this time
+            
+            // Take the negative of the zeroBasedImuAngle as  elbow servo pitch angle increases
+            // when forearm pitch decreases holding arm pitch the same.
+            // happens when the arm pitch goes up (clockwise when point of view is from the prop itself)
+            zeroBasedImuAngle = 0 - zeroBasedImuAngle;
+            
+            servoAngle = zeroBasedImuAngle + Elbow_Pitch_Default_Position; // add the default position of the servo that zeroBasedImuAngle = 0 corresponds to
+            // Limit  Angle
+            if (servoAngle > Elbow_Pitch_Max_Position)
+            {
+              servoAngle = Elbow_Pitch_Max_Position;
+            }      
+            else if (servoAngle < Elbow_Pitch_Min_Position)
+            {
+              servoAngle = Elbow_Pitch_Min_Position;
+            }
+            // feed servoAngle to filter
+            ImuServoCtrlUsing.servoFilter->input(servoAngle); // ignore torqueload for now
+            // Read Filter Output angle and set servo to it
+            ImuServoCtrlUsing.servoFilter->output(filteredServoAngle);
+            ImuServoCtrlUsing.servo->device_write(filteredServoAngle);
+        }
+      }
+
+      // Print the current servo settings for each item (can then be captured for replay)
+      Serial.print(F("Head Vert,Horz,Mouth: "));
       Serial.print((int)ImuHeadVerticalServoControl.servo->device_read());
       Serial.print(F(" "));
       Serial.print((int)ImuHeadHorizontalServoControl.servo->device_read());
@@ -1843,6 +2094,18 @@ void loop()
       {
         Serial.print(F(" Started Audio File: "));
         Serial.print(AdafruitImuHeadMouthAudioFile);
+      }
+      if (AdafruitImuHeadMouthIncludeArm)
+      {
+        Serial.print(F("Arm Y,R,P,ElbowP: "));
+        Serial.print((int)ImuArmYawServoControl.servo->device_read());
+        Serial.print(F(" "));
+        Serial.print((int)ImuArmRollServoControl.servo->device_read());
+        Serial.print(F(" "));
+        Serial.print((int)ImuArmPitchServoControl.servo->device_read());
+        Serial.print(F(" "));
+        Serial.print((int)ImuElbowPitchServoControl.servo->device_read());
+        
       }
       Serial.println(F(""));
 
