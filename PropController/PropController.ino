@@ -79,7 +79,7 @@ const int  Elbow_Pitch_Default_Position = 175; // corresopnds to normal rest pos
 
 const int  Imu_Arm_Yaw_Min_Position = 0;
 const int  Imu_Arm_Yaw_Max_Position = 359;
-const int  Imu_Arm_Yaw_Default_Position = 90;  // straight forward
+const int  Imu_Arm_Yaw_Default_Position = 180;  // straight forward
 const int  Imu_Arm_Roll_Min_Position = -80;
 const int  Imu_Arm_Roll_Max_Position = 80;
 const int  Imu_Arm_Roll_Default_Position = 0; // level
@@ -413,6 +413,8 @@ struct ImuServoControlDef {
   servo_filter * servoFilter;
   struct ImuCtrlRefFrameDef ImuCtrlRefFrame;
 };
+#define AdafruitImuHeadMouthStopDiscrete 24 // Arudino mega 2560 pin PA2 used to stop the ImuHeadMouth operations via this discrete.
+                                            // Normally high.  Pulled low to stop operations.
 bool AdafruitImuHeadMouthEnabled = false;
 bool AdafruitImuHeadMouthIncludeArm = false;
 unsigned long AdafruitImuHeadMouthPeriodMs;
@@ -506,6 +508,7 @@ void setup()
     Serial.begin(115200);
      
     // Initializethe BNO055 IMUs
+
     for (i = 0 ; i < MAX_ADAFRUIT_SENSORS; i++)
     {
       if(!Adafruit_sensors[i].sensor->begin())
@@ -519,7 +522,14 @@ void setup()
         Adafruit_sensors[i].sensor->setExtCrystalUse(true);
       }
     }
+    // Not sure of axis remapping, so use software to convert senses and ranges for now.
+    //bno_arm.setAxisRemap( Adafruit_BNO055::REMAP_CONFIG_P7); // remap arm axis since sensor underneath arm
+    //bno_arm.setAxisSign( Adafruit_BNO055::REMAP_SIGN_P7 );
+    // Can't figure out mapping of bno_forearm that gives same sense of yaw, roll , pitch that the bno_arm one does
+    // for forearm sensor under arm.  Thus would need to convert either pitch, roll, yaw to
+    // the appropriate sense via software.
     Serial.println(F("Start BNO055 Manual Cal"));
+
     //Serial.println(F("Let the IMU sit still for 5 seconds for gyro cal"));
     //Serial.println(F("Then rotate the imu by 45 degree increments for 180 deg total for accel cal, stoping at least 1 second between each"));
     //Serial.println(F("Then move in figure 8s for a few seconcs for mag cal"));
@@ -532,6 +542,9 @@ void setup()
     #endif
 
 #ifdef ADAFRUIT_IMU_HEAD_MOUTH_OPS
+
+    // setup the discrete pin that will stop the head mouth operations
+    pinMode(AdafruitImuHeadMouthStopDiscrete, INPUT);
     // initialize IMU head mouth control items
     ImuHeadVerticalServoControl.AdafruitImuCtrlSensor = ADAFRUIT_IMU_HEAD;
     ImuHeadVerticalServoControl.servo =  &Head_Vertical_Rotation_servo;
@@ -1528,6 +1541,17 @@ void loop()
         }
       }
 #endif
+      else if (0 == strcmp(token, "DelayMsec"))
+      {
+        int numItems;
+        int delayInMsec;
+        if ((numItems = sscanf(restcmdLine, "%d", &delayInMsec)) >= 1)
+        {
+          Serial.print(F("Delaying"));
+          // Use inline delay for now (holds up loop)
+          delay(delayInMsec);
+        }
+      }
       else
       {
         Serial.print(F("Unknown Cmd: "));
@@ -1753,6 +1777,15 @@ void loop()
   }  
 // ------------------------------------------------------
 #ifdef ADAFRUIT_IMU_HEAD_MOUTH_OPS
+  if ( AdafruitImuHeadMouthEnabled)
+  { 
+    int inputValue = digitalRead(AdafruitImuHeadMouthStopDiscrete);
+    if (inputValue == LOW)
+    {
+      AdafruitImuHeadMouthEnabled = false;
+      Serial.println(F("Discrete stopped IMU Head Mouth operations"));
+    }
+  }
   if (AdafruitImuHeadMouthEnabled )
   {
     if (AdafruitImuHeadMouthTimeout <= millis())
