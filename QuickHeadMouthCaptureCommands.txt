@@ -12,8 +12,12 @@ Visualize3D 50 2
 // Forearm IMU
 Visualize3D 50 3
 Visualize3DStop
-ImuHeadMouth 50 7 40
-ImuHeadMouth 50 0 0
+// Head/Mouth ops
+DelayMsec 5000;ImuHeadMouth 50 7 40
+DelayMsec 5000;ImuHeadMouth 50 0 0
+// Head/Mouth/Arm ops
+DelayMsec 5000;ImuHeadMouth 50 0 0 1
+
 ImuHeadMouthStop
 
 // Werewolves London setup and stop
