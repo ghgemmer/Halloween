@@ -284,6 +284,41 @@ ProgMemArray_values_reader WerewolvesLondon_Voice_Reader;
 																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																													
 #endif
 
+#define VAMPIREARMGRASPAT_MOVEMENTS
+#ifdef VAMPIREARMGRASPAT_MOVEMENTS
+																																																																																																																																																																																																																																																															
+const unsigned long VampireArmGraspAt_play_interval = 50; // milliseconds
+
+const uint16_t VampireGraspAtHeadVert[] PROGMEMSECTION2 = {	79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79	,79
+};																																																																																																																																																																								
+const uint16_t VampireGraspAtHeadHoriz[] PROGMEMSECTION2 = {	120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120
+};																																																																																																																																																																								
+const uint16_t VampireGraspAtMouth[] PROGMEMSECTION2 = {	110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110
+};																																																																																																																																																																								
+const uint16_t VampireGraspAtArmYaw[] PROGMEMSECTION2 = {	89	,89	,90	,90	,90	,90	,91	,92	,93	,93	,93	,93	,93	,93	,93	,94	,94	,94	,94	,93	,93	,93	,93	,93	,94	,94	,94	,94	,94	,94	,95	,95	,95	,96	,96	,96	,96	,96	,96	,96	,96	,97	,97	,97	,97	,97	,97	,97	,97	,97	,97	,97	,97	,97	,97	,97	,97	,97	,97	,97	,97	,96	,95	,93	,91	,90	,88	,87	,88	,88	,88	,87	,85	,85	,84	,84	,83	,83	,83	,83	,83	,83	,82	,82	,82	,82	,82	,81	,81	,81	,81	,81	,81	,81	,80	,80	,80	,80	,80	,80	,80	,80	,80	,80	,80	,80	,80	,81	,81	,81	,82	,82	,83	,84	,85	,85	,85	,85	,85	,85	,86	,87	,87	,88	,88	,88	,88	,88	,88	,88	,90	,90	,90	,89	,90	,90	,91	,91	,91	,91	,90	,90	,91	,91	,91	,91	,91	,91	,91	,91	,91	,90	,90	,90	,89	,89	,89	,89	,89	,89	,89	,89	,89	,89	,89	,89	,89	,89
+};																																																																																																																																																																								
+const uint16_t VampireGraspAtArmRoll[] PROGMEMSECTION2 = {	120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,121	,122	,122	,121	,121	,121	,121	,121	,123	,123	,123	,123	,122	,123	,123	,123	,123	,123	,123	,123	,123	,122	,123	,122	,122	,122	,122	,122	,122	,122	,122	,122	,122	,122	,122	,122	,122	,122	,122
+};																																																																																																																																																																								
+const uint16_t VampireGraspAtArmPitch[] PROGMEMSECTION2 = {	165	,168	,171	,174	,176	,179	,182	,184	,187	,188	,188	,188	,188	,188	,187	,187	,187	,186	,185	,185	,184	,184	,184	,184	,184	,183	,181	,180	,178	,177	,175	,174	,173	,171	,170	,170	,169	,169	,169	,169	,170	,170	,170	,170	,170	,170	,170	,170	,171	,171	,171	,171	,171	,171	,171	,171	,171	,171	,171	,171	,170	,165	,159	,150	,137	,137	,128	,124	,117	,109	,99	,91	,85	,81	,79	,79	,79	,80	,81	,82	,82	,83	,83	,83	,83	,83	,83	,84	,84	,84	,84	,84	,84	,85	,85	,85	,86	,86	,86	,86	,86	,86	,87	,88	,91	,94	,98	,102	,106	,112	,117	,122	,127	,131	,135	,140	,144	,147	,150	,153	,156	,159	,161	,162	,163	,163	,163	,164	,165	,166	,167	,167	,167	,167	,168	,169	,170	,170	,171	,172	,172	,172	,172	,173	,173	,172	,172	,172	,173	,173	,173	,173	,173	,173	,173	,174	,173	,173	,173	,174	,173	,173	,173	,173	,173	,173	,173	,173
+};																																																																																																																																																																								
+const uint16_t VampireGraspAtElbowPitch[] PROGMEMSECTION2 = {	173	,173	,173	,172	,173	,173	,172	,173	,172	,172	,173	,172	,172	,172	,173	,173	,172	,173	,173	,172	,173	,173	,173	,173	,173	,173	,174	,173	,173	,173	,174	,173	,173	,174	,174	,173	,174	,174	,174	,174	,173	,174	,174	,174	,174	,174	,174	,174	,174	,174	,174	,174	,174	,174	,174	,174	,174	,174	,174	,174	,174	,174	,174	,173	,170	,153	,153	,120	,120	,120	,111	,112	,112	,112	,112	,112	,113	,113	,112	,112	,112	,112	,112	,113	,113	,113	,113	,112	,113	,113	,113	,113	,113	,113	,113	,114	,113	,114	,114	,115	,115	,115	,116	,119	,121	,125	,129	,135	,140	,142	,146	,151	,155	,159	,162	,162	,164	,168	,170	,173	,174	,174	,174	,174	,173	,174	,174	,174	,173	,174	,174	,174	,173	,173	,172	,173	,173	,174	,174	,174	,174	,174	,174	,174	,174	,174	,174	,175	,174	,174	,174	,175	,174	,174	,175	,174	,175	,175	,175	,174	,175	,175	,175	,175	,175	,175	,174	,175
+};																																																																																																																																																																								
+const uint16_t VampireGraspAtVoice[] PROGMEMSECTION2 = {	MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(START, 3)	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 
+};																																																																																																																																																																								
+
+ProgMemArray_values_reader VampireArmGraspAt_HeadVert_Reader;
+ProgMemArray_values_reader VampireArmGraspAt_HeadHori_Reader;
+ProgMemArray_values_reader VampireArmGraspAt_Mouth_Reader;
+ProgMemArray_values_reader VampireArmGraspAt_Voice_Reader;
+ProgMemArray_values_reader VampireArmGraspAt_ArmYaw_Reader;
+ProgMemArray_values_reader VampireArmGraspAt_ArmRoll_Reader;
+ProgMemArray_values_reader VampireArmGraspAt_ArmPitch_Reader;
+ProgMemArray_values_reader VampireArmGraspAt_ElbowPitch_Reader;
+
+
+#endif
+
+
 
 #if 0
 const unsigned long Silly_play_interval = 50; // milliseconds
@@ -590,7 +625,10 @@ void setup()
     Arm_Roll_servo.attach                 (SERVO_PIN_K,1300,2100,120,240 );  // Pin 45 on Mega2560
     Arm_Pitch_servo.attach                (SERVO_PIN_J,500,1833,0,200 );  // Pin 46 on Mega2560
     Elbow_Pitch_servo.attach              (SERVO_PIN_E,967,1767,70,190 );  // pin 2 on Mega2560
-
+    Arm_Yaw_servo.device_write(Arm_Yaw_Default_Position);
+    Arm_Roll_servo.device_write(Arm_Roll_Default_Position);
+    Arm_Pitch_servo.device_write(Arm_Pitch_Default_Position);
+    Elbow_Pitch_servo.device_write(Elbow_Pitch_Default_Position);
 
 //    
     // Setup Eye LEDs to be off
@@ -649,6 +687,16 @@ void setup()
 		WerewolvesLondon_Voice_Reader.Modify(pgm_get_far_address(WerewolvesLondon_Voice_Player),NUM_ARRAY_ENTRIES(WerewolvesLondon_Voice_Player));
 #endif
 
+#ifdef VAMPIREARMGRASPAT_MOVEMENTS
+		VampireArmGraspAt_HeadVert_Reader.Modify(pgm_get_far_address(VampireGraspAtHeadVert),NUM_ARRAY_ENTRIES(VampireGraspAtHeadVert));
+		VampireArmGraspAt_HeadHori_Reader.Modify(pgm_get_far_address(VampireGraspAtHeadHoriz),NUM_ARRAY_ENTRIES(VampireGraspAtHeadHoriz));
+		VampireArmGraspAt_Mouth_Reader.Modify(pgm_get_far_address(VampireGraspAtMouth),NUM_ARRAY_ENTRIES(VampireGraspAtMouth));
+		VampireArmGraspAt_Voice_Reader.Modify(pgm_get_far_address(VampireGraspAtVoice),NUM_ARRAY_ENTRIES(VampireGraspAtVoice));
+		VampireArmGraspAt_ArmYaw_Reader.Modify(pgm_get_far_address(VampireGraspAtArmYaw),NUM_ARRAY_ENTRIES(VampireGraspAtArmYaw));
+		VampireArmGraspAt_ArmRoll_Reader.Modify(pgm_get_far_address(VampireGraspAtArmRoll),NUM_ARRAY_ENTRIES(VampireGraspAtArmRoll));
+		VampireArmGraspAt_ArmPitch_Reader.Modify(pgm_get_far_address(VampireGraspAtArmPitch),NUM_ARRAY_ENTRIES(VampireGraspAtArmPitch));
+		VampireArmGraspAt_ElbowPitch_Reader.Modify(pgm_get_far_address(VampireGraspAtElbowPitch),NUM_ARRAY_ENTRIES(VampireGraspAtElbowPitch));
+#endif
                                     
 //    // For testing purposes play the devices once. 
     //Devices_Player.start_play(devices_player::PLAY_ONCE); 
@@ -945,6 +993,56 @@ void loop()
         Devices_Player.register_device (&Voice_Player,
                                         &WerewolvesLondon_Voice_Reader,
                                         NUM_ARRAY_ENTRIES(WerewolvesLondon_Voice_Player)); // values in PROGMEM
+#endif                                        
+      }
+      else if (0 == strcmp(token, "VampireArmGraspAtPlayerSetup"))
+      //else if (0)
+      {
+#ifdef VAMPIREARMGRASPAT_MOVEMENTS
+        Serial.println(F("VampireArmGraspAtPlayerSetup"));
+        // Stop play and Unregister all devices
+        Devices_Player.stop_play();
+        Devices_Player.unregister_all_devices();
+        // Set volume Max for mp3
+        Voice_Player.Initialize(8);
+        Voice_Player.device_write(mp3_device::STOP << 8);
+        Voice_Player.device_write((mp3_device::VOLUME << 8) + (mp3_max_volume_level - 1)); 
+        
+        // Setup interval for entries in the device player
+        Devices_Player.set_play_interval(VampireArmGraspAt_play_interval); //
+        
+        // register the devices with the devices player along with the table of values to play
+        
+        Devices_Player.register_device (&Head_Horizontal_Rotation_servo,
+                                        &VampireArmGraspAt_HeadHori_Reader,
+                                        NUM_ARRAY_ENTRIES(VampireGraspAtHeadHoriz));  // values in PROGMEM
+        Devices_Player.register_device (&Head_Vertical_Rotation_servo,
+                                        &VampireArmGraspAt_HeadVert_Reader,
+                                        NUM_ARRAY_ENTRIES(VampireGraspAtHeadVert)); // values in PROGMEM
+        Devices_Player.register_device (&Head_Mouth_Rotation_servo,
+                                        &VampireArmGraspAt_Mouth_Reader,
+                                        NUM_ARRAY_ENTRIES(VampireGraspAtMouth)); // values in PROGMEM
+//        Devices_Player.register_device (&Eyes_LEDs,
+//                                        pgm_get_far_address(VampireArmGraspAt_Eyes_LEDs),
+//                                        NUM_ARRAY_ENTRIES(VampireArmGraspAt_Eyes_LEDs); // values in PROGMEM
+//        Devices_Player.register_device (&Pneumatic_Back_relay,
+//                                        pgm_get_far_address(VampireArmGraspAt_Pneumatic_Back),
+//                                        NUM_ARRAY_ENTRIES(VampireArmGraspAt_Pneumatic_Back)); // values in PROGMEM
+        Devices_Player.register_device (&Voice_Player,
+                                        &VampireArmGraspAt_Voice_Reader,
+                                        NUM_ARRAY_ENTRIES(VampireGraspAtVoice)); // values in PROGMEM
+        Devices_Player.register_device (&Arm_Yaw_servo,
+                                        &VampireArmGraspAt_ArmYaw_Reader,
+                                        NUM_ARRAY_ENTRIES(VampireGraspAtArmYaw));  // values in PROGMEM
+        Devices_Player.register_device (&Arm_Roll_servo,
+                                        &VampireArmGraspAt_ArmRoll_Reader,
+                                        NUM_ARRAY_ENTRIES(VampireGraspAtArmRoll));  // values in PROGMEM
+        Devices_Player.register_device (&Arm_Pitch_servo,
+                                        &VampireArmGraspAt_ArmPitch_Reader,
+                                        NUM_ARRAY_ENTRIES(VampireGraspAtArmPitch));  // values in PROGMEM
+        Devices_Player.register_device (&Elbow_Pitch_servo,
+                                        &VampireArmGraspAt_ElbowPitch_Reader,
+                                        NUM_ARRAY_ENTRIES(VampireGraspAtElbowPitch));  // values in PROGMEM
 #endif                                        
       }
       else if (0 == strcmp(token, "VampirePlayerSetup"))
@@ -2145,11 +2243,6 @@ void loop()
       Serial.print((int)ImuHeadHorizontalServoControl.servo->device_read());
       Serial.print(F(" "));
       Serial.print((int)ImuMouthServoControl.servo->device_read());
-      if (markAudioFileStartPoint)
-      {
-        Serial.print(F(" Started Audio File: "));
-        Serial.print(AdafruitImuHeadMouthAudioFile);
-      }
       if (AdafruitImuHeadMouthIncludeArm)
       {
         Serial.print(F("Arm Y,R,P,ElbowP: "));
@@ -2162,9 +2255,13 @@ void loop()
         Serial.print((int)ImuElbowPitchServoControl.servo->device_read());
         
       }
+      if (markAudioFileStartPoint)
+      {
+        Serial.print(F(" Started Audio File: "));
+        Serial.print(AdafruitImuHeadMouthAudioFile);
+      }
       Serial.println(F(""));
-
-     
+ 
       if (AdafruitImuHeadMouthTimeout <= millis())
       {
         Serial.println(F("AdafruitImuHeadMouthTimeout to far behind. Resetting to current time"));

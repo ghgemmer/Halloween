@@ -25,6 +25,10 @@ WerewolvesLondonPlayerSetup;PlayOnce
 DayOPlayerSetup;PlayOnce
 PlayStop;HeadVertical 79;Mouth 110;HeadHorizontal 90
 
+// Vampire Grasp At setup and stop
+VampireArmGraspAtPlayerSetup;PlayOnce
+PlayStop;HeadVertical 79;HeadHorizontal 90;Mouth 110;ArmYaw 90;ArmRoll 120;ArmPitch 175;ElbowPitch 180
+
 // Get ready for removing Head power.  !!! Always remove Mouth power first before powering down any servos and bring up last after powering up any servos.
 ImuHeadMouthStop;AudioStop;HeadVertical 50;HeadHorizontal 90; Mouth 110;ArmYaw 90;ArmRoll 120;ArmPitch 175;ElbowPitch 180
 
