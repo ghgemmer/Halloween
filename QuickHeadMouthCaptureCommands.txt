@@ -26,11 +26,15 @@ DayOPlayerSetup;PlayOnce
 PlayStop;HeadVertical 79;Mouth 110;HeadHorizontal 90
 
 // Vampire Grasp At setup and stop
-VampireArmGraspAtPlayerSetup;PlayOnce
+// setup
+HeadVertical 79;HeadHorizontal 120;Mouth 110;ArmYaw 90;ArmRoll 120;ArmPitch 175;ElbowPitch 180;VampireArmGraspAtPlayerSetup
+// play
+PlayOnce
+// stop
 PlayStop;HeadVertical 79;HeadHorizontal 90;Mouth 110;ArmYaw 90;ArmRoll 120;ArmPitch 175;ElbowPitch 180
 
 // Get ready for removing Head power.  !!! Always remove Mouth power first before powering down any servos and bring up last after powering up any servos.
-ImuHeadMouthStop;AudioStop;HeadVertical 50;HeadHorizontal 90; Mouth 110;ArmYaw 90;ArmRoll 120;ArmPitch 175;ElbowPitch 180
+ImuHeadMouthStop;AudioStop;Mouth 110;HeadHorizontal 90;HeadVertical 140;ArmYaw 90;ArmRoll 120;ArmPitch 175;ElbowPitch 180
 
 
 // The following is for a nominal position where servos are quiet,  Head level, forward, mouthclosed, right arm down at side
