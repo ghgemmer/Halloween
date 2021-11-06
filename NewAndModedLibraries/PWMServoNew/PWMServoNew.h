@@ -6,7 +6,7 @@
   http://arduiniana.org/libraries/pwmservo/
   Author: Jim Studt, jim@federated.com
   Copyright (c) 2007 David A. Mellis.  All right reserved.
-  renamed to PWMServoNew by Mikal Hart
+  renamed to PWMServo by Mikal Hart
   ported to other chips by Paul Stoffregen
   Updated to handle all PWM pins for Mega, and changed to generalize methods - G. Gemmer
 
