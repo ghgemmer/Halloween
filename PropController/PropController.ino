@@ -62,7 +62,7 @@ const int  Head_Vertical_Max_Position = 140; // corresponds to head tilted forwa
 const int  Head_Vertical_Min_Position = 45;  // corresponds to head tilted back
 const int  Head_Vertical_Default_Position = 79;  // corresponds to head normal rest position of level which generally causes very little servo noise.
 const int  Head_Horizontal_Max_Position = 120;  // Corresponds to head turned to right some (view from prop). 90 degrees is head looking straight forward.
-const int  Head_Horizontal_Min_Position = 60;
+const int  Head_Horizontal_Min_Position = 45;
 const int  Head_Horizontal_Default_Position = 90; // corresponds to head normal rest position of looking straight forward
 const int  Arm_Yaw_Min_Position = 45;  // 90 degrees is arm pointed straight out front.  45 is arm at 45 degree angle from chest (view from prop)
 const int  Arm_Yaw_Max_Position = 180; // arm staight out to right (view from prop)
@@ -614,7 +614,7 @@ void setup()
     
     // attach Head servos to specific pins on the cpu board
     // (PWM is completely done in hardware to avoid pwm signal jitter)
-    Head_Horizontal_Rotation_servo.attach (SERVO_PIN_A, 1267,1733, 60, 120 );  // pin 11 on Mega2560
+    Head_Horizontal_Rotation_servo.attach (SERVO_PIN_A, 1150,1733, 45, 120 );  // pin 11 on Mega2560
     Head_Vertical_Rotation_servo.attach   (SERVO_PIN_B, 1150,1889, 45, 140);   // pin 12 on Mega2560
     Head_Mouth_Rotation_servo.attach      (SERVO_PIN_C, 1422,1656, 80, 110);   // pin 13 on Mega2560
 //    // setup prop head to be completely level and looking straight forward.
