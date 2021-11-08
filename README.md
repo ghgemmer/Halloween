@@ -15,9 +15,8 @@
 This project is for a prop controller and an animated prop for Halloween.  The prop is a DIY with a female
 vampire head on an approx 4 foot Walgreen's skeleton body.
 
-![Vampire Skeleton Prop](https://photos.google.com/share/AF1QipP2FE3xVJT6LY-kpPWOTKuSQ0eHYsrkWrY6V6OEE0b39X1kqoLoiZ60WCupx9FLMA/photo/AF1QipPM5X2NkCp0Y9oSeEkEfTq1PHJP3HXc4byOLKTe?key=YVVnZGhhYklOMUp0dWRwQUY4SXg0TndCYTBrLUdR.jpg)
+[Vampire Skeleton Prop](https://photos.google.com/share/AF1QipP2FE3xVJT6LY-kpPWOTKuSQ0eHYsrkWrY6V6OEE0b39X1kqoLoiZ60WCupx9FLMA/photo/AF1QipPM5X2NkCp0Y9oSeEkEfTq1PHJP3HXc4byOLKTe?key=YVVnZGhhYklOMUp0dWRwQUY4SXg0TndCYTBrLUdR)
 
-    
 Servos are used to animate the head, mouth and right arm and elbow.
 The prop can both emit audio thru a speaker and listen thru a mic and has red LED eyes that can be turned on or off.
 The prop can also, thru pneumatics, lean forward parallel to the ground, or sit upright.
