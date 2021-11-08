@@ -113,18 +113,18 @@ The controller is an Arduino Mega 2560 processor board.
 
 The Arduino Interfaces used are as follows along with the devices they control:
 
-    - 7 of its 12 Pulse Width Modulation (PWM) outputs are used to generate PWM signals for jitter free control of the 7 servos.  
-    - 1 digital output is used to control the solenoid valve to set the pneumatic cylinder either fully extended or 
-        fully retracted.  This output goes to a 12V transistor driver circuit with fly back diode then to the solenoid valve in the prop.
-    - 1 digital output is used to turn the eye LEDs on or off through a resistor.
-    - The USB connection on the Arduino is used to both program the Arduino and communciate with the running program thru serial commands
-      and responses
-    - The I2C bus is used to interface to an I2C switch which interfaces to 2 IMUs
-      on one channel and 2 on another channel of the switch.  The I2C switch is needed to resolve I2C address
-      bus conflicts as the IMUs can only have one of two I2C addresses.
-    - 1 TTL serial interface to control an MP3 module to generate audio and play audio files from an SD card
-    on the MP3 module.  The audio output of that MP3 goes to the speaker
-    - 1 digital input pulled up to 5 volts and used to read a button.
+* 7 of its 12 Pulse Width Modulation (PWM) outputs are used to generate PWM signals for jitter free control of the 7 servos.  
+* 1 digital output is used to control the solenoid valve to set the pneumatic cylinder either fully extended or 
+fully retracted.  This output goes to a 12V transistor driver circuit with fly back diode then to the solenoid valve in the prop.
+* 1 digital output is used to turn the eye LEDs on or off through a resistor.
+* The USB connection on the Arduino is used to both program the Arduino and communciate with the running program thru serial commands
+and responses
+* The I2C bus is used to interface to an I2C switch which interfaces to 2 IMUs
+on one channel and 2 on another channel of the switch.  The I2C switch is needed to resolve I2C address
+bus conflicts as the IMUs can only have one of two I2C addresses.
+* 1 TTL serial interface to control an MP3 module to generate audio and play audio files from an SD card
+on the MP3 module.  The audio output of that MP3 goes to the speaker
+* 1 digital input pulled up to 5 volts and used to read a button.
     
 The prop wiring/schematic is contained in the file \Halloween\Prop Wiring.docx
       
