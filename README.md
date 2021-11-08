@@ -203,7 +203,14 @@ return any data.
 This also continually outputs the servo positions, and audio file start point to the serial monitor so that it can be captured for
 incorporation as playback data. 
 * _periodMsec_ - the period in milliseonds to read the IMUs and update the servos.
-* _audioFile_ - the ID number of the audio file to play when the command is exeucted
+* _audioFile_ - the ID number of the audio file to play when the command is exeucted.
+    * CHEWING_AT_HEAD_FILE            = 5,
+    * BLOOD_CURDLING_SCREAM_FILE      = 4,
+    * HISSING_FILE                    = 3,
+    * MORE_OFTEN_CHEWING_AT_HEAD_FILE = 6,
+    * DAYO_FILE                       = 7, 
+    * WEREWOLVES_OF_LONDON_FILE       = 8,
+    * SHAKE_SHAKE_SENORA_FILE         = 9
 * _audioDelayInPeriods_ - The delay in number of _periodMsec_ before the audio file is played.  This allows time for the user to get ready 
 before the audio plays.
 * _includeArm_ - Optional. Indicates if the Arm/Elbow servos are to be synchronzied or left alone.  0 = don't sync 1 = sync
