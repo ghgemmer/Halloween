@@ -12,14 +12,14 @@
 
 # General Info
 
-    This project is for a prop controller and an animated prop for Halloween.  The prop is a DIY with a female 
-    vampire head on an approx 4 foot Walgreen's skeleton body. 
+This project is for a prop controller and an animated prop for Halloween.  The prop is a DIY with a female
+vampire head on an approx 4 foot Walgreen's skeleton body.
     
-    Servos are used to animate the head, mouth and right arm and elbow.
-    The prop can both emit audio thru a speaker and listen thru a mic and has red LED eyes that can be turned on or off.
-    The prop can also, thru pneumatics, lean forward parallel to the ground, or sit upright.
-    The prop has a minature night vision camera on the top front of its head allowing it to see.  The camera is controlled
-    thru a smartphone, and allows the user to see what the prop head is seeing and record it if desired (both audio and video).
+Servos are used to animate the head, mouth and right arm and elbow.
+The prop can both emit audio thru a speaker and listen thru a mic and has red LED eyes that can be turned on or off.
+The prop can also, thru pneumatics, lean forward parallel to the ground, or sit upright.
+The prop has a minature night vision camera on the top front of its head allowing it to see.  The camera is controlled
+thru a smartphone, and allows the user to see what the prop head is seeing and record it if desired (both audio and video).
     
     The controller for the prop is an Arduino Mega 2560 which is used to perform both live interactive
     sessions or capture and playback of recorded sessions. Almost all aspects of the prop can be controlled thru
@@ -37,12 +37,13 @@
     The head nod, rotate, and mouth are controlled by servos and custom aluminum brackets along with Actobotics
     brackets that attach to the head and mouth. The head rotate servo is actually in the body and rotates a PVC
     pipe that goes up to the head.  The nod servo is in the head as well as the mouth servo.  All servos except
-    the mouth use servo blocks to handle lateral loads on the servo axis. The head also has red LED eyes that can
-    be turned on or off although these could instead be connected to a PWM signal or an analog signal to adjust
-    intensity.  At the top of the head is a Relohas minature night vision camera (a cube that is 0.79 inches long
-    on each side) with a base that is at the back of the head and connected to the camera by a thin 8" flat cable.
-    The base uses Wifi to conenct to a smartphone.  The base also has a rechargeable battery in it and a USB
-    connector to charge it. The camera can also be powered by the USB connector which is how it is currently used. 
+    the mouth use Actobotics servo blocks to handle lateral loads on the servo axis. The head also has red LED
+    eyes that can be turned on or off although these could instead be connected to a PWM signal or an analog
+    signal to adjust intensity.  At the top of the head is a Relohas minature night vision camera (a cube that is
+    0.79 inches long on each side) with a base that is at the back of the head and connected to the camera by a
+    thin 8" flat cable. The base uses Wifi to conenct to a smartphone.  The base also has a rechargeable battery
+    in it and a USB connector to charge it. The camera can also be powered by the USB connector which is how it is
+    currently used.
 
 ## Prop Body
 
@@ -87,23 +88,24 @@
 
 ## Physical Wiring
 
-    Currently the controller is connected to the prop thru standard heavy duty twisted servo wire, and thru a 11 wire cable. 
-    Standard servo wire consists of 3 wires twisted around each other.  For servos this is used for power, ground, and signal.
-    Twisted wires also help eliminate noise.
-    The servo wires are also used for things other than the servos as the wire is very flexible and easy to use. 
-    The 11 wire cable is an underground type cable, although not used underground.  It was first used for the connections between
-    prop and controller but, due to the gauge of wire in it, is much less flexible than the servo wire which was used later on.
+    Currently the controller is connected to the prop thru standard heavy duty twisted servo wire, and thru a 11
+    wire cable. Standard servo wire consists of 3 wires twisted around each other.  For servos this is used for
+    power, ground, and signal. Twisted wires also help eliminate noise. The servo wires are also used for things
+    other than the servos as the wire is very flexible and easy to use. The 11 wire cable is an underground type
+    cable, although not used underground.  It was first used for the connections between prop and controller but,
+    due to the gauge of wire in it, is much less flexible than the servo wire which was used later on.
     
-    Both cable and servo wire is about 15 feet in length from controller to prop.  The goal was to be able to easily look at change controller
-    stuff and connections to the peripherals, and connect/disconnect power to the servos without having to do to this at prop.
-    The wire at the controller first connects to a terminal block which then connects to the Arduino, and peripheral devies.  This makes moving connections
-    around easier (at the terminal block) and also eliminates any pulling stress of wires that go to the Arduino, although wire hold down brackets
-    and painters/duct tape are used on the wires.
+    Both cable and servo wire is about 15 feet in length from controller to prop.  The goal was to be able to
+    easily look at and change controller connections to the peripherals, and connect/disconnect power to the
+    servos without having to do to this at prop. The wire at the controller first connects to a terminal block
+    which then connects to the Arduino, and peripheral devies.  This makes moving connections around easier (at
+    the terminal block) and also eliminates any pulling stress of wires that go to the Arduino, although wire hold
+    down brackets and painters/duct tape are used on the wires.
     
-    The Arduino and all peripheral hardware are placed on a 1/2 inch piece of plywood to make it easy to move all at once.
-    Connectors are used at the prop to allow all the wires to be easily disconnected from the prop so the prop can be easily transported.
-    The MP3, I2C switch, user Mic amp, drive circuit for the solenoid valve, and LED resistors are place on breadboards to make them 
-    easy to connect to.
+    The Arduino and all peripheral hardware are placed on a 1/2 inch piece of plywood to make it easy to move all
+    at once. Connectors are used at the prop to allow all the wires to be easily disconnected from the prop so the
+    prop can be easily transported. The MP3, I2C switch, user Mic amp, drive circuit for the solenoid valve, and
+    LED resistors are place on breadboards to make them easy to connect to.
 
 ## Processor board and Interfaces/Peripherals used
 
@@ -124,16 +126,17 @@ The Arduino Interfaces used are as follows along with the devices they control:
     on the MP3 module.  The audio output of that MP3 goes to the speaker
     - 1 digital input pulled up to 5 volts and used to read a button.
     
-    The prop wiring/schematic is contained in the file \Halloween\Prop Wiring.docx
+The prop wiring/schematic is contained in the file \Halloween\Prop Wiring.docx
       
 # Software
 
-    The program is written in Arduino C++ and uses several Arduino libraries, some new DIY. All
-    code was written using the UltraEdit IDE, although any text editor could be used, and then
-    compiled/built/downloaded using the Arduino IDE (version 1.8.13 or later).  The IDE is also used to run the
-    serial command/monitor that the user interfaces to the program with. All code is DIY except for most of the
-    libraries. The code uses classes extensively.  Program memory space is used to store large constants to avoid chewing up
-    RAM with these.  The Arduino by default puts constants in program memory and then transfers them to RAM to access them in the code.
+    The program is written in Arduino C++ and uses several Arduino libraries, some new DIY. All code was written
+    using the UltraEdit IDE, although any text editor could be used, and then compiled/built/downloaded using the
+    Arduino IDE (version 1.8.13 or later).  The IDE is also used to add new libraries as well as run the serial
+    command/monitor that the user interfaces to the program with. All code is DIY except for most of the
+    libraries. The code uses classes extensively.  Program memory space is used to store large constants to avoid
+    chewing up RAM with these.  The Arduino by default puts constants in program memory and then transfers them to
+    RAM to access them in the code.
     
     Any DIY code uses the MIT software license.
     
