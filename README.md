@@ -154,7 +154,7 @@ The serial commands are as follows:
 
 **ArmYaw  _degrees_** : Sets the Arm yaw servo in degrees
 
-**AudioBloodCurdlngScream** : Sets the Arm yaw servo in degrees
+**AudioBloodCurdlngScream** : Plays the MP3 Blood curdling scream file
 
 **AudioDayO** : Plays the MP3 Harry Belafonti Day-O (Banana Boat Song) file
 
