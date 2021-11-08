@@ -200,6 +200,8 @@ return any data.
 **ImuGetStoredCalibData _ImuId_** _ImuId_ - the ID number of the IMU to get cal data for and set back up in the IMU. 0 = Mouth, 1 = Head, 2 = Arm, 3 = Forearm.
 
 **ImuHeadMouth _periodMsec_ _audioFile_ _audioDelayInPeriods_ _[includeArm]_** : Enables servo movement being synchronized to the corresonding IMUs.
+This also continually outputs the servo positions, and audio file start point to the serial monitor so that it can be captured for
+incorporation as playback data. 
 * _periodMsec_ - the period in milliseonds to read the IMUs and update the servos.
 * _audioFile_ - the ID number of the audio file to play when the command is exeucted
 * _audioDelayInPeriods_ - The delay in number of _periodMsec_ before the audio file is played.  This allows time for the user to get ready 
