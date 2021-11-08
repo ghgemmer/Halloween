@@ -21,91 +21,91 @@ The prop can also, thru pneumatics, lean forward parallel to the ground, or sit 
 The prop has a minature night vision camera on the top front of its head allowing it to see.  The camera is controlled
 thru a smartphone, and allows the user to see what the prop head is seeing and record it if desired (both audio and video).
     
-    The controller for the prop is an Arduino Mega 2560 which is used to perform both live interactive
-    sessions or capture and playback of recorded sessions. Almost all aspects of the prop can be controlled thru
-    the serial command line interface of the Arduino USB port. The prop can be exactly synchronized to the users
-    movements thru inertial management units (IMUs) attached to the users head and mouth, and eventually ones
-    attached to the users arm.  This allows for quick, and effortless choreographing of prop movements by matching the users head,
-    mouth and arm/forearm movements.  This choreographing can be captured for playback later on.
-    There is also an MP3 module the Arduino controls to play audio files to the props speaker.
+The controller for the prop is an Arduino Mega 2560 which is used to perform both live interactive
+sessions or capture and playback of recorded sessions. Almost all aspects of the prop can be controlled thru
+the serial command line interface of the Arduino USB port. The prop can be exactly synchronized to the users
+movements thru inertial management units (IMUs) attached to the users head and mouth, and eventually ones
+attached to the users arm.  This allows for quick, and effortless choreographing of prop movements by matching the users head,
+mouth and arm/forearm movements.  This choreographing can be captured for playback later on.
+There is also an MP3 module the Arduino controls to play audio files to the props speaker.
 
 
 # Hardware
 
 ## Prop Head
 
-    The head nod, rotate, and mouth are controlled by servos and custom aluminum brackets along with Actobotics
-    brackets that attach to the head and mouth. The head rotate servo is actually in the body and rotates a PVC
-    pipe that goes up to the head.  The nod servo is in the head as well as the mouth servo.  All servos except
-    the mouth use Actobotics servo blocks to handle lateral loads on the servo axis. The head also has red LED
-    eyes that can be turned on or off although these could instead be connected to a PWM signal or an analog
-    signal to adjust intensity.  At the top of the head is a Relohas minature night vision camera (a cube that is
-    0.79 inches long on each side) with a base that is at the back of the head and connected to the camera by a
-    thin 8" flat cable. The base uses Wifi to conenct to a smartphone.  The base also has a rechargeable battery
-    in it and a USB connector to charge it. The camera can also be powered by the USB connector which is how it is
-    currently used.
+The head nod, rotate, and mouth are controlled by servos and custom aluminum brackets along with Actobotics
+brackets that attach to the head and mouth. The head rotate servo is actually in the body and rotates a PVC
+pipe that goes up to the head.  The nod servo is in the head as well as the mouth servo.  All servos except
+the mouth use Actobotics servo blocks to handle lateral loads on the servo axis. The head also has red LED
+eyes that can be turned on or off although these could instead be connected to a PWM signal or an analog
+signal to adjust intensity.  At the top of the head is a Relohas minature night vision camera (a cube that is
+0.79 inches long on each side) with a base that is at the back of the head and connected to the camera by a
+thin 8" flat cable. The base uses Wifi to conenct to a smartphone.  The base also has a rechargeable battery
+in it and a USB connector to charge it. The camera can also be powered by the USB connector which is how it is
+currently used.
 
 ## Prop Body
 
-    The prop skeleton body has the bottoms of the legs bent back on the ground as if the prop is sitting on its knees
-    and lower leg. The body uses an iHome speaker to talk and emit audio,  an Adafruit microphone and amplifier
-    module with AGC to listen, a pneumatic cylinder, solenoid valves, and air compressor to rotate the body with
-    head from a leaning over position, parallel to the ground, to an upright position and vice versa. 
-    
-    The user hasa Adafruit 9814 mic and line amp, with AGC disabled, that is connected thru wires to the speaker that allows
-    the user to talk out of the prop speaker. There is also a MidFly MP3 module that is conencted to the Arduino
-    and thru wires to the speaker that is used to play mp3 files.  
-    
-    The body is attached to a base via a bolt hinge
-    that allows it to swing so it can either be leaning over or upright. The body is pushed/pulled by a pneumatic
-    cylinder to stand upright or lean over. The pneumatic cylinder is controlled by a solenoid valve device which the
-    main controller controls. Elastic cables and pneuamtic speed controllers are used to slow the pneumatic
-    cylinder as it nears its end points, either upright or leaning over. The pneumatics have not been used in the
-    past few years as I have been concentrating on the servo operation. 
-    
-    The right skeleton arm has 3 servos at the
-    shoulder for pitch, yaw, and roll and one at the elbow to bend the elbow. All servos except the mouth are
-    held in Actobotics servo blocks to withstand lateral forces off the servo axis. Mostly Actobotics hardware,
-    such as screws, hubs, spacers, brackets, channels, patterns, bearings, etc, is used to connect the servo
-    blocks to the arm/head. The servos are run at 6 volts with the exception of the arm pitch servo being run at
-    7.4 volts to get the needed speed and torque. GoBilda servos are used for the arm and elbow, while Hitec are
-    used for the head and mouth (see Prop Wiring.docx for detail). GoBilda servos are dead quiet when holding a
-    position, even when under load, so are perfect for the application.  Hitec servos tend to make a high pitched
-    whine when holding a position under load. Hitec servos were used when the head was first animated before it
-    was discovered much later on that GoBilda servos would be better in that case.  Eventually the head nod servo
-    will be replaced with a GoBilda servo as it is the one Hitec servo with the most noticable whine. All the
-    servos allow a farily fluid/natural/and speedy(when needed) movement of the skeleton head and arm/forearm. The
-    clothes on the skeleton body came from an old Halloween costume.
+The prop skeleton body has the bottoms of the legs bent back on the ground as if the prop is sitting on its knees
+and lower leg. The body uses an iHome speaker to talk and emit audio,  an Adafruit microphone and amplifier
+module with AGC to listen, a pneumatic cylinder, solenoid valves, and air compressor to rotate the body with
+head from a leaning over position, parallel to the ground, to an upright position and vice versa. 
+
+The user hasa Adafruit 9814 mic and line amp, with AGC disabled, that is connected thru wires to the speaker that allows
+the user to talk out of the prop speaker. There is also a MidFly MP3 module that is conencted to the Arduino
+and thru wires to the speaker that is used to play mp3 files.  
+
+The body is attached to a base via a bolt hinge
+that allows it to swing so it can either be leaning over or upright. The body is pushed/pulled by a pneumatic
+cylinder to stand upright or lean over. The pneumatic cylinder is controlled by a solenoid valve device which the
+main controller controls. Elastic cables and pneuamtic speed controllers are used to slow the pneumatic
+cylinder as it nears its end points, either upright or leaning over. The pneumatics have not been used in the
+past few years as I have been concentrating on the servo operation. 
+
+The right skeleton arm has 3 servos at the
+shoulder for pitch, yaw, and roll and one at the elbow to bend the elbow. All servos except the mouth are
+held in Actobotics servo blocks to withstand lateral forces off the servo axis. Mostly Actobotics hardware,
+such as screws, hubs, spacers, brackets, channels, patterns, bearings, etc, is used to connect the servo
+blocks to the arm/head. The servos are run at 6 volts with the exception of the arm pitch servo being run at
+7.4 volts to get the needed speed and torque. GoBilda servos are used for the arm and elbow, while Hitec are
+used for the head and mouth (see Prop Wiring.docx for detail). GoBilda servos are dead quiet when holding a
+position, even when under load, so are perfect for the application.  Hitec servos tend to make a high pitched
+whine when holding a position under load. Hitec servos were used when the head was first animated before it
+was discovered much later on that GoBilda servos would be better in that case.  Eventually the head nod servo
+will be replaced with a GoBilda servo as it is the one Hitec servo with the most noticable whine. All the
+servos allow a farily fluid/natural/and speedy(when needed) movement of the skeleton head and arm/forearm. The
+clothes on the skeleton body came from an old Halloween costume.
 
 ## IMUs and Sychronized User Movements
 
-    To easily allow a user to naturally manipulate the prop for live interactive sessions as well as catpure
-    for playback, Adafruit BNO055 Inertial Measurment Units (IMUs) are attached to the user and the servos can
-    be synchronized to the movements of the user thru software. Currently 1 IMU is used on the top of the head
-    using a ball cap,  1 on the mouth using a mouth guard, and two on a simulated arm/forearm in the interim
-    until I can get them to work on an actual arm.
-    The Arduino I2C interface is used to access these IMUs.
+To easily allow a user to naturally manipulate the prop for live interactive sessions as well as catpure
+for playback, Adafruit BNO055 Inertial Measurment Units (IMUs) are attached to the user and the servos can
+be synchronized to the movements of the user thru software. Currently 1 IMU is used on the top of the head
+using a ball cap,  1 on the mouth using a mouth guard, and two on a simulated arm/forearm in the interim
+until I can get them to work on an actual arm.
+The Arduino I2C interface is used to access these IMUs.
 
 ## Physical Wiring
 
-    Currently the controller is connected to the prop thru standard heavy duty twisted servo wire, and thru a 11
-    wire cable. Standard servo wire consists of 3 wires twisted around each other.  For servos this is used for
-    power, ground, and signal. Twisted wires also help eliminate noise. The servo wires are also used for things
-    other than the servos as the wire is very flexible and easy to use. The 11 wire cable is an underground type
-    cable, although not used underground.  It was first used for the connections between prop and controller but,
-    due to the gauge of wire in it, is much less flexible than the servo wire which was used later on.
-    
-    Both cable and servo wire is about 15 feet in length from controller to prop.  The goal was to be able to
-    easily look at and change controller connections to the peripherals, and connect/disconnect power to the
-    servos without having to do to this at prop. The wire at the controller first connects to a terminal block
-    which then connects to the Arduino, and peripheral devies.  This makes moving connections around easier (at
-    the terminal block) and also eliminates any pulling stress of wires that go to the Arduino, although wire hold
-    down brackets and painters/duct tape are used on the wires.
-    
-    The Arduino and all peripheral hardware are placed on a 1/2 inch piece of plywood to make it easy to move all
-    at once. Connectors are used at the prop to allow all the wires to be easily disconnected from the prop so the
-    prop can be easily transported. The MP3, I2C switch, user Mic amp, drive circuit for the solenoid valve, and
-    LED resistors are place on breadboards to make them easy to connect to.
+Currently the controller is connected to the prop thru standard heavy duty twisted servo wire, and thru a 11
+wire cable. Standard servo wire consists of 3 wires twisted around each other.  For servos this is used for
+power, ground, and signal. Twisted wires also help eliminate noise. The servo wires are also used for things
+other than the servos as the wire is very flexible and easy to use. The 11 wire cable is an underground type
+cable, although not used underground.  It was first used for the connections between prop and controller but,
+due to the gauge of wire in it, is much less flexible than the servo wire which was used later on.
+
+Both cable and servo wire is about 15 feet in length from controller to prop.  The goal was to be able to
+easily look at and change controller connections to the peripherals, and connect/disconnect power to the
+servos without having to do to this at prop. The wire at the controller first connects to a terminal block
+which then connects to the Arduino, and peripheral devies.  This makes moving connections around easier (at
+the terminal block) and also eliminates any pulling stress of wires that go to the Arduino, although wire hold
+down brackets and painters/duct tape are used on the wires.
+
+The Arduino and all peripheral hardware are placed on a 1/2 inch piece of plywood to make it easy to move all
+at once. Connectors are used at the prop to allow all the wires to be easily disconnected from the prop so the
+prop can be easily transported. The MP3, I2C switch, user Mic amp, drive circuit for the solenoid valve, and
+LED resistors are place on breadboards to make them easy to connect to.
 
 ## Processor board and Interfaces/Peripherals used
 
@@ -130,23 +130,23 @@ The prop wiring/schematic is contained in the file \Halloween\Prop Wiring.docx
       
 # Software
 
-    The program is written in Arduino C++ and uses several Arduino libraries, some new DIY. All code was written
-    using the UltraEdit IDE, although any text editor could be used, and then compiled/built/downloaded using the
-    Arduino IDE (version 1.8.13 or later).  The IDE is also used to add new libraries as well as run the serial
-    command/monitor that the user interfaces to the program with. All code is DIY except for most of the
-    libraries. The code uses classes extensively.  Program memory space is used to store large constants to avoid
-    chewing up RAM with these.  The Arduino by default puts constants in program memory and then transfers them to
-    RAM to access them in the code.
-    
-    Any DIY code uses the MIT software license.
+The program is written in Arduino C++ and uses several Arduino libraries, some new DIY. All code was written
+using the UltraEdit IDE, although any text editor could be used, and then compiled/built/downloaded using the
+Arduino IDE (version 1.8.13 or later).  The IDE is also used to add new libraries as well as run the serial
+command/monitor that the user interfaces to the program with. All code is DIY except for most of the
+libraries. The code uses classes extensively.  Program memory space is used to store large constants to avoid
+chewing up RAM with these.  The Arduino by default puts constants in program memory and then transfers them to
+RAM to access them in the code.
+
+Any DIY code uses the MIT software license.
     
 
 ## Serial Command Interface
 
-    The user can control the program thru a serial command
-    line interface on the USB serial line.
-    Multiple commands can be entered on a single line with a semicolon between them.  
-    The serial commands are as follows:
+The user can control the program thru a serial command
+line interface on the USB serial line.
+Multiple commands can be entered on a single line with a semicolon between them.  
+The serial commands are as follows:
     
 **ArmPitch _degrees_**  : Sets the Arm pitch servo in degrees
 
@@ -264,20 +264,20 @@ respectively.
     
 ## Prop Playback Data 
    
-    Prop playback data is currently stored as constant arrays in the program itself
-    although the future goal is to store it on a separate SD card the Arduino accesses for unlimited playback
-    storage. These constants are stored in the PROGMEM2 section of the code, using the PROGMEMSECTION2 macro, so they
-    don't take up RAM space, only program code space. 
+Prop playback data is currently stored as constant arrays in the program itself
+although the future goal is to store it on a separate SD card the Arduino accesses for unlimited playback
+storage. These constants are stored in the PROGMEM2 section of the code, using the PROGMEMSECTION2 macro, so they
+don't take up RAM space, only program code space. 
 
 ## Capturing Playback Data and Adding it to the Program 
    
-    When using live interactive prop movement operations
-    (i.e. command "ImuHeadMouth ...") the large output on the serial monitor that shows the servo positions, etc,
-    can be captured by copying and pasting it into a text file. This can then be opened as an Excel file and its contents copied
-    to sheet VampireArmCapture of the excel file VampireArmCapture.xlsx. Once that is done the user can copy
-    and transpose paste it from sheet VampireArmCapture to sheet 1 in the appropriate spot. At that point copy
-    and paste from sheet 1 to the appropriate row in sheet 2.
-    Then sheet 2 has the code snippet you can copy and paste into the PropController.ino file for accessing it in the code for playback later on.
+When using live interactive prop movement operations (i.e. command "ImuHeadMouth ...") the large output on the
+serial monitor that shows the servo positions, etc, can be captured by copying and pasting it into a text
+file. This can then be opened as an Excel file and its contents copied to sheet VampireArmCapture of the excel
+file VampireArmCapture.xlsx. Once that is done the user can copy and transpose paste it from sheet
+VampireArmCapture to sheet 1 in the appropriate spot. At that point copy and paste from sheet 1 to the
+appropriate row in sheet 2.
+Then sheet 2 has the code snippet you can copy and paste into the PropController.ino file for accessing it in the code for playback later on.
     
 # Directories and files
 
@@ -304,10 +304,10 @@ There are several other files and directories in \Halloween\ but the significant
 # URLs
 
 [Halloween Prop](https://photos.app.goo.gl/th4qkniJdXuoBmHA6) -  contains photos of the
-    prop as well as some videos of the prop in action and demos of its range of motion.
+prop as well as some videos of the prop in action and demos of its range of motion.
     
 [Halloween 2018](https://photos.app.goo.gl/2tGpkc9Z9Mq6irJE6) -
-    Videos of the prop before arm movement was added.
+Videos of the prop before arm movement was added.
         
 # Contacts
 
