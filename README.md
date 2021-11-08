@@ -144,7 +144,7 @@ Any DIY code uses the MIT software license.
 ## Serial Command Interface
 
 The user can control the program thru a serial command
-line interface on the USB serial line.
+line interface on the USB serial line thru the Arduino IDE.
 Multiple commands can be entered on a single line with a semicolon between them.  
 The serial commands are as follows:
     
