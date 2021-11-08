@@ -5,7 +5,7 @@
 * [Hardware](#hardware)
 * [Software](#software)
 * [Directories and files](#directories-and-files)
-* [URLs](#urls)
+* [Links](#links)
 * [Contacts](#contacts)
 
 
@@ -14,12 +14,15 @@
 
 This project is for a prop controller and an animated prop for Halloween.  The prop is a DIY with a female
 vampire head on an approx 4 foot Walgreen's skeleton body.
+
+![Vampire Skeleton Prop](https://photos.google.com/share/AF1QipP2FE3xVJT6LY-kpPWOTKuSQ0eHYsrkWrY6V6OEE0b39X1kqoLoiZ60WCupx9FLMA/photo/AF1QipPM5X2NkCp0Y9oSeEkEfTq1PHJP3HXc4byOLKTe?key=YVVnZGhhYklOMUp0dWRwQUY4SXg0TndCYTBrLUdR)
+
     
 Servos are used to animate the head, mouth and right arm and elbow.
 The prop can both emit audio thru a speaker and listen thru a mic and has red LED eyes that can be turned on or off.
 The prop can also, thru pneumatics, lean forward parallel to the ground, or sit upright.
 The prop has a minature night vision camera on the top front of its head allowing it to see.  The camera is controlled
-thru a smartphone, and allows the user to see what the prop head is seeing and record it if desired (both audio and video).
+thru a smartphone, and allows the user to see what the prop head is seeing and record if desired both audio and video.
     
 The controller for the prop is an Arduino Mega 2560 which is used to perform both live interactive
 sessions or capture and playback of recorded sessions. Almost all aspects of the prop can be controlled thru
@@ -27,7 +30,7 @@ the serial command line interface of the Arduino USB port. The prop can be exact
 movements thru inertial management units (IMUs) attached to the users head and mouth, and eventually ones
 attached to the users arm.  This allows for quick, and effortless choreographing of prop movements by matching the users head,
 mouth and arm/forearm movements.  This choreographing can be captured for playback later on.
-There is also an MP3 module the Arduino controls to play audio files to the props speaker.
+There is an MP3 module the Arduino controls to play audio files to the prop's speaker.
 
 
 # Hardware
@@ -89,23 +92,25 @@ The Arduino I2C interface is used to access these IMUs.
 ## Physical Wiring
 
 Currently the controller is connected to the prop thru standard heavy duty twisted servo wire, and thru a 11
-wire cable. Standard servo wire consists of 3 wires twisted around each other.  For servos this is used for
-power, ground, and signal. Twisted wires also help eliminate noise. The servo wires are also used for things
+wire cable. Standard twisted servo wire consists of 3 wires twisted around each other.  For servos this is used for
+power, ground, and signal. Twisted wires help eliminate noise. The servo wires are also used for things
 other than the servos as the wire is very flexible and easy to use. The 11 wire cable is an underground type
 cable, although not used underground.  It was first used for the connections between prop and controller but,
 due to the gauge of wire in it, is much less flexible than the servo wire which was used later on.
 
-Both cable and servo wire is about 15 feet in length from controller to prop.  The goal was to be able to
-easily look at and change controller connections to the peripherals, and connect/disconnect power to the
-servos without having to do to this at prop. The wire at the controller first connects to a terminal block
-which then connects to the Arduino, and peripheral devies.  This makes moving connections around easier (at
-the terminal block) and also eliminates any pulling stress of wires that go to the Arduino, although wire hold
-down brackets and painters/duct tape are used on the wires.
+Both cable and servo wire is about 15 feet in length from controller to prop which was long enough for me to
+have the controller inside and the prop outside on the porch with wires going thru a slightly open window.
+The goal was to be able to easily look at, probe, and change controller connections to the peripherals, and
+connect/disconnect power to the servos without having to do to this at the prop. The wires from the prop at
+the controller first connect to a terminal block which then connect to the Arduino, and peripheral devies.
+This makes moving connections around easier (at the terminal block) and also eliminates any pulling stress of
+wires that go to the Arduino, although wire hold down brackets and painters/duct tape are used on the wires
+before they enter the terminal block.
 
-The Arduino and all peripheral hardware are placed on a 1/2 inch piece of plywood to make it easy to move all
+The Arduino and all peripheral hardware are placed on a 1/2 inch piece of plywood to make it easy to transport them all
 at once. Connectors are used at the prop to allow all the wires to be easily disconnected from the prop so the
 prop can be easily transported. The MP3, I2C switch, user Mic amp, drive circuit for the solenoid valve, and
-LED resistors are place on breadboards to make them easy to connect to.
+LED resistors are placed on breadboards to make them easy to connect to.
 
 ## Processor board and Interfaces/Peripherals used
 
@@ -130,20 +135,36 @@ The prop wiring/schematic is contained in the file \Halloween\Prop Wiring.docx
       
 # Software
 
-The program is written in Arduino C++ and uses several Arduino libraries, some new DIY. All code was written
-using the UltraEdit IDE, although any text editor could be used, and then compiled/built/downloaded using the
-Arduino IDE (version 1.8.13 or later).  The IDE is also used to add new libraries as well as run the serial
-command/monitor that the user interfaces to the program with. All code is DIY except for most of the
-libraries. The code uses classes extensively.  Program memory space is used to store large constants to avoid
-chewing up RAM with these.  The Arduino by default puts constants in program memory and then transfers them to
-RAM to access them in the code.
+The application is written in Arduino C++ and uses several Arduino libraries, some newly created. All code was written
+using the UltraEdit, although any text editor could be used, and then compiled/built/downloaded using the
+Arduino IDE (version 1.8.13 or later).  The Arduino IDE is also used to add new libraries as well as run the serial
+command/monitor that the user interfaces to the program with. Except for the majority of the libraries, all code is new. 
 
-Any DIY code uses the MIT software license.
+The application is written as typical entry-exit state machines which execute very quickly each pass to
+conform to the Arduino OS. There is no user threading in the Arduino OS. The Arduino OS has a setup function
+and a loop function.  The setup function basically is for initialization and is called once by the Arduino OS
+at start up.  The user places their initialization in that setup function.  The loop function is where the
+programmers entry-exit state machines are placed.  The Arduino OS calls the loop function continually and does
+system housekeeping functions during the rest of the time (with the exception of interrupts of course).
+Delaying too long in the loop function could cause issues depending on what Arudino software services you are
+using. The code uses classes extensively although there is no 'new' function for the user so classes must be
+instantiated at compile time or thru local variables although these local variable of course only persist for the scope they are in and
+then are destroyed.
+
+The Arduino compiler by default puts large constants declared with the 'const ...' directive in program memory
+and then transfers them to RAM at startup to access them in the code like any other variable. So to avoid
+chewing up the limited 8K bytes of RAM space of the Mega 2560, the user can instead place large constants in
+program memory by using the macro PROGMEMSECTION2 along with the 'const' directive
+and then accesses the constant by using the pgm_get_far_address function.  While cumbersome to use, it does keep RAM from being chewed up
+by constants.
+
+
+Any new code uses the MIT software license.
     
 
 ## Serial Command Interface
 
-The user can control the program thru a serial command
+The user can control and monitor the program thru a serial command
 line interface on the USB serial line thru the Arduino IDE.
 Multiple commands can be entered on a single line with a semicolon between them.  
 The serial commands are as follows:
@@ -275,7 +296,7 @@ respectively.
    
 Prop playback data is currently stored as constant arrays in the program itself
 although the future goal is to store it on a separate SD card the Arduino accesses for unlimited playback
-storage. These constants are stored in the PROGMEM2 section of the code, using the PROGMEMSECTION2 macro, so they
+storage. These constants are currently stored in the PROGMEM2 section of the code, using the PROGMEMSECTION2 macro, so they
 don't take up RAM space, only program code space. 
 
 ## Capturing Playback Data and Adding it to the Program 
@@ -294,7 +315,7 @@ Then sheet 2 has the code snippet you can copy and paste into the PropController
     supporting user files are contained here.
     
 \Halloween\NewAndModedLibraries\ - Dir that contains new or modified libraries.  These are then zipped and imported into the
-    Arduino IDE.
+    Arduino IDE using the Sketch --> Include Library --> Add .Zip Library ...  item of the IDE.
     
 \Halloween\QuickHeadMouthCaptureCommands.txt  - File that contains serial commands that were commonly used for prop operation on Halloween.
 
@@ -310,7 +331,7 @@ which the prop controller can direct the MP3 module to play.
 
 There are several other files and directories in \Halloween\ but the significant ones are listed above.
     
-# URLs
+# Links
 
 [Halloween Prop](https://photos.app.goo.gl/th4qkniJdXuoBmHA6) -  contains photos of the
 prop as well as some videos of the prop in action and demos of its range of motion.
