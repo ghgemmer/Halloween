@@ -36,10 +36,12 @@ There is an MP3 module the Arduino controls to play audio files to the prop's sp
 
 ## Prop Head
 
-The head nod, rotate, and mouth are controlled by servos and custom aluminum brackets along with Actobotics
-brackets that attach to the head and mouth. The head rotate servo is actually in the body and rotates a PVC
-pipe that goes up to the head.  The nod servo is in the head as well as the mouth servo.  All servos except
-the mouth use Actobotics servo blocks to handle lateral loads on the servo axis. The head also has red LED
+The head nod, rotate, and mouth are controlled by servos and attached by custom aluminum brackets along with Actobotics
+brackets to the head and mouth. The head rotate servo is actually in the body and rotates a PVC
+pipe that goes through an Acotobotics channel and bearing up to the head.  The channel and bearing eliminate lateral forces
+on the head rotate servo.
+The nod servo is in the head as well as the mouth servo. The head nod servo
+uses an Actobotics servo block to handle the lateral loads on the servo. The head also has red LED
 eyes that can be turned on or off although these could instead be connected to a PWM signal or an analog
 signal to adjust intensity.  At the top of the head is a Relohas minature night vision camera (a cube that is
 0.79 inches long on each side) with a base that is at the back of the head and connected to the camera by a
@@ -51,22 +53,22 @@ currently used.
 
 The prop skeleton body has the bottoms of the legs bent back on the ground as if the prop is sitting on its knees
 and lower leg. The body uses an iHome speaker to talk and emit audio,  an Adafruit microphone and amplifier
-module with AGC to listen, a pneumatic cylinder, solenoid valves, and air compressor to rotate the body with
-head from a leaning over position, parallel to the ground, to an upright position and vice versa. 
+module with AGC to listen, a pneumatic cylinder, solenoid valves, and air compressor to rotate the upper part of the prop
+from a leaning over position, parallel to the ground, to an upright position and vice versa. 
 
-The user hasa Adafruit 9814 mic and line amp, with AGC disabled, that is connected thru wires to the speaker that allows
+The user has an Adafruit 9814 mic and line amp, with AGC disabled, that is connected thru wires to the speaker that allows
 the user to talk out of the prop speaker. There is also a MidFly MP3 module that is conencted to the Arduino
 and thru wires to the speaker that is used to play mp3 files.  
 
-The body is attached to a base via a bolt hinge
-that allows it to swing so it can either be leaning over or upright. The body is pushed/pulled by a pneumatic
+The upper part of the body is attached to a base via a bolt hinge
+that allows it to swing so it can either be leaning over or upright. The upper body is pushed/pulled by a pneumatic
 cylinder to stand upright or lean over. The pneumatic cylinder is controlled by a solenoid valve device which the
 main controller controls. Elastic cables and pneuamtic speed controllers are used to slow the pneumatic
 cylinder as it nears its end points, either upright or leaning over. The pneumatics have not been used in the
 past few years as I have been concentrating on the servo operation. 
 
 The right skeleton arm has 3 servos at the
-shoulder for pitch, yaw, and roll and one at the elbow to bend the elbow. All servos except the mouth are
+shoulder for pitch, yaw, and roll and one at the elbow to bend the elbow. All these servos are
 held in Actobotics servo blocks to withstand lateral forces off the servo axis. Mostly Actobotics hardware,
 such as screws, hubs, spacers, brackets, channels, patterns, bearings, etc, is used to connect the servo
 blocks to the arm/head. The servos are run at 6 volts with the exception of the arm pitch servo being run at
@@ -76,14 +78,15 @@ position, even when under load, so are perfect for the application.  Hitec servo
 whine when holding a position under load. Hitec servos were used when the head was first animated before it
 was discovered much later on that GoBilda servos would be better in that case.  Eventually the head nod servo
 will be replaced with a GoBilda servo as it is the one Hitec servo with the most noticable whine. All the
-servos allow a farily fluid/natural/and speedy(when needed) movement of the skeleton head and arm/forearm. The
-clothes on the skeleton body came from an old Halloween costume.
+servos allow a farily fluid/natural/and speedy(when needed) movement of the skeleton head and arm/forearm. 
+
+The clothes on the skeleton body came from an old Halloween costume.
 
 ## IMUs and Sychronized User Movements
 
 To easily allow a user to naturally manipulate the prop for live interactive sessions as well as catpure
 for playback, Adafruit BNO055 Inertial Measurment Units (IMUs) are attached to the user and the servos can
-be synchronized to the movements of the user thru software. Currently 1 IMU is used on the top of the head
+be synchronized to the movements of the user thru the application. Currently 1 IMU is used on the top of the head
 using a ball cap,  1 on the mouth using a mouth guard, and two on a simulated arm/forearm in the interim
 until I can get them to work on an actual arm.
 The Arduino I2C interface is used to access these IMUs.
@@ -100,7 +103,7 @@ due to the gauge of wire in it, is much less flexible than the servo wire which 
 Both cable and servo wire is about 15 feet in length from controller to prop which was long enough for me to
 have the controller inside and the prop outside on the porch with wires going thru a slightly open window.
 The goal was to be able to easily look at, probe, and change controller connections to the peripherals, and
-connect/disconnect power to the servos without having to do to this at the prop. The wires from the prop at
+connect/disconnect power to the servos without having to do to this at the prop, even during actual opeartion. The wires from the prop at
 the controller first connect to a terminal block which then connect to the Arduino, and peripheral devies.
 This makes moving connections around easier (at the terminal block) and also eliminates any pulling stress of
 wires that go to the Arduino, although wire hold down brackets and painters/duct tape are used on the wires
@@ -127,7 +130,7 @@ and responses
 on one channel and 2 on another channel of the switch.  The I2C switch is needed to resolve I2C address
 bus conflicts as the IMUs can only have one of two I2C addresses.
 * 1 TTL serial interface to control an MP3 module to generate audio and play audio files from an SD card
-on the MP3 module.  The audio output of that MP3 goes to the speaker
+on the MP3 module.  The audio output of that MP3 goes to the prop speaker
 * 1 digital input pulled up to 5 volts and used to read a button.
     
 The prop wiring/schematic is contained in the file \Halloween\Prop Wiring.docx
@@ -135,7 +138,7 @@ The prop wiring/schematic is contained in the file \Halloween\Prop Wiring.docx
 # Software
 
 The application is written in Arduino C++ and uses several Arduino libraries, some newly created. All code was written
-using the UltraEdit, although any text editor could be used, and then compiled/built/downloaded using the
+using the UltraEdit text editor, although any text editor could be used, and then compiled/built/downloaded using the
 Arduino IDE (version 1.8.13 or later).  The Arduino IDE is also used to add new libraries as well as run the serial
 command/monitor that the user interfaces to the program with. Except for the majority of the libraries, all code is new. 
 
@@ -157,15 +160,75 @@ program memory by using the macro PROGMEMSECTION2 along with the 'const' directi
 and then accesses the constant by using the pgm_get_far_address function.  While cumbersome to use, it does keep RAM from being chewed up
 by constants.
 
-
 Any new code uses the MIT software license.
-    
 
+## Classes
+
+* Adafruit_BNO055_HalloweenProp -   This class is derived from the Adafruit_BNO055 class.
+It additionally accomodates multiple BNO055s with the same I2C address.
+This is accomplished using these devices on slave channels of an I2C switch
+* base_device - This class is the base class for device write/read functionality.
+It is an abstract class requiring a derived class to implement
+the certain functionalities.
+* devices_player - This class is for playing devices. Each device to be played is registered with this class
+along with the values to write (play) and the max number of values for that device.  
+Values to write are passed via a reader class derived from the 
+indexed_values_reader class to read a device value (to be written) associated with a given index
+The class plays the device by calling the devices
+write method for the value the reader returns in order waiting interval milliseconds between each set.  All
+registered devices are played simultaneously (i.e. Each registerd device is called with its respective
+registered reader.read(1) value, and the interval milliseconds is waited, then the same is done for reader.read(2) value, etc.
+Playing can be done continuously with wraparound or once stopping at the end of the array.
+Wraparound wraps at the end of the max entries for that device.
+The playing can also be paused, and then resumed.
+The inteval for playing all registered devices can be set (all devices are played at the same
+interval)
+* imu_filter - This class supports providing a filtered imu output that limits the imu ranges to eliminate imu Euler mapping issues.
+* indexed_values_reader - This class is the base class for the indexed values reader functionality.
+This class reads a value associated with an index
+Derived classes of this allow different constructors to handle different ways the values are stored such as
+normal addressable array,  array in PROGMEM, values stored on a SD card, etc.
+Thus a class dervied off of this can be instantiated and passed to another class to hide the
+mechanics of where the indexed values are stored and how they are accessed.
+* LED_device - Derived from base_device to implement the LED on/off functionality
+* mp3_device - Derived from base_device and MP3_Player classes to implement the MP3 device functionality
+* mp3_Player - Class that is the driver for the MP3 hardware
+* NormalArray_values_reader - This indexed_values_reader derived class allows values stored in a normal unit16_t array to be read based on the index
+the certain functionalities.
+* ProgMemArray_values_reader - This indexed_values_reader derived class allows values stored in a unit16_t array in PROGMEM (program memory) to be read based on the index
+the certain functionalities.
+* relay_device - Derived from base_device to implement the relay functionality
+* servo_device - Derived from base_device and PWMServoNew to implement the servo functionality 
+* servo_filter - This class supports providing a filtered servo degree settings output based on the
+servo degree settings input given to it, and the filtering parameters setup to it.
+
+## Newly Developed and Modified Libraries
+
+ * PWMServoNew - Refactored version of PWMServo class.  Updated to handle all PWM pins for all Arduinos, and
+ refactored to use the new private class avrTimerCounter to interface to the hardware.
+ * i2cSwitch - This class handles the physical I2C switch functionality.
+Currently this handles a single physical switch (not chained swtiches)
+The switch allows a user to connect a master I2C bus up to 8 I2C slave buses , i.e. channels.
+Any combination of channels can be enabled/disabled allowing the user to handle
+situations such as multiple devices with the same i2C Address (using different channels), or spreading out the
+capacitive loading of devices by placing them on different channels so only the 
+loading of enabled channel(s) is incurred at any one time.
+The user typically will create a set of constants defining the I2C switch channel and mask
+combinations to use in another file.  If a class uses a device that is on one of these channels the
+appropriate channel and mask constants are generally passed to the class during instantiation and the class handles
+setting the appropriate channels in the switch as needed.
+* Adafruit_BNO055 - .h file Modified so that the read/write methods are now virtual.  This allows them to be
+overriden in a derived class to setup the correct I2C switch channel the IMU is on when performing I2C
+read/write operations to it.  A constructor is added to the class Adafruit_BNO055_HalloweenProp dervied from
+this to additionally specify the I2C switch address and channel the
+IMU is at on that switch.
+ 
 ## Serial Command Interface
 
 The user can control and monitor the program thru a serial command
 line interface on the USB serial line thru the Arduino IDE.
-Multiple commands can be entered on a single line with a semicolon between them.  
+Multiple commands can be entered on a single line with a semicolon between them.
+The program communicates with the serial monitor at a 115200 baud rate.
 The serial commands are as follows:
     
 **ArmPitch _degrees_**  : Sets the Arm pitch servo in degrees
@@ -217,7 +280,7 @@ Displays the system status, self test result, system error status, system Cal St
 The cal states are as described in the Visualize3D command.  If the IMU is not fully calibrated this command indicates this and does not
 return any data.
 
-**ImuGetStoredCalibData _ImuId_** _ImuId_ - the ID number of the IMU to get cal data for and set back up in the IMU. 0 = Mouth, 1 = Head, 2 = Arm, 3 = Forearm.
+**ImuGetStoredCalibData _ImuId_** _ImuId_ - the ID number of the IMU to get stored cal data for and set back up in the IMU. 0 = Mouth, 1 = Head, 2 = Arm, 3 = Forearm.
 
 **ImuHeadMouth _periodMsec_ _audioFile_ _audioDelayInPeriods_ _[includeArm]_** : Enables servo movement being synchronized to the corresonding IMUs.
 This also continually outputs the servo positions, and audio file start point to the serial monitor so that it can be captured for
@@ -233,7 +296,7 @@ incorporation as playback data.
     * SHAKE_SHAKE_SENORA_FILE         = 9
 * _audioDelayInPeriods_ - The delay in number of _periodMsec_ before the audio file is played.  This allows time for the user to get ready 
 before the audio plays.
-* _includeArm_ - Optional. Indicates if the Arm/Elbow servos are to be synchronzied or left alone.  0 = don't sync 1 = sync
+* _includeArm_ - Optional, defaults to don't include. Indicates if the Arm/Elbow servos are to be synchronzied or left alone.  0 = don't sync 1 = sync
 
 **ImuHeadMouthStop** Stops the servo movement being synchronized to the IMUs.  The servos are left in the position they were at when this 
 command was entered.  The ImuHeadMouth operations can also be stopped by pressing a physical button 
@@ -245,7 +308,7 @@ command was entered.  The ImuHeadMouth operations can also be stopped by pressin
 **ImuRead _ImuId_** _ImuId_ - the ID number of the IMU to reads and displays the current IMU Yaw, Roll, Pitch angles for.
 
 **ImuSetStoredCalibData  _ImuId_** _ImuId_ - the ID number of the IMU to store its cal data for. 0 = Mouth, 1 = Head, 2 = Arm, 3 = Forearm.
-data is stored in the Arduino non volatile memory.
+Data is stored in the Arduino non volatile memory.
 
 **ImusShowPitchDiff _periodMsec_ _ImuNumber1_ _ImuNumber2_** : Continually displays the difference between the zero based pitch readings of the two IMUs
 The initial pitch readings at the time the command is executed are used as the zero based pitches and the 
@@ -269,12 +332,12 @@ difference displayed is (pitch1 - pitch2) - (initial pitch 1 - initial pitch 2).
 
 **Visualize3D _periodMsec_  _sensorNumber_ _format_** - Starts the Visualize 3D process. This process is
 used to calibrate the intertial measurement units (IMUs) and output the current IMU orientation data which can also be
-used to run the Visualize 3D program on a PC which shows the IMU orientation visually with a token object.
+used when streamed to a running Visualize 3D Web serial visualizer (https://learn.adafruit.com/adafruit-bno055-absolute-orientation-sensor/webserial-visualizer) on a PC to show the IMU orientation visually with a token object.
 Calibration occurs by the user moving the IMU in different orientations to calibrate it.  Leave the IMU still for a few seconds for the gyro to calibrate.
 Then move the IMU around to calibrate the magnetometer.  The accelerometer takes the longest to calibrate and
 requires putting the IMU about 45 degrees about each side of the x, y, z axis's of the IMU letting it sit at
 least 5 seconds at each orientation or doing figure 8s with it.  Note that the magnetometer can be affected by
-nearby magnetic fields generated by laptops, magnets, etc.  So when calibrating the magnetometer keep it away form those sources. 
+nearby magnetic fields generated by laptops, magnets, etc.  So when calibrating the IMU, and during operation, keep the IMU away from those sources. 
 
 * _periodMsec_ - the period in milliseonds to get the calibration and orientation data and output it.
 * _sensorNumber_ - the ID number of the IMU to use. 0 = Mouth, 1 = Head, 2 = Arm, 3 = Forearm.
@@ -283,8 +346,8 @@ from the IMU, 1 = quaternions converted to Euler where quaternions are read from
 
 The orientation data is output as Yaw, Roll, Pitch in degrees.  The calibration data is output as system cal number, gyro cal number, accelerometer cal number,
 magnetometer cal number.  Each calibration (cal) number ranges from 0 to 3 with 0 being not calibrated and 3 being fully calibrated.
-Calibration can be speeded up by saving off and restoring the calibrated data using the ImuSetStoredCalibData, and the 
-respectively. 
+Calibration can be speed up by saving off and restoring the calibrated data using the ImuSetStoredCalibData, and the ImuGetStoredCalibData
+commands respectively. 
 
 **Visualize3DStop** : Stops Visualize3D operations.
 
