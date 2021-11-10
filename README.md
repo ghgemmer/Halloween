@@ -29,7 +29,7 @@ thru a smartphone, and allows the user to see what the prop head is seeing and r
 The controller for the prop is an Arduino Mega 2560 which is used to perform both live interactive
 sessions or capture and playback of recorded sessions. Almost all aspects of the prop can be controlled thru
 the serial command line interface of the Arduino USB port. The prop can be exactly synchronized to the users
-movements thru inertial management units (IMUs) attached to the users head and mouth, and eventually ones
+movements thru inertial measurement units (IMUs) attached to the users head and mouth, and eventually ones
 attached to the users arm.  This allows for quick, and effortless choreographing of prop movements by matching the users head,
 mouth and arm/forearm movements.  This choreographing can be captured for playback later on.
 There is an MP3 module the Arduino controls to play audio files to the prop's speaker.
