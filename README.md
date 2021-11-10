@@ -15,7 +15,8 @@
 This project is for a prop controller and an animated prop for Halloween.  The prop is a DIY with a female
 vampire head on an approx 4 foot Walgreen's skeleton body.
 
-[Vampire Skeleton Prop](https://photos.google.com/share/AF1QipP2FE3xVJT6LY-kpPWOTKuSQ0eHYsrkWrY6V6OEE0b39X1kqoLoiZ60WCupx9FLMA/photo/AF1QipPM5X2NkCp0Y9oSeEkEfTq1PHJP3HXc4byOLKTe?key=YVVnZGhhYklOMUp0dWRwQUY4SXg0TndCYTBrLUdR)  
+![Vampire Skeleton Prop](https://lh3.googleusercontent.com/YBkBJRYkaQH4l9xcmWKxqAG6ErbyvQulsJTkRr2b1ErGfGhcUOvh1lRPo-QUS-nAmqhdzHbiDREHn_-BcJW9Qgi4246ccda2ZjnS99TuIXlLciGH-ZWaNsg4uAgQWoBGT0t_HVbNR4A=w2400)  
+
 [Prop in Action 1](https://photos.app.goo.gl/6Uykd7iYnzz1tLBr7)  
 [Prop in Action 2](https://photos.app.goo.gl/xCtqQATjuv2cuCW76)  
 [Prop in Action with back movement](https://photos.app.goo.gl/L6dBzxXWFbU8m84k7)  
@@ -40,26 +41,33 @@ There is an MP3 module the Arduino controls to play audio files to the prop's sp
 ## Prop Head
 
 The head nod, rotate, and mouth are controlled by servos and attached by custom aluminum brackets along with
-Actobotics brackets and hardware to the head and mouth. The head rotate servo is actually located in the prop body in an Actobotics
+Actobotics brackets and hardware to the head and mouth.
+
+The nod servo is in the head as well as the mouth servo. The head nod servo
+uses an Actobotics servo block to handle the lateral loads and torques on the servo.  The mouth servo does not use a 
+servo block as it is only connected to a very light weight mouth.
+ 
+![Head Nod Servo view 1](https://lh3.googleusercontent.com/i3nU8KptNTUyCP4zKHbaxVRCmbjUR1b6lzW31LfK0KiijixXKZ7eeHqXTgT5FzOnm3gs0wx7PSc7bHmQbM-zZ7T2YqgKp6nj1_43gFd_nq5xFWv4X4tBuJy3ZQCOvy2zJ1aFOGcteXk=w2400)  
+![Head Nod Servo view 2](https://lh3.googleusercontent.com/htNOm0rnarPFdbQMmaOba5Y7oVGr4Ym1NBAZvb_eY8CAP4aAYb1Gvhi1x0-8K2pXxyg5q4iluTQ3yWQGFTxjyDlrA-_Me6L2oDb8_Tz0lHKTFKM8b3hvp5XlYKdJYlv74HCtnVRsuIM=w2400)  
+![Mouth Servo view 1](https://lh3.googleusercontent.com/TS5dMFPJUtoQVe16tXg8Ng6uK9QFPKXyjJ67ElZcBJ2MKBZJ3fzgcWuwsoZfduEVXehs0luAZHBNorT2QC1bSTUAciQCrBDMP83mxUlSY_TkmAyCh38FhEUEI7VPBYz5vmHevPBj6us=w2400)  
+
+The head rotate servo is actually located in the prop body in an Actobotics
 channel.  It connects with a clamp to a Actobotics metal pipe which is held by two Actobotics pillow block bearings in that channel.  
 The end of the metal pipe then connects with a screw clamp and rubber gasket to a PVC pipe slid over the end of it.  The end of the
 PVC pipe connects to the bottom of the head nod servo block with a Actobotics PVC clamp hub .  The channel and bearings eliminate
 lateral forces on the head rotate servo that can occur when the prop upper body is bent over, and rapidly transitioning between bent over and
 straight up.
 
-[Head rotate servo view 1](https://photos.app.goo.gl/MyVYs2dTUhLwGDzC7)  
-[Head rotate servo view 2](https://photos.app.goo.gl/7QgVUSkN58bgG6NVA)  
-[Head rotate servo view 3](https://photos.app.goo.gl/jb1K12ernQT6V9NKA)  
-Note: Will get better pictures as it was not convienent at the time to take the prop back cover off to get photos.
+![Head rotate servo view 1](https://lh3.googleusercontent.com/s9GIM7a0JlHmAXbsFY1g7AIdoVG22poEUTpDpkKiwK5cvfpGHpn6bswxpcB2QWCyNED3nHLAlyU6NyuBUrnYeLK_Jyj8lTrzxl69vS0QOF4JrQM66j8kK8X5obBsQKNVmuiYCBBf74A=w2400)  
+![Head rotate servo view 2](https://lh3.googleusercontent.com/4zb7mNDshRgUkUEaG9LLXosHOAq92uEElyTj_4n59VKlOQlq6jzBYIaSEBysbsRBT1aEcyv2uApAn1QF7oPskUPf6v4yH4gJLPEQEgxpoPt_QDbyD6YjDGzFY5ekjyfhGhKS1GRQ3jY=w2400)  
+![Head rotate servo view 3](https://lh3.googleusercontent.com/YqPt3gUBghNjEfNzgFJLZFHOYTlRe8O_uqxetuEkP-jn8DJ-gmYTOkcCM3ahGUj-1pavNvQZKoZygUiFBQNb11sRkMzhtG6u8-YzRH9mUn_kimDzF_imJTCPCF9PXYi3neh7CflsAnw=w2400)  
 
-The nod servo is in the head as well as the mouth servo. The head nod servo
-uses an Actobotics servo block to handle the lateral loads on the servo.  The mouth servo does not use a 
-servo block as it is only connected to a very light weight mouth.
- 
-[Head Nod Servo view 1](https://photos.app.goo.gl/dL1y6bfpSDiXiJW98)  
-[Head Nod Servo view 2](https://photos.app.goo.gl/RjiUCozpXVXUzPsX7)  
-[Mouth Servo view 1](https://photos.app.goo.gl/hNXiZCF7ydUASR5HA)  
-[Mouth Servo view 2](https://photos.app.goo.gl/MPQqYfGWTUdEEnW36)  
+In regards to the head rotate servo, it was felt at the time that the channel and bearings were necessary to
+handle the large lateral forces and lateral torque that could be experienced by the servo.  In hindsight all
+that could probably be replaced by a single servo block right at the neck, where the head nod servo block
+would then sit on and be attached to the rotating hub of that head rotate servo block.  The servo block at the neck
+would also reduce the total lateral torque the servo block would experience being close to the head now, and
+thus should be sufficient (same as the head nod servo block is sufficient in that manner).
 
 The head also has red LED
 eyes that can be turned on or off although these could instead be connected to a PWM signal or an analog
@@ -69,23 +77,22 @@ thin 8" flat cable. The base uses Wifi to conenct to a smartphone.  The base als
 in it and a USB connector to charge it. The camera can also be powered by the USB connector which is how it is
 currently used.
 
-[Camera Base at back of head](https://photos.app.goo.gl/vwUETsMTbkZJpbKL7)  
-[Camera at top of head](https://photos.app.goo.gl/yg7CSNqnSRL2DjAL6)  
-
-
+![Camera Base at back of head](https://lh3.googleusercontent.com/9N5UdIwcMnVj8mbp4YjqqzyOvHVb82NEwRnHbDgqo-Be6b9mkXLRfN_7DV6EaeTSQ56pkvoc4DdUSpJWx2dQ5Cbv9i2ylS2DEO0tMZrfrsZ5jiwd4UX4KnFZ9MU7UByL1wR22USA0uw=w2400)  
+![Camera at top of head](https://lh3.googleusercontent.com/jd67QiHt6aKVdd2DGq6fLfoDIEEMYbFcauZIHM4MZcEgEoG8H560-XON4buMREqlyahAInzocZ2ntAxISSCMSsZsUaurhH1lPBgDxEiW4m9c6gYt2rD3uR4AnsJh4RKYdixMELRPfrA=w2400)  
 
 ## Prop Body
 
 The prop skeleton body has the bottoms of the legs bent back on the ground as if the prop is sitting on its knees
 and lower leg. The body uses an iHome speaker to talk and emit audio,  an Adafruit microphone and amplifier
 module with AGC to listen, a pneumatic cylinder, solenoid valves, and air compressor to rotate the upper part of the prop
-from a leaning over position, parallel to the ground, to an upright position and vice versa. 
-[Adafruit microphone and amplifier module with AGC to listen](https://photos.app.goo.gl/aUMUPK6gzyESqCX49)
+from a leaning over position, parallel to the ground, to an upright position and vice versa.  
+![Adafruit microphone and amplifier module with AGC to listen](https://lh3.googleusercontent.com/2-sbihqDisA_oSx4abW1spY8Gebn7dl_s9oZ3VjmZHMgWAcjWNclGdKol60Jd9HRnTRZ5L503HzTB8oUP9z5TwqxVhaFsVGzSMoVzWUOdL-Znhm_TNN4yy9JQIob_Ny6NWikplAXrd0=w2400)
 
 The user has an Adafruit 9814 mic and line amp, with AGC disabled, that is connected thru wires to the speaker that allows
 the user to talk out of the prop speaker. There is also a MidFly MP3 module that is conencted to the Arduino
 and thru wires to the speaker that is used to play mp3 files. 
-The Adafruit talk microphone small module board is shown in the upper left in the photo <https://photos.app.goo.gl/tJsVp8z31ksJuZ117>
+The Adafruit talk microphone small module board is shown in the upper left in the photo  
+![](https://lh3.googleusercontent.com/0AnS34dpGGSNAUOPHKz0CfibU7Q5w26SCA30-bRhwWr1eXH9iMfSq9DLqw74yMdPe_3S4cto8uM4_017sGDITBQDbYFRCN1YUg-m511EXLCT4c9IopS0rG8EaTPAzf31tjj5Ujv5iF8=w2400)
 The MidFly MP3 module is shown at the upper middle of photo that photo.
  
 
@@ -96,8 +103,8 @@ main controller controls. The solenoid valve is a 4-Way 5-Port valve with 1/8 In
 Elastic cables and air speed mufflers are used to slow the pneumatic
 cylinder as it nears its end points, either upright or leaning over. The pneumatics have not been used since 2016 
 as I have been concentrating on the servo operation.  
-[Pneumatic Air Cylinder and attachment](https://photos.app.goo.gl/QrB5S9RVtTFEXRVx9)  
-[4 way 5 port Solenoid Valve](https://photos.app.goo.gl/LUf25WTkJipq5cw27)  
+![Pneumatic Air Cylinder and attachment](https://lh3.googleusercontent.com/1gfhg9QQ0RYvsjSApk126wGoVLXCRXgW1_-ET14622vWF3u-ihUvCXzaRjEV9AW1NRItPvBGlmBljd0geRSCAZV6wQyXIQ1QRyXcW2fXBPRtw0qwcWHO_PisXMjk5kK4mzKT7-XY7t0=w2400)  
+![4 way 5 port Solenoid Valve](https://lh3.googleusercontent.com/M3ul42xnIdZrZNB8MON1Cz5Wlw5610_AKafAcvtXqQEKf7OhO6cc3MVguI8aNT7eKEYpYLtY7kQarjKHcGfVg7UICyrJxfwbwhTNSEvvEi-OT_stS6eyvhLWZLgJFBr1K0-FeEa75gw=w2400)
 
 
 The right skeleton arm has 3 servos at the
@@ -114,9 +121,9 @@ was discovered much later on that GoBilda servos would be better in that case.  
 will be replaced with a GoBilda servo as it is the one Hitec servo with the most noticable whine. All the
 servos allow a farily fluid/natural/and speedy(when needed) movement of the skeleton head and arm/forearm. 
 
-[Arm servos view 1](https://photos.app.goo.gl/WVxixcfx4bCGqHwr9)  
-[Arm servos view 2](https://photos.app.goo.gl/ZNFcNrR82QhvfMNn7)  
-[Elbow servo](https://photos.app.goo.gl/PrS4McRb4f7ZtHWQ6)  
+![Arm servos view 1](https://lh3.googleusercontent.com/WJ2oIrNw7jpB8w4Bj28LFa23Prbig0kjHGH_kyWoN7sCl5YB9vDn1MHpmMUVnDIMMRkBmjyqc1xZQfTXH67EHc6PFDNrXpossiTI-hSCx_E-cLSGsH3A8MyMKXmO7qJKaeAff6NC6cY=w2400)  
+![Arm servos view 2](https://lh3.googleusercontent.com/VEHaQbDVVI_7fjH1564mMGA2xqKPp7OaDw8gnRThq2-V45e36v5qh0ijI2Oyd1o1h3Y4VSA9DJQIYpccdkFMYgs67eIVMbiwKX1OIZp2n0--GVFYcJF_4t_2RfO7abbAIdMdlRLiMt8=w2400)  
+![Elbow servo](https://lh3.googleusercontent.com/WdPJpY-d3rkiMhdj9TupsDRap8vxhb0wsAIhLwtR4dKal-n9yNwJsax4oiiSiQGgYwGd91r-rovVKXQl6D_tsFvEQnmQrIKoumbngkmK5zk3DtW-hdXmiI2FyRECiTR1tJOJrq-71kc=w2400)  
 
 
 The clothes on the skeleton body came from an old Halloween costume.
@@ -129,15 +136,25 @@ be synchronized to the movements of the user thru the application. Currently 1 I
 using a ball cap,  1 on the mouth using a mouth guard, and two on a simulated arm/forearm in the interim
 until I can get them to work on an actual arm.
 The Arduino I2C interface is used to access these IMUs.  
-[IMU attachments](https://photos.app.goo.gl/ovGYihQAwTyPwzHK8)  
+![IMU attachments](https://lh3.googleusercontent.com/gYlEUqFv2QeJOS2QxzL0i2Umj2FEyjPBwCLN3Sn92gs64mDYQHz_heqrnT0WPnvD4In4aqI7nHO5mPDSd5hRD8la_pf65zsui-EPTrnPXHBF4bH0_bNcKorZpG_yFz5JzD8XL3IGOZQ=w2400)  
+
+To eliminate orientation issues with the IMUs placed on the user, such as is the head IMU level when the ball
+cap is placed on the users head or is the users head pointing north, the user momentarily holds still in a
+normally resting/idle position when the synchronization command is given to get a reference frame from which
+all further positions (pitch, roll, yaw) are measured relative to.  The user resting/idle positon is normally
+head level, looking straight forward, arms straight down at side, and mouth closed. The servos start from their
+predetermined normally idle/resting position at the prop and are moved relative to that initial position
+using those relative IMU measurements. Thus the user could be oriented any direction initially (body and head
+pointing say southwest) and the prop movements are then relative to that initial position.  This eliminates
+the user for example from having to face north to use the synchronization.
 
 ## Physical Wiring
 
 Currently the controller is connected to the prop thru standard heavy duty twisted servo wire, and thru two 7
-wire cables. Standard twisted servo wire consists of 3 wires twisted around each other.  For servos this is used for
+wire underground type cables. Standard twisted servo wire consists of 3 wires twisted around each other.  For servos this is used for
 power, ground, and signal. Twisted wires help eliminate noise. The servo wires are also used for things
-other than the servos as the wire is very flexible and easy to use. The two 7 wire cables are an underground type
-cables, although not used underground.  It was first used for the connections between prop and controller but,
+other than the servos as the wire is very flexible and easy to use. The two 7 wire cables are underground type
+cables, although not used underground.  The underground type cable was first used for the connections between prop and controller but,
 due to the gauge of wire in it, is much less flexible than the servo wire which was used later on.
 
 Both cables and servo wires are about 15 feet in length from controller to prop which was long enough for me
@@ -154,9 +171,9 @@ at once. Connectors are used at the prop to allow all the wires to be easily dis
 prop can be easily transported. The MP3, I2C switch, user Mic amp, drive circuit for the solenoid valve, and
 LED resistors are placed on breadboards to make them easy to connect to.
 
-[Controller, Peripherals, and terminal blocks view 1](https://photos.app.goo.gl/NRPYiSv1nhXBcngm7)  
-[Controller, Peripherals, and terminal blocks view 2](https://photos.app.goo.gl/j2B8pqzdDmkrXHz57)  
-[Controller, Peripherals, and terminal blocks view 3](https://photos.app.goo.gl/YQMviPsS4AYAwErs5)  
+![Controller, Peripherals, and terminal blocks view 1](https://lh3.googleusercontent.com/SD-AmBB1ePDZOMXMdSp8rNsVDgjwlr49Z5A2FYJSARAx49F9sSv-OUiv6olRa6RquGY5dkALBfj1BOdGR6qJNHxIJWxdmEBNbSFIO8coEV1W4XvBtBjb5q8qHQFxc4bJX1WPHKYdPbE=w2400)  
+![Controller, Peripherals, and terminal blocks view 2](https://lh3.googleusercontent.com/RJl5g_M0wewEfI8tN5GXwyh5F1hueuJoGLnEGk4hipq778eAzhORFQ4AATpKVifKDfs7GdDmyCE-G1J1T3DxGb9a9_FKkgoyxzQ1FHrqkaOpvnF3G_q7UOdXtXLac30hIxKgtHPWbxw=w2400)  
+![Controller, Peripherals, and terminal blocks view 3](https://lh3.googleusercontent.com/eTUAZ7f16EmKWwyorXFDKtqy7ccO_48JGhAnWZ4Zu3p0nzPn4FNbkqnEAB5QRKP3NWc5Jfs1br8OR0eXNhtQ3fKCvmNitywfIHQ6H26TPS2-hJdK3T4AqxyXNgY6hhrXq7LPbE_Qka8=w2400)  
 
 ## Processor board and Interfaces/Peripherals used
 
@@ -179,17 +196,12 @@ on the MP3 module.  The audio output of that MP3 goes to the prop speaker
     
 The prop wiring/schematic is contained in the file \Halloween\Prop Wiring.docx
 
-[Controller, Peripherals, and terminal blocks view 1](https://photos.app.goo.gl/NRPYiSv1nhXBcngm7)  
-[Controller, Peripherals, and terminal blocks view 2](https://photos.app.goo.gl/j2B8pqzdDmkrXHz57)  
-[Controller, Peripherals, and terminal blocks view 3](https://photos.app.goo.gl/YQMviPsS4AYAwErs5)  
 
-      
 # Software
 
-The application is written in Arduino C++ and uses several Arduino libraries, some newly created. All code was written
-using the UltraEdit text editor, although any text editor could be used, and then compiled/built/downloaded using the
-Arduino IDE (version 1.8.13 or later).  The Arduino IDE is also used to add new libraries as well as run the serial
-command/monitor that the user interfaces to the program with. Except for the majority of the libraries, all code is new. 
+
+The application is written in Arduino C++ and uses several Arduino libraries, some newly created. 
+Except for the majority of the libraries, all code is new. 
 
 The application is written as typical entry-exit state machines which execute very quickly each pass to
 conform to the Arduino OS. There is no user threading in the Arduino OS. The Arduino OS has a setup function
@@ -202,6 +214,14 @@ using. The code uses classes extensively although there is no 'new' function for
 instantiated at compile time or thru local variables although these local variable of course only persist for the scope they are in and
 then are destroyed.
 
+The main program, PropController.ino, supports accepting serial commands to control the prop and peripherals, and outputing serial responses and status.
+This main program has top level state machines for
+* Prop synchronized to user movements -  Runs when variable AdafruitImuHeadMouthEnabled is true.  Setup by command "ImuHeadMouth ....".
+* Calibrating an IMU and getting displaying its  position continuously - Run when Adafruit3DVisualizeEnabled, and setup with command "Visualize3D ...."
+* Very limited Prop checkout that Turns the LED eyes on and off as well as setting the back solenoid relay to the back down and back up position.
+(Note: do not have the back air cylinder powered by air when doing this as the period between transitions is 1 second)
+* Displaying Pitch difference continually between any two IMUs - Runs when AdafruitImusPitchDiffEnabled is true.  Setup by command "ImusShowPitchDiff ..."
+
 The Arduino compiler by default puts large constants declared with the 'const ...' directive in program memory
 and then transfers them to RAM at startup to access them in the code like any other variable. So to avoid
 chewing up the limited 8K bytes of RAM space of the Mega 2560, the user can instead place large constants in
@@ -209,11 +229,9 @@ program memory by using the macro PROGMEMSECTION2 along with the 'const' directi
 and then accesses the constant by using the pgm_get_far_address function.  While cumbersome to use, it does keep RAM from being chewed up
 by constants.
 
-## Licenses
-
-Any new code uses the MIT software license.
-
 ## Classes
+
+The following are the main user developed application classes:
 
 * Adafruit_BNO055_HalloweenProp -   This class is derived from the Adafruit_BNO055 class.
 It additionally accomodates multiple BNO055s with the same I2C address.
@@ -273,7 +291,23 @@ overriden in a derived class to setup the correct I2C switch channel the IMU is 
 read/write operations to it.  A constructor is added to the class Adafruit_BNO055_HalloweenProp dervied from
 this to additionally specify the I2C switch address and channel the
 IMU is at on that switch.
- 
+
+## Tools
+
+All code was written
+using the UltraEdit text editor, although any text editor could be used, and then compiled/built/downloaded using the
+Arduino IDE (version 1.8.13 or later).  The Arduino IDE is also used to add new libraries as well as run the serial
+command/monitor that the user interfaces to the program with. The Arduino IDE was run on a laptop with a USB serial connection to
+the Arduino Mega 2560 board.
+
+Excel spreadsheets were used to manipulate captured playback data for incorporation into the program.  See later on below for the exact
+procedure.
+
+Audacity was used to modify/create MP3 files used by the MP3 player.
+
+Visualize 3D Web serial visualizer (https://learn.adafruit.com/adafruit-bno055-absolute-orientation-sensor/webserial-visualizer) can be used
+to visualize the orientation of an IMU on a PC when using the Visualize3D serial command.  It can also indicate the IMU calibration status on the PC.
+
 ## Serial Command Interface
 
 The user can control and monitor the program thru a serial command
@@ -335,7 +369,9 @@ return any data.
 
 **ImuHeadMouth _periodMsec_ _audioFile_ _audioDelayInPeriods_ _[includeArm]_** : Enables servo movement being synchronized to the corresonding IMUs.
 This also continually outputs the servo positions, and audio file start point to the serial monitor so that it can be captured for
-incorporation as playback data. 
+incorporation as playback data.   Note: User must be oriented in their normal resting/idle position before
+this command is invoked. Use the "DelayMsec xxx" command before this command on the same command line to give
+the user time to get into this normal resting/idle position.
 * _periodMsec_ - the period in milliseonds to read the IMUs and update the servos.
 * _audioFile_ - the ID number of the audio file to play when the command is exeucted.
     * CHEWING_AT_HEAD_FILE            = 5,
@@ -382,8 +418,11 @@ difference displayed is (pitch1 - pitch2) - (initial pitch 1 - initial pitch 2).
 **VampirePlayerSetup** : Sets up the prop player for the Vampire chewing leaned over, pops up straight, then screams and hisses then , pops back down  prop sequence  
 
 **Visualize3D _periodMsec_  _sensorNumber_ _format_** - Starts the Visualize 3D process. This process is
-used to calibrate the intertial measurement units (IMUs) and output the current IMU orientation data which can also be
-used when streamed to a running Visualize 3D Web serial visualizer (https://learn.adafruit.com/adafruit-bno055-absolute-orientation-sensor/webserial-visualizer) on a PC to show the IMU orientation visually with a token object.
+used to calibrate the intertial measurement units (IMUs) and output the current IMU orientation data and calibration status which can also be
+used when streamed to a running Visualize 3D Web serial visualizer (https://learn.adafruit.com/adafruit-bno055-absolute-orientation-sensor/webserial-visualizer) on a PC to show the IMU orientation visually with a token object
+as well as displaying calibration status on the PC.
+Note that calibration does not require the PC program to run as the user can simply look a the serial output calibration status numbers
+to determine when the IMU is calibrated.  Likewise the user can look at the output orientation data (pitch, roll, yaw ) in degrees.
 Calibration occurs by the user moving the IMU in different orientations to calibrate it.  Leave the IMU still for a few seconds for the gyro to calibrate.
 Then move the IMU around to calibrate the magnetometer.  The accelerometer takes the longest to calibrate and
 requires putting the IMU about 45 degrees about each side of the x, y, z axis's of the IMU letting it sit at
@@ -422,9 +461,13 @@ VampireArmCapture to sheet 1 in the appropriate spot. At that point copy and pas
 appropriate row in sheet 2.
 Then sheet 2 has the code snippet you can copy and paste into the PropController.ino file for accessing it in the code for playback later on.
 
+## Licenses
+
+Any new code uses the MIT software license.
+
 # Lessons Learned
 
-Lessons learned as well as future enhancements is contained in the file \Halloween\Lessons Learned.docx.
+Lessons learned as well as future enhancements are contained in the file \Halloween\Lessons Learned.docx.
     
 # Directories and files
 
