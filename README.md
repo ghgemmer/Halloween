@@ -12,12 +12,14 @@
 
 # General Info
 
-This project is for a prop controller and an animated prop for Halloween.  The prop is a DIY with a female
-vampire head on an approx 4 foot Walgreen's skeleton body.
+This project is for a prop controller and an animated prop for Halloween.  The prop is a DIY project that uses as its starting point a female
+vampire head from TheHorrorDome.com,  on an approx 4 foot Walgreen's skeleton body.
+The goal was to make something scary with lots of life like movement as well as support interactive sessions with Trick-Or-Treaters.
 
 ![Vampire Skeleton Prop](https://lh3.googleusercontent.com/YBkBJRYkaQH4l9xcmWKxqAG6ErbyvQulsJTkRr2b1ErGfGhcUOvh1lRPo-QUS-nAmqhdzHbiDREHn_-BcJW9Qgi4246ccda2ZjnS99TuIXlLciGH-ZWaNsg4uAgQWoBGT0t_HVbNR4A=w2400)  
 Figure: Vampire Skeleton Prop
 
+The following are videos of the prop in action:  
 [Prop in Action 1](https://photos.app.goo.gl/6Uykd7iYnzz1tLBr7)  
 [Prop in Action 2](https://photos.app.goo.gl/xCtqQATjuv2cuCW76)  
 [Prop in Action with back movement](https://photos.app.goo.gl/L6dBzxXWFbU8m84k7)  
@@ -41,12 +43,16 @@ There is an MP3 module the Arduino controls to play audio files to the prop's sp
 
 ## Prop Head
 
-The head nod, rotate, and mouth are controlled by servos and attached by custom aluminum brackets along with
+The prop head starts with a non-animated static female vampire head from TheHorrorDome.com.
+Head nod, rotate, and mouth servos are added and attached by custom aluminum brackets along with
 Actobotics brackets and hardware to the head and mouth.
 
 The nod servo is in the head as well as the mouth servo. The head nod servo
-uses an Actobotics servo block to handle the lateral loads and torques on the servo.  The mouth servo does not use a 
-servo block as it is only connected to a very light weight mouth.
+uses an Actobotics servo block to handle the lateral loads and torques on the servo.  
+The inside top of the head is attached via a short PVC pipe embedded in spray insulation foam holding the pipe to the head,
+with the other end of the pipe attached to the top of the nod servo block.  The mouth servo does not use a 
+servo block as it is only connected to a very light weight mouth.  The mouth is made by cutting out the lower jaw of the vampire head
+and gluing it to a curved aluminum bar which then attaches to the mouth servo thru a servo hub.
  
 ![Head Nod Servo view 1](https://lh3.googleusercontent.com/i3nU8KptNTUyCP4zKHbaxVRCmbjUR1b6lzW31LfK0KiijixXKZ7eeHqXTgT5FzOnm3gs0wx7PSc7bHmQbM-zZ7T2YqgKp6nj1_43gFd_nq5xFWv4X4tBuJy3ZQCOvy2zJ1aFOGcteXk=w2400)  
 Figure: Head Nod Servo view 1
@@ -96,19 +102,36 @@ Figure: Camera at top of head
 
 ## Prop Body
 
+The prop skeleton body starts out using a Walgreen's skeleton body rib cage, arms, and legs.
+The rib cage is attached to wood and along with a PVC pipe for the shoulder blades make up the upper part of the prop body.
+In regards to the rib cage, since it is covered up with the costume, you could probably dispense with it, but at the time I thought
+I might have it showing or showing through the costume, at least its outline.
 The prop skeleton body has the bottoms of the legs bent back on the ground as if the prop is sitting on its knees
 and lower leg. The body uses an iHome speaker to talk and emit audio,  an Adafruit microphone and amplifier
 module with AGC to listen, a pneumatic cylinder, solenoid valves, and air compressor to rotate the upper part of the prop
-from a leaning over position, parallel to the ground, to an upright position and vice versa.  
+from a leaning over position, parallel to the ground, to an upright position and vice versa. 
+
+![Upper Body view 1](https://lh3.googleusercontent.com/sNw06fIj5eNrIDoFo4yC_YHWgLKKPvtojb6KbamKiPQ54hVVlwwtbsvyrmws1BMhG9U3sKjv6TsvdJYmbRk2k5P3TKFznrFoqIs8txEwqkttFr9B1Y0xOZ-bdXB11Eh2PYsfABRLLug=w2400)  
+Figure: Upper Body view 1
+
+![Upper Body view 2](https://lh3.googleusercontent.com/_Y9f0LLqPI8QNLdC-V5IEhgBasyhpBf1Z48vq3K6phR5ABj76i7vIaCWGgNV2ihksDYhKUMfuJCBfE_aaYo_n6rduN7NEwnaiPy9sS0ZXXP61QK2C3Du5smBqE8yyzKnHpf4mZOnbdM=w2400)  
+Figure: Upper Body view 2
+
+![Upper Body view 3](https://lh3.googleusercontent.com/kJvDRq-CV62JrJbBtX52V6YRsw2PcYK602PoROF-KwS9rLIpsjUHk_3VqjLZD9MVAHuXZdJ6WX1HWKGjE3h2KaLI3seZWMurdbfVnBJy_rKUyMMjEVZ09A6cTsJfg28J0LQIvH5oYeM=w2400)  
+Figure: Upper Body view 3
+
+![Upper Body view 4](https://lh3.googleusercontent.com/0UXQ3oxDLK2AkB4YAk63xRAetz-_8GR2u0cNXZJTR4uBYzyER27XuL9EBVi7Li1xWmuB3_e3M6SJEQ-OGPGbwZ_vRacqcOynWkFleoyNIrZKRjpqnkPIU9d_7lgNN6MBIYeEA39wdok=w2400)  
+Figure: Upper Body view 4
+ 
 ![Adafruit microphone and amplifier module with AGC to listen](https://lh3.googleusercontent.com/2-sbihqDisA_oSx4abW1spY8Gebn7dl_s9oZ3VjmZHMgWAcjWNclGdKol60Jd9HRnTRZ5L503HzTB8oUP9z5TwqxVhaFsVGzSMoVzWUOdL-Znhm_TNN4yy9JQIob_Ny6NWikplAXrd0=w2400)  
 Figure: Adafruit microphone and amplifier module with AGC to listen
 
 The user has an Adafruit 9814 mic and line amp, with AGC disabled, that is connected thru wires to the speaker that allows
 the user to talk out of the prop speaker. There is also a MidFly MP3 module that is conencted to the Arduino
 and thru wires to the speaker that is used to play mp3 files. 
-The Adafruit talk microphone small module board is shown in the upper left in the photo  
+The Adafruit talk microphone small module board is on the upper left of the big breadboard.
 ![](https://lh3.googleusercontent.com/0AnS34dpGGSNAUOPHKz0CfibU7Q5w26SCA30-bRhwWr1eXH9iMfSq9DLqw74yMdPe_3S4cto8uM4_017sGDITBQDbYFRCN1YUg-m511EXLCT4c9IopS0rG8EaTPAzf31tjj5Ujv5iF8=w2400)
-The MidFly MP3 module is shown at the upper middle of photo that photo.
+The MidFly MP3 module is on the upper right of the big breadboard and contains an SD card.
  
 
 The upper part of the body is attached to a base via a bolt hinge
@@ -123,6 +146,13 @@ Figure: Pneumatic Air Cylinder and attachment
 
 ![4 way 5 port Solenoid Valve](https://lh3.googleusercontent.com/M3ul42xnIdZrZNB8MON1Cz5Wlw5610_AKafAcvtXqQEKf7OhO6cc3MVguI8aNT7eKEYpYLtY7kQarjKHcGfVg7UICyrJxfwbwhTNSEvvEi-OT_stS6eyvhLWZLgJFBr1K0-FeEa75gw=w2400)  
 Figure: 4 way 5 port Solenoid Valve
+
+![Base Front](https://lh3.googleusercontent.com/PzB6wGGdXtNq6mSCDRN2koqReqNON75U8tSTZGio8wPOlYU9YT0_FyI1szotKOuyvaAp7bOpBM79EXXUVyR8Z0-wmcGqHoJ1up-21yWCYjoaJb1k0-EDDsa9zVlbtfSZ7oAG4hDuAj0=w2400)  
+Figure: Base Front
+
+![Base Rear](https://lh3.googleusercontent.com/A4DBUlcq87wnCNobLBs4WgtNFEMe4POnpRwQqZYnnfeUYcD6rrSsMT9rXGzdyWmVJtCs0xjNd3BFpFT3lsjZVviYa-jJ5EkuyAFiqOP4AgMadjCeYmmzDJyBzrW7yqEcBBLHELG2Z84=w2400)  
+Figure: Base Rear
+
 
 The right skeleton arm has 3 servos at the
 shoulder for pitch, yaw, and roll and one at the elbow to bend the elbow. All these servos are
