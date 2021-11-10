@@ -60,8 +60,8 @@ Figure: Head Nod Servo view 1
 ![Head Nod Servo view 2](https://lh3.googleusercontent.com/htNOm0rnarPFdbQMmaOba5Y7oVGr4Ym1NBAZvb_eY8CAP4aAYb1Gvhi1x0-8K2pXxyg5q4iluTQ3yWQGFTxjyDlrA-_Me6L2oDb8_Tz0lHKTFKM8b3hvp5XlYKdJYlv74HCtnVRsuIM=w2400)  
 Figure: Head Nod Servo view 2
 
-![Mouth Servo view 1](https://lh3.googleusercontent.com/TS5dMFPJUtoQVe16tXg8Ng6uK9QFPKXyjJ67ElZcBJ2MKBZJ3fzgcWuwsoZfduEVXehs0luAZHBNorT2QC1bSTUAciQCrBDMP83mxUlSY_TkmAyCh38FhEUEI7VPBYz5vmHevPBj6us=w2400)  
-Figure: Mouth Servo view 1
+![Mouth Servo](https://lh3.googleusercontent.com/TS5dMFPJUtoQVe16tXg8Ng6uK9QFPKXyjJ67ElZcBJ2MKBZJ3fzgcWuwsoZfduEVXehs0luAZHBNorT2QC1bSTUAciQCrBDMP83mxUlSY_TkmAyCh38FhEUEI7VPBYz5vmHevPBj6us=w2400)  
+Figure: Mouth Servo
 
 The head rotate servo is actually located in the prop body in an Actobotics
 channel.  It connects with a clamp to a Actobotics metal pipe which is held by two Actobotics pillow block bearings in that channel.  
@@ -105,7 +105,7 @@ Figure: Camera at top of head
 The prop skeleton body starts out using a Walgreen's skeleton body rib cage, arms, and legs.
 The rib cage is attached to wood and along with a PVC pipe for the shoulder blades make up the upper part of the prop body.
 In regards to the rib cage, since it is covered up with the costume, you could probably dispense with it, but at the time I thought
-I might have it showing or showing through the costume, at least its outline.
+I might have it showing or showing through the costume, at least the outline of the ribs.
 The prop skeleton body has the bottoms of the legs bent back on the ground as if the prop is sitting on its knees
 and lower leg. The body uses an iHome speaker to talk and emit audio,  an Adafruit microphone and amplifier
 module with AGC to listen, a pneumatic cylinder, solenoid valves, and air compressor to rotate the upper part of the prop
@@ -125,13 +125,6 @@ Figure: Upper Body view 4
  
 ![Adafruit microphone and amplifier module with AGC to listen](https://lh3.googleusercontent.com/2-sbihqDisA_oSx4abW1spY8Gebn7dl_s9oZ3VjmZHMgWAcjWNclGdKol60Jd9HRnTRZ5L503HzTB8oUP9z5TwqxVhaFsVGzSMoVzWUOdL-Znhm_TNN4yy9JQIob_Ny6NWikplAXrd0=w2400)  
 Figure: Adafruit microphone and amplifier module with AGC to listen
-
-The user has an Adafruit 9814 mic and line amp, with AGC disabled, that is connected thru wires to the speaker that allows
-the user to talk out of the prop speaker. There is also a MidFly MP3 module that is conencted to the Arduino
-and thru wires to the speaker that is used to play mp3 files. 
-The Adafruit talk microphone small module board is on the upper left of the big breadboard.
-![](https://lh3.googleusercontent.com/0AnS34dpGGSNAUOPHKz0CfibU7Q5w26SCA30-bRhwWr1eXH9iMfSq9DLqw74yMdPe_3S4cto8uM4_017sGDITBQDbYFRCN1YUg-m511EXLCT4c9IopS0rG8EaTPAzf31tjj5Ujv5iF8=w2400)
-The MidFly MP3 module is on the upper right of the big breadboard and contains an SD card.
  
 
 The upper part of the body is attached to a base via a bolt hinge
@@ -139,7 +132,9 @@ that allows it to swing so it can either be leaning over or upright. The upper b
 cylinder to stand upright or lean over. The pneumatic cylinder is controlled by a solenoid valve device which the
 main controller controls. The solenoid valve is a 4-Way 5-Port valve with 1/8 Inch ports (part number HB-2A0A) from FrightProps.com.
 Elastic cables and air speed mufflers are used to slow the pneumatic
-cylinder as it nears its end points, either upright or leaning over. The pneumatics have not been used since 2016 
+cylinder as it nears its end points, either upright or leaning over. The pneumatic cylinder is covered around with vent dryer exhaust tubing
+to keep the cylinder from pinching or pulling the outer costume when the prop is bent over.
+The pneumatics have not been used since 2016 
 as I have been concentrating on the servo operation.  
 ![Pneumatic Air Cylinder and attachment](https://lh3.googleusercontent.com/1gfhg9QQ0RYvsjSApk126wGoVLXCRXgW1_-ET14622vWF3u-ihUvCXzaRjEV9AW1NRItPvBGlmBljd0geRSCAZV6wQyXIQ1QRyXcW2fXBPRtw0qwcWHO_PisXMjk5kK4mzKT7-XY7t0=w2400)  
 Figure: Pneumatic Air Cylinder and attachment
@@ -175,7 +170,7 @@ Figure: Arm servos view 1
 Figure: Arm servos view 2
 
 ![Elbow servo](https://lh3.googleusercontent.com/WdPJpY-d3rkiMhdj9TupsDRap8vxhb0wsAIhLwtR4dKal-n9yNwJsax4oiiSiQGgYwGd91r-rovVKXQl6D_tsFvEQnmQrIKoumbngkmK5zk3DtW-hdXmiI2FyRECiTR1tJOJrq-71kc=w2400)  
-Figure: Arm servos view 3
+Figure: Elbow servo
 
 The clothes on the skeleton body came from an old Halloween costume.
 
@@ -223,6 +218,9 @@ at once. Connectors are used at the prop to allow all the wires to be easily dis
 prop can be easily transported. The MP3, I2C switch, user Mic amp, drive circuit for the solenoid valve, and
 LED resistors are placed on breadboards to make them easy to connect to.
 
+Currently separate power supplies are used for each servo to eliminate any change of one servo affecting another servo.  
+Alternatively you could use one well regulated hefty 6 volt supply and one hefty 7.4 volt supply.
+
 ![Controller, Peripherals, and terminal blocks view 1](https://lh3.googleusercontent.com/SD-AmBB1ePDZOMXMdSp8rNsVDgjwlr49Z5A2FYJSARAx49F9sSv-OUiv6olRa6RquGY5dkALBfj1BOdGR6qJNHxIJWxdmEBNbSFIO8coEV1W4XvBtBjb5q8qHQFxc4bJX1WPHKYdPbE=w2400)  
 Figure: Controller, Peripherals, and terminal blocks view 1
 
@@ -253,6 +251,16 @@ on the MP3 module.  The audio output of that MP3 goes to the prop speaker
     
 The prop wiring/schematic is contained in the file \Halloween\Prop Wiring.docx
 
+The user has an Adafruit 9814 mic and line amp, with AGC disabled, that is connected thru wires to the prop speaker that allows
+the user to talk out of the prop speaker. There is also a MidFly MP3 module that is conencted to the Arduino
+and thru wires to the speaker that is used to play mp3 files. Currently for simplicity, only one channel of the MP3 is used 
+which goes to one channel of the speaker and the user mic audio goes to the other channel of the speaker.  
+The assumption being the MP3 audio is mono.  Also note that the prop speaker does not output stereo and combines its two channels.
+Alternatively you can use resistors to allow both channels of the MP3 and Mic to be combined.
+The Adafruit talk microphone small module board is on the upper left of the big breadboard.  
+![](https://lh3.googleusercontent.com/0AnS34dpGGSNAUOPHKz0CfibU7Q5w26SCA30-bRhwWr1eXH9iMfSq9DLqw74yMdPe_3S4cto8uM4_017sGDITBQDbYFRCN1YUg-m511EXLCT4c9IopS0rG8EaTPAzf31tjj5Ujv5iF8=w2400)  
+The MidFly MP3 module is on the upper right of the big breadboard and contains an SD card.
+Also note the user headphone and microphone jacks are on the large breadboard.
 
 # Software
 
