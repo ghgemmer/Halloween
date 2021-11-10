@@ -16,6 +16,7 @@ This project is for a prop controller and an animated prop for Halloween.  The p
 vampire head on an approx 4 foot Walgreen's skeleton body.
 
 ![Vampire Skeleton Prop](https://lh3.googleusercontent.com/YBkBJRYkaQH4l9xcmWKxqAG6ErbyvQulsJTkRr2b1ErGfGhcUOvh1lRPo-QUS-nAmqhdzHbiDREHn_-BcJW9Qgi4246ccda2ZjnS99TuIXlLciGH-ZWaNsg4uAgQWoBGT0t_HVbNR4A=w2400)  
+Figure: Vampire Skeleton Prop
 
 [Prop in Action 1](https://photos.app.goo.gl/6Uykd7iYnzz1tLBr7)  
 [Prop in Action 2](https://photos.app.goo.gl/xCtqQATjuv2cuCW76)  
@@ -48,8 +49,13 @@ uses an Actobotics servo block to handle the lateral loads and torques on the se
 servo block as it is only connected to a very light weight mouth.
  
 ![Head Nod Servo view 1](https://lh3.googleusercontent.com/i3nU8KptNTUyCP4zKHbaxVRCmbjUR1b6lzW31LfK0KiijixXKZ7eeHqXTgT5FzOnm3gs0wx7PSc7bHmQbM-zZ7T2YqgKp6nj1_43gFd_nq5xFWv4X4tBuJy3ZQCOvy2zJ1aFOGcteXk=w2400)  
+Figure: Head Nod Servo view 1
+
 ![Head Nod Servo view 2](https://lh3.googleusercontent.com/htNOm0rnarPFdbQMmaOba5Y7oVGr4Ym1NBAZvb_eY8CAP4aAYb1Gvhi1x0-8K2pXxyg5q4iluTQ3yWQGFTxjyDlrA-_Me6L2oDb8_Tz0lHKTFKM8b3hvp5XlYKdJYlv74HCtnVRsuIM=w2400)  
+Figure: Head Nod Servo view 2
+
 ![Mouth Servo view 1](https://lh3.googleusercontent.com/TS5dMFPJUtoQVe16tXg8Ng6uK9QFPKXyjJ67ElZcBJ2MKBZJ3fzgcWuwsoZfduEVXehs0luAZHBNorT2QC1bSTUAciQCrBDMP83mxUlSY_TkmAyCh38FhEUEI7VPBYz5vmHevPBj6us=w2400)  
+Figure: Mouth Servo view 1
 
 The head rotate servo is actually located in the prop body in an Actobotics
 channel.  It connects with a clamp to a Actobotics metal pipe which is held by two Actobotics pillow block bearings in that channel.  
@@ -59,8 +65,13 @@ lateral forces on the head rotate servo that can occur when the prop upper body 
 straight up.
 
 ![Head rotate servo view 1](https://lh3.googleusercontent.com/s9GIM7a0JlHmAXbsFY1g7AIdoVG22poEUTpDpkKiwK5cvfpGHpn6bswxpcB2QWCyNED3nHLAlyU6NyuBUrnYeLK_Jyj8lTrzxl69vS0QOF4JrQM66j8kK8X5obBsQKNVmuiYCBBf74A=w2400)  
+Figure: Head rotate servo view 1
+
 ![Head rotate servo view 2](https://lh3.googleusercontent.com/4zb7mNDshRgUkUEaG9LLXosHOAq92uEElyTj_4n59VKlOQlq6jzBYIaSEBysbsRBT1aEcyv2uApAn1QF7oPskUPf6v4yH4gJLPEQEgxpoPt_QDbyD6YjDGzFY5ekjyfhGhKS1GRQ3jY=w2400)  
+Figure: Head rotate servo view 2
+
 ![Head rotate servo view 3](https://lh3.googleusercontent.com/YqPt3gUBghNjEfNzgFJLZFHOYTlRe8O_uqxetuEkP-jn8DJ-gmYTOkcCM3ahGUj-1pavNvQZKoZygUiFBQNb11sRkMzhtG6u8-YzRH9mUn_kimDzF_imJTCPCF9PXYi3neh7CflsAnw=w2400)  
+Figure: Head rotate servo view 3
 
 In regards to the head rotate servo, it was felt at the time that the channel and bearings were necessary to
 handle the large lateral forces and lateral torque that could be experienced by the servo.  In hindsight all
@@ -78,7 +89,10 @@ in it and a USB connector to charge it. The camera can also be powered by the US
 currently used.
 
 ![Camera Base at back of head](https://lh3.googleusercontent.com/9N5UdIwcMnVj8mbp4YjqqzyOvHVb82NEwRnHbDgqo-Be6b9mkXLRfN_7DV6EaeTSQ56pkvoc4DdUSpJWx2dQ5Cbv9i2ylS2DEO0tMZrfrsZ5jiwd4UX4KnFZ9MU7UByL1wR22USA0uw=w2400)  
+Figure: Camera Base at back of head
+
 ![Camera at top of head](https://lh3.googleusercontent.com/jd67QiHt6aKVdd2DGq6fLfoDIEEMYbFcauZIHM4MZcEgEoG8H560-XON4buMREqlyahAInzocZ2ntAxISSCMSsZsUaurhH1lPBgDxEiW4m9c6gYt2rD3uR4AnsJh4RKYdixMELRPfrA=w2400)  
+Figure: Camera at top of head
 
 ## Prop Body
 
@@ -86,7 +100,8 @@ The prop skeleton body has the bottoms of the legs bent back on the ground as if
 and lower leg. The body uses an iHome speaker to talk and emit audio,  an Adafruit microphone and amplifier
 module with AGC to listen, a pneumatic cylinder, solenoid valves, and air compressor to rotate the upper part of the prop
 from a leaning over position, parallel to the ground, to an upright position and vice versa.  
-![Adafruit microphone and amplifier module with AGC to listen](https://lh3.googleusercontent.com/2-sbihqDisA_oSx4abW1spY8Gebn7dl_s9oZ3VjmZHMgWAcjWNclGdKol60Jd9HRnTRZ5L503HzTB8oUP9z5TwqxVhaFsVGzSMoVzWUOdL-Znhm_TNN4yy9JQIob_Ny6NWikplAXrd0=w2400)
+![Adafruit microphone and amplifier module with AGC to listen](https://lh3.googleusercontent.com/2-sbihqDisA_oSx4abW1spY8Gebn7dl_s9oZ3VjmZHMgWAcjWNclGdKol60Jd9HRnTRZ5L503HzTB8oUP9z5TwqxVhaFsVGzSMoVzWUOdL-Znhm_TNN4yy9JQIob_Ny6NWikplAXrd0=w2400)  
+Figure: Adafruit microphone and amplifier module with AGC to listen
 
 The user has an Adafruit 9814 mic and line amp, with AGC disabled, that is connected thru wires to the speaker that allows
 the user to talk out of the prop speaker. There is also a MidFly MP3 module that is conencted to the Arduino
@@ -104,8 +119,10 @@ Elastic cables and air speed mufflers are used to slow the pneumatic
 cylinder as it nears its end points, either upright or leaning over. The pneumatics have not been used since 2016 
 as I have been concentrating on the servo operation.  
 ![Pneumatic Air Cylinder and attachment](https://lh3.googleusercontent.com/1gfhg9QQ0RYvsjSApk126wGoVLXCRXgW1_-ET14622vWF3u-ihUvCXzaRjEV9AW1NRItPvBGlmBljd0geRSCAZV6wQyXIQ1QRyXcW2fXBPRtw0qwcWHO_PisXMjk5kK4mzKT7-XY7t0=w2400)  
-![4 way 5 port Solenoid Valve](https://lh3.googleusercontent.com/M3ul42xnIdZrZNB8MON1Cz5Wlw5610_AKafAcvtXqQEKf7OhO6cc3MVguI8aNT7eKEYpYLtY7kQarjKHcGfVg7UICyrJxfwbwhTNSEvvEi-OT_stS6eyvhLWZLgJFBr1K0-FeEa75gw=w2400)
+Figure: Pneumatic Air Cylinder and attachment
 
+![4 way 5 port Solenoid Valve](https://lh3.googleusercontent.com/M3ul42xnIdZrZNB8MON1Cz5Wlw5610_AKafAcvtXqQEKf7OhO6cc3MVguI8aNT7eKEYpYLtY7kQarjKHcGfVg7UICyrJxfwbwhTNSEvvEi-OT_stS6eyvhLWZLgJFBr1K0-FeEa75gw=w2400)  
+Figure: 4 way 5 port Solenoid Valve
 
 The right skeleton arm has 3 servos at the
 shoulder for pitch, yaw, and roll and one at the elbow to bend the elbow. All these servos are
@@ -122,9 +139,13 @@ will be replaced with a GoBilda servo as it is the one Hitec servo with the most
 servos allow a farily fluid/natural/and speedy(when needed) movement of the skeleton head and arm/forearm. 
 
 ![Arm servos view 1](https://lh3.googleusercontent.com/WJ2oIrNw7jpB8w4Bj28LFa23Prbig0kjHGH_kyWoN7sCl5YB9vDn1MHpmMUVnDIMMRkBmjyqc1xZQfTXH67EHc6PFDNrXpossiTI-hSCx_E-cLSGsH3A8MyMKXmO7qJKaeAff6NC6cY=w2400)  
-![Arm servos view 2](https://lh3.googleusercontent.com/VEHaQbDVVI_7fjH1564mMGA2xqKPp7OaDw8gnRThq2-V45e36v5qh0ijI2Oyd1o1h3Y4VSA9DJQIYpccdkFMYgs67eIVMbiwKX1OIZp2n0--GVFYcJF_4t_2RfO7abbAIdMdlRLiMt8=w2400)  
-![Elbow servo](https://lh3.googleusercontent.com/WdPJpY-d3rkiMhdj9TupsDRap8vxhb0wsAIhLwtR4dKal-n9yNwJsax4oiiSiQGgYwGd91r-rovVKXQl6D_tsFvEQnmQrIKoumbngkmK5zk3DtW-hdXmiI2FyRECiTR1tJOJrq-71kc=w2400)  
+Figure: Arm servos view 1
 
+![Arm servos view 2](https://lh3.googleusercontent.com/VEHaQbDVVI_7fjH1564mMGA2xqKPp7OaDw8gnRThq2-V45e36v5qh0ijI2Oyd1o1h3Y4VSA9DJQIYpccdkFMYgs67eIVMbiwKX1OIZp2n0--GVFYcJF_4t_2RfO7abbAIdMdlRLiMt8=w2400)  
+Figure: Arm servos view 2
+
+![Elbow servo](https://lh3.googleusercontent.com/WdPJpY-d3rkiMhdj9TupsDRap8vxhb0wsAIhLwtR4dKal-n9yNwJsax4oiiSiQGgYwGd91r-rovVKXQl6D_tsFvEQnmQrIKoumbngkmK5zk3DtW-hdXmiI2FyRECiTR1tJOJrq-71kc=w2400)  
+Figure: Arm servos view 3
 
 The clothes on the skeleton body came from an old Halloween costume.
 
@@ -137,6 +158,7 @@ using a ball cap,  1 on the mouth using a mouth guard, and two on a simulated ar
 until I can get them to work on an actual arm.
 The Arduino I2C interface is used to access these IMUs.  
 ![IMU attachments](https://lh3.googleusercontent.com/gYlEUqFv2QeJOS2QxzL0i2Umj2FEyjPBwCLN3Sn92gs64mDYQHz_heqrnT0WPnvD4In4aqI7nHO5mPDSd5hRD8la_pf65zsui-EPTrnPXHBF4bH0_bNcKorZpG_yFz5JzD8XL3IGOZQ=w2400)  
+Figure: IMU attachments
 
 To eliminate orientation issues with the IMUs placed on the user, such as is the head IMU level when the ball
 cap is placed on the users head or is the users head pointing north, the user momentarily holds still in a
@@ -172,8 +194,13 @@ prop can be easily transported. The MP3, I2C switch, user Mic amp, drive circuit
 LED resistors are placed on breadboards to make them easy to connect to.
 
 ![Controller, Peripherals, and terminal blocks view 1](https://lh3.googleusercontent.com/SD-AmBB1ePDZOMXMdSp8rNsVDgjwlr49Z5A2FYJSARAx49F9sSv-OUiv6olRa6RquGY5dkALBfj1BOdGR6qJNHxIJWxdmEBNbSFIO8coEV1W4XvBtBjb5q8qHQFxc4bJX1WPHKYdPbE=w2400)  
+Figure: Controller, Peripherals, and terminal blocks view 1
+
 ![Controller, Peripherals, and terminal blocks view 2](https://lh3.googleusercontent.com/RJl5g_M0wewEfI8tN5GXwyh5F1hueuJoGLnEGk4hipq778eAzhORFQ4AATpKVifKDfs7GdDmyCE-G1J1T3DxGb9a9_FKkgoyxzQ1FHrqkaOpvnF3G_q7UOdXtXLac30hIxKgtHPWbxw=w2400)  
+Figure: Controller, Peripherals, and terminal blocks view 2
+
 ![Controller, Peripherals, and terminal blocks view 3](https://lh3.googleusercontent.com/eTUAZ7f16EmKWwyorXFDKtqy7ccO_48JGhAnWZ4Zu3p0nzPn4FNbkqnEAB5QRKP3NWc5Jfs1br8OR0eXNhtQ3fKCvmNitywfIHQ6H26TPS2-hJdK3T4AqxyXNgY6hhrXq7LPbE_Qka8=w2400)  
+Figure: Controller, Peripherals, and terminal blocks view 3
 
 ## Processor board and Interfaces/Peripherals used
 
