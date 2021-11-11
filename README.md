@@ -17,7 +17,7 @@ vampire head from TheHorrorDome.com,  on an approx 4 foot Walgreen's skeleton bo
 The goal was to make something scary with lots of life like movement as well as support interactive sessions with Trick-Or-Treaters.
 
 ![Vampire Skeleton Prop](https://lh3.googleusercontent.com/YBkBJRYkaQH4l9xcmWKxqAG6ErbyvQulsJTkRr2b1ErGfGhcUOvh1lRPo-QUS-nAmqhdzHbiDREHn_-BcJW9Qgi4246ccda2ZjnS99TuIXlLciGH-ZWaNsg4uAgQWoBGT0t_HVbNR4A=w2400)  
-![Vampire Skeleton Prop](PropPics/Prop Pic 1.jpg)  
+![Vampire Skeleton Prop]('PropPics/Prop Pic 1.jpg')  
 Figure: Vampire Skeleton Prop
 
 The following are videos of the prop in action:  
