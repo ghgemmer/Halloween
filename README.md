@@ -150,8 +150,11 @@ Figure: Base Rear
 
 
 The right skeleton arm has 3 servos at the
-shoulder for pitch, yaw, and roll and one at the elbow to bend the elbow. All these servos are
-held in Actobotics servo blocks to withstand lateral forces off the servo axis. Actobotics hardware,
+shoulder for pitch, yaw, and roll and one at the elbow to bend the elbow. The shoulder has the yaw servo attached to the PVC
+shoulder blade, the roll servo attached to the yaw servos hub, and the pitch servo attached to the roll servos hub.
+This seemed to provide the most compact configuration and limited any pulling force on the servo output gear parallel to the axis of the any servo.
+All these servos are
+held in Actobotics servo blocks to withstand lateral (i.e. perpendicular) forces off the servo axis. Actobotics hardware,
 such as screws, hubs, spacers, brackets, channels, flat patterns, attachment blocks, and beams, is used to connect the servo
 blocks to the arm and elbow. The attachments are meant to be minimal to leave as much of the skeleton arm visible as possible.
 The servos are run at 6 volts with the exception of the arm pitch servo being run at
@@ -162,6 +165,10 @@ whine when holding a position under load. Hitec servos were used when the head w
 was discovered much later on that GoBilda servos would be better in that case.  Eventually the head nod servo
 will be replaced with a GoBilda servo as it is the one Hitec servo with the most noticable whine. All the
 servos allow a farily fluid/natural/and speedy(when needed) movement of the skeleton head and arm/forearm. 
+
+Note also how the servo wiring is routed.  Generally you want to route servo wire from a servo A that is being rotated by another servo B
+as close as possible along servo Bs axis to minimize wires catching on the servos when the servos are being rotated.
+Or if motion limits how far a servo can move you an use that to your advantage when routing wires.
 
 ![Arm servos view 1](https://lh3.googleusercontent.com/WJ2oIrNw7jpB8w4Bj28LFa23Prbig0kjHGH_kyWoN7sCl5YB9vDn1MHpmMUVnDIMMRkBmjyqc1xZQfTXH67EHc6PFDNrXpossiTI-hSCx_E-cLSGsH3A8MyMKXmO7qJKaeAff6NC6cY=w2400)  
 Figure: Arm servos view 1
@@ -257,7 +264,8 @@ and thru wires to the speaker that is used to play mp3 files. Currently for simp
 which goes to one channel of the speaker and the user mic audio goes to the other channel of the speaker.  
 The assumption being the MP3 audio is mono.  Also note that the prop speaker does not output stereo and combines its two channels.
 Alternatively you can use resistors to allow both channels of the MP3 and Mic to be combined.
-The Adafruit talk microphone small module board is on the upper left of the big breadboard.  
+The Adafruit talk microphone amplifier small module board is on the upper left of the big breadboard.  To eliminate noise getting into the 
+amplified audio it is powered by three 1.5 volt batteries (in the black battery holder box with an on/off switch).
 ![](https://lh3.googleusercontent.com/0AnS34dpGGSNAUOPHKz0CfibU7Q5w26SCA30-bRhwWr1eXH9iMfSq9DLqw74yMdPe_3S4cto8uM4_017sGDITBQDbYFRCN1YUg-m511EXLCT4c9IopS0rG8EaTPAzf31tjj5Ujv5iF8=w2400)  
 The MidFly MP3 module is on the upper right of the big breadboard and contains an SD card.
 Also note the user headphone and microphone jacks are on the large breadboard.
