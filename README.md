@@ -181,7 +181,7 @@ Figure: Elbow servo
 
 The clothes on the skeleton body came from an old Halloween costume.
 
-## IMUs and Sychronized User Movements
+## IMUs and Synchronized User Movements
 
 To easily allow a user to naturally manipulate the prop for live interactive sessions as well as catpure
 for playback, Adafruit BNO055 Inertial Measurment Units (IMUs) are attached to the user and the servos can
