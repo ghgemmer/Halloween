@@ -16,7 +16,6 @@ This project is for a prop controller and an animated prop for Halloween.  The p
 vampire head from TheHorrorDome.com,  on an approx 4 foot Walgreen's skeleton body.
 The goal was to make something scary with lots of life like movement as well as support interactive sessions with Trick-Or-Treaters.
 
-![Vampire Skeleton Prop](https://lh3.googleusercontent.com/YBkBJRYkaQH4l9xcmWKxqAG6ErbyvQulsJTkRr2b1ErGfGhcUOvh1lRPo-QUS-nAmqhdzHbiDREHn_-BcJW9Qgi4246ccda2ZjnS99TuIXlLciGH-ZWaNsg4uAgQWoBGT0t_HVbNR4A=w2400)  
 ![Vampire Skeleton Prop](PropPics/PropPic1.jpg)  
 Figure: Vampire Skeleton Prop
 
@@ -55,13 +54,13 @@ with the other end of the pipe attached to the top of the nod servo block.  The 
 servo block as it is only connected to a very light weight mouth.  The mouth is made by cutting out the lower jaw of the vampire head
 and gluing it to a curved aluminum bar which then attaches to the mouth servo thru a servo hub.
  
-![Head Nod Servo view 1](https://lh3.googleusercontent.com/i3nU8KptNTUyCP4zKHbaxVRCmbjUR1b6lzW31LfK0KiijixXKZ7eeHqXTgT5FzOnm3gs0wx7PSc7bHmQbM-zZ7T2YqgKp6nj1_43gFd_nq5xFWv4X4tBuJy3ZQCOvy2zJ1aFOGcteXk=w2400)  
+![Head Nod Servo view 1](PropPics/20211105_211439.jpg)  
 Figure: Head Nod Servo view 1
 
-![Head Nod Servo view 2](https://lh3.googleusercontent.com/htNOm0rnarPFdbQMmaOba5Y7oVGr4Ym1NBAZvb_eY8CAP4aAYb1Gvhi1x0-8K2pXxyg5q4iluTQ3yWQGFTxjyDlrA-_Me6L2oDb8_Tz0lHKTFKM8b3hvp5XlYKdJYlv74HCtnVRsuIM=w2400)  
+![Head Nod Servo view 2](PropPics/20211105_211706.jpg)  
 Figure: Head Nod Servo view 2
 
-![Mouth Servo](https://lh3.googleusercontent.com/TS5dMFPJUtoQVe16tXg8Ng6uK9QFPKXyjJ67ElZcBJ2MKBZJ3fzgcWuwsoZfduEVXehs0luAZHBNorT2QC1bSTUAciQCrBDMP83mxUlSY_TkmAyCh38FhEUEI7VPBYz5vmHevPBj6us=w2400)  
+![Mouth Servo](PropPics/20211105_211531.jpg)  
 Figure: Mouth Servo
 
 The head rotate servo is actually located in the prop body in an Actobotics
