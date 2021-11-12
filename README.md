@@ -70,13 +70,13 @@ PVC pipe connects to the bottom of the head nod servo block with a Actobotics PV
 lateral forces on the head rotate servo that can occur when the prop upper body is bent over, and rapidly transitioning between bent over and
 straight up.
 
-![Head rotate servo view 1](https://lh3.googleusercontent.com/s9GIM7a0JlHmAXbsFY1g7AIdoVG22poEUTpDpkKiwK5cvfpGHpn6bswxpcB2QWCyNED3nHLAlyU6NyuBUrnYeLK_Jyj8lTrzxl69vS0QOF4JrQM66j8kK8X5obBsQKNVmuiYCBBf74A=w2400)  
+![Head rotate servo view 1](PropPics/20211109_203742.jpg)  
 Figure: Head rotate servo view 1
 
-![Head rotate servo view 2](https://lh3.googleusercontent.com/4zb7mNDshRgUkUEaG9LLXosHOAq92uEElyTj_4n59VKlOQlq6jzBYIaSEBysbsRBT1aEcyv2uApAn1QF7oPskUPf6v4yH4gJLPEQEgxpoPt_QDbyD6YjDGzFY5ekjyfhGhKS1GRQ3jY=w2400)  
+![Head rotate servo view 2](PropPics/20211109_203935.jpg)  
 Figure: Head rotate servo view 2
 
-![Head rotate servo view 3](https://lh3.googleusercontent.com/YqPt3gUBghNjEfNzgFJLZFHOYTlRe8O_uqxetuEkP-jn8DJ-gmYTOkcCM3ahGUj-1pavNvQZKoZygUiFBQNb11sRkMzhtG6u8-YzRH9mUn_kimDzF_imJTCPCF9PXYi3neh7CflsAnw=w2400)  
+![Head rotate servo view 3](PropPics/20211109_204013.jpg)  
 Figure: Head rotate servo view 3
 
 In regards to the head rotate servo, it was felt at the time that the channel and bearings were necessary to
@@ -94,10 +94,10 @@ thin 8" flat cable. The base uses Wifi to conenct to a smartphone.  The base als
 in it and a USB connector to charge it. The camera can also be powered by the USB connector which is how it is
 currently used.
 
-![Camera Base at back of head](https://lh3.googleusercontent.com/9N5UdIwcMnVj8mbp4YjqqzyOvHVb82NEwRnHbDgqo-Be6b9mkXLRfN_7DV6EaeTSQ56pkvoc4DdUSpJWx2dQ5Cbv9i2ylS2DEO0tMZrfrsZ5jiwd4UX4KnFZ9MU7UByL1wR22USA0uw=w2400)  
+![Camera Base at back of head](PropPics/20211109_202833.jpg)  
 Figure: Camera Base at back of head
 
-![Camera at top of head](https://lh3.googleusercontent.com/jd67QiHt6aKVdd2DGq6fLfoDIEEMYbFcauZIHM4MZcEgEoG8H560-XON4buMREqlyahAInzocZ2ntAxISSCMSsZsUaurhH1lPBgDxEiW4m9c6gYt2rD3uR4AnsJh4RKYdixMELRPfrA=w2400)  
+![Camera at top of head](PropPics/20211109_202922.jpg)  
 Figure: Camera at top of head
 
 ## Prop Body
@@ -111,19 +111,19 @@ and lower leg. The body uses an iHome speaker to talk and emit audio,  an Adafru
 module with AGC to listen, a pneumatic cylinder, solenoid valves, and air compressor to rotate the upper part of the prop
 from a leaning over position, parallel to the ground, to an upright position and vice versa. 
 
-![Upper Body view 1](https://lh3.googleusercontent.com/sNw06fIj5eNrIDoFo4yC_YHWgLKKPvtojb6KbamKiPQ54hVVlwwtbsvyrmws1BMhG9U3sKjv6TsvdJYmbRk2k5P3TKFznrFoqIs8txEwqkttFr9B1Y0xOZ-bdXB11Eh2PYsfABRLLug=w2400)  
+![Upper Body view 1](PropPics/20211110_145718.jpg)  
 Figure: Upper Body view 1
 
-![Upper Body view 2](https://lh3.googleusercontent.com/_Y9f0LLqPI8QNLdC-V5IEhgBasyhpBf1Z48vq3K6phR5ABj76i7vIaCWGgNV2ihksDYhKUMfuJCBfE_aaYo_n6rduN7NEwnaiPy9sS0ZXXP61QK2C3Du5smBqE8yyzKnHpf4mZOnbdM=w2400)  
+![Upper Body view 2](PropPics/20211110_141706.jpg)  
 Figure: Upper Body view 2
 
-![Upper Body view 3](https://lh3.googleusercontent.com/kJvDRq-CV62JrJbBtX52V6YRsw2PcYK602PoROF-KwS9rLIpsjUHk_3VqjLZD9MVAHuXZdJ6WX1HWKGjE3h2KaLI3seZWMurdbfVnBJy_rKUyMMjEVZ09A6cTsJfg28J0LQIvH5oYeM=w2400)  
+![Upper Body view 3](PropPics/20211110_141628.jpg)  
 Figure: Upper Body view 3
 
-![Upper Body view 4](https://lh3.googleusercontent.com/0UXQ3oxDLK2AkB4YAk63xRAetz-_8GR2u0cNXZJTR4uBYzyER27XuL9EBVi7Li1xWmuB3_e3M6SJEQ-OGPGbwZ_vRacqcOynWkFleoyNIrZKRjpqnkPIU9d_7lgNN6MBIYeEA39wdok=w2400)  
+![Upper Body view 4](PropPics/20211110_142542.jpg)  
 Figure: Upper Body view 4
  
-![Adafruit microphone and amplifier module with AGC to listen](https://lh3.googleusercontent.com/2-sbihqDisA_oSx4abW1spY8Gebn7dl_s9oZ3VjmZHMgWAcjWNclGdKol60Jd9HRnTRZ5L503HzTB8oUP9z5TwqxVhaFsVGzSMoVzWUOdL-Znhm_TNN4yy9JQIob_Ny6NWikplAXrd0=w2400)  
+![Adafruit microphone and amplifier module with AGC to listen](PropPics/20211109_195137.jpg)  
 Figure: Adafruit microphone and amplifier module with AGC to listen
  
 
@@ -136,17 +136,14 @@ cylinder as it nears its end points, either upright or leaning over. The pneumat
 to keep the cylinder from pinching or pulling the outer costume when the prop is bent over.
 The pneumatics have not been used since 2016 
 as I have been concentrating on the servo operation.  
-![Pneumatic Air Cylinder and attachment](https://lh3.googleusercontent.com/1gfhg9QQ0RYvsjSApk126wGoVLXCRXgW1_-ET14622vWF3u-ihUvCXzaRjEV9AW1NRItPvBGlmBljd0geRSCAZV6wQyXIQ1QRyXcW2fXBPRtw0qwcWHO_PisXMjk5kK4mzKT7-XY7t0=w2400)  
+![Pneumatic Air Cylinder and attachment](PropPics/20211109_194944.jpg)  
 Figure: Pneumatic Air Cylinder and attachment
 
-![4 way 5 port Solenoid Valve](https://lh3.googleusercontent.com/M3ul42xnIdZrZNB8MON1Cz5Wlw5610_AKafAcvtXqQEKf7OhO6cc3MVguI8aNT7eKEYpYLtY7kQarjKHcGfVg7UICyrJxfwbwhTNSEvvEi-OT_stS6eyvhLWZLgJFBr1K0-FeEa75gw=w2400)  
-Figure: 4 way 5 port Solenoid Valve
+![4 way 5 port Solenoid Valve and Base Rear](PropPics/20211110_145326.jpg)  
+Figure: 4 way 5 port Solenoid Valve and Base Rear
 
-![Base Front](https://lh3.googleusercontent.com/PzB6wGGdXtNq6mSCDRN2koqReqNON75U8tSTZGio8wPOlYU9YT0_FyI1szotKOuyvaAp7bOpBM79EXXUVyR8Z0-wmcGqHoJ1up-21yWCYjoaJb1k0-EDDsa9zVlbtfSZ7oAG4hDuAj0=w2400)  
+![Base Front](PropPics/20211110_141200.jpg)  
 Figure: Base Front
-
-![Base Rear](https://lh3.googleusercontent.com/A4DBUlcq87wnCNobLBs4WgtNFEMe4POnpRwQqZYnnfeUYcD6rrSsMT9rXGzdyWmVJtCs0xjNd3BFpFT3lsjZVviYa-jJ5EkuyAFiqOP4AgMadjCeYmmzDJyBzrW7yqEcBBLHELG2Z84=w2400)  
-Figure: Base Rear
 
 
 The right skeleton arm has 3 servos at the
@@ -170,13 +167,13 @@ Note also how the servo wiring is routed.  Generally you want to route servo wir
 as close as possible along servo Bs axis to minimize wires catching on the servos when the servos are being rotated.
 Or if motion limits how far a servo can move you an use that to your advantage when routing wires.
 
-![Arm servos view 1](https://lh3.googleusercontent.com/WJ2oIrNw7jpB8w4Bj28LFa23Prbig0kjHGH_kyWoN7sCl5YB9vDn1MHpmMUVnDIMMRkBmjyqc1xZQfTXH67EHc6PFDNrXpossiTI-hSCx_E-cLSGsH3A8MyMKXmO7qJKaeAff6NC6cY=w2400)  
+![Arm servos view 1](PropPics/20211105_211126.jpg)  
 Figure: Arm servos view 1
 
-![Arm servos view 2](https://lh3.googleusercontent.com/VEHaQbDVVI_7fjH1564mMGA2xqKPp7OaDw8gnRThq2-V45e36v5qh0ijI2Oyd1o1h3Y4VSA9DJQIYpccdkFMYgs67eIVMbiwKX1OIZp2n0--GVFYcJF_4t_2RfO7abbAIdMdlRLiMt8=w2400)  
+![Arm servos view 2](PropPics/20211105_211012.jpg)  
 Figure: Arm servos view 2
 
-![Elbow servo](https://lh3.googleusercontent.com/WdPJpY-d3rkiMhdj9TupsDRap8vxhb0wsAIhLwtR4dKal-n9yNwJsax4oiiSiQGgYwGd91r-rovVKXQl6D_tsFvEQnmQrIKoumbngkmK5zk3DtW-hdXmiI2FyRECiTR1tJOJrq-71kc=w2400)  
+![Elbow servo](PropPics/20211105_210803.jpg)  
 Figure: Elbow servo
 
 The clothes on the skeleton body came from an old Halloween costume.
@@ -189,7 +186,7 @@ be synchronized to the movements of the user thru the application. Currently 1 I
 using a ball cap,  1 on the mouth using a mouth guard, and two on a simulated arm/forearm in the interim
 until I can get them to work on an actual arm.
 The Arduino I2C interface is used to access these IMUs.  
-![IMU attachments](https://lh3.googleusercontent.com/gYlEUqFv2QeJOS2QxzL0i2Umj2FEyjPBwCLN3Sn92gs64mDYQHz_heqrnT0WPnvD4In4aqI7nHO5mPDSd5hRD8la_pf65zsui-EPTrnPXHBF4bH0_bNcKorZpG_yFz5JzD8XL3IGOZQ=w2400)  
+![IMU attachments](PropPics/20211109_182652.jpg)  
 Figure: IMU attachments
 
 To eliminate orientation issues with the IMUs placed on the user, such as is the head IMU level when the ball
@@ -228,13 +225,13 @@ LED resistors are placed on breadboards to make them easy to connect to.
 Currently separate power supplies are used for each servo to eliminate any change of one servo affecting another servo.  
 Alternatively you could use one well regulated hefty 6 volt supply and one hefty 7.4 volt supply.
 
-![Controller, Peripherals, and terminal blocks view 1](https://lh3.googleusercontent.com/SD-AmBB1ePDZOMXMdSp8rNsVDgjwlr49Z5A2FYJSARAx49F9sSv-OUiv6olRa6RquGY5dkALBfj1BOdGR6qJNHxIJWxdmEBNbSFIO8coEV1W4XvBtBjb5q8qHQFxc4bJX1WPHKYdPbE=w2400)  
+![Controller, Peripherals, and terminal blocks view 1](PropPics/20211109_182615.jpg)  
 Figure: Controller, Peripherals, and terminal blocks view 1
 
-![Controller, Peripherals, and terminal blocks view 2](https://lh3.googleusercontent.com/RJl5g_M0wewEfI8tN5GXwyh5F1hueuJoGLnEGk4hipq778eAzhORFQ4AATpKVifKDfs7GdDmyCE-G1J1T3DxGb9a9_FKkgoyxzQ1FHrqkaOpvnF3G_q7UOdXtXLac30hIxKgtHPWbxw=w2400)  
+![Controller, Peripherals, and terminal blocks view 2](PropPics/20211109_182744.jpg)  
 Figure: Controller, Peripherals, and terminal blocks view 2
 
-![Controller, Peripherals, and terminal blocks view 3](https://lh3.googleusercontent.com/eTUAZ7f16EmKWwyorXFDKtqy7ccO_48JGhAnWZ4Zu3p0nzPn4FNbkqnEAB5QRKP3NWc5Jfs1br8OR0eXNhtQ3fKCvmNitywfIHQ6H26TPS2-hJdK3T4AqxyXNgY6hhrXq7LPbE_Qka8=w2400)  
+![Controller, Peripherals, and terminal blocks view 3](PropPics/20211109_182631.jpg)  
 Figure: Controller, Peripherals, and terminal blocks view 3
 
 ## Processor board and Interfaces/Peripherals used
@@ -266,7 +263,7 @@ The assumption being the MP3 audio is mono.  Also note that the prop speaker doe
 Alternatively you can use resistors to allow both channels of the MP3 and Mic to be combined.
 The Adafruit talk microphone amplifier small module board is on the upper left of the big breadboard.  To eliminate noise getting into the 
 amplified audio it is powered by three 1.5 volt batteries (in the black battery holder box with an on/off switch).
-![](https://lh3.googleusercontent.com/0AnS34dpGGSNAUOPHKz0CfibU7Q5w26SCA30-bRhwWr1eXH9iMfSq9DLqw74yMdPe_3S4cto8uM4_017sGDITBQDbYFRCN1YUg-m511EXLCT4c9IopS0rG8EaTPAzf31tjj5Ujv5iF8=w2400)  
+![](PropPics/20211109_182631.jpg)  
 The MidFly MP3 module is on the upper right of the big breadboard and contains an SD card.
 Also note the user headphone and microphone jacks are on the large breadboard.
 
@@ -380,6 +377,15 @@ Audacity was used to modify/create MP3 files used by the MP3 player.
 
 Visualize 3D Web serial visualizer (https://learn.adafruit.com/adafruit-bno055-absolute-orientation-sensor/webserial-visualizer) can be used
 to visualize the orientation of an IMU on a PC when using the Visualize3D serial command.  It can also indicate the IMU calibration status on the PC.
+
+Smartphone app HomeEye, an android camera app, was used to operate the Relohas minature night vision camera.  It allowed both live view and recording of video and
+audio. The connection method that worked best to the camera was when the camera was setup as a direct wifi hotspot, so the smartphone wifi
+connection was set to that hotspot.  This is an unsecure connection but didn't really matter.  Using a connection where the 
+camera was communicating with the my routers wifi and thru the internet seemed to have to much lag and delay for live interaction.  Possibly
+with a really good wifi strenght it may have worked better.
+When playing back captured videos on the app it was very flakey (continually repeated the start of the video)
+ so I had to download them to my PC to play them.  Audio was also not synched with the video sometimes so you may have to 
+ use a tool to sync the audio back.  All in all I was not impressed with the app.
 
 ## Serial Command Interface
 
@@ -576,4 +582,4 @@ Videos of the prop before arm movement was added.
         
 # Contacts
 
-    Greg Gemmer: ghgemmer@gmail.com
+Greg Gemmer: ghgemmer@gmail.com
