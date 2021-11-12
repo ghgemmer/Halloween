@@ -106,7 +106,8 @@ The prop skeleton body starts out using a Walgreen's skeleton body rib cage, arm
 The rib cage is attached to wood and along with a PVC pipe for the shoulder blades make up the upper part of the prop body.
 In regards to the rib cage, since it is covered up with the costume, you could probably dispense with it, but at the time I thought
 I might have it showing or showing through the costume, at least the outline of the ribs.
-The prop skeleton body has the bottoms of the legs bent back on the ground as if the prop is sitting on its knees
+The prop skeleton body has the bottoms of the legs bent back on the ground as if the prop is sitting on its knees. These are not
+shown in the photos as I just lean them against the sides of the prop.
 and lower leg. The body uses an iHome speaker to talk and emit audio,  an Adafruit microphone and amplifier
 module with AGC to listen, a pneumatic cylinder, solenoid valves, and air compressor to rotate the upper part of the prop
 from a leaning over position, parallel to the ground, to an upright position and vice versa. 
@@ -115,7 +116,8 @@ from a leaning over position, parallel to the ground, to an upright position and
 Figure: Upper Body view 1
 
 ![Upper Body view 2](PropPics/20211110_141706.jpg)  
-Figure: Upper Body view 2
+Figure: Upper Body view 2   
+Note the speaker in the middle and the PVC pipe used for the shoulder blade to connect the arms to the prop.
 
 ![Upper Body view 3](PropPics/20211110_141628.jpg)  
 Figure: Upper Body view 3
