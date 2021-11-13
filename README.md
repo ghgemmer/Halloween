@@ -205,7 +205,7 @@ The clothes on the skeleton body came from an old Halloween prop.
 To easily allow a user to naturally manipulate the prop for live interactive sessions as well as catpure
 for playback, Adafruit BNO055 Inertial Measurment Units (IMUs) are attached to the user and the servos can
 be synchronized to the movements of the user thru the application. Currently 1 IMU is used on the top of the head
-using a ball cap,  1 on the mouth using a mouth guard, and two on a simulated arm/forearm in the interim
+using a ball cap,  1 on the mouth using a bike/football chin cup strap, and two on a simulated arm/forearm in the interim
 until I can get them to work on an actual arm.
 The Arduino I2C interface is used to access these IMUs.  
 ![IMU attachments](PropPics/20211109_182652.jpg)  
