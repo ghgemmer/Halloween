@@ -571,19 +571,19 @@ Lessons learned as well as future enhancements are contained in the file \Hallow
 [NewAndModedLibraries/](NewAndModedLibraries/) - Dir that contains new or modified libraries.  These are then zipped and imported into the
     Arduino IDE using the Sketch --> Include Library --> Add .Zip Library ...  item of the IDE.
     
-[QuickHeadMouthCaptureCommands.txt](QuickHeadMouthCaptureCommands.txt)  - File that contains serial commands that were commonly used for prop operation on Halloween.
+[QuickHeadMouthCaptureCommands.txt](QuickHeadMouthCaptureCommands.txt) - File that contains serial commands that were commonly used for prop operation on Halloween.
 
-\Halloween\Prop Wiring.docx  - MS Word file that contains the prop wiring information/schematic.
+[Prop Wiring.docx](<Prop Wiring.docx>)  - MS Word file that contains the prop wiring information/schematic.
 
-\Halloween\ArmServoAngularAccelCalcs.xlsx - Excel file containing torque and speed calculations for the servos.  Also contains servo
+[ArmServoAngularAccelCalcs.xlsx](ArmServoAngularAccelCalcs.xlsx) - Excel file containing torque and speed calculations for the servos.  Also contains servo
     min,max degree and PWM pulse width calculations used when instantiating servo objects.
     
-\Halloween\*.mp3  - mp3 audio files that can be placed on the MP3 SD card renamed as 1.mp3, 2.mp3, etc,
+*.mp3  - mp3 audio files that can be placed on the MP3 SD card renamed as 1.mp3, 2.mp3, etc,
 which the prop controller can direct the MP3 module to play.
 
-\Halloween\Lessons Learned.docx -  A lessons learned file along with future enhancements.
+[Lessons Learned.docx](<Lessons Learned.docx>) -  A lessons learned file along with future enhancements.
 
-There are several other files and directories in \Halloween\ but the significant ones are listed above.
+There are several other files and directories but the significant ones are listed above.
     
 # Links
 
