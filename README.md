@@ -137,15 +137,20 @@ Elastic cables and air speed mufflers are used to slow the pneumatic
 cylinder as it nears its end points, either upright or leaning over. Additionally there is a pressure regulator added onto 
 the solenoid valve air port output before it gets to the air cylinder, again to slow the speed of the cylinder.
 This was also necessary as the solenoid value would only work if it had an input pressure > 20 psi, but this caused the cylinder rod travel to
-be to quick, so the regulator reduces the pressure before it gets to the air cylinder.
+be to quick, so the regulator reduces the pressure before it gets to port 1 of the air cylinder.  This cylinder port is used to push the cylinder
+piston rod out to rotate the upper body to the upright position.
+The opposite port of the air cylinder, i.e. port 2 which is the one on the other side of the internal cylinder piston, goes to a speed muffler 
+which slows the travel of the air cylinder piston rod as it moves to the prop to the upright position.  An elastic cable at the front of the prop helps further
+slow the prop as it gets close to the upright position. 
+Going from an upright to leaning over position, the air cylinder exhausts air from port 1 thru the solenoid valve to the valves other output port to a speed muffler to slow
+the movement. Additionally elastic cables and a spring at the back of the prop slow the movement as it gets close to fully leaned over. 
 The pneumatic cylinder is covered with vent dryer exhaust hose
 to keep the cylinder from pinching or pulling the outer costume when the prop is bent over.
 The pneumatics have not been used since 2016 as I have been concentrating on the servo operation.  The pneumatics also tends to be very finicky.  
 Getting the correct point the elastic cables kick in and settings of the speed mufflers just right so the prop upper body doesn't slam into 
 the upgright position or into the leaned over position is laborious.  As indicated in the lessons learned, using a 
 voltage position controlled pneumatic cylinder would be much better and eliminate all the elastic cables and speed mufflers as well
-as still being powerfull enough (cost not to bad
-for just needing one of these).
+as still being powerfull enough (cost not to bad for just needing one of these).
 
 ![Pneumatic Air Cylinder and attachment](PropPics/20211109_194944.jpg)  
 Figure: Pneumatic Air Cylinder and attachment
