@@ -68,7 +68,8 @@ channel.  It connects with a clamp to a Actobotics metal pipe which is held by t
 The end of the metal pipe then connects with a screw clamp and rubber gasket to a PVC pipe slid over the end of it.  The end of the
 PVC pipe connects to the bottom of the head nod servo block with a Actobotics PVC clamp hub .  The channel and bearings eliminate
 lateral forces on the head rotate servo that can occur when the prop upper body is bent over, and rapidly transitioning between bent over and
-straight up.
+straight up. Note that Actobotics PVC clamps are no longer available so you would need to devise another way to attach that (likewise from
+the head nod servo to the head).
 
 ![Head rotate servo view 1](PropPics/20211109_203742.jpg)  
 Figure: Head rotate servo view 1
@@ -126,8 +127,7 @@ Figure: Upper Body view 3
 Figure: Upper Body view 4
  
 ![Adafruit microphone and amplifier module with AGC to listen](PropPics/20211109_195137.jpg)  
-Figure: Adafruit microphone and amplifier module with AGC to listen
- 
+Figure: Adafruit microphone and amplifier module with AGC to listen  
 
 The upper part of the body is attached to a base via a bolt hinge
 that allows it to swing so it can either be leaning over or upright. The upper body is pushed/pulled by a pneumatic
@@ -136,8 +136,13 @@ main controller controls. The solenoid valve is a 4-Way 5-Port valve with 1/8 In
 Elastic cables and air speed mufflers are used to slow the pneumatic
 cylinder as it nears its end points, either upright or leaning over. The pneumatic cylinder is covered around with vent dryer exhaust tubing
 to keep the cylinder from pinching or pulling the outer costume when the prop is bent over.
-The pneumatics have not been used since 2016 
-as I have been concentrating on the servo operation.  
+The pneumatics have not been used since 2016  as I have been concentrating on the servo operation.  The pneumatics also tends to be very finicky.  
+Getting the right amount of tension for the elastic cables and the right settings of the speed mufflers so the prop upper body doesn't slam into 
+the upgright position or into the leaned over position is laborious.  As indicated in the lessons learned, using a 
+voltage position controlled pneumatic cylinder would be much better and eliminate all the elastic cables and speed mufflers as well
+as still being powerfull enough (cost not to bad
+for just needing one of these).
+
 ![Pneumatic Air Cylinder and attachment](PropPics/20211109_194944.jpg)  
 Figure: Pneumatic Air Cylinder and attachment
 
@@ -147,6 +152,11 @@ Figure: 4 way 5 port Solenoid Valve and Base Rear
 ![Base Front](PropPics/20211110_141200.jpg)  
 Figure: Base Front
 
+![Platform that stabilizes prop](PropPics/20211112_154427.jpg)  
+Figure: Platform that stabilizes prop  
+
+Seen in the above photo is a platform that is used to stabilize the prop so it doesn't tip or sway when the 
+back up/down pneumatic functionality is being used.  The prop base is screwed into the platform guides. 
 
 The right skeleton arm has 3 servos at the
 shoulder for pitch, yaw, and roll and one at the elbow to bend the elbow. The shoulder has the yaw servo attached to the PVC
@@ -163,10 +173,10 @@ position, even when under load, so are perfect for the application.  Hitec servo
 whine when holding a position under load. Hitec servos were used when the head was first animated before it
 was discovered much later on that GoBilda servos would be better in that case.  Eventually the head nod servo
 will be replaced with a GoBilda servo as it is the one Hitec servo with the most noticable whine. All the
-servos allow a farily fluid/natural/and speedy(when needed) movement of the skeleton head and arm/forearm. 
+servos allow a fairly fluid/natural/and speedy(when needed) movement of the skeleton head and arm/forearm. 
 
 Note also how the servo wiring is routed.  Generally you want to route servo wire from a servo A that is being rotated by another servo B
-as close as possible along servo Bs axis to minimize wires catching on the servos when the servos are being rotated.
+as close as possible along servo B's axis to minimize wires catching/entangling with the servos or hardware when the servos are being rotated.
 Or if motion limits how far a servo can move you an use that to your advantage when routing wires.
 
 ![Arm servos view 1](PropPics/20211105_211126.jpg)  
@@ -193,7 +203,7 @@ Figure: IMU attachments
 
 To eliminate orientation issues with the IMUs placed on the user, such as is the head IMU level when the ball
 cap is placed on the users head or is the users head pointing north, the user momentarily holds still in a
-normally resting/idle position when the synchronization command is given to get a reference frame from which
+normally resting/idle position when the synchronization command is given in order to get a reference frame from which
 all further positions (pitch, roll, yaw) are measured relative to.  The user resting/idle positon is normally
 head level, looking straight forward, arms straight down at side, and mouth closed. The servos start from their
 predetermined normally idle/resting position at the prop and are moved relative to that initial position
@@ -207,7 +217,8 @@ Currently the controller is connected to the prop thru standard heavy duty twist
 wire underground type cables. Standard twisted servo wire consists of 3 wires twisted around each other.  For servos this is used for
 power, ground, and signal. Twisted wires help eliminate noise. The servo wires are also used for things
 other than the servos as the wire is very flexible and easy to use. The two 7 wire cables are underground type
-cables, although not used underground.  The underground type cable was first used for the connections between prop and controller but,
+cables, although not used underground.  The underground type cable was first used for the connections between prop and controller as it 
+is bundled inside a sheathing but
 due to the gauge of wire in it, is much less flexible than the servo wire which was used later on.
 
 Both cables and servo wires are about 15 feet in length from controller to prop which was long enough for me
@@ -224,7 +235,7 @@ at once. Connectors are used at the prop to allow all the wires to be easily dis
 prop can be easily transported. The MP3, I2C switch, user Mic amp, drive circuit for the solenoid valve, and
 LED resistors are placed on breadboards to make them easy to connect to.
 
-Currently separate power supplies are used for each servo to eliminate any change of one servo affecting another servo.  
+Currently separate power supplies are used for each servo to eliminate any chance of one servo's current draw affecting another servo.  
 Alternatively you could use one well regulated hefty 6 volt supply and one hefty 7.4 volt supply.
 
 ![Controller, Peripherals, and terminal blocks view 1](PropPics/20211109_182615.jpg)  
@@ -261,16 +272,17 @@ The user has an Adafruit 9814 mic and line amp, with AGC disabled, that is conne
 the user to talk out of the prop speaker. There is also a MidFly MP3 module that is conencted to the Arduino
 and thru wires to the speaker that is used to play mp3 files. Currently for simplicity, only one channel of the MP3 is used 
 which goes to one channel of the speaker and the user mic audio goes to the other channel of the speaker.  
-The assumption being the MP3 audio is mono.  Also note that the prop speaker does not output stereo and combines its two channels.
+The assumption being the MP3 audio is mono.  Also the prop speaker does not output stereo and combines its two channels.
 Alternatively you can use resistors to allow both channels of the MP3 and Mic to be combined.
 The Adafruit talk microphone amplifier small module board is on the upper left of the big breadboard.  To eliminate noise getting into the 
 amplified audio it is powered by three 1.5 volt batteries (in the black battery holder box with an on/off switch).
 ![](PropPics/20211109_182631.jpg)  
 The MidFly MP3 module is on the upper right of the big breadboard and contains an SD card.
-Also note the user headphone and microphone jacks are on the large breadboard.
+Also note the user headphone and microphone jacks are on the large breadboard.  These go to a headset with microphone.
 
 # Software
 
+## Design  
 
 The application is written in Arduino C++ and uses several Arduino libraries, some newly created. 
 Except for the majority of the libraries, all code is new. 
@@ -294,11 +306,11 @@ This main program has top level state machines for
 (Note: do not have the back air cylinder powered by air when doing this as the period between transitions is 1 second)
 * Displaying Pitch difference continually between any two IMUs - Runs when AdafruitImusPitchDiffEnabled is true.  Setup by command "ImusShowPitchDiff ..."
 
-The Arduino compiler by default puts large constants declared with the 'const ...' directive in program memory
+The Arduino compiler by default places large constants declared with the 'const ...' directive in program memory
 and then transfers them to RAM at startup to access them in the code like any other variable. So to avoid
 chewing up the limited 8K bytes of RAM space of the Mega 2560, the user can instead place large constants in
 program memory by using the macro PROGMEMSECTION2 along with the 'const' directive
-and then accesses the constant by using the pgm_get_far_address function.  While cumbersome to use, it does keep RAM from being chewed up
+and then access these constants by using the pgm_get_far_address function.  While cumbersome to use, it does keep RAM from being chewed up
 by constants.
 
 ## Classes
@@ -341,7 +353,8 @@ the certain functionalities.
 * relay_device - Derived from base_device to implement the relay functionality
 * servo_device - Derived from base_device and PWMServoNew to implement the servo functionality 
 * servo_filter - This class supports providing a filtered servo degree settings output based on the
-servo degree settings input given to it, and the filtering parameters setup to it.
+servo degree settings input given to it, and the filtering parameters setup to it.  It is used to limit transitions when the
+servo is told to move faster than it can.
 
 ## Newly Developed and Modified Libraries
 
@@ -380,11 +393,11 @@ Audacity was used to modify/create MP3 files used by the MP3 player.
 Visualize 3D Web serial visualizer (https://learn.adafruit.com/adafruit-bno055-absolute-orientation-sensor/webserial-visualizer) can be used
 to visualize the orientation of an IMU on a PC when using the Visualize3D serial command.  It can also indicate the IMU calibration status on the PC.
 
-Smartphone app HomeEye, an android camera app, was used to operate the Relohas minature night vision camera.  It allowed both live view and recording of video and
-audio. The connection method that worked best to the camera was when the camera was setup as a direct wifi hotspot, so the smartphone wifi
+Smart phone app HomeEye, an android camera app, was used to operate the Relohas miniature night vision camera.  It allowed both live view and recording of video and
+audio. The connection method that worked best to the camera was when the camera was setup as a direct wifi hotspot, so the smart phone wifi
 connection was set to that hotspot.  This is an unsecure connection but didn't really matter.  Using a connection where the 
-camera was communicating with the my routers wifi and thru the internet seemed to have to much lag and delay for live interaction.  Possibly
-with a really good wifi strenght it may have worked better.
+camera was communicating with my wifi router and thru the internet seemed to have to much lag and delay for live interaction.  Possibly
+with really good strength wifi it may have worked better.
 When playing back captured videos on the app it was very flakey (continually repeated the start of the video)
  so I had to download them to my PC to play them.  Audio was also not synched with the video sometimes so you may have to 
  use a tool to sync the audio back.  All in all I was not impressed with the app.
@@ -552,13 +565,13 @@ Lessons learned as well as future enhancements are contained in the file \Hallow
     
 # Directories and files
 
-\Halloween\PropController\ - Dir that contains the software program.  The Arduino PropController.ino (main file) and its
+[PropController/](PropController/) - Dir that contains the software program.  The Arduino PropController.ino (main file) and its
     supporting user files are contained here.
     
-\Halloween\NewAndModedLibraries\ - Dir that contains new or modified libraries.  These are then zipped and imported into the
+[NewAndModedLibraries/](NewAndModedLibraries/) - Dir that contains new or modified libraries.  These are then zipped and imported into the
     Arduino IDE using the Sketch --> Include Library --> Add .Zip Library ...  item of the IDE.
     
-\Halloween\QuickHeadMouthCaptureCommands.txt  - File that contains serial commands that were commonly used for prop operation on Halloween.
+[QuickHeadMouthCaptureCommands.txt](QuickHeadMouthCaptureCommands.txt)  - File that contains serial commands that were commonly used for prop operation on Halloween.
 
 \Halloween\Prop Wiring.docx  - MS Word file that contains the prop wiring information/schematic.
 
