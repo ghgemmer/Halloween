@@ -146,6 +146,7 @@ Going from an upright to leaning over position, the air cylinder exhausts air fr
 the movement. Additionally elastic cables and a spring at the back of the prop slow the movement as it gets close to fully leaned over. 
 The pneumatic cylinder is covered with vent dryer exhaust hose
 to keep the cylinder from pinching or pulling the outer costume when the prop is bent over.
+
 The pneumatics have not been used since 2016 as I have been concentrating on the servo operation.  The pneumatics also tends to be very finicky.  
 Getting the correct point the elastic cables kick in and settings of the speed mufflers just right so the prop upper body doesn't slam into 
 the upgright position or into the leaned over position is laborious.  As indicated in the lessons learned, using a 
