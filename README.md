@@ -51,8 +51,8 @@ The nod servo is in the head as well as the mouth servo. The head nod servo
 uses an Actobotics servo block to handle the lateral loads and torques on the servo.  
 The inside top of the head is attached via a short PVC pipe embedded in spray insulation foam holding the pipe to the head,
 with the other end of the pipe attached to the top of the nod servo block.  The mouth servo does not use a 
-servo block as it is only connected to a very light weight mouth.  The mouth is made by cutting out the lower jaw of the vampire head
-and gluing it to a curved aluminum bar which then attaches to the mouth servo thru a servo hub.
+servo block as it is only connected to a very light weight mouth.  The moving mouth was made by cutting out the lower jaw of the vampire head
+and gluing it to a curved aluminum sheet plate which then attached to the mouth servo thru a servo hub.
  
 ![Head Nod Servo view 1](PropPics/20211105_211439.jpg)  
 Figure: Head Nod Servo view 1
@@ -71,6 +71,13 @@ lateral forces on the head rotate servo that can occur when the prop upper body 
 straight up. Note that Actobotics PVC clamps are no longer available so you would need to devise another way to attach that (likewise from
 the head nod servo to the head).
 
+In regards to the head rotate servo, it was felt at the time that the channel and bearings were necessary to
+handle the large lateral forces and lateral torque that could be experienced by the servo.  In hindsight all
+that could probably be replaced by a single servo block right at the neck, where the head nod servo block
+would then sit on and be attached to the rotating hub of that head rotate servo block.  The servo block at the neck
+would also reduce the total lateral torque the servo block would experience being close to the head now, and
+thus should be sufficient (same as the head nod servo block is sufficient in that manner).
+
 ![Head rotate servo view 1](PropPics/20211109_203742.jpg)  
 Figure: Head rotate servo view 1
 
@@ -79,13 +86,6 @@ Figure: Head rotate servo view 2
 
 ![Head rotate servo view 3](PropPics/20211109_204013.jpg)  
 Figure: Head rotate servo view 3
-
-In regards to the head rotate servo, it was felt at the time that the channel and bearings were necessary to
-handle the large lateral forces and lateral torque that could be experienced by the servo.  In hindsight all
-that could probably be replaced by a single servo block right at the neck, where the head nod servo block
-would then sit on and be attached to the rotating hub of that head rotate servo block.  The servo block at the neck
-would also reduce the total lateral torque the servo block would experience being close to the head now, and
-thus should be sufficient (same as the head nod servo block is sufficient in that manner).
 
 The head also has red LED
 eyes that can be turned on or off although these could instead be connected to a PWM signal or an analog
@@ -109,7 +109,7 @@ In regards to the rib cage, since it is covered up with the costume, you could p
 I might have it showing or showing through the costume, at least the outline of the ribs.
 The prop skeleton body has the bottoms of the legs bent back on the ground as if the prop is sitting on its knees. These are not
 shown in the photos as I just lean them against the sides of the prop.
-and lower leg. The body uses an iHome speaker to talk and emit audio,  an Adafruit microphone and amplifier
+The body uses an iHome speaker to talk and emit audio,  an Adafruit microphone and amplifier
 module with AGC to listen, a pneumatic cylinder, solenoid valves, and air compressor to rotate the upper part of the prop
 from a leaning over position, parallel to the ground, to an upright position and vice versa. 
 
@@ -134,10 +134,14 @@ that allows it to swing so it can either be leaning over or upright. The upper b
 cylinder to stand upright or lean over. The pneumatic cylinder is controlled by a solenoid valve device which the
 main controller controls. The solenoid valve is a 4-Way 5-Port valve with 1/8 Inch ports (part number HB-2A0A) from FrightProps.com.
 Elastic cables and air speed mufflers are used to slow the pneumatic
-cylinder as it nears its end points, either upright or leaning over. The pneumatic cylinder is covered around with vent dryer exhaust tubing
+cylinder as it nears its end points, either upright or leaning over. Additionally there is a pressure regulator added onto 
+the solenoid valve air port output before it gets to the air cylinder, again to slow the speed of the cylinder.
+This was also necessary as the solenoid value would only work if it had an input pressure > 20 psi, but this caused the cylinder rod travel to
+be to quick, so the regulator reduces the pressure before it gets to the air cylinder.
+The pneumatic cylinder is covered with vent dryer exhaust hose
 to keep the cylinder from pinching or pulling the outer costume when the prop is bent over.
-The pneumatics have not been used since 2016  as I have been concentrating on the servo operation.  The pneumatics also tends to be very finicky.  
-Getting the right amount of tension for the elastic cables and the right settings of the speed mufflers so the prop upper body doesn't slam into 
+The pneumatics have not been used since 2016 as I have been concentrating on the servo operation.  The pneumatics also tends to be very finicky.  
+Getting the correct point the elastic cables kick in and settings of the speed mufflers just right so the prop upper body doesn't slam into 
 the upgright position or into the leaned over position is laborious.  As indicated in the lessons learned, using a 
 voltage position controlled pneumatic cylinder would be much better and eliminate all the elastic cables and speed mufflers as well
 as still being powerfull enough (cost not to bad
@@ -188,7 +192,7 @@ Figure: Arm servos view 2
 ![Elbow servo](PropPics/20211105_210803.jpg)  
 Figure: Elbow servo
 
-The clothes on the skeleton body came from an old Halloween costume.
+The clothes on the skeleton body came from an old Halloween prop.
 
 ## IMUs and Synchronized User Movements
 
@@ -262,20 +266,20 @@ and responses
 * The I2C bus is used to interface to an I2C switch which interfaces to 2 IMUs
 on one channel and 2 on another channel of the switch.  The I2C switch is needed to resolve I2C address
 bus conflicts as the IMUs can only have one of two I2C addresses.
-* 1 TTL serial interface to control an MP3 module to generate audio and play audio files from an SD card
+* 1 TTL serial interface to control an MP3 module to play audio files from an SD card
 on the MP3 module.  The audio output of that MP3 goes to the prop speaker
-* 1 digital input pulled up to 5 volts and used to read a button.
+* 1 digital input pulled up to 5 volts and used to read a button that when pressed grounds that input.
     
-The prop wiring/schematic is contained in the file \Halloween\Prop Wiring.docx
+The prop wiring/schematic is contained in the file Prop Wiring.docx
 
 The user has an Adafruit 9814 mic and line amp, with AGC disabled, that is connected thru wires to the prop speaker that allows
 the user to talk out of the prop speaker. There is also a MidFly MP3 module that is conencted to the Arduino
 and thru wires to the speaker that is used to play mp3 files. Currently for simplicity, only one channel of the MP3 is used 
-which goes to one channel of the speaker and the user mic audio goes to the other channel of the speaker.  
+which goes to one channel of the speaker and the user mic audio goes to the other channel of the speaker.
 The assumption being the MP3 audio is mono.  Also the prop speaker does not output stereo and combines its two channels.
 Alternatively you can use resistors to allow both channels of the MP3 and Mic to be combined.
-The Adafruit talk microphone amplifier small module board is on the upper left of the big breadboard.  To eliminate noise getting into the 
-amplified audio it is powered by three 1.5 volt batteries (in the black battery holder box with an on/off switch).
+The Adafruit talk microphone amplifier board is shown on the upper left of the big breadboard in the photo.  To eliminate noise getting into the 
+amplified audio, the amplifier is powered by three 1.5 volt batteries (in the black battery holder box with an on/off switch).
 ![](PropPics/20211109_182631.jpg)  
 The MidFly MP3 module is on the upper right of the big breadboard and contains an SD card.
 Also note the user headphone and microphone jacks are on the large breadboard.  These go to a headset with microphone.
@@ -395,7 +399,7 @@ to visualize the orientation of an IMU on a PC when using the Visualize3D serial
 
 Smart phone app HomeEye, an android camera app, was used to operate the Relohas miniature night vision camera.  It allowed both live view and recording of video and
 audio. The connection method that worked best to the camera was when the camera was setup as a direct wifi hotspot, so the smart phone wifi
-connection was set to that hotspot.  This is an unsecure connection but didn't really matter.  Using a connection where the 
+connection was set to that hotspot.  This is an unsecure connection, however that was not a concern.  Using a connection where the 
 camera was communicating with my wifi router and thru the internet seemed to have to much lag and delay for live interaction.  Possibly
 with really good strength wifi it may have worked better.
 When playing back captured videos on the app it was very flakey (continually repeated the start of the video)
