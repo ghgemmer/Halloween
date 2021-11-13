@@ -140,9 +140,9 @@ This was also necessary as the solenoid value would only work if it had an input
 be to quick, so the regulator reduces the pressure before it gets to port 1 of the air cylinder.  This cylinder port is used to push the cylinder
 piston rod out to rotate the upper body to the upright position.
 The opposite port of the air cylinder, i.e. port 2 which is the one on the other side of the internal cylinder piston, goes to a speed muffler 
-which slows the travel of the air cylinder piston rod as it moves to the prop to the upright position.  An elastic cable at the front of the prop helps further
+which slows the travel of the air cylinder piston rod as it moves the prop to the upright position.  An elastic cable at the front of the prop helps further
 slow the prop as it gets close to the upright position. 
-Going from an upright to leaning over position, the air cylinder exhausts air from port 1 thru the solenoid valve to the valves other output port to a speed muffler to slow
+Going from an upright to leaning over position, the air cylinder exhausts air from port 1 thru the solenoid valve to the valve's other output port to a speed muffler to slow
 the movement. Additionally elastic cables and a spring at the back of the prop slow the movement as it gets close to fully leaned over. 
 The pneumatic cylinder is covered with vent dryer exhaust hose
 to keep the cylinder from pinching or pulling the outer costume when the prop is bent over.
