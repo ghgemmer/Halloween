@@ -187,7 +187,9 @@ servos allow a fairly fluid/natural/and speedy(when needed) movement of the skel
 
 Note also how the servo wiring is routed.  Generally you want to route servo wire from a servo A that is being rotated by another servo B
 as close as possible along servo B's axis to minimize wires catching/entangling with the servos or hardware when the servos are being rotated.
-Or if motion limits how far a servo can move you an use that to your advantage when routing wires.
+Alternatively, you can have the servo wire make a large arch but then it is more visible unless it is already in a position where it is hidden
+from the viewer.
+Also, if motion limits how far a servo can move you an use that to your advantage when routing wires.
 
 ![Arm servos view 1](PropPics/20211105_211126.jpg)  
 Figure: Arm servos view 1
