@@ -247,8 +247,13 @@ at once. Connectors are used at the prop to allow all the wires to be easily dis
 prop can be easily transported. The MP3, I2C switch, user Mic amp, drive circuit for the solenoid valve, and
 LED resistors are placed on breadboards to make them easy to connect to.
 
-Currently separate power supplies are used for each servo to eliminate any chance of one servo's current draw affecting another servo.  
+Currently separate power supplies are used for each servo to eliminate any chance of one servos current draw affecting another servo.  
 Alternatively you could use one well regulated hefty 6 volt supply and one hefty 7.4 volt supply.
+Choose your power supplies based on the servos spec'd max stall current for supply voltage to be on the safe side, or 
+use trial and error to see what works in your setup.
+For example, I inadvertently used a 3 amp supply for a Savox 1230G servo when I first tried to use that servo in the arm and found out 
+that was not sufficient but a 6 amp supply worked fine (spec'd stall current was some 5.3 amps).
+
 
 ![Controller, Peripherals, and terminal blocks view 1](PropPics/20211109_182615.jpg)  
 Figure: Controller, Peripherals, and terminal blocks view 1
