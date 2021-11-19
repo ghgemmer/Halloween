@@ -72,7 +72,7 @@ straight up. Note that Actobotics PVC clamps are no longer available so you woul
 the head nod servo to the head).
 
 In regards to the head rotate servo, it was felt at the time that the channel and bearings were necessary to
-handle the large lateral forces and lateral torque that could be experienced by the servo.  In hindsight all
+handle the large lateral forces that could be experienced by the servo.  In hindsight all
 that could probably be replaced by a single servo block right at the neck, where the head nod servo block
 would then sit on and be attached to the rotating hub of that head rotate servo block.  The servo block at the neck
 would also reduce the total lateral torque the servo block would experience being close to the head now, and
@@ -176,6 +176,35 @@ All these servos are
 held in Actobotics servo blocks to withstand lateral (i.e. perpendicular) forces off the servo axis. Actobotics hardware,
 such as screws, hubs, spacers, brackets, channels, flat patterns, attachment blocks, and beams, is used to connect the servo
 blocks to the arm and elbow. The attachments are meant to be minimal to leave as much of the skeleton arm visible as possible.
+
+The arm pitch servo experiences the greatest rotational torque of any of the arm servos.  This occurs when the arm is pointing straight out from the 
+body and thus the force of gravity is perpendicular to the arm at that point.  The torque that gravity applies at that point
+is determined by the location of the balance point of the arm (the point at which the arm by itself would balance level like a level teeter-totter)
+, the weight of the arm,  and the distance that balance point is from the servo.   The torque is then calculated as distance * weight.
+The skelton arm is approx 24 inches long from the shoulder to the tip of the hand.  With all the hardware and elbow servo, 
+the arm weighs approx 12oz, and the balance point is
+approx 12 inches from the shoulder.  The torque about the shoulder is then 12in * 12oz= 144 oz-in.  Thus you would need a servo capable of 
+producing at least 144 oz-in of torque.  I chose a servo that had a stall torque of at least twice that to be
+on the safe side to not stress the servo and still provide for a decent lifting arm speed. The GoBilda servos I used are spec'd at 
+300 oz-in (stall torque), 0.20sec/60 degrees no load speed at 6 volts and 350 oz-in, 0.17 sec/60 degrees no load speed at
+7.4 volts supply.  So I ran the servos at 7.4 volts to get the most torque possible and thus had 350/144 = 2.43 times the needed torque.
+
+Note that the speed of a servo is spec'd at no load, but when a load/force is applied to the servo it
+reduces/or adds to the total torque that is applied to the arm to accelerate the arms mass, and thus reduces
+or increases that no load speed. In this case gravity, or quantitatively the component of it that is
+perpendicular to the point about which torque is being calculated, is the opposing force when lifting the arm,
+and adding force when lowering the arm.  So depending on the angle of the arm, the total torque on the arm at
+a given angle can be calculated as the servo torque - gravities component torque when lifing and servo torque + gravities 
+component torque when lowering the arm. Not only that but I'm guessing the servo may not apply its
+full torque the entire time it is transitioning depending on its feeback algorithm. I initially tried to
+calculate the speeds in this case but the calculations didn't seem to match the actual speeds I measured which
+were slower. I measured roughly an average of 0.67 secs to transition from the arm hanging straight down to
+135 degrees up from that position (basically 90 degrees + 45 degrees from that position).  This gives
+0.67sec/135 degrees times 60 degrees= 0.30sec/60 degrees Thus its 0.30/0.17 = 1.76 times as long to make that
+transition compared to when there is no load on the servo. This time was still very acceptable for the arm
+movement.  I didn't measure when lowering the arm but it was visibly much faster than raising it, and I'm
+guessing probably faster than the spec'd no load time
+
 The servos are run at 6 volts with the exception of the arm pitch servo being run at
 7.4 volts to get the needed speed and torque. GoBilda servos are used for the arm and elbow, while Hitec are
 used for the head and mouth (see Prop Wiring.docx for detail). GoBilda servos are dead quiet when holding a
@@ -403,7 +432,7 @@ command/monitor that the user interfaces to the program with. The Arduino IDE wa
 the Arduino Mega 2560 board.
 
 Excel spreadsheets were used to manipulate captured playback data for incorporation into the program.  See later on below for the exact
-procedure.
+procedure.  Spreadsheet were also used to calculate torque, servo min/max pulse widths, etc.
 
 Audacity was used to modify/create MP3 files used by the MP3 player.
 
