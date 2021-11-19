@@ -203,7 +203,14 @@ were slower. I measured roughly an average of 0.67 secs to transition from the a
 0.67sec/135 degrees times 60 degrees= 0.30sec/60 degrees Thus its 0.30/0.17 = 1.76 times as long to make that
 transition compared to when there is no load on the servo. This time was still very acceptable for the arm
 movement.  I didn't measure when lowering the arm but it was visibly much faster than raising it, and I'm
-guessing probably faster than the spec'd no load time
+guessing probably faster than the spec'd no load time.
+
+I didn't use servo gearboxes to increase torque as these would proportionally reduce the speed and I wanted the arms to 
+move as fast as possible.  However, as measurements showed the servo speed decreaes with load on it, there may be a trade off point where a gearbox
+would still give acceptable speed, albeit slower, and allow more of a load for heavier arms or longer arms.
+Something to consider if you are going with arms that require more torque.  Gearboxes also tend to be bigger than
+than a servo block with a servo in it.  Alternatively you could go with a large size servo in a servo block to
+greatly increase the torque and still keep the speed acceptable.
 
 The servos are run at 6 volts with the exception of the arm pitch servo being run at
 7.4 volts to get the needed speed and torque. GoBilda servos are used for the arm and elbow, while Hitec are
