@@ -353,6 +353,7 @@ then are destroyed.
 
 The main program, PropController.ino, supports accepting serial commands to control the prop and peripherals, and outputing serial responses and status.
 This main program has top level state machines for
+* Playing a recorded sequence - The call to state machine Devices_Player.perform_devices_player() continues to perform the playing of a sequence if one had been started.
 * Prop synchronized to user movements -  Runs when variable AdafruitImuHeadMouthEnabled is true.  Setup by command "ImuHeadMouth ....".
 * Calibrating an IMU and getting displaying its  position continuously - Run when Adafruit3DVisualizeEnabled, and setup with command "Visualize3D ...."
 * Very limited Prop checkout that Turns the LED eyes on and off as well as setting the back solenoid relay to the back down and back up position.
