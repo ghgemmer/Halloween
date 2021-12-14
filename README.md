@@ -347,9 +347,7 @@ at start up.  The user places their initialization in that setup function.  The 
 programmers entry-exit state machines are placed.  The Arduino OS calls the loop function continually and does
 system housekeeping functions during the rest of the time (with the exception of interrupts of course).
 Delaying too long in the loop function could cause issues depending on what Arudino software services you are
-using. The code uses classes extensively although there is no 'new' function for the user so classes must be
-instantiated at compile time or thru local variables although these local variable of course only persist for the scope they are in and
-then are destroyed.
+using. The code uses classes extensively.
 
 The main program, PropController.ino, supports accepting serial commands to control the prop and peripherals, and outputing serial responses and status.
 This main program has top level state machines for
