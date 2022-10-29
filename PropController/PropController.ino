@@ -60,6 +60,7 @@ by Tom Igoe
 #include <utility/quaternion.h>
 
 #include "program_memory_misc.h"
+#include "MemoryFree.h"
 
 const int  Per_Sensor_Cal_Data_Size_Eeprom = NUM_BNO055_OFFSET_REGISTERS;  // in bytes per sensor
 const int  Num_Eeprom_Cal_Sensors = 4;
@@ -534,7 +535,9 @@ servo_device    Elbow_Pitch_servo                   ;   // attached to pins in s
 servo_filter    Elbow_Pitch_Servo_Filter(50.0/200.0, 300.0);
   // For the Arm Roll servo GoBilda 2000-0025-0002, per its spec,  it can move, no load, 60 degrees in 200 milliseconds at 6volt supply voltage to the servo at no load,
   // but give it an extra marign for now.
-LED_device      Eyes_LEDs                           (22); // pin 22
+LED_device * Eyes_LEDsPtr;
+#define Eyes_LEDs (* Eyes_LEDsPtr)
+//LED_device      Eyes_LEDs                           (22); // pin 22
 relay_device    Pneumatic_Back_relay                (23); // pin 23
 mp3_device      Voice_Player                        ;
 
@@ -544,6 +547,7 @@ unsigned long prop_user_control_timeout;
  
 void setup() 
 {
+    Eyes_LEDsPtr = new LED_device(22)  ;
     int i = 0;
     // setup cmd line structures
     cmdLineIndex = 0;
@@ -554,6 +558,8 @@ void setup()
     prop_user_control_timeout = 1000 + millis();
     //Serial.begin(9600);
     Serial.begin(115200);
+    Serial.print(F("Free Memory at point 1:"));
+    Serial.println(freeMemory());
      
     // Initializethe BNO055 IMUs
 
@@ -626,7 +632,8 @@ void setup()
     // attach Head servos to specific pins on the cpu board
     // (PWM is completely done in hardware to avoid pwm signal jitter)
     Head_Horizontal_Rotation_servo.attach (SERVO_PIN_A, 1150,1733, 45, 120 );  // pin 11 on Mega2560
-    Head_Vertical_Rotation_servo.attach   (SERVO_PIN_B, 1150,1889, 45, 140);   // pin 12 on Mega2560
+//    Head_Vertical_Rotation_servo.attach   (SERVO_PIN_B, 1150,1889, 45, 140);   // pin 12 on Mega2560 for Hitec
+    Head_Vertical_Rotation_servo.attach   (SERVO_PIN_B, 1200,1833, 45, 140);   // pin 12 on Mega2560 for Gobilda
     Head_Mouth_Rotation_servo.attach      (SERVO_PIN_C, 1422,1656, 80, 110);   // pin 13 on Mega2560
 //    // setup prop head to be completely level and looking straight forward.
     Head_Horizontal_Rotation_servo.device_write(90);               
