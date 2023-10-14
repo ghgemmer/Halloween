@@ -88,7 +88,7 @@ Figure: Head rotate servo view 2
 Figure: Head rotate servo view 3
 
 The head also has red LED
-eyes that can be turned on or off although these could instead be connected to a PWM signal or an analog
+eyes that can be turned on or off although these could alternatively be connected to a PWM signal or an analog
 signal to adjust intensity.  At the top of the head is a Relohas minature night vision camera (a cube that is
 0.79 inches long on each side) with a base that is at the back of the head and connected to the camera by a
 thin 8" flat cable. The base uses Wifi to conenct to a smartphone.  The base also has a rechargeable battery
@@ -147,7 +147,7 @@ the movement. Additionally elastic cables and a spring at the back of the prop s
 The pneumatic cylinder is covered with vent dryer exhaust hose
 to keep the cylinder from pinching or pulling the outer costume when the prop is bent over.
 
-The pneumatics have not been used since 2016 as I have been concentrating on the servo operation.  The pneumatics also tends to be very finicky.  
+The pneumatics have not been used since 2016 as I have been concentrating on the servo operation.  The pneumatics also tend to be very finicky.  
 Getting the correct point the elastic cables kick in and settings of the speed mufflers just right so the prop upper body doesn't slam into 
 the upgright position or into the leaned over position is laborious.  As indicated in the lessons learned, using a 
 voltage position controlled pneumatic cylinder would be much better and eliminate all the elastic cables and speed mufflers as well
@@ -213,13 +213,11 @@ than a servo block with a servo in it.  Alternatively you could go with a large 
 greatly increase the torque and still keep the speed acceptable.
 
 The servos are run at 6 volts with the exception of the arm pitch servo being run at
-7.4 volts to get the needed speed and torque. GoBilda servos are used for the arm and elbow, while Hitec are
-used for the head and mouth (see Prop Wiring.docx for detail). GoBilda servos are dead quiet when holding a
+7.4 volts to get the needed speed and torque. GoBilda servos are used for the arm, elbow, and head nod, while Hitec are
+used for the head rotate and mouth (see Prop Wiring.docx for detail). GoBilda servos are dead quiet when holding a
 position, even when under load, so are perfect for the application.  Hitec servos tend to make a high pitched
-whine when holding a position under load. Hitec servos were used when the head was first animated before it
-was discovered much later on that GoBilda servos would be better in that case.  Eventually the head nod servo
-will be replaced with a GoBilda servo as it is the one Hitec servo with the most noticable whine. All the
-servos allow a fairly fluid/natural/and speedy(when needed) movement of the skeleton head and arm/forearm. 
+whine when holding a position under load although the mouth and head rotate servos have small enough loads that they don't exhibit this problem. All the
+servos allow a fairly fluid, natural, and speedy, when needed, movement of the skeleton head,mouth, and arm/forearm. 
 
 Note also how the servo wiring is routed.  Generally you want to route servo wire from a servo A that is being rotated by another servo B
 as close as possible along servo B's axis to minimize wires catching/entangling with the servos or hardware when the servos are being rotated.
@@ -275,7 +273,7 @@ The goal was to be able to easily look at, probe, and change controller connecti
 connect/disconnect power to the servos without having to do to this at the prop during development, and even
 during actual opeartion. The wires from the prop at the controller first connect to a terminal block which
 then connect to the Arduino, and peripheral devies. This makes moving connections around easier (at the
-terminal block) and also eliminates any pulling stress of wires that go to the Arduino, although wire hold
+terminal block) and also eliminates any pulling stress on the wires that go to the Arduino, although wire hold
 down brackets and painters/duct tape are used on the wires before they enter the terminal block.
 
 The Arduino and all peripheral hardware are placed on a 1/2 inch piece of plywood to make it easy to transport them all
@@ -327,8 +325,8 @@ and thru wires to the speaker that is used to play mp3 files. Currently for simp
 which goes to one channel of the speaker and the user mic audio goes to the other channel of the speaker.
 The assumption being the MP3 audio is mono.  Also the prop speaker does not output stereo and combines its two channels.
 Alternatively you can use resistors to allow both channels of the MP3 and Mic to be combined.
-The Adafruit talk microphone amplifier board is shown on the upper left of the big breadboard in the photo.  To eliminate noise getting into the 
-amplified audio, the amplifier is powered by three 1.5 volt batteries (in the black battery holder box with an on/off switch).
+The Adafruit talk microphone amplifier board is shown on the upper left of the big breadboard in the photo.  To eliminate noise getting onto the 
+amplified audio, the amplifier is powered separately by three 1.5 volt batteries (in the black battery holder box with an on/off switch).
 ![](PropPics/20211109_182631.jpg)  
 The MidFly MP3 module is on the upper right of the big breadboard and contains an SD card.
 Also note the user headphone and microphone jacks are on the large breadboard.  These go to a headset with microphone.
