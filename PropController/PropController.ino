@@ -82,7 +82,7 @@ const int  Arm_Roll_Max_Position = 240;  // corresopnds to 120 degree roll towar
 const int  Arm_Roll_Default_Position = 120;  // corresopnds to normal rest position of no roll (i.e. no tilt)
 const int  Arm_Pitch_Min_Position = 0;  // arm straight up
 const int  Arm_Pitch_Max_Position = 200;  // 179 is arm straigh down.  200 is arm 21 degrees toward the back from straight down.
-const int  Arm_Pitch_Default_Position = 179;  // corresopnds to normal rest position of arm hanging straight down
+const int  Arm_Pitch_Default_Position = 175;  // corresopnds to normal rest position of arm hanging straight down
 const int  Elbow_Pitch_Min_Position = 70; // forearm 10 degrees up from bend at 90 degree angle
 const int  Elbow_Pitch_Max_Position = 190; // foreamr at 175 is straightened elbow.  190 is 15 bent backwards (not a possible human move)
 const int  Elbow_Pitch_Default_Position = 175; // corresopnds to normal rest position of elbow straightened
@@ -90,14 +90,24 @@ const int  Elbow_Pitch_Default_Position = 175; // corresopnds to normal rest pos
 const int  Imu_Arm_Yaw_Min_Position = 0;
 const int  Imu_Arm_Yaw_Max_Position = 359;
 const int  Imu_Arm_Yaw_Default_Position = 180;  // straight forward
-const int  Imu_Arm_Roll_Min_Position = -80;
-const int  Imu_Arm_Roll_Max_Position = 80;
+const int  Imu_Arm_Roll_Min_Position = -85;
+const int  Imu_Arm_Roll_Max_Position = 85;
 const int  Imu_Arm_Roll_Default_Position = 0; // level
 const int  Imu_Arm_Pitch_Min_Position = -110;
 const int  Imu_Arm_Pitch_Max_Position = 60;
 const int  Imu_Arm_Pitch_Default_Position = -90;  // straight down
 const int  Imu_Elbow_Pitch_Min_Position = Imu_Arm_Pitch_Min_Position;
 const int  Imu_Elbow_Pitch_Max_Position = Imu_Arm_Pitch_Max_Position + 90; // Max arm pitch + bend 90 degrees up
+                                            // The above can have some issues as indicated below but when don't use this the
+                                            // movement of the arm seems to be more jerky
+                                            // Probably need to detetermine if 120 is really the max
+                                            // as well as why the motion seems to be jerky
+                                            // Need to check the difference calculation of vectors to see how much time
+                                            // Those 4 differences for the elbow are taking.
+                                            // Also need to determine why sometimes we get a weird movement where the arm
+                                            // seems to jump to a weird position or through some weird transition.
+                          
+//const int  Imu_Elbow_Pitch_Max_Position = 120; // Moving IMU any more than this causes IMU yaw/heading to drop to 0 (basically reverses yaw direction)
 const int  Imu_Elbow_Pitch_Default_Position = Imu_Arm_Pitch_Min_Position;
 
 
@@ -426,6 +436,7 @@ bool Adafruit3DVisualizeEnabled = false;
 int AdafruitSensorToVisualize = 0;
 #define direct_Euler_fmt 0
 #define quat_converted_to_Euler_fmt 1
+#define quat_converted_to_DirectEuler_fmt 2
 int Adafruit3DVisualizeFormat = direct_Euler_fmt;
 
 
@@ -496,7 +507,11 @@ void printAccel(float ax, float ay, float az, bool isCalculated);
 void printMag(float mx, float my, float mz, bool isCalculated);
 void printAttitude(float ax, float ay, float az, float mx, float my, float mz);
 void getAttitude(float ax, float ay, float az, float mx, float my, float mz, float &pitch, float &roll, float &heading);
+float getAngleBetweenVectors(float heading, float roll, float pitch, float heading1, float roll1, float pitch1);
+void quatToDirectEulerReading (imu::Quaternion quat, float &heading, float &roll, float &pitch );
 int scaleMouthAngle(int angle);
+int scaleElbowPitchAngle(int angle);
+int scaleArmPitchAngle(int angle);
 float convertPitchForHeadOrientation( float pitch);
 void printSdCardInfo();
 
@@ -1741,6 +1756,22 @@ void loop()
           Serial.print((float)eulerFromQuat.z()* 180.0/PI);
           Serial.println(F(""));
       }
+      else if (quat_converted_to_DirectEuler_fmt == Adafruit3DVisualizeFormat)
+      {
+          imu::Quaternion quat;
+          float heading; 
+          float roll;
+          float pitch;
+          quat = Adafruit_sensors[AdafruitSensorToVisualize].sensor->getQuat();
+          quatToDirectEulerReading(quat, heading, roll, pitch);
+          Serial.print(F("OrientationDirectEulerFromQuat: "));
+          Serial.print(heading);
+          Serial.print(F(" "));
+          Serial.print(roll);
+          Serial.print(F(" "));
+          Serial.print(pitch);
+          Serial.println(F(""));
+      }
       else
       {
         // do nothing
@@ -1961,8 +1992,6 @@ void loop()
           #else
           	int zeroBasedImuAngle = (int)(fpitch);
           #endif
-          //TODO //need to use the Imu head reference frame a and current head pitch reading still to remove head pitch movement from mouth pitch movement.
-          //(int)(ImuServoCtrlUsing.ImuCtrlRefFrame.pitch)  ImuHeadVerticalServoControl.ImuCtrlRefFrame.pitch
           //  head cap showing starting level pointing straight forward as pitch of 179 slightly down and -179 slightly up.
           // mouth pitch diff shows -1 slightly down and + slightly up
           // Handle the case where heading start and end point cross over the 0/360 point by 
@@ -2090,6 +2119,8 @@ void loop()
         armPitch = pitch;
         
         // Handle arm yaw(heading) servo
+        // TODO need to figure out why get some weird IMU outputs sometimes where the Yaw goes weird
+        // when pitch or roll is above a certain value.
         {
             ImuServoControlDef & ImuServoCtrlUsing = ImuArmYawServoControl;        
             int servoAngle;
@@ -2167,6 +2198,8 @@ void loop()
         }
         
         // Handle arm pitch servo
+        // TODO need to figure out why get some weird IMU outputs sometimes where the Yaw goes weird
+        // when pitch or roll is above a certain value.
         {
             ImuServoControlDef & ImuServoCtrlUsing = ImuArmPitchServoControl;        
             int servoAngle;
@@ -2184,6 +2217,10 @@ void loop()
             {
               zeroBasedImuAngle += 360;
             }
+            // Perform any scaling to more/less exagerate movement or compensate for constrained sensor movement
+            // TODO need to figure out why IMU is showing more constrained movement than what is believed it should be
+            zeroBasedImuAngle = scaleArmPitchAngle(zeroBasedImuAngle);
+
             // take the negative of the zeroBasedImuAngle as incresing arm servo pitch pitches the arm down
             // (counter clockwise when point of view is from the prop itself)
             // , whereas increasing arm Imu pitch 
@@ -2210,19 +2247,41 @@ void loop()
         // Get filtered Forearm IMU output
         forearmImuFilter.input(forearm_event.orientation.x, forearm_event.orientation.y, forearm_event.orientation.z);
         forearmImuFilter.output(heading, roll, pitch );
+        // TODO need to figure out why get some weird IMU outputs sometimes where the Yaw goes weird
+        // when pitch or roll is above a certain value.
         
         // Handle elbow pitch servo
+        // TODO need to figure out why get some weird IMU outputs sometimes where the Yaw goes weird
+        // when pitch or roll is above a certain value.
         {
             ImuServoControlDef & ImuServoCtrlUsing = ImuElbowPitchServoControl;        
             int servoAngle;
             int filteredServoAngle;
-
-            float fpitchForearm = pitch;         
-            float fpitchArm = (float)armPitch;
-            float fpitchArmRef = (float)ImuArmPitchServoControl.ImuCtrlRefFrame.pitch;
-            float fpitchForearmRef = ImuServoCtrlUsing.ImuCtrlRefFrame.pitch;         
-            float fpitch = fpitchForearm - fpitchArm - (fpitchForearmRef - fpitchArmRef);
-            int zeroBasedImuAngle = (int)fpitch;
+            unsigned long operationsExecutionTime;
+            bool dbgShowAngleBetweenVectorsCalcInfo = false; // Set true for debug
+            
+            if (dbgShowAngleBetweenVectorsCalcInfo)
+            {
+                operationsExecutionTime = millis();
+            }
+            // float fpitchForearm = pitch;         
+            // float fpitchArm = (float)armPitch;
+            // float fpitchArmRef = (float)ImuArmPitchServoControl.ImuCtrlRefFrame.pitch;
+            // float fpitchForearmRef = ImuServoCtrlUsing.ImuCtrlRefFrame.pitch;
+            // zero based angle between forearm and arm =  angle between current forearm, arm vectors - angle between reference forearm, arm vectors
+            float fangleBetweenCurrent = getAngleBetweenVectors(armHeading, armRoll, armPitch, heading,roll,pitch);
+            float fangleBetweenReferences =  getAngleBetweenVectors(ImuArmPitchServoControl.ImuCtrlRefFrame.heading, ImuArmPitchServoControl.ImuCtrlRefFrame.roll, ImuArmPitchServoControl.ImuCtrlRefFrame.pitch, ImuServoCtrlUsing.ImuCtrlRefFrame.heading,ImuServoCtrlUsing.ImuCtrlRefFrame.roll,ImuServoCtrlUsing.ImuCtrlRefFrame.pitch);
+            // float fpitch = fpitchForearm - fpitchArm - (fpitchForearmRef - fpitchArmRef);
+            if (dbgShowAngleBetweenVectorsCalcInfo)
+            {
+                operationsExecutionTime = millis() - operationsExecutionTime;
+                Serial.print(F("VectorAngl diff calcs took msec: "));
+                Serial.println(operationsExecutionTime);
+                // Looks to be around 2 to 4 milliseconds execution time so not insignificant
+                // TODO  see if can reduce the calc execution time
+            }
+            
+            int zeroBasedImuAngle = (int)(fangleBetweenCurrent - fangleBetweenReferences);
             // Handle the case where the reference to current imu angle crosses over the -180/180 point by 
             // by assuming that the abs (current - reference) < 180 degrees.  Thus if the raw zeroBasedImuAngle is > 180 it is assumed to 
             // be because we have transitioned across the -180/180 boundary going form the reference to the current imu angle
@@ -2234,7 +2293,9 @@ void loop()
             {
               zeroBasedImuAngle += 360;
             }
-            // No scaling of angle needed at this time
+            // Perform any scaling to more/less exagerate movement or compensate for constrained sensor movement
+            // TODO need to figure out why IMU is showing more constrained movement than what is believed it should be
+            zeroBasedImuAngle = scaleElbowPitchAngle(zeroBasedImuAngle);
             
             // Take the negative of the zeroBasedImuAngle as  elbow servo pitch angle increases
             // when forearm pitch decreases holding arm pitch the same.
@@ -2430,6 +2491,27 @@ int scaleMouthAngle(int angle)
   return angle;
 }
 
+int scaleArmPitchAngle(int angle)
+// scales the Arm pitch angle for the servo
+// Used to make the Pitch increase more as Arm gets closer to max pitch up.
+// This currently compensates for the actual movement being slightly constrained by the arm brace
+{
+    float angleF = angle;
+    angleF *= 1.2;
+    return angleF;
+}
+
+int scaleElbowPitchAngle(int angle)
+// scales the Elbow pitch angle for the servo
+// Used to make the Pitch increase more as Elbow gets closer to max pitch up.
+// This currently compensates for the actual movement being slightly constrained by the arm brace
+{
+    float angleF = angle;
+    angleF *= 1.2;
+    return angleF;
+}
+
+
 float convertPitchForHeadOrientation( float pitch)
 //  head cap showing starting level pointing straight forward as pitch of 179 slightly down for that point and -179 slightly up.
 {
@@ -2442,6 +2524,133 @@ float convertPitchForHeadOrientation( float pitch)
   	pitch = pitch +180.0;
   }
   return pitch;
+}
+
+
+void quatToDirectEulerReading (imu::Quaternion quat, float &heading, float &roll, float &pitch )
+// returns heading, roll, pitch in degrees from the passed quat
+{
+    float headingTmp;
+    float rollTmp;
+    float pitchTmp;
+    // converts a quat reading from the IMU to a direct Euler reading as if read from the IMU 
+    imu::Vector<3> eulerFromQuat = quat.toEuler();
+    headingTmp = (float)eulerFromQuat.x()* 180.0/PI;
+    rollTmp = (float)eulerFromQuat.y()* 180.0/PI;
+    pitchTmp = (float)eulerFromQuat.z()* 180.0/PI;
+    // Quat from IMU has
+    // Pitch:
+    // When arm pitches down (looking from prop) has pitch value increasing from 0 (looking from prop with arm pointing straight out ) to 180 
+    // When arm pitches up pitch value decreasing from 0 to -180 
+    // Yaw/heading -  North is the -180/180 point (with arm pointing straight out), and going clockwise/to the right (looking from prop) value decreasea from 180 to 0,
+    //                and going counter clockwise increases from -180 to 0.  So basically going clockwise go from 180 down to 0 down to -180 (contiguous)
+    // Roll -  (looking from prop with arm pointing straight out ) -  rotate counter clockwise/left goes from 0  (level pointing straight out)
+    //          to 90 and then to 0,
+    //          rotating clockwise/right goes from 0 to -90 then to 0
+    // Direct Euler from IMU has
+    // Yaw/heading (looking from prop) North is 180 and rotating to right goes up to 360 ,  rotating to left goes down to 0 (so south is 0/360 point)
+    // Pitch: When arm pitches up (looking from prop)  has pitch value increasing from 0  (arm staight out) to 180  and when arm pitches down value decreasing from 0 to -180 
+    // Roll:  looking from prop with arm straight out and level,   rotating counterclockwise/left Roll value decreases from 0 to -90
+    //        and rotating clockwise/right roll value increased from 0 to 90
+    if (headingTmp >= 0)
+    {
+        headingTmp = 360 - headingTmp;
+    }
+    else
+    {
+        headingTmp = 360 + headingTmp;
+    }
+    pitchTmp = -pitchTmp;
+    rollTmp = -rollTmp;
+    
+    heading = headingTmp;
+    roll = rollTmp;
+    pitch = pitchTmp;
+}
+
+float getAngleBetweenVectors(float heading, float roll, float pitch, float heading1, float roll1, float pitch1)
+// Gets the angle in degrees between two vectors given their heading(yaw), roll, and pitch values.
+// Currently angle always returned as positive
+
+// coordinate frame is positive x points out of page toward you,  positive y poinst to the right on page, positive z points up on page.
+// and 0 pitch is z = 0 and 90 degree pitch is direction of positive z axis ,  and heading is clockwise in degress from x axis  (i.e. goes from 0 to 360)
+{
+    //#define debug_getAngleBetweenVectors 1
+    double x,y,z,x1,y1,z1;  // x,y,z coordinate system
+    double cosPitch;
+    double dotProduct;
+    double angleBetween;
+    float pitchInRadians = pitch *  PI / 180.0;
+    float pitch1InRadians = pitch1 *  PI / 180.0;
+    float headingInRadians = heading *  PI / 180.0;
+    float heading1InRadians = heading1 *  PI / 180.0;
+
+    
+    #ifdef debug_getAngleBetweenVectors
+    Serial.print(F("getAngleBetweenVectors: heading,roll,pitch, heading1,roll1,pitch1: " ));
+    Serial.print(heading);
+    Serial.print(F(", "));
+    Serial.print(roll);
+    Serial.print(F(", "));
+    Serial.print(pitch);
+    Serial.print(F(", "));
+    Serial.print(heading1);
+    Serial.print(F(", "));
+    Serial.print(roll1);
+    Serial.print(F(", "));
+    Serial.print(pitch1);
+    Serial.println();
+    #endif
+    
+    // Convert pitch, and yaw to an x,y,z vector (roll not needed) of length 1
+    z = sin(pitchInRadians);
+    cosPitch = cos(pitchInRadians);
+    y = -sin(headingInRadians)* cosPitch;
+    x = cos(headingInRadians) * cosPitch;
+    
+    z1 = sin(pitch1InRadians);
+    cosPitch = cos(pitch1InRadians);
+    y1 = -sin(heading1InRadians)* cosPitch;
+    x1 = cos(heading1InRadians) * cosPitch;
+    
+    #ifdef debug_getAngleBetweenVectors
+    Serial.print(F("getAngleBetweenVectors: x, y, z " ));
+    Serial.print(x);
+    Serial.print(F(", "));
+    Serial.print(y);
+    Serial.print(F(", "));
+    Serial.print(z);
+    Serial.print(F(", "));
+    Serial.println();
+    Serial.print(F("getAngleBetweenVectors: x1, y1, z1 " ));
+    Serial.print(x1);
+    Serial.print(F(", "));
+    Serial.print(y1);
+    Serial.print(F(", "));
+    Serial.print(z1);
+    Serial.println();
+    #endif
+
+    
+    // Calculate the dot product
+    dotProduct  =  (x*x1) + (y*y1) + (z*z1);
+    // calculate the angle between the vectors of length 1 in degrees
+    angleBetween = (acos(dotProduct) / PI) * 180.0;
+    #ifdef debug_getAngleBetweenVectors
+    Serial.print(F("getAngleBetweenVectors: dotproduct is " ));
+    Serial.print(dotProduct);
+    Serial.println();
+    #endif
+    if (angleBetween < 0)
+    {
+        angleBetween = 0 - angleBetween;
+    }
+
+    #ifdef debug_getAngleBetweenVectors
+    Serial.print(F("getAngleBetweenVectors: Angle between these vectors in deg is : " ));
+    Serial.println(angleBetween);    
+    #endif
+    return angleBetween;
 }
 
 void printSdCardInfo()

@@ -1,0 +1,13 @@
+Pitch1, roll1 , yaw1
+Pitch2, roll2 , yaw2
+
+Calculate angle between the two vectors associated with the pitch, roll, yaw.
+
+1) Convert pitch, yaw  (roll not needed)  to a vector x (points to right on page for positive), y (points into page for positive), z (point up on page for positive) 
+and (i.e.  pitch=0 as horizontal (z=0) and yaw as counter-clockwise from the x axis)
+as follows:  Assume both vectors will be a length of 1
+z = sin(pitch)*vector length =  sin(pitch)
+x = cos(yaw)*vector length * cos(pitch) = cos(yaw)*cos(pitch) 
+y = sin(yaw)*vector length * cos(pitch) = sin(yaw)*cos(pitch)
+2) Calculate dot product of the two vectors  =  x1*x2 + y1*y2 + z1*z2
+3) Angle =  ArcCos ( dot product / (product of the vector lengths)) =  ArcCos (dot product)

@@ -38,7 +38,7 @@ ImuHeadMouthStop;AudioStop;Mouth 110;HeadHorizontal 90;HeadVertical 140;ArmYaw 9
 
 
 // The following is for a nominal position where servos are quiet,  Head level, forward, mouthclosed, right arm down at side
-ImuHeadMouthStop;HeadVertical 78;HeadHorizontal 90;Mouth 110;ArmYaw 90;ArmRoll 120;ArmPitch 175;ElbowPitch 180
+ImuHeadMouthStop;HeadVertical 78;HeadHorizontal 90;Mouth 110;ArmYaw 90;ArmRoll 120;ArmPitch 170;ElbowPitch 170
 
 // Position for looking at most of sidewalk by house
 HeadVertical 90;HeadHorizontal 90
