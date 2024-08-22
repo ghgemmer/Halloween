@@ -72,7 +72,7 @@ straight up. Note that Actobotics PVC clamps are no longer available so you woul
 the head nod servo to the head).
 
 In regards to the head rotate servo, it was felt at the time that the channel and bearings were necessary to
-handle the large lateral forces that could be experienced by the servo.  In hindsight all
+handle the large lateral forces that could be experienced by the servo when the prop was bent over.  In hindsight all
 that could probably be replaced by a single servo block right at the neck, where the head nod servo block
 would then sit on and be attached to the rotating hub of that head rotate servo block.  The servo block at the neck
 would also reduce the total lateral torque the servo block would experience being close to the head now, and
@@ -150,7 +150,7 @@ to keep the cylinder from pinching or pulling the outer costume when the prop is
 The pneumatics have not been used since 2016 as I have been concentrating on the servo operation.  The pneumatics also tend to be very finicky.  
 Getting the correct point the elastic cables kick in and settings of the speed mufflers just right so the prop upper body doesn't slam into 
 the upgright position or into the leaned over position is laborious.  As indicated in the lessons learned, using a 
-voltage position controlled pneumatic cylinder would be much better and eliminate all the elastic cables and speed mufflers as well
+voltage position controlled pneumatic cylinder, or a liner actuator, would be much better and eliminate all the elastic cables and speed mufflers as well
 as still being powerfull enough (cost not to bad for just needing one of these).
 
 ![Pneumatic Air Cylinder and attachment](PropPics/20211109_194944.jpg)  
@@ -169,9 +169,16 @@ Seen in the above photo is a platform that is used to stabilize the prop so it d
 back up/down pneumatic functionality is being used.  The prop base is screwed into the platform guides. 
 
 The right skeleton arm has 3 servos at the
-shoulder for pitch, yaw, and roll and one at the elbow to bend the elbow. The shoulder has the yaw servo attached to the PVC
-shoulder blade, the roll servo attached to the yaw servos hub, and the pitch servo attached to the roll servos hub.
-This seemed to provide the most compact configuration and limited any pulling force on the servo output gear parallel to the axis of the any servo.
+shoulder for yaw, pitch, and roll and one at the elbow to bend the elbow. The shoulder has the yaw servo attached to the PVC
+shoulder blade, the pitch servo attached to the yaw servos hub shaft, and the roll servo attached to the pitch servos hub shaft.
+The arm is then attached to the roll server hub shaft, with a half channel and bracket, with the length of the arm parallel to the axis of the shaft.
+This order of servo hub shaft attachments is necessary as the IMU sensors, for mimicing user movements, output yaw, pitch , and roll assuming that, and the ordering of what servo is attached to
+what servo hub shaft is not commutative  (i.e.  a different ordering of the servo hub shaft attachments will produce a different position of the arm given the
+same yaw, pitch, roll values).
+Unfortunately, the ordering does not produce a physically compact configuration of the servos as
+servo hub shaft spacers are needed to keep the arm and roll servo hardware from contacting the yaw servo hardware.
+However it is still deemed acceptable.
+
 All these servos are
 held in Actobotics servo blocks to withstand lateral (i.e. perpendicular) forces off the servo axis. Actobotics hardware,
 such as screws, hubs, spacers, brackets, channels, flat patterns, attachment blocks, and beams, is used to connect the servo
@@ -187,7 +194,7 @@ approx 12 inches from the shoulder.  The torque about the shoulder is then 12in 
 producing at least 144 oz-in of torque.  I chose a servo that had a stall torque of at least twice that to be
 on the safe side to not stress the servo and still provide for a decent lifting arm speed. The GoBilda servos I used are spec'd at 
 300 oz-in (stall torque), 0.20sec/60 degrees no load speed at 6 volts and 350 oz-in, 0.17 sec/60 degrees no load speed at
-7.4 volts supply.  So I ran the servos at 7.4 volts to get the most torque possible and thus had 350/144 = 2.43 times the needed torque.
+7.4 volts supply.  So I ran that arm pitch servo at 7.4 volts to get the most torque possible and thus had 350/144 = 2.43 times the needed torque.
 
 Note that the speed of a servo is spec'd at no load, but when a load/force is applied to the servo it
 reduces/or adds to the total torque that is applied to the arm to accelerate the arms mass, and thus reduces
@@ -225,10 +232,10 @@ Alternatively, you can have the servo wire make a large arch but then it is more
 from the viewer.
 Also, if motion limits how far a servo can move you an use that to your advantage when routing wires.
 
-![Arm servos view 1](PropPics/20211105_211126.jpg)  
+![Arm servos view 1](PropPics/20240820_203215-YawthenPitchthenRoll.jpg)  
 Figure: Arm servos view 1
 
-![Arm servos view 2](PropPics/20211105_211012.jpg)  
+![Arm servos view 2](PropPics/20240820_203303-YawthenPitchthenRoll.jpg)  
 Figure: Arm servos view 2
 
 ![Elbow servo](PropPics/20211105_210803.jpg)  
@@ -239,12 +246,19 @@ The clothes on the skeleton body came from an old Halloween prop.
 ## IMUs and Synchronized User Movements
 
 To easily allow a user to naturally manipulate the prop for live interactive sessions as well as catpure
-for playback, Adafruit BNO055 Inertial Measurment Units (IMUs) are attached to the user and the servos can
-be synchronized to the movements of the user thru the application. Currently 1 IMU is used on the top of the head
-using a ball cap,  1 on the mouth using a bike/football chin cup strap, and two on a simulated arm/forearm in the interim
-until I can get them to work on an actual arm.
-The Arduino I2C interface is used to access these IMUs.  
-![IMU attachments](PropPics/20211109_182652.jpg)  
+for playback, Adafruit BNO055 Inertial Measurment Units (IMUs) are attached to the user and the prop servos can
+be synchronized to the movements of the user thru the application using the yaw, pitch, and roll outputs
+of the IMU sensors to get arm, forearm, head, and mouth orientation. Currently one IMU is used on the top of the head
+using a ball cap,  one on the mouth using a bike/football chin cup strap, and two on an arm brace (one on the upper arm, and one on the forearm)
+that slips over the arm.  Sensors on the arm present a unique problem in that large arm muscles can contract and
+relax when moving the arm, causing hills and valleys that can move the sensors, or the platform/brace the sensor is on,
+ to falsley indicate changes in arm orientation (yaw, pitch, or roll).
+So choosing the point or location of the sensor or platform/brace and where it contacts the the arm has a 
+significant impact in mitigating this.  While currently what we have is usable, further invesigation is in order to
+mitigate this even more.  Possibly using foam padding between the arm and brace may help this.
+The Arduino I2C interface is used to access these IMUs.
+ 
+![IMU attachments](PropPics/20240821_185819.jpg)  
 Figure: IMU attachments
 
 To eliminate orientation issues with the IMUs placed on the user, such as is the head IMU level when the ball
@@ -255,7 +269,7 @@ head level, looking straight forward, arms straight down at side, and mouth clos
 predetermined normally idle/resting position at the prop and are moved relative to that initial position
 using those relative IMU measurements. Thus the user could be oriented any direction initially (body and head
 pointing say southwest) and the prop movements are then relative to that initial position.  This eliminates
-the user for example from having to face north to use the synchronization.
+the user, for example, from having to face north to use the synchronization.
 
 ## Physical Wiring
 

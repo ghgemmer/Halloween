@@ -75,7 +75,10 @@ const int  Head_Horizontal_Max_Position = 120;  // Corresponds to head turned to
 const int  Head_Horizontal_Min_Position = 45;
 const int  Head_Horizontal_Default_Position = 90; // corresponds to head normal rest position of looking straight forward
 const int  Arm_Yaw_Min_Position = 45;  // 90 degrees is arm pointed straight out front.  45 is arm at 45 degree angle from chest (view from prop)
-const int  Arm_Yaw_Max_Position = 180; // arm staight out to right (view from prop)
+const int  Arm_Yaw_Max_Position = 150; // Arm 60 degrees clockwise from straight out (as viewed from prop). 
+                                       // Currently limited by the back lower corner of the Roll servo motor when arm is 
+                                       // swung to the right and down, so as to not hit the back of the shoulder plate.  
+                                       // Possibly cutting the back end of the shoulder plate enough could remedy this put it would be close to the screws holding that plate to the shoulder blade.
 const int  Arm_Yaw_Default_Position = 90; // corresponds to arm normal rest position of straight out
 const int  Arm_Roll_Min_Position = 120;  // corresponds to level no roll
 const int  Arm_Roll_Max_Position = 240;  // corresopnds to 120 degree roll toward chest
