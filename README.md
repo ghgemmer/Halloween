@@ -116,7 +116,7 @@ from a leaning over position, parallel to the ground, to an upright position and
 ![Upper Body view 1](PropPics/20211110_145718.jpg)  
 Figure: Upper Body view 1
 
-![Upper Body view 2](PropPics/20211110_141706.jpg)  
+![Upper Body view 2](PropPics/20240824_160549A.jpg)  
 Figure: Upper Body view 2   
 Note the speaker in the middle and the PVC pipe used for the shoulder blade to connect the arms to the prop.
 
@@ -229,7 +229,7 @@ servos allow a fairly fluid, natural, and speedy, when needed, movement of the s
 Note also how the servo wiring is routed.  Generally you want to route servo wire from a servo A that is being rotated by another servo B
 as close as possible along servo B's axis to minimize wires catching/entangling with the servos or hardware when the servos are being rotated.
 Alternatively, you can have the servo wire make a large arch but then it is more visible unless it is already in a position where it is hidden
-from the viewer.
+from the viewer.  The elbow servo wiring was done this way along the back of the arm.
 Also, if motion limits how far a servo can move you an use that to your advantage when routing wires.
 
 ![Arm servos view 1](PropPics/20240820_203215-YawthenPitchthenRoll.jpg)  
@@ -237,6 +237,9 @@ Figure: Arm servos view 1
 
 ![Arm servos view 2](PropPics/20240820_203303-YawthenPitchthenRoll.jpg)  
 Figure: Arm servos view 2
+
+![Arm servos view 3](PropPics/20240823_193205.jpg)  
+Figure: Arm servos view 3 (roll servo hub shaft attached to actual arm via L bracket)
 
 ![Elbow servo](PropPics/20211105_210803.jpg)  
 Figure: Elbow servo
@@ -246,20 +249,25 @@ The clothes on the skeleton body came from an old Halloween prop.
 ## IMUs and Synchronized User Movements
 
 To easily allow a user to naturally manipulate the prop for live interactive sessions as well as catpure
-for playback, Adafruit BNO055 Inertial Measurment Units (IMUs) are attached to the user and the prop servos can
-be synchronized to the movements of the user thru the application using the yaw, pitch, and roll outputs
+for playback, Adafruit BNO055 Inertial Measurment Units (IMUs) are attached to the user and the prop servos are
+synchronized to the movements of the user thru the application using the yaw, pitch, and roll outputs
 of the IMU sensors to get arm, forearm, head, and mouth orientation. Currently one IMU is used on the top of the head
-using a ball cap,  one on the mouth using a bike/football chin cup strap, and two on an arm brace (one on the upper arm, and one on the forearm)
-that slips over the arm.  Sensors on the arm present a unique problem in that large arm muscles can contract and
+using a ball cap,  one on the mouth using a bike/football chin cup strap, and two on a hinged arm brace (one on the upper arm portion, and one on the forearm portion)
+that slips over the arm.  
+
+Sensors on the arm present a unique problem in that large arm muscles can contract and
 relax when moving the arm, causing hills and valleys that can move the sensors, or the platform/brace the sensor is on,
- to falsley indicate changes in arm orientation (yaw, pitch, or roll).
-So choosing the point or location of the sensor or platform/brace and where it contacts the the arm has a 
+ to falsley indicate changes in arm orientation (yaw, pitch, or roll).  Using a hinged brace helped to reduce this some by providing
+ several points/surfaces of contact on the arm, all head ridgid to each other,  reducing any one point of contact's unwanted effect.  Additionally,  
+choosing the point or location of the sensor or platform/brace and where it contacts the the arm has a 
 significant impact in mitigating this.  While currently what we have is usable, further invesigation is in order to
-mitigate this even more.  Possibly using foam padding between the arm and brace may help this.
+mitigate this even more, so that the exact location of the brace on the arm becomes less of a factor. Possibly using thick soft foam padding between the arm and brace may help this by absorbing some of
+these hill/valley muscle movements.
+
 The Arduino I2C interface is used to access these IMUs.
  
 ![IMU attachments](PropPics/20240821_185819.jpg)  
-Figure: IMU attachments
+Figure: IMU attachments (head cap, mouth chin cup, hinged arm brace)
 
 To eliminate orientation issues with the IMUs placed on the user, such as is the head IMU level when the ball
 cap is placed on the users head or is the users head pointing north, the user momentarily holds still in a
