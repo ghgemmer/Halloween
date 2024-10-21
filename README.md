@@ -492,9 +492,13 @@ The serial commands are as follows:
 
 **AudioDayO** : Plays the MP3 Harry Belafonti Day-O (Banana Boat Song) file
 
-**AudioHissing** : Plays the MP3 AudioHissing file 
+**AudioHissing** : Plays the MP3 AudioHissing file
+
+**AudioISeeYou** : Plays the MP3 I See You Sound Effects Errie Voice file
 
 **AudioMoreOftenChewing** : Plays the MP3 More Often Chewing file 
+
+**AudioScreamingGhostChildren** : Plays the MP3 Screaming Ghost Children short clip file
 
 **AudioShakeSenora** : Plays the MP3  Harry Belafonti Shake Senora file
 
