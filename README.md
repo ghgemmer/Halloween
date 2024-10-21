@@ -20,9 +20,9 @@ The goal was to make something scary with lots of life like movement as well as 
 Figure: Vampire Skeleton Prop
 
 The following are videos of the prop in action:  
-[Prop in Action 1](https://photos.app.goo.gl/6Uykd7iYnzz1tLBr7)  
-[Prop in Action 2](https://photos.app.goo.gl/xCtqQATjuv2cuCW76)  
-[Prop in Action with back movement](https://photos.app.goo.gl/L6dBzxXWFbU8m84k7)  
+[Prop in Action 1 - Synchronized to user movements](https://photos.app.goo.gl/JHuseKBr3JBPj2UM7)  
+[Prop in Action 2 - Playback of recorded movements](https://photos.app.goo.gl/xCtqQATjuv2cuCW76)  
+[Prop in Action 3 - With back movement](https://photos.app.goo.gl/L6dBzxXWFbU8m84k7)  
 
 Servos are used to animate the head, mouth and right arm and elbow.
 The prop can both emit audio thru a speaker and listen thru a mic and has red LED eyes that can be turned on or off.
@@ -33,9 +33,9 @@ thru a smartphone, and allows the user to see what the prop head is seeing and r
 The controller for the prop is an Arduino Mega 2560 which is used to perform both live interactive
 sessions or capture and playback of recorded sessions. Almost all aspects of the prop can be controlled thru
 the serial command line interface of the Arduino USB port. The prop can be exactly synchronized to the users
-movements thru inertial measurement units (IMUs) attached to the users head and mouth, and eventually ones
-attached to the users arm.  This allows for live interactive sessions as well as quick, and effortless choreographing of prop movements by matching the users head,
-mouth and arm/forearm movements.  This choreographing can be captured for playback later on.
+movements thru inertial measurement units (IMUs), which are orientation sensors attached to the users head, mouth, and arm/forearm.
+This allows for live interactive sessions as well as quick, and effortless choreographing of prop movements by matching the users movements.
+This choreographing can be captured for playback later on.
 There is an MP3 module the Arduino controls to play audio files to the prop's speaker.
 
 
@@ -147,7 +147,7 @@ the movement. Additionally elastic cables and a spring at the back of the prop s
 The pneumatic cylinder is covered with vent dryer exhaust hose
 to keep the cylinder from pinching or pulling the outer costume when the prop is bent over.
 
-The pneumatics have not been used since 2016 as I have been concentrating on the servo operation.  The pneumatics also tend to be very finicky.  
+The pneumatics have not been used since 2016 as development has concentrated on servo operations and the user mimicking feature.  The pneumatics also tend to be very finicky.  
 Getting the correct point the elastic cables kick in and settings of the speed mufflers just right so the prop upper body doesn't slam into 
 the upgright position or into the leaned over position is laborious.  As indicated in the lessons learned, using a 
 voltage position controlled pneumatic cylinder, or a liner actuator, would be much better and eliminate all the elastic cables and speed mufflers as well
@@ -172,7 +172,7 @@ The right skeleton arm has 3 servos at the
 shoulder for yaw, pitch, and roll and one at the elbow to bend the elbow. The shoulder has the yaw servo attached to the PVC
 shoulder blade, the pitch servo attached to the yaw servos hub shaft, and the roll servo attached to the pitch servos hub shaft.
 The arm is then attached to the roll server hub shaft, with a half channel and bracket, with the length of the arm parallel to the axis of the shaft.
-This order of servo hub shaft attachments is necessary as the IMU sensors, for mimicing user movements, output yaw, pitch , and roll assuming that, and the ordering of what servo is attached to
+This order of servo hub shaft attachments is necessary as the IMU sensors, for mimicking user movements, output yaw, pitch , and roll assuming that, and the ordering of what servo is attached to
 what servo hub shaft is not commutative  (i.e.  a different ordering of the servo hub shaft attachments will produce a different position of the arm given the
 same yaw, pitch, roll values).
 Unfortunately, the ordering does not produce a physically compact configuration of the servos as
@@ -224,7 +224,7 @@ The servos are run at 6 volts with the exception of the arm pitch servo being ru
 used for the head rotate and mouth (see Prop Wiring.docx for detail). GoBilda servos are dead quiet when holding a
 position, even when under load, so are perfect for the application.  Hitec servos tend to make a high pitched
 whine when holding a position under load although the mouth and head rotate servos have small enough loads that they don't exhibit this problem. All the
-servos allow a fairly fluid, natural, and speedy, when needed, movement of the skeleton head,mouth, and arm/forearm. 
+servos allow a fairly fluid, natural, and speedy movement of the skeleton head,mouth, and arm/forearm. 
 
 Note also how the servo wiring is routed.  Generally you want to route servo wire from a servo A that is being rotated by another servo B
 as close as possible along servo B's axis to minimize wires catching/entangling with the servos or hardware when the servos are being rotated.
@@ -249,7 +249,7 @@ The clothes on the skeleton body came from an old Halloween prop.
 ## IMUs and Synchronized User Movements
 
 To easily allow a user to naturally manipulate the prop for live interactive sessions as well as catpure
-for playback, Adafruit BNO055 Inertial Measurment Units (IMUs) are attached to the user and the prop servos are
+for playback, Adafruit BNO055 Inertial Measurment Units (IMUs) orientation sensors are attached to the user and the prop servos are
 synchronized to the movements of the user thru the application using the yaw, pitch, and roll outputs
 of the IMU sensors to get arm, forearm, head, and mouth orientation. Currently one IMU is used on the top of the head
 using a ball cap,  one on the mouth using a bike/football chin cup strap, and two on a hinged arm brace (one on the upper arm portion, and one on the forearm portion)
@@ -258,11 +258,10 @@ that slips over the arm.
 Sensors on the arm present a unique problem in that large arm muscles can contract and
 relax when moving the arm, causing hills and valleys that can move the sensors, or the platform/brace the sensor is on,
  to falsley indicate changes in arm orientation (yaw, pitch, or roll).  Using a hinged brace helped to reduce this some by providing
- several points/surfaces of contact on the arm, all head ridgid to each other,  reducing any one point of contact's unwanted effect.  Additionally,  
-choosing the point or location of the sensor or platform/brace and where it contacts the the arm has a 
+ several points/surfaces of contact on the arm, all held ridgid to each other,  reducing any one point of contact's unwanted effect.  Additionally,
+ choosing the point or location of the sensor or platform/brace and where it contacts the the arm has a 
 significant impact in mitigating this.  While currently what we have is usable, further invesigation is in order to
-mitigate this even more, so that the exact location of the brace on the arm becomes less of a factor. Possibly using thick soft foam padding between the arm and brace may help this by absorbing some of
-these hill/valley muscle movements.
+mitigate this even more, so that the exact location of the brace on the arm becomes less of a factor.
 
 The Arduino I2C interface is used to access these IMUs.
  
@@ -272,7 +271,7 @@ Figure: IMU attachments (head cap, mouth chin cup, hinged arm brace)
 To eliminate orientation issues with the IMUs placed on the user, such as is the head IMU level when the ball
 cap is placed on the users head or is the users head pointing north, the user momentarily holds still in a
 normally resting/idle position when the synchronization command is given in order to get a reference frame from which
-all further positions (pitch, roll, yaw) are measured relative to.  The user resting/idle positon is normally
+all further positions (yaw, pitch, roll) are measured relative to.  The user resting/idle positon is normally
 head level, looking straight forward, arms straight down at side, and mouth closed. The servos start from their
 predetermined normally idle/resting position at the prop and are moved relative to that initial position
 using those relative IMU measurements. Thus the user could be oriented any direction initially (body and head
@@ -546,7 +545,9 @@ the user time to get into this normal resting/idle position.
     * MORE_OFTEN_CHEWING_AT_HEAD_FILE = 6,
     * DAYO_FILE                       = 7, 
     * WEREWOLVES_OF_LONDON_FILE       = 8,
-    * SHAKE_SHAKE_SENORA_FILE         = 9
+    * SHAKE_SHAKE_SENORA_FILE         = 9,
+    * SCREAMING_GHOST_CHILDERN_FILE   = 11,
+    * I_SEE_YOU_GHOSTLY_VOICE_FILE    = 12
 * _audioDelayInPeriods_ - The delay in number of _periodMsec_ before the audio file is played.  This allows time for the user to get ready 
 before the audio plays.
 * _includeArm_ - Optional, defaults to don't include. Indicates if the Arm/Elbow servos are to be synchronzied or left alone.  0 = don't sync 1 = sync
@@ -619,13 +620,27 @@ don't take up RAM space, only program code space.
 
 ## Capturing Playback Data and Adding it to the Program 
    
-When using live interactive prop movement operations (i.e. command "ImuHeadMouth ...") the large output on the
-serial monitor that shows the servo positions, etc, can be captured by copying and pasting it into a text
-file. This can then be opened as an Excel file and its contents copied to sheet VampireArmCapture of the excel
-file VampireArmCapture.xlsx. Once that is done the user can copy and transpose paste it from sheet
-VampireArmCapture to sheet 1 in the appropriate spot. At that point copy and paste from sheet 1 to the
-appropriate row in sheet 2.
-Then sheet 2 has the code snippet you can copy and paste into the PropController.ino file for accessing it in the code for playback later on.
+When using live interactive prop movement operations (i.e. command "ImuHeadMouth ...") do the following to
+produce the code snippet you need to add to the program.
+
+1. The large output on the serial monitor that shows the servo positions, etc, can be captured by copying and pasting it into a text
+file.
+
+2. This text file can then be opened as an Excel file and its contents copied to sheet VampireArmCapture of the excel
+file VampireArmCapture.xlsx. 
+
+3. Once that is done the user can copy and transpose paste it from sheet
+VampireArmCapture to sheet 1 in the appropriate spot. 
+
+4. At that point copy and paste from sheet 1 to the
+appropriate row in sheet 2.  
+
+5. Then, at the top part of the file, modify the EyesLEDs and if necessary the Audio word /file word rows to be what you want. 
+That is eye LEDs on/off at the desired points, and audio file number started at the desired points
+(currently only starting a file and not stopping it other than starting a new file possibly with no audio, although it would be easy enough to add a "Stop" as a future enhancement). 
+
+6. Then sheet 2 has the code snippet you can copy and paste into the PropController.ino file for accessing it in the code for playback later on.
+Modify the constant variable names as needed in this snippet.
 
 ## Licenses
 

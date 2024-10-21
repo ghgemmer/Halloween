@@ -41,7 +41,14 @@ ImuHeadMouthStop;AudioStop;Mouth 110;HeadHorizontal 90;HeadVertical 140;ArmYaw 9
 ImuHeadMouthStop;HeadVertical 78;HeadHorizontal 90;Mouth 110;ArmYaw 90;ArmRoll 120;ArmPitch 170;ElbowPitch 170
 
 // Position for looking at most of sidewalk by house
-HeadVertical 90;HeadHorizontal 90
+HeadVertical 110;HeadHorizontal 45
 
 // Position for looking at sidewalk right in front of prop
-HeadVertical 110
+HeadVertical 110;HeadHorizontal 90
+
+
+// Head back to looking at cemetery ready for vampire sequence
+ImuHeadMouthStop;HeadVertical 78;HeadHorizontal 120;Mouth 110;ArmYaw 90;ArmRoll 120;ArmPitch 175;ElbowPitch 180
+
+//Arm with bent elbow that puts hand shielding face
+ArmYaw 80;ArmPitch 30;ElbowPitch 70;ArmRoll 200;HeadVertical 78;HeadHorizontal 90;Mouth 110;

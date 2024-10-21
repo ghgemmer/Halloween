@@ -133,8 +133,9 @@ enum e_voice_files {
     MORE_OFTEN_CHEWING_AT_HEAD_FILE = 6,
     DAYO_FILE                       = 7, 
     WEREWOLVES_OF_LONDON_FILE       = 8,
-    SHAKE_SHAKE_SENORA_FILE         = 9
-    
+    SHAKE_SHAKE_SENORA_FILE         = 9,
+    SCREAMING_GHOST_CHILDERN        = 11,
+    I_SEE_YOU_GHOSTLY_VOICE         = 12
 };
 
 #define NUM_ARRAY_ENTRIES(a)  (sizeof(a)/sizeof(a[0]))
@@ -936,6 +937,18 @@ void loop()
         Voice_Player.device_write(mp3_device::STOP << 8);
         Voice_Player.device_write((mp3_device::START << 8) + SHAKE_SHAKE_SENORA_FILE);
         Serial.println(F("AudioShakeSenora"));
+      }
+      else if (0 == strcmp(token, "AudioScreamingGhostChildren"))
+      {
+        Voice_Player.device_write(mp3_device::STOP << 8);
+        Voice_Player.device_write((mp3_device::START << 8) + SCREAMING_GHOST_CHILDERN);
+        Serial.println(F("AudioScreamingGhostChildren"));
+      }
+      else if (0 == strcmp(token, "AudioISeeYou"))
+      {
+        Voice_Player.device_write(mp3_device::STOP << 8);
+        Voice_Player.device_write((mp3_device::START << 8) + I_SEE_YOU_GHOSTLY_VOICE);
+        Serial.println(F("AudioISeeYou"));
       }
       else if (0 == strcmp(token, "Delay15SecPlayOnce"))
       {
