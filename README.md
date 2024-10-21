@@ -310,13 +310,13 @@ For example, I inadvertently used a 3 amp supply for a Savox 1230G servo when I 
 that was not sufficient but a 6 amp supply worked fine (spec'd stall current was some 5.3 amps).
 
 
-![Controller, Peripherals, and terminal blocks view 1](PropPics/20211109_182615.jpg)  
+![Controller, Peripherals, and terminal blocks view 1](PropPics/20241021_164758.jpg)  
 Figure: Controller, Peripherals, and terminal blocks view 1
 
-![Controller, Peripherals, and terminal blocks view 2](PropPics/20211109_182744.jpg)  
+![Controller, Peripherals, and terminal blocks view 2](PropPics/20241021_160734.jpg)  
 Figure: Controller, Peripherals, and terminal blocks view 2
 
-![Controller, Peripherals, and terminal blocks view 3](PropPics/20211109_182631.jpg)  
+![Controller, Peripherals, and terminal blocks view 3](PropPics/20241021_161059.jpg)  
 Figure: Controller, Peripherals, and terminal blocks view 3
 
 ## Processor board and Interfaces/Peripherals used
@@ -348,9 +348,10 @@ The assumption being the MP3 audio is mono.  Also the prop speaker does not outp
 Alternatively you can use resistors to allow both channels of the MP3 and Mic to be combined.
 The Adafruit talk microphone amplifier board is shown on the upper left of the big breadboard in the photo.  To eliminate noise getting onto the 
 amplified audio, the amplifier is powered separately by three 1.5 volt batteries (in the black battery holder box with an on/off switch).
-![](PropPics/20211109_182631.jpg)  
+![](PropPics/20241021_161059.jpg)  
 The MidFly MP3 module is on the upper right of the big breadboard and contains an SD card.
 Also note the user headphone and microphone jacks are on the large breadboard.  These go to a headset with microphone.
+
 
 # Software
 
