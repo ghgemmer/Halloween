@@ -575,6 +575,8 @@ difference displayed is (pitch1 - pitch2) - (initial pitch 1 - initial pitch 2).
 
 **ImusShowPitchDiffStop** : Stops displaying the difference between the pitches (stops the ImusShowPitchDiff command operations)
 
+**ListSdCardDir** : Lists the contents of the SD card (not the one on the MP3 card, but the standalone SD card) 
+
 **Mouth _degrees_** : Sets the Mouth servo in degrees
 
 **PlayOnce** : Plays the pop player once.  This runs the previously setup prop sequence.
