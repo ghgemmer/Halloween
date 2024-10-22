@@ -343,15 +343,14 @@ The prop wiring/schematic is contained in the file Prop Wiring.docx
 
 The user has an Adafruit 9814 mic and line amp, with AGC disabled, that is connected thru wires to the prop speaker that allows
 the user to talk out of the prop speaker. There is also a MidFly MP3 module that is conencted to the Arduino
-and thru wires to the speaker that is used to play mp3 files. Currently for simplicity, only one channel of the MP3 is used 
-which goes to one channel of the speaker and the user mic audio goes to the other channel of the speaker.
-The assumption being the MP3 audio is mono.  Also the prop speaker does not output stereo and combines its two channels.
-Alternatively you can use resistors to allow both channels of the MP3 and Mic to be combined.
-The Adafruit talk microphone amplifier board is shown on the upper left of the big breadboard in the photo.  To eliminate noise getting onto the 
+and thru wires to the prop speaker that is used to play mp3 files. The user Mic Right/Left channels and MP3 Right/Left channel outputs are mixed together respectively thru resistors before going to the prop speaker.
+Also the prop speaker does not output stereo and combines its two channels.
+
+The Adafruit talk microphone amplifier board is shown on the upper left of the upper left big breadboard in the photo.  To eliminate noise getting onto the 
 amplified audio, the amplifier is powered separately by three 1.5 volt batteries (in the black battery holder box with an on/off switch).
 ![](PropPics/20241021_161059.jpg)  
-The MidFly MP3 module is on the upper right of the big breadboard and contains an SD card.
-Also note the user headphone and microphone jacks are on the large breadboard.  These go to a headset with microphone.
+The MidFly MP3 module is on the upper right of that big breadboard and contains an SD card.
+Also note the user headphone and microphone jacks are on that same breadboard.  These go to a headset with microphone.
 
 
 # Software
