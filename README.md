@@ -337,6 +337,7 @@ bus conflicts as the IMUs can only have one of two I2C addresses.
 * 1 TTL serial interface to control an MP3 module to play audio files from an SD card
 on the MP3 module.  The audio output of that MP3 goes to the prop speaker
 * 1 digital input pulled up to 5 volts thru a resistor and used to read a button that when pressed grounds that input.
+* 1 hardware SPI interface to read/write the standalone SD card module
     
 The prop wiring/schematic is contained in the file Prop Wiring.docx
 
