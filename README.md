@@ -579,6 +579,8 @@ difference displayed is (pitch1 - pitch2) - (initial pitch 1 - initial pitch 2).
 
 **ImusShowPitchDiffStop** : Stops displaying the difference between the pitches (stops the ImusShowPitchDiff command operations)
 
+**ISeeYouPlayerSetup** : Sets up the prop player for the I See You prop sequence.
+
 **ListSdCardDir** : Lists the contents of the SD card (not the one on the MP3 card, but the standalone SD card) 
 
 **Mouth _degrees_** : Sets the Mouth servo in degrees
@@ -631,23 +633,28 @@ When using live interactive prop movement operations (i.e. command "ImuHeadMouth
 produce the code snippet you need to add to the program.
 
 1. The large output on the serial monitor that shows the servo positions, etc, can be captured by copying and pasting it into a text
-file.
+file.  Replace "Arm " in this file with " Arm " and save the file.
 
-2. This text file can then be opened as an Excel file and its contents copied to sheet VampireArmCapture of the excel
-file VampireArmCapture.xlsx. 
+2. This text file can then be opened as an Excel file specifying multiple spaces as delimiters and its contents copied to sheet PropValuesCapture of a copy of the excel
+file PropMovementValuesCapture.xlsx.  The user can then modify values, delete rows, insert rows if desired.
 
-3. Once that is done the user can copy and transpose paste it from sheet
-VampireArmCapture to sheet 1 in the appropriate spot. 
+3. Once that is done the user can copy and transpose paste the appropriate columns from sheet
+PropValuesCapture to sheet 1 in the appropriate rows, but clearing out the row values before doing this.  
+This includes transpose copying the Head vertical, horizontal,
+and mouth column values to sheet1 in the corresponding rows, transpose copying the Arm yaw, roll, pitch, elbow column
+values to sheet1 in the corresponding rows, and transpose copying the 2nd,3rd, 4th columns afer the Elbow values column
+to the Audio Word, File Word, and File number row values in sheet 1.
 
 4. At that point copy and paste from sheet 1 to the
-appropriate row in sheet 2.  
+corresponding rows in sheet 2 but clearing the values in the head and arm and audio file rows in the sheet 2 before doing this.
 
 5. Then, at the top part of the file, modify the EyesLEDs and if necessary the Audio word /file word rows to be what you want. 
 That is eye LEDs on/off at the desired points, and audio file number started at the desired points
 (currently only starting a file and not stopping it other than starting a new file possibly with no audio, although it would be easy enough to add a "Stop" as a future enhancement). 
 
-6. Then sheet 2 has the code snippet you can copy and paste into the PropController.ino file for accessing it in the code for playback later on.
-Modify the constant variable names as needed in this snippet.
+6. Modify the constant variable names in sheet 2 for what is desired in the code.  Then sheet 2 has the code snippet you can copy and paste into the PropController.ino file for accessing it in the code for playback later on.
+
+7. Save off the modified Excel file copy for possible use later on using an appropriate file name.
 
 ## Licenses
 

@@ -33,6 +33,15 @@ PlayOnce
 // stop
 PlayStop;HeadVertical 78;HeadHorizontal 90;Mouth 110;ArmYaw 90;ArmRoll 120;ArmPitch 175;ElbowPitch 180
 
+// I See You setup and stop
+// setup
+ImuHeadMouthStop;HeadVertical 130;HeadHorizontal 90;Mouth 110;ArmYaw 90;ArmRoll 120;ArmPitch 175;ElbowPitch 180;ISeeYouPlayerSetup;PlayOnce
+// play
+PlayOnce
+// stop
+PlayStop;HeadVertical 78;HeadHorizontal 90;Mouth 110;ArmYaw 90;ArmRoll 120;ArmPitch 170;ElbowPitch 170
+
+
 // Get ready for removing Head power.  !!! Always remove Mouth power first before powering down any servos and bring up last after powering up any servos.
 ImuHeadMouthStop;AudioStop;Mouth 110;HeadHorizontal 90;HeadVertical 140;ArmYaw 90;ArmRoll 120;ArmPitch 175;ElbowPitch 180
 

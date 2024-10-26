@@ -344,7 +344,41 @@ ProgMemArray_values_reader VampireArmGraspAt_EyesLED_Reader;
 
 #endif
 
+#define ISeeYou_MOVEMENTS
+#ifdef ISeeYou_MOVEMENTS
 
+const unsigned long ISeeYou_play_interval = 50; // milliseconds
+
+const uint16_t ISeeYouHeadVert[] PROGMEMSECTION2 = {	94	,96	,96	,95	,93	,92	,91	,91	,90	,89	,89	,89	,88	,88	,88	,88	,88	,88	,88	,87	,87	,87	,87	,87	,87	,87	,87	,86	,85	,84	,83	,82	,81	,81	,80	,80	,79	,79	,79	,79	,79	,79	,79	,79	,80	,81	,81	,81	,81	,82	,82	,82	,82	,81	,82	,81	,81	,81	,81	,81	,81	,81	,81	,81	,80	,80	,80	,80	,80	,80	,80	,81	,81	,81	,81	,81	,81	,81	,81	,81	,81	,81	,81	,81	,81	,81	,81	,81	,81	,82	,82	,82	,82	,82	,82	,82	,82	,82	,82	,82	,82	,82	,83	,83	,83	,83	,83	,83	,83	,83	,84	,84	,84	,84	,84	,84	,84	,84	,85	,85	,85	,85	,85	,85	,85	,85	,85	,85	,85	,85	,85	,85	,85	,85	,85	,85	,85	,85	,85	,85	,86	,86	,87	,87	,88	,88	,89	,90	,91	,92	,93	,94	,95	,96	,97	,98	,98	,99	,99	,100	,101	,101	,102	,103	,103	,102	,102	,102	,101	,101	,101	,101	,101	,100	,100	,100	,99	,99	,99	,99	,98	,101	,101	,100	,100	,100	,99	,99	,99	,99	,98
+};																																																																																																																																																																																															
+const uint16_t  ISeeYouHeadHori[] PROGMEMSECTION2 = {	65	,65	,65	,65	,65	,64	,64	,64	,64	,64	,65	,65	,65	,65	,65	,65	,65	,66	,66	,66	,66	,66	,66	,66	,66	,66	,67	,67	,67	,68	,68	,69	,69	,70	,70	,70	,70	,71	,71	,72	,72	,72	,73	,73	,74	,75	,76	,77	,78	,79	,80	,81	,81	,82	,83	,83	,84	,84	,85	,85	,86	,86	,86	,87	,87	,87	,87	,88	,88	,89	,89	,89	,90	,91	,91	,92	,93	,95	,95	,96	,97	,98	,99	,99	,100	,101	,101	,101	,102	,102	,102	,103	,103	,103	,103	,103	,104	,104	,104	,104	,104	,104	,104	,104	,104	,104	,105	,105	,104	,104	,104	,104	,104	,104	,104	,104	,104	,105	,105	,105	,105	,105	,106	,105	,105	,105	,105	,105	,105	,104	,104	,104	,104	,104	,103	,103	,102	,101	,100	,98	,97	,95	,94	,93	,92	,91	,90	,89	,88	,87	,86	,85	,85	,84	,84	,84	,84	,84	,84	,84	,84	,84	,84	,85	,85	,86	,86	,86	,87	,87	,87	,87	,87	,87	,87	,87	,87	,87	,87	,87	,87	,87	,87	,87	,87	,87	,87	,87	,87	,87	,87
+};																																																																																																																																																																																															
+const uint16_t  ISeeYouMouth[] PROGMEMSECTION2 = {	110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,109	,108	,106	,106	,98	,95	,95	,93	,90	,88	,88	,85	,83	,80	,80	,80	,80	,80	,80	,80	,80	,80	,85	,90	,95	,98	,106	,107	,106	,107	,108	,108	,107	,107	,98	,90	,90	,88	,80	,80	,88	,85	,90	,95	,93	,95	,106	,107	,107	,106	,106	,106	,98	,88	,80	,80	,80	,80	,80	,80	,80	,80	,80	,80	,80	,80	,80	,80	,80	,83	,85	,85	,88	,90	,90	,93	,93	,93	,95	,95	,98	,98	,98	,106	,106	,106	,106	,106	,107	,107	,108	,108	,108	,108	,108	,108	,108	,109	,109	,109	,109	,109	,109	,109	,109	,109	,109	,109	,109	,109	,109	,109	,109	,109	,109	,109	,109	,109	,109	,109	,109	,109	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110	,110
+};																																																																																																																																																																																															
+const uint16_t  ISeeYouArmYaw[] PROGMEMSECTION2 = {	45	,45	,45	,45	,45	,45	,45	,45	,45	,45	,45	,45	,45	,45	,45	,45	,45	,45	,45	,45	,45	,45	,45	,45	,45	,45	,45	,45	,45	,45	,45	,45	,45	,45	,45	,45	,45	,45	,45	,45	,45	,45	,45	,45	,45	,46	,48	,50	,51	,53	,54	,56	,57	,59	,60	,61	,63	,64	,65	,66	,68	,69	,71	,72	,73	,74	,75	,76	,77	,78	,79	,79	,80	,82	,83	,84	,85	,86	,88	,89	,90	,92	,93	,94	,96	,97	,99	,100	,102	,103	,104	,105	,106	,107	,108	,109	,109	,110	,111	,113	,114	,115	,116	,117	,118	,119	,120	,121	,122	,122	,123	,124	,125	,126	,127	,127	,128	,128	,129	,129	,129	,129	,130	,130	,130	,130	,130	,130	,130	,130	,130	,130	,130	,129	,129	,128	,127	,125	,124	,122	,120	,119	,117	,115	,113	,112	,110	,109	,107	,106	,104	,102	,101	,100	,98	,97	,96	,95	,95	,94	,94	,94	,95	,95	,96	,96	,96	,95	,95	,95	,95	,95	,95	,95	,95	,95	,95	,95	,95	,95	,95	,95	,95	,95	,95	,95	,95	,95	,95	,95	,95
+};																																																																																																																																																																																															
+const uint16_t  ISeeYouArmRoll[] PROGMEMSECTION2 = {	131	,131	,131	,131	,131	,132	,132	,132	,132	,132	,132	,132	,132	,132	,132	,132	,132	,132	,132	,132	,132	,133	,133	,133	,133	,133	,134	,134	,134	,134	,134	,134	,134	,134	,134	,134	,134	,133	,133	,133	,132	,132	,132	,131	,131	,130	,130	,129	,129	,129	,128	,128	,127	,127	,126	,126	,125	,125	,124	,124	,123	,123	,123	,122	,122	,122	,121	,121	,121	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,120	,121	,122	,122	,123	,124	,125	,124	,124	,123	,123	,122	,121	,121	,121	,121	,121	,121	,121	,121	,121	,121	,120	,120	,120	,120	,120	,121	,121	,121	,121	,121	,121	,121	,121	,121	,120	,121	,121	,121	,121	,121	,121	,121	,121	,121
+};																																																																																																																																																																																															
+const uint16_t  ISeeYouArmPitch[] PROGMEMSECTION2 = {	87	,88	,88	,88	,88	,88	,88	,88	,88	,88	,87	,87	,87	,87	,87	,87	,87	,87	,87	,87	,85	,85	,84	,84	,83	,83	,83	,84	,84	,85	,85	,85	,84	,84	,84	,84	,84	,84	,84	,83	,83	,83	,83	,83	,83	,83	,82	,82	,82	,82	,82	,81	,81	,81	,81	,81	,81	,81	,81	,81	,81	,81	,81	,81	,81	,81	,79	,81	,81	,81	,81	,81	,81	,81	,82	,82	,82	,82	,82	,83	,83	,83	,83	,84	,84	,84	,84	,85	,85	,85	,87	,87	,88	,88	,88	,88	,89	,89	,89	,89	,90	,90	,90	,90	,91	,91	,91	,91	,93	,93	,93	,94	,94	,94	,95	,95	,95	,95	,95	,95	,96	,96	,96	,96	,96	,96	,97	,97	,97	,99	,99	,99	,99	,100	,100	,101	,102	,105	,107	,108	,112	,114	,118	,121	,125	,129	,132	,136	,139	,144	,149	,153	,156	,161	,163	,167	,171	,173	,174	,175	,177	,177	,178	,178	,177	,176	,175	,175	,175	,175	,174	,174	,175	,175	,174	,174	,174	,174	,174	,174	,174	,174	,175	,175	,174	,174	,174	,174	,174	,174	,174
+};																																																																																																																																																																																															
+const uint16_t  ISeeYouElbowPitch[] PROGMEMSECTION2 = {	132	,131	,131	,132	,132	,132	,132	,132	,131	,131	,132	,132	,132	,132	,132	,132	,132	,132	,132	,131	,132	,132	,132	,132	,132	,131	,132	,131	,131	,131	,131	,131	,132	,132	,132	,132	,132	,132	,132	,133	,133	,133	,133	,132	,132	,132	,133	,133	,135	,135	,135	,136	,136	,136	,136	,136	,137	,137	,136	,137	,137	,137	,138	,138	,138	,138	,139	,139	,139	,139	,139	,139	,141	,141	,139	,139	,141	,141	,141	,141	,141	,142	,142	,142	,142	,143	,144	,143	,144	,144	,144	,144	,144	,144	,144	,145	,144	,144	,145	,145	,144	,145	,145	,145	,144	,144	,145	,145	,145	,145	,145	,145	,145	,147	,145	,145	,145	,145	,145	,147	,145	,145	,145	,145	,145	,147	,145	,145	,148	,147	,147	,148	,148	,148	,148	,148	,148	,148	,147	,147	,147	,147	,145	,147	,147	,147	,147	,148	,149	,149	,148	,150	,153	,153	,155	,156	,157	,159	,161	,162	,162	,163	,163	,162	,163	,163	,165	,163	,163	,163	,165	,165	,163	,163	,165	,165	,165	,165	,165	,165	,165	,165	,163	,163	,165	,165	,165	,165	,165	,165	,165
+};																																																																																																																																																																																															
+const uint16_t  ISeeYouEyesLED[] PROGMEMSECTION2 = {	EYE_LEDS_OFF	,EYE_LEDS_OFF	,EYE_LEDS_OFF	,EYE_LEDS_OFF	,EYE_LEDS_OFF	,EYE_LEDS_OFF	,EYE_LEDS_OFF	,EYE_LEDS_OFF	,EYE_LEDS_OFF	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_ON	,EYE_LEDS_OFF	,EYE_LEDS_OFF	,EYE_LEDS_OFF	,EYE_LEDS_OFF	,EYE_LEDS_OFF	,EYE_LEDS_OFF	,EYE_LEDS_OFF	,EYE_LEDS_OFF	,EYE_LEDS_OFF	,EYE_LEDS_OFF	,EYE_LEDS_OFF	,EYE_LEDS_OFF	,EYE_LEDS_OFF	,EYE_LEDS_OFF	,EYE_LEDS_OFF	,EYE_LEDS_OFF	,EYE_LEDS_OFF	,EYE_LEDS_OFF	,EYE_LEDS_OFF	,EYE_LEDS_OFF	,EYE_LEDS_OFF	,EYE_LEDS_OFF	,EYE_LEDS_OFF	,EYE_LEDS_OFF	,EYE_LEDS_OFF	,EYE_LEDS_OFF	,EYE_LEDS_OFF	,EYE_LEDS_OFF	,EYE_LEDS_OFF	,EYE_LEDS_OFF	,EYE_LEDS_OFF	,EYE_LEDS_OFF	,EYE_LEDS_OFF	,EYE_LEDS_OFF	,EYE_LEDS_OFF
+};																																																																																																																																																																																															
+const uint16_t  ISeeYouVoice[] PROGMEMSECTION2 = {	 MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(START, 12)	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(STOP, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 	, MKVoiceEntry(UNCHANGED, 0) 
+};																																																																																																																																																																																															
+
+ProgMemArray_values_reader ISeeYou_HeadVert_Reader;
+ProgMemArray_values_reader ISeeYou_HeadHori_Reader;
+ProgMemArray_values_reader ISeeYou_Mouth_Reader;
+ProgMemArray_values_reader ISeeYou_Voice_Reader;
+ProgMemArray_values_reader ISeeYou_ArmYaw_Reader;
+ProgMemArray_values_reader ISeeYou_ArmRoll_Reader;
+ProgMemArray_values_reader ISeeYou_ArmPitch_Reader;
+ProgMemArray_values_reader ISeeYou_ElbowPitch_Reader;
+ProgMemArray_values_reader ISeeYou_EyesLED_Reader;
+
+#endif
 
 #if 0
 const unsigned long Silly_play_interval = 50; // milliseconds
@@ -737,6 +771,18 @@ void setup()
 		VampireArmGraspAt_ElbowPitch_Reader.Modify(pgm_get_far_address(VampireGraspAtElbowPitch),NUM_ARRAY_ENTRIES(VampireGraspAtElbowPitch));
 		VampireArmGraspAt_EyesLED_Reader.Modify(pgm_get_far_address(VampireGraspAtEyesLED),NUM_ARRAY_ENTRIES(VampireGraspAtEyesLED));
 #endif
+
+#ifdef ISeeYou_MOVEMENTS
+		ISeeYou_HeadVert_Reader.Modify(pgm_get_far_address(ISeeYouHeadVert),NUM_ARRAY_ENTRIES(ISeeYouHeadVert));
+		ISeeYou_HeadHori_Reader.Modify(pgm_get_far_address(ISeeYouHeadHori),NUM_ARRAY_ENTRIES(ISeeYouHeadHori));
+		ISeeYou_Mouth_Reader.Modify(pgm_get_far_address(ISeeYouMouth),NUM_ARRAY_ENTRIES(ISeeYouMouth));
+		ISeeYou_Voice_Reader.Modify(pgm_get_far_address(ISeeYouVoice),NUM_ARRAY_ENTRIES(ISeeYouVoice));
+		ISeeYou_ArmYaw_Reader.Modify(pgm_get_far_address(ISeeYouArmYaw),NUM_ARRAY_ENTRIES(ISeeYouArmYaw));
+		ISeeYou_ArmRoll_Reader.Modify(pgm_get_far_address(ISeeYouArmRoll),NUM_ARRAY_ENTRIES(ISeeYouArmRoll));
+		ISeeYou_ArmPitch_Reader.Modify(pgm_get_far_address(ISeeYouArmPitch),NUM_ARRAY_ENTRIES(ISeeYouArmPitch));
+		ISeeYou_ElbowPitch_Reader.Modify(pgm_get_far_address(ISeeYouElbowPitch),NUM_ARRAY_ENTRIES(ISeeYouElbowPitch));
+		ISeeYou_EyesLED_Reader.Modify(pgm_get_far_address(ISeeYouEyesLED),NUM_ARRAY_ENTRIES(ISeeYouEyesLED));
+#endif
                                     
 //    // For testing purposes play the devices once. 
     //Devices_Player.start_play(devices_player::PLAY_ONCE); 
@@ -1092,6 +1138,53 @@ void loop()
         Devices_Player.register_device (&Elbow_Pitch_servo,
                                         &VampireArmGraspAt_ElbowPitch_Reader,
                                         NUM_ARRAY_ENTRIES(VampireGraspAtElbowPitch));  // values in PROGMEM
+#endif                                        
+      }
+      else if (0 == strcmp(token, "ISeeYouPlayerSetup"))
+      //else if (0)
+      {
+#ifdef ISeeYou_MOVEMENTS
+        Serial.println(F("ISeeYouPlayerSetup"));
+        // Stop play and Unregister all devices
+        Devices_Player.stop_play();
+        Devices_Player.unregister_all_devices();
+        // Set volume Max for mp3
+        Voice_Player.Initialize(8);
+        Voice_Player.device_write(mp3_device::STOP << 8);
+        Voice_Player.device_write((mp3_device::VOLUME << 8) + (mp3_max_volume_level - 1)); 
+        
+        // Setup interval for entries in the device player
+        Devices_Player.set_play_interval(ISeeYou_play_interval); //
+        
+        // register the devices with the devices player along with the table of values to play
+        
+        Devices_Player.register_device (&Head_Horizontal_Rotation_servo,
+                                        &ISeeYou_HeadHori_Reader,
+                                        NUM_ARRAY_ENTRIES(ISeeYouHeadHori));  // values in PROGMEM
+        Devices_Player.register_device (&Head_Vertical_Rotation_servo,
+                                        &ISeeYou_HeadVert_Reader,
+                                        NUM_ARRAY_ENTRIES(ISeeYouHeadVert)); // values in PROGMEM
+        Devices_Player.register_device (&Head_Mouth_Rotation_servo,
+                                        &ISeeYou_Mouth_Reader,
+                                        NUM_ARRAY_ENTRIES(ISeeYouMouth)); // values in PROGMEM
+        Devices_Player.register_device (&Eyes_LEDs,
+                                        &ISeeYou_EyesLED_Reader,
+                                        NUM_ARRAY_ENTRIES(ISeeYouEyesLED)); // values in PROGMEM
+        Devices_Player.register_device (&Voice_Player,
+                                        &ISeeYou_Voice_Reader,
+                                        NUM_ARRAY_ENTRIES(ISeeYouVoice)); // values in PROGMEM
+        Devices_Player.register_device (&Arm_Yaw_servo,
+                                        &ISeeYou_ArmYaw_Reader,
+                                        NUM_ARRAY_ENTRIES(ISeeYouArmYaw));  // values in PROGMEM
+        Devices_Player.register_device (&Arm_Roll_servo,
+                                        &ISeeYou_ArmRoll_Reader,
+                                        NUM_ARRAY_ENTRIES(ISeeYouArmRoll));  // values in PROGMEM
+        Devices_Player.register_device (&Arm_Pitch_servo,
+                                        &ISeeYou_ArmPitch_Reader,
+                                        NUM_ARRAY_ENTRIES(ISeeYouArmPitch));  // values in PROGMEM
+        Devices_Player.register_device (&Elbow_Pitch_servo,
+                                        &ISeeYou_ElbowPitch_Reader,
+                                        NUM_ARRAY_ENTRIES(ISeeYouElbowPitch));  // values in PROGMEM
 #endif                                        
       }
       else if (0 == strcmp(token, "VampirePlayerSetup"))
