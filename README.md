@@ -217,7 +217,8 @@ move as fast as possible.  However, as measurements showed the servo speed decre
 would still give acceptable speed, albeit slower, and allow more of a load for heavier arms or longer arms.
 Something to consider if you are going with arms that require more torque.  Gearboxes also tend to be bigger than
 than a servo block with a servo in it.  Alternatively you could go with a large size servo in a servo block to
-greatly increase the torque and still keep the speed acceptable.
+greatly increase the torque and still keep the speed acceptable. Also it may be possible to use some type of counter weight
+ mechanisn to reduce the needed torque of the pitch servo.
 
 The servos are run at 6 volts with the exception of the arm pitch servo being run at
 7.4 volts to get the needed speed and torque. GoBilda servos are used for the arm, elbow, and head nod, while Hitec are
